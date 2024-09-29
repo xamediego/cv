@@ -1,0 +1,24 @@
+.header{
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 175px;
+  flex-shrink: 0;
+  align-self: stretch;
+
+  &__link{
+
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    &:hover{
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+
+}

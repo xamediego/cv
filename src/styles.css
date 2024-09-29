@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+h1{
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  margin: 1px;
+}
+
+h2{
+  font-family: Inter;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin: 1px;
+}
+
+h3{
+  font-family: Inter;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin: 1px;
+}
+
+h4{
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin: 1px;
+}
+
+h5{
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
+  margin: 1px;
+}
+
+h6{
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
+  margin: 1px;
+}
+
+p {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+
+  margin: 0px;
+}
+
+.s_t{
+  color: #bbbbbb;
+}
