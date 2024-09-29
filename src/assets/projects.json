@@ -1,0 +1,108 @@
+{
+  "projects" : {
+    "Java" : {
+      "JFX-ImageCutter" : {
+        "imageUrl" : "TestThumbnails/Java/JFX-ImageCutter.jpg",
+        "name" : "JFX-ImageCutter",
+        "publishedDate" : "2022-05",
+        "description" : "Image cropper / cutter for avatars in javafx.\nTest project thingy. All of it just works.",
+        "downloadLink": "https://github.com/xamediego/JFX_IMAGE_CUTTER"
+      },
+      "JFX-Game" : {
+        "imageUrl" : "TestThumbnails/Java/JFX-Game.jpg",
+        "name" : "JFX-Game",
+        "publishedDate" : "2023-03",
+        "description" : "Small game created in JavaFX for a school assignment, might have one or two bugs",
+        "downloadLink": "https://github.com/xamediego/DEDS-Game"
+      }
+    },
+    "Unreal Tournament 3" : {
+      "VCTF-Retribution" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 3/VCTF-Retribution.jpg",
+        "name" : "VCTF-Retribution",
+        "publishedDate" : "2012-12-11",
+        "description" : "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
+        "downloadLink": "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution"
+      },
+      "War-Snowbound" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 3/War-Snowbound.jpg",
+        "name" : "War-Snowbound",
+        "publishedDate" : "2011-09-24",
+        "description" : "A symmetrical warfare map that is set in an icy canyon on a remote planet that used to be colonized by the forerunners.",
+        "downloadLink": "https://www.mapraider.com/maps/unreal-tournament-3/unreal-warfare/5720/War-SnowBound"
+      },
+      "DM-Esoteric" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 3/DM-Esoteric.jpg",
+        "name" : "DM-Esoteric",
+        "publishedDate" : "2012-12-18",
+        "description" : "A symmetrical Halo styled DM map for UT in a cave.",
+        "downloadLink": "https://www.mapraider.com/maps/unreal-tournament-3/deathmatch/5905/DM-Esoteric"
+      },
+      "DM-CTF-Element" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 3/DM-CTF-Element.jpg",
+        "name" : "DM-CTF-Element",
+        "publishedDate" : "2011-12-20",
+        "description" : "Remake of the Halo reach forge map MLG Element. The arena is a large indoor-outdoor, octagonally shaped brick building set in the mountains. The center courtyard area contains a raised pagoda-like structure that obscures the view to the other side. I only remade the gameplay, so I didn't add any Halo textures. I also didn't add the strut jump, and the other ramp jump.\n\nThe map pack contains both DM and CTF versions.",
+        "downloadLink": "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5731/DM-CTF-Element"
+      },
+      "VCTF-District" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 3/VCTF-District.jpg",
+        "name" : "VCTF-District",
+        "publishedDate" : "2011-02-09",
+        "description" : "Just a VCTF map set in a city. You can take the fight to the open field with your hellbender, or just go trough the buildings with your flak cannon.",
+        "downloadLink": "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5708/VCTF-District"
+      },
+      "CTF-Crossfire" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 3/CTF-Crossfire.jpg",
+        "name" : "CTF-Crossfire",
+        "publishedDate" : "2011-06-03",
+        "description" : "A symmetrical map in a chilly enviornment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
+        "downloadLink": "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5578/CTF-CrossFire"
+      }
+    },
+    "Unreal Tournament 2004" : {
+      "DM-Dome" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 2004/DM-Dome.jpg",
+        "name" : "DM-Dome",
+        "publishedDate" : "2010-08",
+        "description" : "",
+        "downloadLink": ""
+      },
+      "DM-Hellzone" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 2004/DM-Hellzone.jpg",
+        "name" : "DM-Hellzone",
+        "publishedDate" : "2010-08",
+        "description" : "",
+        "downloadLink": ""
+      },
+      "DM-Instaltion-486" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 2004/DM-Instaltion-486.jpg",
+        "name" : "DM-Instaltion-486",
+        "publishedDate" : "2010-09",
+        "description" : "",
+        "downloadLink": ""
+      },
+      "DM-Legacy" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 2004/DM-Legacy.jpg",
+        "name" : "DM-Legacy",
+        "publishedDate" : "2010-10",
+        "description" : "",
+        "downloadLink": ""
+      },
+      "DM-ThePit" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 2004/DM-ThePit.jpg",
+        "name" : "DM-ThePit",
+        "publishedDate" : "2010-10",
+        "description" : "",
+        "downloadLink": ""
+      },
+      "DM-VoteFor" : {
+        "imageUrl" : "TestThumbnails/Unreal Tournament 2004/DM-VoteFor.jpg",
+        "name" : "DM-VoteFor",
+        "publishedDate" : "2010-10",
+        "description" : "",
+        "downloadLink": ""
+      }
+    }
+  }
+}

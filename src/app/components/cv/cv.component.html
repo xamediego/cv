@@ -1,10 +1,21 @@
 <div class="cv">
 
+  <ng-container *ngTemplateOutlet="left"></ng-container>
 
+  <div class="cv__mid">
+    <div class="cv__mid__line">
+    </div>
+  </div>
+
+  <ng-container *ngTemplateOutlet="right"></ng-container>
+
+</div>
+
+<ng-template #left>
   <div class="cv__left">
 
     <div class="cv__left__image">
-      <img class="cv__left__image__pp" src="pp.JPG">
+      <img class="cv__left__image__pp" src="pp.jpg">
     </div>
 
     <div class="cv__left__contact">
@@ -33,7 +44,7 @@
       <h3>Education</h3>
 
       <div class="stretch">
-        <h4>The Hauge University</h4>
+        <h4>The Hague University of Applied Sciences</h4>
         <p class="s_t">
           2021 Bachelor HBO-ICT
         </p>
@@ -53,7 +64,7 @@
       <div class="stretch">
         <h4>Shenzhen University</h4>
         <p class="s_t">
-          2018 Study Chinese Langauge
+          2018 Study Chinese Language
         </p>
       </div>
 
@@ -109,12 +120,9 @@
     </div>
 
   </div>
+</ng-template>
 
-  <div class="cv__mid">
-    <div class="cv__mid__line">
-    </div>
-  </div>
-
+<ng-template #right>
   <div class="cv__right">
 
     <div class="cv__right__title">
@@ -186,5 +194,4 @@
 
 
   </div>
-
-</div>
+</ng-template>

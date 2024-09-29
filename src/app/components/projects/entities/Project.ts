@@ -4,5 +4,4 @@ export interface Project {
   publishedDate: Date;
   description: string;
   downloadLink : string;
-  repositoryLink : string;
 }

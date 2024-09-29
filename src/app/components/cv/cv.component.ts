@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {NgOptimizedImage, NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'app-cv',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgTemplateOutlet
   ],
   templateUrl: './cv.component.html',
   styleUrl: './cv.component.scss'
