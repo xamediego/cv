@@ -6,16 +6,6 @@
   height: 100%;
 }
 
-.cv {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  max-width: 875px;
-  padding: 20px;
-}
-
 @media (max-width: 600px) {
   .cv {
     flex-direction: column-reverse;
@@ -23,6 +13,14 @@
 }
 
 .cv {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  max-width: 875px;
+  padding: 20px;
 
   &__left {
     display: flex;
@@ -44,7 +42,7 @@
       padding: 20px;
       gap: 20px;
 
-      &__pp{
+      &__pp {
         width: 120px;
         height: 120px;
 
@@ -70,43 +68,14 @@
       }
     }
 
-    &__contact {
-      display: flex;
-      padding: 11px 10px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 5px;
-      align-self: stretch;
-    }
-
-    &__education {
+    &__cont {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       align-self: stretch;
 
-      gap: 5px;
       padding: 10px 10px;
-    }
-
-    &__skill {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      align-self: stretch;
-
       gap: 5px;
-      padding: 10px 10px;
-    }
-
-    &__certs {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      align-self: stretch;
-
-      gap: 5px;
-      padding: 10px 10px;
     }
 
   }
@@ -122,7 +91,7 @@
 
     align-self: stretch;
 
-    &__line{
+    &__line {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -138,7 +107,7 @@
     }
   }
 
-  &__right{
+  &__right {
 
     display: flex;
     flex-direction: column;
@@ -152,7 +121,7 @@
 
     gap: 20px;
 
-    &__title{
+    &__title {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -164,7 +133,14 @@
       padding: 10px 0;
     }
 
-    &__profile{
+    @media (max-width: 600px) {
+      &__title {
+        height: 100px;
+      }
+    }
+
+
+    &__profile {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -173,7 +149,7 @@
       gap: 15px;
     }
 
-    &__work{
+    &__work {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -183,12 +159,11 @@
     }
 
 
-
-    h3{
+    h3 {
       font-size: 18px;
     }
 
-    p{
+    p {
       font-size: 17px;
     }
 

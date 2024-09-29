@@ -1,21 +1,29 @@
-.header{
+@media (max-width: 800px) {
+  .header{
+    gap: 0;
+    justify-content: space-between;
+  }
+}
+
+.header {
   display: flex;
-  height: 50px;
   justify-content: center;
   align-items: center;
-  gap: 175px;
-  flex-shrink: 0;
   align-self: stretch;
 
-  &__link{
+  height: 50px;
+  gap: 175px;
+  flex-shrink: 0;
 
-    font-family: Inter;
-    font-size: 18px;
+  &__link {
+
     font-style: normal;
-    font-weight: 600;
     line-height: normal;
 
-    &:hover{
+    font-size: 18px;
+    font-weight: 600;
+
+    &:hover {
       cursor: pointer;
       opacity: 0.8;
     }

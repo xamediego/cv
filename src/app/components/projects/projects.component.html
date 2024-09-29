@@ -77,33 +77,35 @@
 
     <ng-container *ngFor="let project of projectType.projects">
 
-      <div class="project">
+      <a style="all: unset" href="{{project.downloadLink}}">
+        <div class="project">
 
-        <div class="project__title">
+          <div class="project__title">
 
-          <div class="project__title__left">
-            <p class="s_t">
-              {{project.name}}
-            </p>
+            <div class="project__title__left">
+              <p class="s_t">
+                {{project.name}}
+              </p>
+            </div>
+
+            <div class="project__title__right">
+              <p class="s_t">
+                Created:{{project.publishedDate.getFullYear()}}-{{project.publishedDate.getMonth()}}-{{project.publishedDate.getDate()}}
+              </p>
+            </div>
+
           </div>
 
-          <div class="project__title__right">
-            <p class="s_t">
-              Created:{{project.publishedDate.getFullYear()}}-{{project.publishedDate.getMonth()}}-{{project.publishedDate.getDate()}}
-            </p>
-          </div>
+
+          <img
+            alt="{{project.name}} - Image"
+            src="{{project.imageUrl}}"
+            class="project__img"
+          />
+
 
         </div>
-
-
-        <img
-          alt="{{project.name}} - Image"
-          src="{{project.imageUrl}}"
-          class="project__img"
-        />
-
-
-      </div>
+      </a>
 
     </ng-container>
 
