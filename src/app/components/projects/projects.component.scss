@@ -10,6 +10,10 @@
   :host {
     align-items: unset;
   }
+
+  .project{
+    max-width: 350px;
+  }
 }
 
 .archive {
@@ -170,8 +174,7 @@
   width: 100%;
 }
 
-.project {
-
+.project{
   display: flex;
   flex-direction: column;
 
@@ -180,6 +183,9 @@
   gap: 5px;
 
   height: auto;
+}
+
+.project {
 
   &:hover {
     opacity: .85;
