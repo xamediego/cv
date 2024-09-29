@@ -6,6 +6,12 @@
   height: 100%;
 }
 
+@media (max-width: 500px) {
+  :host {
+    align-items: unset;
+  }
+}
+
 .archive {
   display: flex;
   flex-direction: column;
@@ -170,7 +176,7 @@
   flex-direction: column;
 
   width: 100%;
-  max-width: 448px;
+  max-width: 400px;
   gap: 5px;
 
   height: auto;
