@@ -1,1 +1,162 @@
-<p>projects works!</p>
+<div class="archive">
+
+  <div class="archive__wrapper">
+
+    <div class="archive__container">
+
+      <div class="archive__bottom">
+
+        <div class="archive__top__title">
+          <h1>The Archive</h1>
+          <hr class="slice-line">
+        </div>
+
+        <div class="archive__bottom__descriptions">
+          <p class="s_t">
+            Welcome to my personal project archive! Here, you'll find a collection of custom levels designed for Unreal
+            Tournament 2004 (UT2K4), Unreal Tournament 3 (UT3), and Unreal Development Kit (UDK). Each level has been
+            crafted with attention to detail, aiming to provide a unique and engaging experience for players. Dive into
+            the maps and discover new battlegrounds, hidden secrets, and challenging scenarios.
+          </p>
+          <p class="s_t">
+            In addition to my work on Unreal levels, I've also explored various projects in Java. From simple
+            applications to more complex systems, these projects showcase my journey through learning and applying Java
+            programming concepts. Whether you're here for the Unreal levels or curious about my Java projects, I hope
+            you
+            find something that sparks your interest and inspires your own creativity.
+          </p>
+        </div>
+
+        <div class="archive__bottom__title__wrapper">
+          <h1>Old Projects</h1>
+          <hr class="slice-line">
+        </div>
+
+        <div class="archive__bottom__projects__wrapper">
+
+          <ng-container *ngTemplateOutlet="archiveFilter"/>
+
+          <ng-container *ngFor="let projectType of projectTypes">
+
+            <ng-container *ngIf="selectedFilter === 'All' || projectType.type === selectedFilter">
+              <div class="archive__bottom__project-types">
+
+                <div class="archive__bottom__title__wrapper">
+
+                  <div class="archive__bottom__title__wrapper__head">
+
+                    <div class="archive__bottom__title__wrapper__head__left">
+                      <h2>{{projectType.type}}</h2>
+                    </div>
+
+                  </div>
+                  <hr class="slice-line">
+                </div>
+
+                <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
+
+              </div>
+            </ng-container>
+
+          </ng-container>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+<ng-template #projects let-projectType>
+
+  <div class="projects">
+
+    <ng-container *ngFor="let project of projectType.projects">
+
+      <div class="project">
+
+        <div class="project__title">
+
+          <div class="project__title__left">
+            <p class="s_t">
+              {{project.name}}
+            </p>
+          </div>
+
+          <div class="project__title__right">
+            <p class="s_t">
+              Created:{{project.publishedDate.getFullYear()}}-{{project.publishedDate.getMonth()}}-{{project.publishedDate.getDate()}}
+            </p>
+          </div>
+
+        </div>
+
+
+        <img
+          alt="{{project.name}} - Image"
+          src="{{project.imageUrl}}"
+          class="project__img"
+        />
+
+
+      </div>
+
+    </ng-container>
+
+  </div>
+</ng-template>
+
+<ng-template #archiveFilter>
+
+  <div class="archive__filter">
+
+    <div class="archive__filter__selection">
+
+      <p class="archive__filter__title s_t">
+        Selection:
+      </p>
+
+      <ng-template #dropdownTemplate>
+        <select class="archive__filter__search-field" [(ngModel)]="selectedFilter">
+
+          <option value="All" selected="selected">All</option>
+
+          <option
+            *ngFor="let projectType of projectTypesStorage"
+            [value]="projectType.type">
+            {{ projectType.type }}
+          </option>
+
+        </select>
+      </ng-template>
+
+      <ng-container *ngTemplateOutlet="dropdownTemplate"/>
+
+    </div>
+
+    <div class="archive__filter__form">
+
+      <p class="archive__filter__title s_t">
+        Project Search:
+      </p>
+
+      <form class="archive__filter__form__wrapper" [formGroup]="myGroup">
+
+        <input
+          formControlName="inputControl"
+          class="archive__filter__search-field"
+          placeholder="filter..."
+          type="text"/>
+      </form>
+
+    </div>
+
+
+  </div>
+</ng-template>
+
+
