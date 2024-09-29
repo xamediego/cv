@@ -6,13 +6,9 @@
   height: 100%;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   :host {
     align-items: unset;
-  }
-
-  .project{
-    max-width: 350px;
   }
 }
 
@@ -27,7 +23,7 @@
 
   margin-bottom: 40px;
 
-  p{
+  p {
     font-size: 15px;
   }
 
@@ -174,12 +170,12 @@
   width: 100%;
 }
 
-.project{
+.project {
   display: flex;
   flex-direction: column;
 
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   gap: 5px;
 
   height: auto;
@@ -202,10 +198,10 @@
   }
 
   &__img {
-
     flex-shrink: 0;
-    max-width : inherit;
-    max-height: 280px;
+
+    width: inherit;
+    max-height: inherit;
 
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -292,7 +288,7 @@
       all: unset;
 
       color: #f1f1f1;
-      background-color: #6b6b6b;
+      background-color: #333333;
 
       width: 100%;
       min-height: 30px;
