@@ -16,6 +16,15 @@
         "downloadLink": "https://github.com/xamediego/DEDS-Game"
       }
     },
+    "UDK" : {
+      "DM-Derelict" : {
+        "imageUrl" : "TestThumbnails/UDK/DM-Derelict/3.jpg",
+        "name" : "DM-Derelict",
+        "publishedDate" : "2012-11-15",
+        "description" : "Remake of the halo map but then for UDK, also made an UT3 version but lost it and can't find it, map is mostly made of BSP",
+        "downloadLink": "https://mega.nz/file/N7kVQIQa#BqCFGSLdDzAziUkc3PvRIAybfwCEemKsyiK8tgh0D3E"
+      }
+    },
     "Unreal Tournament 3" : {
       "VCTF-Retribution" : {
         "imageUrl" : "TestThumbnails/Unreal Tournament 3/VCTF-Retribution.jpg",
