@@ -16,13 +16,20 @@
         "downloadLink": "https://github.com/xamediego/DEDS-Game"
       }
     },
-    "UDK" : {
+    "Unreal Development Kit (UDK)" : {
       "DM-Derelict" : {
         "imageUrl" : "TestThumbnails/UDK/DM-Derelict/3.jpg",
         "name" : "DM-Derelict",
         "publishedDate" : "2012-11-15",
         "description" : "Remake of the halo map but then for UDK, also made an UT3 version but lost it and can't find it, map is mostly made of BSP",
         "downloadLink": "https://mega.nz/file/N7kVQIQa#BqCFGSLdDzAziUkc3PvRIAybfwCEemKsyiK8tgh0D3E"
+      },
+      "DM-MidShip" : {
+        "imageUrl" : "TestThumbnails/UDK/DM-MidShip/2.jpg",
+        "name" : "DM-MidShip",
+        "publishedDate" : "2012-10-16",
+        "description" : "Random MidShip i forgot how I ported this to UDK",
+        "downloadLink": "https://mega.nz/file/U7MC2BDa#b-Y_20KNjPPfnxcAyPsup8VvDuqoQ95FKiuAIphwJa0"
       }
     },
     "Unreal Tournament 3" : {
