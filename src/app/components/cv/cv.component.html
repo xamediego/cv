@@ -1,306 +1,238 @@
-<div class="cv">
+<!--                Root                -->
 
+<div class="cv">
   <ng-container *ngIf="isSmallScreen; else left">
-    <ng-container *ngTemplateOutlet="left__small"></ng-container>
+    <ng-container *ngTemplateOutlet="left__small" />
   </ng-container>
 
   <div class="cv__mid">
     <div class="cv__mid__line">
     </div>
   </div>
-
-  <ng-container *ngTemplateOutlet="right"></ng-container>
-
+  <ng-container *ngTemplateOutlet="right" />
 </div>
+
+<!--                Layers                -->
 
 <ng-template #left>
   <div class="cv__left">
-
-    <div class="cv__left__image">
-      <img class="cv__left__image__pp" src="pp.png" alt="pica">
-    </div>
-
-    <div class="cv__left__cont">
-
-      <h3>Contact</h3>
-
-      <div class="stretch">
-        <p class="s_t">
-          max.de.jonge&#64;outlook.com
-        </p>
-      </div>
-      <div class="stretch">
-        <p class="s_t">
-          https://www.linkedin.com/in/max-de-jonge/
-        </p>
-      </div>
-      <div class="stretch">
-        <p class="s_t">
-          https://github.com/xamediego
-        </p>
-      </div>
-
-    </div>
-
-    <div class="cv__left__cont">
-      <h3>Education</h3>
-
-      <div class="stretch">
-        <h4>The Hague University of Applied Sciences</h4>
-        <p class="s_t">
-          2021 Bachelor HBO-ICT
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Kansai University</h4>
-        <p class="s_t">
-          2024 International minor
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Techniek College Rotterdam</h4>
-        <p class="s_t">
-          2020 - 2021 MBO-ICT
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Shenzhen University</h4>
-        <p class="s_t">
-          2018 Study Chinese Language
-        </p>
-      </div>
-
-    </div>
-
-    <div class="cv__left__cont">
-      <h3>Skills</h3>
-
-      <div class="stretch">
-        <h4>Programming</h4>
-        <p class="s_t">
-          java, javascript/typescript, c#, python, c++
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Web Design</h4>
-        <p class="s_t">
-          html, css, sass ,figma
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Frameworks</h4>
-        <p class="s_t">
-          .net, angular, spring, react
-          cypress, specflow
-        </p>
-      </div>
-
-    </div>
-
-    <div class="cv__left__cont">
-
-      <h3>Certificates</h3>
-
-      <div class="stretch">
-        <h4>
-          Japanese Language Proficiency Test 1
-        </h4>
-        <p class="s_t">
-          Issued Aug 2024
-        </p>
-      </div>
-
-      <div class="stretch">
-        <h4>
-          Hanyu Shuiping Kaoshi 4
-        </h4>
-        <p class="s_t">
-          Issued Dec 2019
-        </p>
-      </div>
-
-    </div>
-
+    <ng-container *ngTemplateOutlet="pp" />
+    <ng-container *ngTemplateOutlet="contact" />
+    <ng-container *ngTemplateOutlet="education" />
+    <ng-container *ngTemplateOutlet="skills" />
+    <ng-container *ngTemplateOutlet="certificates" />
   </div>
 </ng-template>
 
 <ng-template #left__small>
   <div class="cv__left">
-
-    <div class="cv__left__cont">
-      <h3>Education</h3>
-
-      <div class="stretch">
-        <h4>The Hague University of Applied Sciences</h4>
-        <p class="s_t">
-          2021 Bachelor HBO-ICT
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Kansai University</h4>
-        <p class="s_t">
-          2024 International minor
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Techniek College Rotterdam</h4>
-        <p class="s_t">
-          2020 - 2021 MBO-ICT
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Shenzhen University</h4>
-        <p class="s_t">
-          2018 Study Chinese Language
-        </p>
-      </div>
-
-    </div>
-
-    <div class="cv__left__cont">
-      <h3>Skills</h3>
-
-      <div class="stretch">
-        <h4>Programming</h4>
-        <p class="s_t">
-          java, javascript/typescript, c#, python, c++
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Web Design</h4>
-        <p class="s_t">
-          html, css, sass ,figma
-        </p>
-      </div>
-      <div class="stretch">
-        <h4>Frameworks</h4>
-        <p class="s_t">
-          .net, angular, spring, react
-          cypress, specflow
-        </p>
-      </div>
-
-    </div>
-
-    <div class="cv__left__cont">
-
-      <h3>Certificates</h3>
-
-      <div class="stretch">
-        <h4>
-          Japanese Language Proficiency Test 1
-        </h4>
-        <p class="s_t">
-          Issued Aug 2024
-        </p>
-      </div>
-
-      <div class="stretch">
-        <h4>
-          Hanyu Shuiping Kaoshi 4
-        </h4>
-        <p class="s_t">
-          Issued Dec 2019
-        </p>
-      </div>
-
-    </div>
-
-    <div class="cv__left__cont">
-
-      <h3>Contact</h3>
-
-      <div class="stretch">
-        <p class="s_t">
-          max.de.jonge&#64;outlook.com
-        </p>
-      </div>
-      <div class="stretch">
-        <p class="s_t">
-          https://www.linkedin.com/in/max-de-jonge/
-        </p>
-      </div>
-      <div class="stretch">
-        <p class="s_t">
-          https://github.com/xamediego
-        </p>
-      </div>
-
-    </div>
-
+    <ng-container *ngTemplateOutlet="education" />
+    <ng-container *ngTemplateOutlet="skills" />
+    <ng-container *ngTemplateOutlet="certificates" />
+    <ng-container *ngTemplateOutlet="contact" />
   </div>
 </ng-template>
 
 <ng-template #right>
   <div class="cv__right">
+    <ng-container *ngTemplateOutlet="title" />
+    <ng-container *ngTemplateOutlet="profile" />
+    <ng-container *ngTemplateOutlet="work" />
+  </div>
+</ng-template>
 
-    <div class="cv__right__title">
-      <h1>
-        Max de Jonge
-      </h1>
-      <h2 style="color: #bbbbbb">
-        Software Engineer
-      </h2>
-    </div>
+<!--                Items                -->
 
-    <div class="cv__right__profile">
-      <h2>
-        Profile
-      </h2>
+<ng-template #title>
+  <div class="cv__right__title">
+    <h1>
+      Max de Jonge
+    </h1>
+    <h2 style="color: #bbbbbb">
+      Software Engineer
+    </h2>
+  </div>
+</ng-template>
+
+<ng-template #profile>
+  <div class="cv__right__cont">
+    <h2>
+      Profile
+    </h2>
+    <p class="s_t">
+      I am a solution-oriented software engineer with a strong attention to detail and a solid foundation in both
+      front-end and back-end development.
+      My experience spans across the software development lifecycle, including programming, testing, and deployment.
+      I am focused on delivering efficient, reliable solutions while continuously improving my skills and adapting to
+      new technologies.
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #work>
+  <div class="cv__right__cont">
+    <h2>
+      Work Experience
+    </h2>
+    <div class="stretch">
+      <h3>
+        Cohelion
+      </h3>
       <p class="s_t">
-        I am a solution-oriented software engineer with a strong attention to detail and a solid foundation in both
-        front-end and back-end development.
-        My experience spans across the software development lifecycle, including programming, testing, and deployment.
-        I am focused on delivering efficient, reliable solutions while continuously improving my skills and adapting to
-        new technologies.
+        2023 - 2024
+      </p>
+      <p class="s_t">
+        Developing an innovative internal version control application in a .NET
+        backend with an Angular frontend, that provides seamless integration with
+        the companies repository structure allowing it to effortlessly
+        update its submodules.
+      </p>
+    </div>
+    <div class="stretch">
+      <h3>
+        Komp-u-ter-hulp
+      </h3>
+      <p class="s_t">
+        2020 - 2021
+      </p>
+      <p class="s_t">
+        Guiding and assisting vocational education students with their assignments.
+        Developing assignments related to ICT management for students.
+      </p>
+    </div>
+    <div class="stretch">
+      <h3>
+        Laplace
+      </h3>
+      <p class="s_t">
+        2018 - 2021
+      </p>
+      <p class="s_t">
+        Managing general activities like interaction with customers.
+        Making preperations for the following days.
+        Assisting and teaching new employees.
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #pp>
+  <div class="cv__left__image">
+    <img class="cv__left__image__pp" src="pp.png" alt="pica">
+  </div>
+</ng-template>
+
+<ng-template #contact>
+  <div class="cv__left__cont">
+
+    <h3>Contact</h3>
+
+    <div class="stretch">
+      <p class="s_t">
+        max.de.jonge&#64;outlook.com
+      </p>
+    </div>
+    <div class="stretch">
+      <p class="s_t">
+        https://www.linkedin.com/in/max-de-jonge/
+      </p>
+    </div>
+    <div class="stretch">
+      <p class="s_t">
+        https://github.com/xamediego
       </p>
     </div>
 
-    <div class="cv__right__work">
-      <h2>
-        Work Experience
-      </h2>
-      <div class="stretch">
-        <h3>
-          Cohelion
-        </h3>
-        <p class="s_t">
-          2023 - 2024
-        </p>
-        <p class="s_t">
-          Developing an innovative internal version control application in a .NET
-          backend with an Angular frontend, that provides seamless integration with
-          the companies repository structure allowing it to effortlessly
-          update its submodules.
-        </p>
-      </div>
-      <div class="stretch">
-        <h3>
-          Komp-u-ter-hulp
-        </h3>
-        <p class="s_t">
-          2020 - 2021
-        </p>
-        <p class="s_t">
-          Guiding and assisting vocational education students with their assignments.
-          Developing assignments related to ICT management for students.
-        </p>
-      </div>
-      <div class="stretch">
-        <h3>
-          Laplace
-        </h3>
-        <p class="s_t">
-          2018 - 2021
-        </p>
-        <p class="s_t">
-          Managing general activities like interaction with customers.
-          Making preperations for the following days.
-          Assisting and teaching new employees.
-        </p>
-      </div>
+  </div>
+</ng-template>
+
+<ng-template #education>
+  <div class="cv__left__cont">
+    <h3>Education</h3>
+
+    <div class="stretch">
+      <h4>The Hague University of Applied Sciences</h4>
+      <p class="s_t">
+        2021 Bachelor HBO-ICT
+      </p>
+    </div>
+    <div class="stretch">
+      <h4>Kansai University</h4>
+      <p class="s_t">
+        2024 International minor
+      </p>
+    </div>
+    <div class="stretch">
+      <h4>Techniek College Rotterdam</h4>
+      <p class="s_t">
+        2020 - 2021 MBO-ICT
+      </p>
+    </div>
+    <div class="stretch">
+      <h4>Shenzhen University</h4>
+      <p class="s_t">
+        2018 Study Chinese Language
+      </p>
     </div>
 
+  </div>
+</ng-template>
+
+<ng-template #skills>
+  <div class="cv__left__cont">
+    <h3>Skills</h3>
+
+    <div class="stretch">
+      <h4>Programming</h4>
+      <p class="s_t">
+        java, javascript/typescript, c#, python, c++
+      </p>
+    </div>
+    <div class="stretch">
+      <h4>Web Design</h4>
+      <p class="s_t">
+        html, css, sass ,figma
+      </p>
+    </div>
+    <div class="stretch">
+      <h4>Frameworks</h4>
+      <p class="s_t">
+        .net, angular, spring, react
+        cypress, specflow
+      </p>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #certificates>
+  <div class="cv__left__cont">
+
+    <h3>Certificates</h3>
+
+    <div class="stretch">
+      <h4>
+        Japanese Language Proficiency Test 1
+      </h4>
+      <p class="s_t">
+        Issued Aug 2024
+      </p>
+      <p class="s_t">
+        Highest level of Japanese language certification
+      </p>
+    </div>
+
+    <div class="stretch">
+      <h4>
+        Hanyu Shuiping Kaoshi 4
+      </h4>
+      <p class="s_t">
+        Issued Dec 2019
+      </p>
+      <p class="s_t">
+        Equivalent to (CEF) B2
+      </p>
+    </div>
 
   </div>
 </ng-template>
