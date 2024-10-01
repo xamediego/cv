@@ -72,14 +72,10 @@
 
 
 <ng-template #projects let-projectType>
-
   <div class="projects">
-
     <ng-container *ngFor="let project of projectType.projects">
-
-      <a style="all: unset" href="{{project.downloadLink}}">
         <div class="project">
-
+          <a class="project__link" href="{{project.downloadLink}}">
           <div class="project__title">
 
             <div class="project__title__left">
@@ -90,25 +86,20 @@
 
             <div class="project__title__right">
               <p class="s_t">
-                Created:{{project.publishedDate.getFullYear()}}-{{project.publishedDate.getMonth()}}-{{project.publishedDate.getDate()}}
+                Created:{{project.publishedDate.getFullYear()}}-{{project.publishedDate.getMonth()}}
+                -{{project.publishedDate.getDate()}}
               </p>
             </div>
 
           </div>
-
-
           <img
             alt="{{project.name}} - Image"
             src="{{project.imageUrl}}"
             class="project__img"
           />
-
-
+          </a>
         </div>
-      </a>
-
     </ng-container>
-
   </div>
 </ng-template>
 
