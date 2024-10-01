@@ -16,17 +16,20 @@
   flex-shrink: 0;
 
   &__link {
-
-    font-style: normal;
-    line-height: normal;
-
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
 
     &:hover {
       cursor: pointer;
       opacity: 0.8;
     }
+
+    &__active{
+      font-size: 19px;
+      font-weight: 700;
+      border-bottom: 1px solid #ffffff;
+    }
+
   }
 
 }

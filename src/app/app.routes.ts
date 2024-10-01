@@ -7,7 +7,8 @@ export const appRoutes: Routes = [
   {path: 'cv', component: CvComponent},
   {path: 'projects', component: ProjectsComponent},
 
-  {path: '**', component: CvComponent},
+  //needs to be put at la bottom
+  {path: '**', redirectTo : 'cv'},
 ];
 
 @NgModule({
