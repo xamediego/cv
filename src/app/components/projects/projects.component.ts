@@ -91,11 +91,15 @@ export class ProjectsComponent implements OnInit {
 
   private filterProjects(projectName: string) {
 
+
     if (this.selectedFilter === "All") {
       this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage));
     } else {
       this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage)).filter((pt: ProjectType) => pt.type === this.selectedFilter);
     }
+
+    console.log("----------")
+    console.log(this.projectTypes)
 
     if (projectName !== "" && projectName !== undefined && projectName !== null) {
       this.projectTypes = this.projectTypes.filter(pt => {
@@ -103,6 +107,9 @@ export class ProjectsComponent implements OnInit {
         return pt.projects.length > 0;
       })
     }
+
+    console.log("----------")
+    console.log(this.projectTypes)
 
     //Fix Date otherwise can use GetFullYear() etc anymore for some weird reason (maybe Javascript is the reason)
     this.projectTypes.map(pt => {
