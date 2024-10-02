@@ -104,8 +104,7 @@
 </ng-template>
 
 <ng-template #archiveFilter>
-
-  <div class="archive__filter">
+  <form class="archive__filter" [formGroup]="filterGroup">
 
     <div class="archive__filter__selection">
 
@@ -113,42 +112,40 @@
         Selection:
       </p>
 
-      <ng-template #dropdownTemplate>
-        <select class="archive__filter__search-field" [(ngModel)]="selectedFilter">
+      <select
+        formControlName="selectControl"
+        class="archive__filter__search-field"
+        [(ngModel)]="selectedFilter">
 
-          <option value="All" selected="selected">All</option>
+        <option value="All" selected="selected">All</option>
 
-          <option
-            *ngFor="let projectType of projectTypesStorage"
-            [value]="projectType.type">
-            {{ projectType.type }}
-          </option>
+        <option
+          *ngFor="let projectType of projectTypesStorage"
+          [value]="projectType.type">
+          {{ projectType.type }}
+        </option>
 
-        </select>
-      </ng-template>
-
-      <ng-container *ngTemplateOutlet="dropdownTemplate"/>
+      </select>
 
     </div>
 
-<!--    <div class="archive__filter__form">-->
+    <div class="archive__filter__form">
 
-<!--      <p class="archive__filter__title s_t">-->
-<!--        Project Search:-->
-<!--      </p>-->
+      <p class="archive__filter__title s_t">
+        Project Search:
+      </p>
 
-<!--      <form class="archive__filter__form__wrapper" [formGroup]="myGroup">-->
-<!--        <input-->
-<!--          formControlName="inputControl"-->
-<!--          class="archive__filter__search-field"-->
-<!--          placeholder="filter..."-->
-<!--          type="text"/>-->
-<!--      </form>-->
+      <div class="archive__filter__form__wrapper">
+        <input
+          formControlName="inputControl"
+          class="archive__filter__search-field"
+          placeholder="filter..."
+          type="text"/>
+      </div>
 
-<!--    </div>-->
+    </div>
 
-
-  </div>
+  </form>
 </ng-template>
 
 

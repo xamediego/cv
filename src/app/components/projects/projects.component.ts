@@ -9,7 +9,6 @@ import * as projectData from '../../../assets/projects.json';
   selector: 'app-projects',
   standalone: true,
   imports: [
-
     ReactiveFormsModule,
     FormsModule,
     NgTemplateOutlet,
@@ -26,27 +25,29 @@ export class ProjectsComponent implements OnInit {
 
   selectedFilter: string = "All";
 
-  myGroup: FormGroup<{ inputControl: FormControl<any> }> = new FormGroup({
-    inputControl: new FormControl()
-  });
+  filterGroup: FormGroup<{
+    inputControl: FormControl<any>,
+    selectControl : FormControl<any> }> =
+    new FormGroup({
+      inputControl: new FormControl(),
+      selectControl: new FormControl,
+    });
 
   timeoutId: any = null;
 
-  constructor() {
-  }
+  constructor() {}
 
   async ngOnInit(): Promise<void> {
     this.initDummyData();
 
     this.selectedFilter = "All"
 
-    this.myGroup.valueChanges.subscribe((v) => {
+    this.filterGroup.valueChanges.subscribe((v) => {
       clearTimeout(this.timeoutId);
 
       this.timeoutId = setTimeout(async () => {
         this.filterProjects(v.inputControl)
       }, 500);
-
     })
   }
 
@@ -91,15 +92,11 @@ export class ProjectsComponent implements OnInit {
 
   private filterProjects(projectName: string) {
 
-
     if (this.selectedFilter === "All") {
       this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage));
     } else {
       this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage)).filter((pt: ProjectType) => pt.type === this.selectedFilter);
     }
-
-    console.log("----------")
-    console.log(this.projectTypes)
 
     if (projectName !== "" && projectName !== undefined && projectName !== null) {
       this.projectTypes = this.projectTypes.filter(pt => {
@@ -108,16 +105,12 @@ export class ProjectsComponent implements OnInit {
       })
     }
 
-    console.log("----------")
-    console.log(this.projectTypes)
-
     //Fix Date otherwise can use GetFullYear() etc anymore for some weird reason (maybe Javascript is the reason)
     this.projectTypes.map(pt => {
       pt.projects.map(p => {
         p.publishedDate = new Date(p.publishedDate);
       })
     })
-
   }
 
 }
