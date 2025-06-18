@@ -1,3 +1,77 @@
-<div class="project">
-  Project
+<div *ngIf="project; else noProject">
+  <div [ngClass]="{'project': !isSmallScreen, 'project__small': isSmallScreen}">
+    <!-- Header -->
+    <div class="project__header">
+      <div class="project__header__inner">
+        <h1>{{ project.title }}</h1>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!isSmallScreen" class="project__content">
+      <div class="project__view">
+
+        <div class="project__view__main-image">
+          <img [src]="selectedImage" [alt]="project.title + ' | image'" class="project__view__main-image__image">
+        </div>
+
+        <div class="project__view__small-images">
+          <ng-container *ngFor="let imageUrl of project.images">
+            <img [src]="imageUrl" [alt]="project.title + ' | image'" class="project__view__small-images__image" (click)="changePicture(imageUrl)">
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="project__description">
+        <div class="project__description__title">
+          <h2>Description</h2>
+          <span>{{ project.description }}</span>
+        </div>
+
+        <div class="project__description__statistic">
+          <h2>Statistics</h2>
+          <p>Map Filesize: {{ project.filesize }}</p>
+          <p>Recommended Players: {{ project.players }}</p>
+          <p>Created Date: {{ project.date }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small Screen View -->
+    <ng-container *ngIf="isSmallScreen">
+      <div class="project__view">
+        <div class="project__view__main-image">
+          <img [src]="selectedImage" [alt]="project.title + ' | image'" class="project__view__main-image__image">
+        </div>
+      </div>
+
+      <div class="project__description">
+        <div class="project__description__title">
+          <h2>Description</h2>
+          <span>{{ project.description }}</span>
+        </div>
+
+        <div class="project__description__statistic">
+          <h2>Statistics</h2>
+          <p>Map Filesize: {{ project.filesize }}</p>
+          <p>Recommended Players: {{ project.players }}</p>
+          <p>Created Date: {{ project.date }}</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Download Section -->
+    <div class="project__download">
+      <div class="project__download__links">
+        <p>Download Mirrors:</p>
+        <ng-container *ngFor="let link of project.links">
+          <a [href]="link" target="_blank">{{ link }}</a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
+
+<ng-template #noProject>
+  <p>No Project Found</p>
+</ng-template>

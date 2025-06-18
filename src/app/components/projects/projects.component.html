@@ -75,9 +75,8 @@
   <div class="projects">
     <ng-container *ngFor="let project of projectType.projects">
         <div class="project">
-          <a class="project__link" href="{{project.downloadLink}}">
+          <a class="project__link" (click)="navigate(project.downloadLink)">
           <div class="project__title">
-
             <div class="project__title__left">
               <p class="s_t">
                 {{project.name}}

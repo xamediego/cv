@@ -3,7 +3,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {ProjectType} from "./entities/ProjectType";
 import {Project} from "./entities/Project";
 import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
-import * as projectData from '../../../assets/projects.json';
+import * as projectData from '../../../assets/project-types.json';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-projects',
@@ -35,7 +36,7 @@ export class ProjectsComponent implements OnInit {
 
   timeoutId: any = null;
 
-  constructor() {}
+  constructor(private router : Router) {}
 
   async ngOnInit(): Promise<void> {
     this.initDummyData();
@@ -113,4 +114,15 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
+  async navigate(downloadLink: string) {
+    const url = new URL(downloadLink, window.location.origin);
+    const isInternal = url.hostname == window.location.hostname;
+
+    if(isInternal){
+      // Replace with router
+      window.location.href = downloadLink;
+    } else {
+      window.location.href = downloadLink;
+    }
+  }
 }

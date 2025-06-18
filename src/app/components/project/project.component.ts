@@ -1,61 +1,56 @@
-import {Component, OnInit} from '@angular/core';
-
-import * as projectData from "../../../assets/projects.json";
-import {ProjectType} from "../projects/entities/ProjectType";
-import {Project} from "../projects/entities/Project";
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import * as projectData from '../../../assets/ut-projects.json';
+import { MapProject } from './entities/map-project';
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [],
   templateUrl: './project.component.html',
-  styleUrl: './project.component.scss'
+  imports: [
+    NgClass,
+    NgForOf,
+    NgIf
+  ],
+  styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit{
+export class ProjectComponent implements OnInit {
+  public project: MapProject | null = null;
+  public selectedImage = '';
+  public isSmallScreen: boolean = false;
+  private readonly smallScreenSize: number = 920;
 
-  toDisplay : Project | undefined = undefined;
-  type = "Unreal Development Kit (UDK)";
+  constructor(private route: ActivatedRoute) {}
 
   async ngOnInit(): Promise<void> {
-    this.initDummyData();
-  }
+    this.isSmallScreen = window.innerWidth < this.smallScreenSize;
 
-  private initDummyData() {
-    const data = projectData;
+    this.route.paramMap.subscribe(async params => {
+      const title = params.get('title') || '';
+      this.project = await this.loadData(title);
 
-    this.toDisplay = this.convertToProjectTypes(data).filter(r => r.type == this.type)[0].projects[0];
-
-    console.log(this.toDisplay)
-  }
-
-  private convertToProjectTypes(json: any): ProjectType[] {
-    const projectTypes: ProjectType[] = [];
-
-    for (const type in json.projects) {
-      const projectsArray: Project[] = [];
-
-      for (const projectName in json.projects[type]) {
-
-        const projectData = json.projects[type][projectName];
-
-        const project: Project = {
-          name: projectData.name,
-          imageUrl: projectData.imageUrl,
-          publishedDate: new Date(projectData.publishedDate),
-          description: projectData.description,
-          downloadLink: projectData.downloadLink
-        };
-
-        projectsArray.push(project);
+      if (this.project) {
+        this.selectedImage = this.project.images[0];
       }
+    });
+  }
 
-      projectTypes.push({
-        type: type,
-        projects: projectsArray
-      });
+  changePicture(imageUrl: string) {
+    this.selectedImage = imageUrl;
+  }
 
-    }
+  private async loadData(projectName: string): Promise<MapProject | null> {
+    const data: any = projectData;
+    return this.mapData(data, projectName);
+  }
 
-    return projectTypes;
+  private mapData(json: any, title: string): MapProject | null {
+    return json.projects.find((proj: MapProject) => proj.title === title) || null;
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.isSmallScreen = window.innerWidth < this.smallScreenSize;
   }
 }

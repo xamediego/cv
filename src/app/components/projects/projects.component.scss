@@ -245,7 +245,6 @@
 
 @media (max-width: 800px) {
   .projects {
-
     justify-content: center;
   }
 
@@ -257,7 +256,6 @@
 }
 
 .archive {
-
   &__filter {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
