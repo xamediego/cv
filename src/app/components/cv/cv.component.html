@@ -49,7 +49,7 @@
 </ng-template>
 
 <ng-template #profile>
-  <div class="cv__right__cont">
+  <div class="cv__right__cont cv__profile">
     <h2>Profile</h2>
     <p class="s_t">
       I am a solution-oriented software engineer with a strong attention to detail and a solid foundation in both front-end and back-end development.
@@ -102,16 +102,21 @@
 
 <ng-template #pp>
   <div class="cv__left__image">
-    <img class="cv__left__image__pp" src="PP.png" alt="profile picture">
+    <img class="cv__left__image__pp" src="PP.jpg" alt="profile picture">
   </div>
 </ng-template>
 
 <ng-template #contact>
-  <div class="cv__left__cont">
+  <div class="cv__left__cont cv__contact">
     <h3>Contact</h3>
-    <div class="stretch"><p class="s_t">max.de.jonge&#64;outlook.com</p></div>
-    <div class="stretch"><p class="s_t">https://www.linkedin.com/in/max-de-jonge/</p></div>
-    <div class="stretch"><p class="s_t">https://github.com/xamediego</p></div>
+    <div class="stretch">
+      <a class="s_t" href="mailto:max.de.jonge@outlook.com">max.de.jonge&#64;outlook.com</a>
+    </div>
+    <div class="stretch"><a class="s_t" href="https://www.linkedin.com/in/max-de-jonge/" target="_blank" rel="noopener noreferrer">linkedin.com/in/max-de-jonge</a>
+    </div>
+    <div class="stretch">
+      <a class="s_t" href="https://github.com/xamediego" target="_blank" rel="noopener noreferrer">github.com/xamediego</a>
+    </div>
   </div>
 </ng-template>
 
