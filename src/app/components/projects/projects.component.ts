@@ -119,7 +119,9 @@ export class ProjectsComponent implements OnInit {
     const isInternal = url.hostname == window.location.hostname;
 
     if(isInternal){
-      await this.router.navigate([url.pathname]);
+      const pathname = url.pathname
+      console.log("navigate to path")
+      await this.router.navigate([pathname]);
     } else {
       window.location.href = downloadLink;
     }
