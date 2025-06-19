@@ -3,7 +3,13 @@ export interface MapProject {
   description : string,
   filesize : string,
   date : Date,
-  extraDetails : Map<String, String>,
+  extraDetails : extraDetail[],
   links : string[],
   images : string[]
+}
+
+
+export interface extraDetail {
+  key : String,
+  value : String
 }

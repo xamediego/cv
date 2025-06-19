@@ -71,19 +71,24 @@
 
 <ng-template #displayImage let-project>
   <div class="project__view__main-image" id="main-image">
-    <img [src]="selectedImageUrl" [alt]="project.title + ' | image'" class="project__view__main-image__image">
+    <img src="{{selectedImageUrl}}"
+         [alt]="project.title + ' | image'"
+         class="project__view__main-image__image"
+         priority
+    >
   </div>
 </ng-template>
 
 <ng-template #imageList let-project>
   <div class="imageHolder" id="image-holder">
-    <ng-container *ngFor="let image of images, let i = index">
+    <ng-container *ngFor="let image of project.images, let i = index">
       <div class="imageHolder__holder"
            id="image-{{i}}"
-           (click)="changePictureEvent($event, image.src)">
+           (click)="changePictureEvent($event, image)">
         <img class="imageHolder__image"
-             src="{{image.src}}"
-             alt="{{project.title}} - {{i}}">
+             src="{{image}}"
+             alt="{{project.title}} - {{i}}"
+        >
       </div>
     </ng-container>
   </div>
@@ -101,8 +106,8 @@
     <h2>Statistics</h2>
     <p>Project Filesize: {{ project.filesize }}</p>
     <p>Created Date: {{ project.date }}</p>
-    <ng-container *ngFor="let detailKv of project.extraDetails">
-      <p>{{Object.keys(detailKv)[0]}} : {{detailKv[Object.keys(detailKv)[0]]}}</p>
+    <ng-container *ngFor="let detail of project.extraDetails">
+      <p>{{ detail.key }} : {{ detail.value }}</p>
     </ng-container>
   </div>
 </ng-template>

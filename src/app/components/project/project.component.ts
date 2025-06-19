@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core'
 import {ActivatedRoute} from '@angular/router';
 import * as projectData from '../../../assets/ut-projects.json';
 import {MapProject} from './entities/map-project';
-import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {IMAGE_CONFIG, NgForOf, NgIf, NgOptimizedImage, NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'app-project',
@@ -11,9 +11,14 @@ import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
   imports: [
     NgForOf,
     NgIf,
-    NgTemplateOutlet
+    NgTemplateOutlet,
+    NgOptimizedImage
   ],
-  styleUrls: ['./project.component.scss']
+  styleUrls: ['./project.component.scss'],
+  providers: [{
+    provide: IMAGE_CONFIG,
+    useValue: {breakpoints: [16, 48, 96, 128, 384, 640, 750, 828, 1080, 1200, 1920]}
+  },],
 })
 export class ProjectComponent implements OnInit {
   public isLoading: boolean = false;
@@ -28,7 +33,7 @@ export class ProjectComponent implements OnInit {
 
   public images: HTMLImageElement[] = [];
 
-  constructor(private route: ActivatedRoute, private cdr : ChangeDetectorRef) {}
+  constructor(private route: ActivatedRoute) {}
 
   async ngOnInit(): Promise<void> {
     this.isSmallScreen = window.innerWidth < this.smallScreenSize;
@@ -44,11 +49,11 @@ export class ProjectComponent implements OnInit {
     });
 
     this.isLoading = await this.imagesLoaded(this.images)
-    this.cdr.detectChanges()
 
     setTimeout(() => {
       const imageHolder = document.getElementById("image-0")
-      if(imageHolder) this.changePicture(imageHolder, this.images[0].src)
+
+      if (imageHolder) this.changePicture(imageHolder, this.images[0].src)
     })
   }
 
@@ -59,14 +64,15 @@ export class ProjectComponent implements OnInit {
   }
 
   private changePicture(element: Element, imageUrl: any) {
-   element.scrollIntoView({
+    element.scrollIntoView({
       behavior: 'smooth',
       inline: 'center',
     });
 
-    const toClear = document.getElementById(this.selectedImageId);
-
-    if (toClear) toClear.classList.remove('imageHolder__holder--active');
+    if(this.selectedImageId != ""){
+      const toClear = document.getElementById(this.selectedImageId);
+      if (toClear) toClear.classList.remove('imageHolder__holder--active');
+    }
 
     element.classList.add('imageHolder__holder--active');
 
@@ -118,7 +124,8 @@ export class ProjectComponent implements OnInit {
   }
 
   private setSmallImages(images: HTMLImageElement[]) {
-    this.images = [...images.map(image => {image.complete
+    this.images = [...images.map(image => {
+      image.complete
       return image;
     })]
   }
@@ -138,6 +145,4 @@ export class ProjectComponent implements OnInit {
 
     return results.every(loaded => loaded);
   }
-
-  protected readonly Object = Object;
 }

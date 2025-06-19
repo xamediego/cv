@@ -1,88 +1,87 @@
 {
-  "projects" : [
+  "projects": [
     {
-      "title" : "CTF-Crossfire",
-      "description" : "A symmetrical map in a chilly enviornment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
-      "filesize" : "10.23",
-      "date" : "2011-5-3",
-      "extraDetails" : {
-        "players": "6-10"
-      },
-      "links" : [
+      "title": "CTF-Crossfire",
+      "description": "A symmetrical map in a chilly enviornment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
+      "filesize": "10.23",
+      "date": "2011-5-3",
+      "extraDetails": [
+        { "key": "players", "value": "6-10" }
+      ],
+      "links": [
         "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5578/CTF-CrossFire"
       ],
-      "images" : [
+      "images": [
         "Work_Images/UT3/CTF-CrossFire/1.jpg",
         "Work_Images/UT3/CTF-CrossFire/2.jpg",
         "Work_Images/UT3/CTF-CrossFire/3.jpg"
       ]
     },
     {
-      "title" : "DM-CTF-Element",
-      "description" : "Remake of the Halo reach forge map MLG Element. The arena is a large indoor-outdoor, octagonally shaped brick building set in the mountains. The center courtyard area contains a raised pagoda-like structure that obscures the view to the other side. I only remade the gameplay, so I didn't add any Halo textures. I also didn't add the strut jump, and the other ramp jump.\n\nThe map pack contains both DM and CTF versions.",
-      "filesize" : "10.23",
-      "players" : "6-10",
-      "date" : "2011-11-20",
-      "extraDetails" : {
-        "players": "6-10"
-      },
-      "links" : [
+      "title": "DM-CTF-Element",
+      "description": "Remake of the Halo reach forge map MLG Element. The arena is a large indoor-outdoor, octagonally shaped brick building set in the mountains. The center courtyard area contains a raised pagoda-like structure that obscures the view to the other side. I only remade the gameplay, so I didn't add any Halo textures. I also didn't add the strut jump, and the other ramp jump.\n\nThe map pack contains both DM and CTF versions.",
+      "filesize": "10.23",
+      "date": "2011-11-20",
+      "extraDetails": [
+        { "key": "players", "value": "6-10" }
+      ],
+      "links": [
         "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5731/DM-CTF-Element"
       ],
-      "images" : [
+      "images": [
         "Work_Images/UT3/DM-CTF-Element/1.jpg",
         "Work_Images/UT3/DM-CTF-Element/2.jpg",
         "Work_Images/UT3/DM-CTF-Element/3.jpg"
       ]
     },
     {
-      "title" : "DM-Esoteric",
-      "description" : "A symmetrical Halo styled DM map for UT in a space cave.",
-      "filesize" : "10.23",
-      "date" : "2012-11-18",
-      "extraDetails" : [
-        {"players": "6-10"},
-        {"GameType": "Deathmatch"},
-        {"Environment": "Space"}
+      "title": "DM-Esoteric",
+      "description": "A symmetrical Halo styled DM map for UT in a space cave.",
+      "filesize": "10.23",
+      "date": "2012-11-18",
+      "extraDetails": [
+        { "key": "players", "value": "6-10" },
+        { "key": "GameType", "value": "Deathmatch" },
+        { "key": "Environment", "value": "Space" }
       ],
-      "links" : [
+      "links": [
         "https://www.mapraider.com/maps/unreal-tournament-3/deathmatch/5905/DM-Esoteric"
       ],
-      "images" : [
+      "images": [
         "Work_Images/UT3/DM-Esoteric/1.jpg",
         "Work_Images/UT3/DM-Esoteric/2.jpg",
         "Work_Images/UT3/DM-Esoteric/3.jpg"
       ]
     },
     {
-      "title" : "VCTF-District",
-      "description" : "Just a VCTF map set in a city. You can take the fight to the open field with your hellbender, or just go trough the buildings with your flak cannon.",
-      "filesize" : "10.23",
-      "date" : "2011-1-9",
-      "extraDetails" : {
-        "players": "10-20"
-      },
-      "links" : [
+      "title": "VCTF-District",
+      "description": "Just a VCTF map set in a city. You can take the fight to the open field with your hellbender, or just go trough the buildings with your flak cannon.",
+      "filesize": "10.23",
+      "date": "2011-1-9",
+      "extraDetails": [
+        { "key": "players", "value": "10-20" }
+      ],
+      "links": [
         "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5708/VCTF-District"
       ],
-      "images" : [
+      "images": [
         "Work_Images/UT3/VCTF-District/1.jpg",
         "Work_Images/UT3/VCTF-District/2.jpg",
         "Work_Images/UT3/VCTF-District/3.jpg"
       ]
     },
     {
-      "title" : "VCTF-Retribution",
-      "description" : "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
-      "filesize" : "10.23",
-      "date" : "2012-11-11",
-      "extraDetails" : {
-        "players": "10-24"
-      },
-      "links" : [
+      "title": "VCTF-Retribution",
+      "description": "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
+      "filesize": "10.23",
+      "date": "2012-11-11",
+      "extraDetails": [
+        { "key": "players", "value": "10-24" }
+      ],
+      "links": [
         "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution"
       ],
-      "images" : [
+      "images": [
         "Work_Images/UT3/VCTF-Retribution/1.jpg",
         "Work_Images/UT3/VCTF-Retribution/2.jpg",
         "Work_Images/UT3/VCTF-Retribution/3.jpg",
@@ -91,17 +90,17 @@
       ]
     },
     {
-      "title" : "War-Snowbound",
-      "description" : "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
-      "filesize" : "10.23",
-      "date" : "2011-8-24",
-      "extraDetails" : {
-        "players": "12-24"
-      },
-      "links" : [
+      "title": "War-Snowbound",
+      "description": "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
+      "filesize": "10.23",
+      "date": "2011-8-24",
+      "extraDetails": [
+        { "key": "players", "value": "12-24" }
+      ],
+      "links": [
         "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution"
       ],
-      "images" : [
+      "images": [
         "Work_Images/UT3/War-Snowbound/1.jpg",
         "Work_Images/UT3/War-Snowbound/2.jpg",
         "Work_Images/UT3/War-Snowbound/3.jpg"
