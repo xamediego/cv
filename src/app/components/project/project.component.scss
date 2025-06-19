@@ -1,14 +1,9 @@
 :host {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   height: 100%;
-}
-
-.project, .project__small {
-  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  color: #f1f1f1;
 }
 
 .project {
@@ -17,16 +12,22 @@
   align-items: center;
   flex-direction: column;
 
-  max-width: 900px;
-  height: 100%;
+  max-width: 585px;
+  align-self: stretch;
+  flex-grow: 1;
+
   padding: 20px;
   margin-bottom: 40px;
   gap: 20px;
 
-  &__small{
-    @media screen and (max-width: 920px) {
-      margin: 20px;
-    }
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  color: #f1f1f1;
+
+  @media screen and (max-width: 500px) {
+    margin-bottom: 10px;
+  }
+  @media screen and (max-width: 250px) {
+    padding: unset;
   }
 
   &__header {
@@ -35,7 +36,6 @@
     align-items: center;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 20px;
 
     &__inner {
       display: flex;
@@ -57,15 +57,10 @@
   &__content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: row;
+    align-items: start;
+    flex-direction: column;
     width: 100%;
     gap: 30px;
-
-    @media screen and (max-width: 920px) {
-      flex-direction: column;
-      align-items: center;
-    }
   }
 
   // Image view
@@ -76,53 +71,18 @@
     flex-direction: column;
     gap: 15px;
 
+    max-width: 585px;
+
     @media screen and (max-width: 920px) {
       width: 100%;
+      max-width: unset;
       justify-content: center;
       align-items: center;
     }
 
     &__main-image {
-      min-width: 300px;
-      max-width: 585px;
-
-      @media screen and (max-width: 920px) {
-        width: 100%;
-        max-width: unset;
-      }
-
       &__image {
         width: 100%;
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-        border-radius: 5px;
-
-        &:hover {
-          cursor: pointer;
-          opacity: 0.9;
-        }
-      }
-    }
-
-    &__small-images {
-      display: flex;
-      justify-content: center;
-      align-items: start;
-      flex-direction: row;
-      gap: 15px;
-
-      &__holder{
-        min-width: 0;
-        max-width: 185px;
-
-        @media screen and (max-width: 920px) {
-          width: 100%;
-          max-width: unset;
-        }
-      }
-
-      &__image {
-        width: 100%;
-
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
 
@@ -140,11 +100,11 @@
     justify-content: start;
     align-items: flex-start;
     flex-direction: column;
-    width: 325px;
+    width: 100%;
     gap: 20px;
 
     @media screen and (max-width: 920px) {
-      width: 100%;
+
       align-items: center;
       text-align: center;
     }
@@ -178,7 +138,7 @@
       justify-content: start;
       align-items: start;
       flex-direction: column;
-      gap: 5px;
+
       width: 100%;
 
       h2 {
@@ -186,12 +146,14 @@
         font-weight: 600;
         color: #ffffff;
         margin-bottom: 0.5rem;
+        text-align: start;
       }
 
       p {
         font-size: 0.95rem;
         color: #bbbbbb;
         margin: 0.1rem 0;
+        text-align: start;
       }
     }
   }
@@ -230,4 +192,66 @@
       }
     }
   }
+}
+
+.test{
+  max-width: 185px;
+  min-width: 0;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.imageHolder {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  flex-wrap: nowrap;
+
+  @media screen and (max-width: 920px) {
+    width: 100%;
+  }
+
+  &__holder {
+    max-width: 185px;
+    min-width: 0;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+
+    &--active {
+      box-shadow: 0 0 8px 3px rgba(0, 140, 255, 0.6);
+      border-radius: 5px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #ffffff;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

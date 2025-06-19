@@ -1,13 +1,14 @@
 {
   "projects" : [
     {
-      "title" : "CTF-CrossFire",
+      "title" : "CTF-Crossfire",
       "description" : "A symmetrical map in a chilly enviornment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
       "filesize" : "10.23",
-      "players" : "6-10",
       "date" : "2011-5-3",
+      "extraDetails" : {
+        "players": "6-10"
+      },
       "links" : [
-        "",
         "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5578/CTF-CrossFire"
       ],
       "images" : [
@@ -22,9 +23,11 @@
       "filesize" : "10.23",
       "players" : "6-10",
       "date" : "2011-11-20",
+      "extraDetails" : {
+        "players": "6-10"
+      },
       "links" : [
-        "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5731/DM-CTF-Element",
-        ""
+        "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5731/DM-CTF-Element"
       ],
       "images" : [
         "Work_Images/UT3/DM-CTF-Element/1.jpg",
@@ -36,11 +39,14 @@
       "title" : "DM-Esoteric",
       "description" : "A symmetrical Halo styled DM map for UT in a space cave.",
       "filesize" : "10.23",
-      "players" : "6-10",
       "date" : "2012-11-18",
+      "extraDetails" : [
+        {"players": "6-10"},
+        {"GameType": "Deathmatch"},
+        {"Environment": "Space"}
+      ],
       "links" : [
-        "https://www.mapraider.com/maps/unreal-tournament-3/deathmatch/5905/DM-Esoteric",
-        ""
+        "https://www.mapraider.com/maps/unreal-tournament-3/deathmatch/5905/DM-Esoteric"
       ],
       "images" : [
         "Work_Images/UT3/DM-Esoteric/1.jpg",
@@ -52,10 +58,11 @@
       "title" : "VCTF-District",
       "description" : "Just a VCTF map set in a city. You can take the fight to the open field with your hellbender, or just go trough the buildings with your flak cannon.",
       "filesize" : "10.23",
-      "players" : "10-20",
       "date" : "2011-1-9",
+      "extraDetails" : {
+        "players": "10-20"
+      },
       "links" : [
-        "",
         "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5708/VCTF-District"
       ],
       "images" : [
@@ -68,27 +75,31 @@
       "title" : "VCTF-Retribution",
       "description" : "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
       "filesize" : "10.23",
-      "players" : "10-24",
       "date" : "2012-11-11",
+      "extraDetails" : {
+        "players": "10-24"
+      },
       "links" : [
-        "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution",
-        ""
+        "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution"
       ],
       "images" : [
         "Work_Images/UT3/VCTF-Retribution/1.jpg",
         "Work_Images/UT3/VCTF-Retribution/2.jpg",
-        "Work_Images/UT3/VCTF-Retribution/3.jpg"
+        "Work_Images/UT3/VCTF-Retribution/3.jpg",
+        "Work_Images/UT3/VCTF-Retribution/4.jpg",
+        "Work_Images/UT3/VCTF-Retribution/5.jpg"
       ]
     },
     {
       "title" : "War-Snowbound",
       "description" : "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
       "filesize" : "10.23",
-      "players" : "12-24",
       "date" : "2011-8-24",
+      "extraDetails" : {
+        "players": "12-24"
+      },
       "links" : [
-        "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution",
-        ""
+        "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution"
       ],
       "images" : [
         "Work_Images/UT3/War-Snowbound/1.jpg",
