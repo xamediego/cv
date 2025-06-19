@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import * as projectData from '../../../assets/ut-projects.json';
 import {MapProject} from './entities/map-project';
-import {IMAGE_CONFIG, NgForOf, NgIf, NgOptimizedImage, NgTemplateOutlet} from "@angular/common";
+import {IMAGE_CONFIG, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'app-project',
@@ -11,8 +11,7 @@ import {IMAGE_CONFIG, NgForOf, NgIf, NgOptimizedImage, NgTemplateOutlet} from "@
   imports: [
     NgForOf,
     NgIf,
-    NgTemplateOutlet,
-    NgOptimizedImage
+    NgTemplateOutlet
   ],
   styleUrls: ['./project.component.scss'],
   providers: [{
@@ -31,7 +30,8 @@ export class ProjectComponent implements OnInit {
   public isSmallScreen: boolean = false;
   private readonly smallScreenSize: number = 920;
 
-  public images: HTMLImageElement[] = [];
+  totalImages: number = 0;
+  loadedImages: number = 0;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -42,18 +42,13 @@ export class ProjectComponent implements OnInit {
       const title = params.get('title') || '';
       this.project = await this.loadData(title);
 
-
-      if (this.project) {
-        this.loadImages(this.project.images)
-      }
+      this.totalImages = this.project?.images ? this.project.images.length : 0
     });
-
-    this.isLoading = await this.imagesLoaded(this.images)
 
     setTimeout(() => {
       const imageHolder = document.getElementById("image-0")
 
-      if (imageHolder) this.changePicture(imageHolder, this.images[0].src)
+      if (imageHolder) this.changePicture(imageHolder, this.project?.images[0])
     })
   }
 
@@ -90,8 +85,13 @@ export class ProjectComponent implements OnInit {
     return json.projects.find((proj: MapProject) => proj.title === title) || null;
   }
 
+  public onImageLoad() {
+    this.loadedImages++;
+    if (this.loadedImages >= this.totalImages + 1) this.isLoading = false;
+  }
+
   @HostListener('window:resize')
-  onResize() {
+  public onResize() {
     this.isSmallScreen = window.innerWidth < this.smallScreenSize;
 
     const mainImageElement = document.getElementById("main-image") as HTMLElement | null;
@@ -109,40 +109,5 @@ export class ProjectComponent implements OnInit {
         imageHolderElement.style.removeProperty('flex-wrap');
       }
     }
-  }
-
-  private loadImages(imageUrls: String[]) {
-    const images: HTMLImageElement[] = imageUrls.map(imageUrl => {
-      const image: HTMLImageElement = document.createElement("img")
-      // @ts-ignore
-      image.src = imageUrl;
-      image.loading = "eager";
-      return image
-    });
-
-    this.setSmallImages(images);
-  }
-
-  private setSmallImages(images: HTMLImageElement[]) {
-    this.images = [...images.map(image => {
-      image.complete
-      return image;
-    })]
-  }
-
-  private async imagesLoaded(images: HTMLImageElement[]): Promise<boolean> {
-    const loadPromises = images.map(img => {
-      return new Promise<boolean>(resolve => {
-        if (img.complete && img.naturalWidth !== 0) {
-          resolve(true);
-        } else {
-          img.onload = () => resolve(true);
-          img.onerror = () => resolve(false);
-        }
-      });
-    });
-    let results = await Promise.all(loadPromises);
-
-    return results.every(loaded => loaded);
   }
 }
