@@ -114,14 +114,10 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
-  async navigate(downloadLink: string) {
+  async navigate(downloadLink: string, type : string) {
     const url = new URL(downloadLink, window.location.origin);
-    const isInternal = url.hostname == window.location.hostname;
-
-    if(isInternal){
-      const pathname = url.pathname.startsWith("/") ? url.pathname.substring(1) : url.pathname;
-      console.log("navigate to path: " + pathname);
-      await this.router.navigate([pathname]);
+    if(type == "Unreal Tournament 3"){
+      await this.router.navigate([url.pathname]);
     } else {
       window.location.href = downloadLink;
     }
