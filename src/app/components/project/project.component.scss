@@ -83,12 +83,8 @@
     }
 
     &__main-image {
-      display: flex;
-      flex-direction: column;
-      flex-basis: calc(50% - 20px);
       min-width: 300px;
       max-width: 585px;
-      gap: 5px;
 
       @media screen and (max-width: 920px) {
         width: 100%;
@@ -96,7 +92,6 @@
       }
 
       &__image {
-        flex-shrink: 0;
         width: 100%;
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
@@ -115,9 +110,21 @@
       flex-direction: row;
       gap: 15px;
 
+      &__holder{
+        min-width: 0;
+        max-width: 185px;
+
+        @media screen and (max-width: 920px) {
+          width: 100%;
+          max-width: unset;
+        }
+      }
+
       &__image {
-        width: 185px;
-        height: 110px;
+        width: 100%;
+
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
 
         &:hover {
           cursor: pointer;
@@ -147,7 +154,9 @@
       justify-content: start;
       align-items: start;
       flex-direction: column;
+
       gap: 5px;
+      width: 100%;
 
       h1 {
         font-size: 1.6rem;

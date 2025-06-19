@@ -17,7 +17,9 @@
 
         <div class="project__view__small-images">
           <ng-container *ngFor="let imageUrl of project.images">
-            <img [src]="imageUrl" [alt]="project.title + ' | image'" class="project__view__small-images__image" (click)="changePicture(imageUrl)">
+            <div class="project__view__small-images__holder">
+              <img [src]="imageUrl" [alt]="project.title + ' | image'" class="project__view__small-images__image" (click)="changePicture(imageUrl)">
+            </div>
           </ng-container>
         </div>
       </div>
@@ -42,6 +44,14 @@
       <div class="project__view">
         <div class="project__view__main-image">
           <img [src]="selectedImage" [alt]="project.title + ' | image'" class="project__view__main-image__image">
+        </div>
+
+        <div class="project__view__small-images">
+          <ng-container *ngFor="let imageUrl of project.images">
+            <div class="project__view__small-images__holder">
+              <img [src]="imageUrl" [alt]="project.title + ' | image'" class="project__view__small-images__image" (click)="changePicture(imageUrl)">
+            </div>
+          </ng-container>
         </div>
       </div>
 

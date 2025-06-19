@@ -13,16 +13,15 @@ import {NgIf, NgTemplateOutlet} from "@angular/common";
 })
 export class CvComponent implements OnInit{
 
-
   isSmallScreen: boolean = false;
+  smallScreen : number = 768;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.isSmallScreen = window.innerWidth < 768;
+    this.isSmallScreen = window.innerWidth < this.smallScreen;
   }
 
   ngOnInit() {
-    this.isSmallScreen = window.innerWidth < 768; // Initial check
+    this.isSmallScreen = window.innerWidth < this.smallScreen; // Initial check
   }
-
 }
