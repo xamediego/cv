@@ -61,10 +61,7 @@ export class ProjectComponent implements OnInit {
   }
 
   private changePicture(element: Element, imageUrl: any) {
-    element.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-    });
+    this.scrollTo(element)
 
     if(this.selectedImageId != ""){
       const toClear = document.getElementById(this.selectedImageId);
@@ -75,6 +72,25 @@ export class ProjectComponent implements OnInit {
 
     this.selectedImageId = element.id;
     this.selectedImageUrl = imageUrl;
+  }
+
+  private scrollTo(element : Element){
+    const imageHolder = element.parentElement;
+    const imageScroller = document.getElementById("image-holder")
+
+    if (imageScroller && imageHolder) {
+      const parentRect = imageScroller.getBoundingClientRect();
+      const elementRect = imageHolder.getBoundingClientRect();
+
+      const parentScrollLeft = imageScroller.scrollLeft;
+      const offset = elementRect.left - parentRect.left;
+      const scrollTo = offset - imageScroller.clientWidth / 2 + imageHolder.clientWidth / 2;
+
+      imageScroller.scrollTo({
+        left: parentScrollLeft + scrollTo,
+        behavior: 'smooth',
+      });
+    }
   }
 
   private async loadData(projectName: string): Promise<MapProject | null> {
@@ -106,14 +122,11 @@ export class ProjectComponent implements OnInit {
       const mainImageWidth = mainImageElement.offsetWidth;
       const holderWidth = imageHolderElement.offsetWidth;
 
-      if (holderWidth > mainImageWidth) {
-        console.log("Set overflow")
-        // imageHolderElement.style.overflowX = "hidden";
-        // imageHolderElement.style.flexWrap = "wrap";
+      if (holderWidth > (mainImageWidth + 10)) {
+        imageHolderElement.style.overflowX = "hidden";
         imageHolderElement.style.padding = "3px"
       } else {
         imageHolderElement.style.removeProperty('overflow-x');
-        imageHolderElement.style.removeProperty('flex-wrap');
       }
     }
   }

@@ -226,7 +226,7 @@
   flex-direction: row;
   align-items: flex-start;
 
-  gap: 15px;
+  gap: 5px;
 
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -242,6 +242,8 @@
     min-width: 0;
     flex-shrink: 0;
     scroll-snap-align: start;
+
+    padding: 5px;
   }
 
   &__image {
