@@ -49,11 +49,13 @@ export class ProjectComponent implements OnInit {
       const imageHolder = document.getElementById("image-0")
 
       if (imageHolder) this.changePicture(imageHolder, this.project?.images[0])
+
+      this.checkImageHolderSize();
     })
   }
 
-  protected changePictureEvent($event: MouseEvent, imageUrl: any) {
-    const element = ($event.currentTarget as HTMLElement) ?? null;
+  protected changePictureEvent(idNumber : number, imageUrl: any) {
+    const element = document.getElementById("image-" + idNumber)
     if (!element) return;
     this.changePicture(element, imageUrl)
   }
@@ -66,10 +68,10 @@ export class ProjectComponent implements OnInit {
 
     if(this.selectedImageId != ""){
       const toClear = document.getElementById(this.selectedImageId);
-      if (toClear) toClear.classList.remove('imageHolder__holder--active');
+      if (toClear) toClear.classList.remove('imageHolder__image--active');
     }
 
-    element.classList.add('imageHolder__holder--active');
+    element.classList.add('imageHolder__image--active');
 
     this.selectedImageId = element.id;
     this.selectedImageUrl = imageUrl;
@@ -93,7 +95,10 @@ export class ProjectComponent implements OnInit {
   @HostListener('window:resize')
   public onResize() {
     this.isSmallScreen = window.innerWidth < this.smallScreenSize;
+    this.checkImageHolderSize();
+  }
 
+  private checkImageHolderSize(){
     const mainImageElement = document.getElementById("main-image") as HTMLElement | null;
     const imageHolderElement = document.getElementById("image-holder") as HTMLElement | null;
 
@@ -102,12 +107,16 @@ export class ProjectComponent implements OnInit {
       const holderWidth = imageHolderElement.offsetWidth;
 
       if (holderWidth > mainImageWidth) {
-        imageHolderElement.style.overflowX = "hidden";
-        imageHolderElement.style.flexWrap = "wrap";
+        console.log("Set overflow")
+        // imageHolderElement.style.overflowX = "hidden";
+        // imageHolderElement.style.flexWrap = "wrap";
+        imageHolderElement.style.padding = "3px"
       } else {
         imageHolderElement.style.removeProperty('overflow-x');
         imageHolderElement.style.removeProperty('flex-wrap');
       }
     }
   }
+
+  protected readonly statusbar = statusbar;
 }

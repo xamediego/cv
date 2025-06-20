@@ -42,8 +42,9 @@
 
   <!-- Content -->
   <div class="project__content">
-    <ng-container *ngTemplateOutlet="imageView; context : {$implicit : project}"/>
     <ng-container *ngTemplateOutlet="description; context : {$implicit : project}"/>
+    <ng-container *ngTemplateOutlet="imageView; context : {$implicit : project}"/>
+    <ng-container *ngTemplateOutlet="projectInfo; context : {$implicit : project}"/>
   </div>
 
   <!-- Download Section -->
@@ -82,10 +83,10 @@
   <div class="imageHolder" id="image-holder">
     <ng-container *ngFor="let image of project.images, let i = index">
       <div class="imageHolder__holder"
-           id="image-{{i}}"
-           (click)="changePictureEvent($event, image)">
+           (click)="changePictureEvent(i, image)">
         <img class="imageHolder__image"
              src="{{image}}"
+             id="image-{{i}}"
              alt="{{project.title}} - {{i}}"
              (load)="onImageLoad()"
              loading="eager"
@@ -116,7 +117,7 @@
 <ng-template #download let-project>
   <div class="project__download">
     <div class="project__download__links">
-      <p>Download Mirrors:</p>
+      <h2>Download Mirrors:</h2>
       <ng-container *ngFor="let link of project.links">
         <a [href]="link" target="_blank">{{ link }}</a>
       </ng-container>
