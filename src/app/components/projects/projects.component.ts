@@ -20,9 +20,13 @@ import {Router} from "@angular/router";
   styleUrl: './projects.component.scss'
 })
 export class ProjectsComponent implements OnInit {
+  public isLoading: boolean = false;
 
   projectTypesStorage: ProjectType[] = [];
   projectTypes: ProjectType[] = [];
+
+  totalImages: number = 0;
+  loadedImages: number = 0;
 
   selectedFilter: string = "All";
 
@@ -99,6 +103,12 @@ export class ProjectsComponent implements OnInit {
       this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage)).filter((pt: ProjectType) => pt.type === this.selectedFilter);
     }
 
+    for(let pt of this.projectTypes){
+      for (let p of pt.projects){
+        this.totalImages += 1
+      }
+    }
+
     if (projectName !== "" && projectName !== undefined && projectName !== null) {
       this.projectTypes = this.projectTypes.filter(pt => {
         pt.projects = pt.projects.filter(p => p.name.includes(projectName))
@@ -121,5 +131,10 @@ export class ProjectsComponent implements OnInit {
     } else {
       window.location.href = downloadLink;
     }
+  }
+
+  public onImageLoad() {
+    this.loadedImages++;
+    if (this.loadedImages >= this.totalImages + 1) this.isLoading = false;
   }
 }

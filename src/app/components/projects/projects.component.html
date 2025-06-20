@@ -32,47 +32,50 @@
           <hr class="slice-line">
         </div>
 
-        <div class="archive__bottom__projects__wrapper">
 
-          <ng-container *ngTemplateOutlet="archiveFilter"/>
-
-          <ng-container *ngFor="let projectType of projectTypes">
-
-            <ng-container *ngIf="selectedFilter === 'All' || projectType.type === selectedFilter">
-              <div class="archive__bottom__project-types">
-
-                <div class="archive__bottom__title__wrapper">
-
-                  <div class="archive__bottom__title__wrapper__head">
-
-                    <div class="archive__bottom__title__wrapper__head__left">
-                      <h2>{{projectType.type}}</h2>
-                    </div>
-
-                  </div>
-                  <hr class="slice-line">
-                </div>
-
-                <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
-
-              </div>
-            </ng-container>
-
-          </ng-container>
-
-        </div>
-
+        <ng-container *ngTemplateOutlet="projectView"/>
       </div>
     </div>
   </div>
 </div>
 
+<ng-template #spinner>
+  <div class="spinner"></div>
+</ng-template>
+
+<ng-template #projectView>
+  <div class="archive__bottom__projects__wrapper">
+    <ng-container *ngIf="!isLoading else spinner">
+      <ng-container *ngTemplateOutlet="archiveFilter"/>
+      <ng-container *ngFor="let projectType of projectTypes">
+        <ng-container *ngIf="selectedFilter === 'All' || projectType.type === selectedFilter">
+          <div class="archive__bottom__project-types">
+
+            <div class="archive__bottom__title__wrapper">
+
+              <div class="archive__bottom__title__wrapper__head">
+
+                <div class="archive__bottom__title__wrapper__head__left">
+                  <h2>{{projectType.type}}</h2>
+                </div>
+
+              </div>
+              <hr class="slice-line">
+            </div>
+            <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
+          </div>
+        </ng-container>
+
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>
 
 <ng-template #projects let-projectType>
   <div class="projects">
     <ng-container *ngFor="let project of projectType.projects">
-        <div class="project">
-          <a class="project__link" (click)="navigate(project.downloadLink, projectType.type)">
+      <div class="project">
+        <a class="project__link" (click)="navigate(project.downloadLink, projectType.type)">
           <div class="project__title">
             <div class="project__title__left">
               <p class="s_t">
@@ -91,10 +94,11 @@
           <img
             alt="{{project.name}} - Image"
             src="{{project.imageUrl}}"
+            (load)="onImageLoad()"
             class="project__img"
           />
-          </a>
-        </div>
+        </a>
+      </div>
     </ng-container>
   </div>
 </ng-template>

@@ -72,7 +72,7 @@
         "imageUrl" : "ProjectThumbnails/Unreal Tournament 3/CTF-Crossfire.jpg",
         "name" : "CTF-Crossfire",
         "publishedDate" : "2011-06-03",
-        "description" : "A symmetrical map in a chilly enviornment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
+        "description" : "A symmetrical map in a chilly environment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
         "downloadLink": "http://localhost:4200/project/CTF-Crossfire"
       }
     },

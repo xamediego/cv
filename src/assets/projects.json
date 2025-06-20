@@ -1,0 +1,293 @@
+{
+  "projects": {
+    "project-types": {
+      "Java": [
+        {
+          "title": "JFX-ImageCutter",
+          "description": "Image cropper / cutter for avatars in javafx.\nTest project thingy. All of it just works.",
+          "version": "",
+          "filesize": "",
+          "date": "2022-05",
+          "extraDetails": [],
+          "links": [
+            "https://github.com/xamediego/JFX_IMAGE_CUTTER"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Java/JFX-ImageCutter.jpg"
+        },
+        {
+          "title": "JFX-Game",
+          "description": "Small game created in JavaFX for a school assignment, might have one or two bugs",
+          "version": "",
+          "filesize": "",
+          "date": "2023-03",
+          "extraDetails": [],
+          "links": [
+            "https://github.com/xamediego/DEDS-Game"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Java/JFX-Game.jpg"
+        }
+      ],
+      "Unreal Development Kit (UDK)": [
+        {
+          "title": "DM-Derelict",
+          "description": "Remake of the halo map but then for UDK, also made an UT3 version but lost it and can't find it, map is mostly made of BSP",
+          "version": "",
+          "filesize": "",
+          "date": "2012-11-15",
+          "extraDetails": [],
+          "links": [
+            "https://mega.nz/file/N7kVQIQa#BqCFGSLdDzAziUkc3PvRIAybfwCEemKsyiK8tgh0D3E"
+          ],
+          "images": [
+            "ProjectThumbnails/UDK/DM-Derelict/1.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/UDK/DM-Derelict/1.jpg"
+        },
+        {
+          "title": "DM-MidShip",
+          "description": "Random MidShip i forgot how I ported this to UDK",
+          "version": "",
+          "filesize": "",
+          "date": "2012-10-16",
+          "extraDetails": [],
+          "links": [
+            "https://mega.nz/file/U7MC2BDa#b-Y_20KNjPPfnxcAyPsup8VvDuqoQ95FKiuAIphwJa0"
+          ],
+          "images": [
+            "ProjectThumbnails/UDK/DM-MidShip/1.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/UDK/DM-MidShip/1.jpg"
+        }
+      ],
+      "Unreal Tournament 3": [
+        {
+          "title": "CTF-Crossfire",
+          "description": "A symmetrical map in a chilly environment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
+          "version": "2.0",
+          "filesize": "6.12",
+          "date": "2011-5-3",
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "6-10"
+            }
+          ],
+          "links": [
+            "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5578/CTF-CrossFire"
+          ],
+          "images": [
+            "Work_Images/UT3/CTF-CrossFire/1.jpg",
+            "Work_Images/UT3/CTF-CrossFire/2.jpg",
+            "Work_Images/UT3/CTF-CrossFire/3.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/CTF-Crossfire.jpg"
+        },
+        {
+          "title": "DM-CTF-Element",
+          "description": "Remake of the Halo reach forge map MLG Element. The arena is a large indoor-outdoor, octagonally shaped brick building set in the mountains. The center courtyard area contains a raised pagoda-like structure that obscures the view to the other side. I only remade the gameplay, so I didn't add any Halo textures. I also didn't add the strut jump, and the other ramp jump.\n\nThe map pack contains both DM and CTF versions.",
+          "version": "3.0",
+          "filesize": "19.31",
+          "date": "2011-11-20",
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "6-10"
+            }
+          ],
+          "links": [
+            "https://www.mapraider.com/maps/unreal-tournament-3/capture-the-flag/5731/DM-CTF-Element"
+          ],
+          "images": [
+            "Work_Images/UT3/DM-CTF-Element/1.jpg",
+            "Work_Images/UT3/DM-CTF-Element/2.jpg",
+            "Work_Images/UT3/DM-CTF-Element/3.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/DM-CTF-Element.jpg"
+        },
+        {
+          "title": "DM-Esoteric",
+          "description": "A symmetrical Halo styled DM map for UT in a space cave.",
+          "version": "1.0",
+          "filesize": "38.84",
+          "date": "2012-11-18",
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "6-10"
+            },
+            {
+              "key": "GameType",
+              "value": "Deathmatch"
+            },
+            {
+              "key": "Environment",
+              "value": "Space"
+            }
+          ],
+          "links": [
+            "https://www.mapraider.com/maps/unreal-tournament-3/deathmatch/5905/DM-Esoteric"
+          ],
+          "images": [
+            "Work_Images/UT3/DM-Esoteric/1.jpg",
+            "Work_Images/UT3/DM-Esoteric/2.jpg",
+            "Work_Images/UT3/DM-Esoteric/3.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/DM-Esoteric.jpg"
+        },
+        {
+          "title": "VCTF-District",
+          "description": "Just a VCTF map set in a city. You can take the fight to the open field with your hellbender, or just go trough the buildings with your flak cannon.",
+          "version": "3.0",
+          "filesize": "10.78",
+          "date": "2011-1-9",
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "10-20"
+            }
+          ],
+          "links": [
+            "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5708/VCTF-District"
+          ],
+          "images": [
+            "Work_Images/UT3/VCTF-District/1.jpg",
+            "Work_Images/UT3/VCTF-District/2.jpg",
+            "Work_Images/UT3/VCTF-District/3.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/VCTF-District.jpg"
+        },
+        {
+          "title": "VCTF-Retribution",
+          "description": "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
+          "version": "3.0",
+          "filesize": "9.85",
+          "date": "2012-11-11",
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "10-24"
+            }
+          ],
+          "links": [
+            "https://www.mapraider.com/maps/unreal-tournament-3/vehicular-ctf/5848/VCTF-Retribution"
+          ],
+          "images": [
+            "Work_Images/UT3/VCTF-Retribution/1.jpg",
+            "Work_Images/UT3/VCTF-Retribution/2.jpg",
+            "Work_Images/UT3/VCTF-Retribution/3.jpg",
+            "Work_Images/UT3/VCTF-Retribution/4.jpg",
+            "Work_Images/UT3/VCTF-Retribution/5.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/VCTF-Retribution.jpg"
+        },
+        {
+          "title": "War-Snowbound",
+          "description": "A symmetrical warfare map that is set in an icy canyon on a remote planet that used to be colonized by the forerunners.",
+          "version": "3.0",
+          "filesize": "53.98",
+          "date": "2011-8-24",
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "12-24"
+            }
+          ],
+          "links": [
+            "https://www.mapraider.com/maps/unreal-tournament-3/unreal-warfare/5720/War-SnowBound"
+          ],
+          "images": [
+            "Work_Images/UT3/War-Snowbound/1.jpg",
+            "Work_Images/UT3/War-Snowbound/2.jpg",
+            "Work_Images/UT3/War-Snowbound/3.jpg",
+            "Work_Images/UT3/War-Snowbound/4.jpg",
+            "Work_Images/UT3/War-Snowbound/5.jpg",
+            "Work_Images/UT3/War-Snowbound/6.jpg"
+          ],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/War-Snowbound.jpg"
+        }
+      ],
+      "Unreal Tournament 2004": [
+        {
+          "title": "DM-Dome",
+          "description": "",
+          "version": "",
+          "filesize": "",
+          "date": "2010-08",
+          "extraDetails": [],
+          "links": [
+            "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Dome.jpg"
+        },
+        {
+          "title": "DM-Hellzone",
+          "description": "",
+          "version": "",
+          "filesize": "",
+          "date": "2010-08",
+          "extraDetails": [],
+          "links": [
+            "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Hellzone.jpg"
+        },
+        {
+          "title": "DM-Instaltion-486",
+          "description": "",
+          "version": "",
+          "filesize": "",
+          "date": "2010-09",
+          "extraDetails": [],
+          "links": [
+            "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Instaltion-486.jpg"
+        },
+        {
+          "title": "DM-Legacy",
+          "description": "",
+          "version": "",
+          "filesize": "",
+          "date": "2010-10",
+          "extraDetails": [],
+          "links": [
+            "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Legacy.jpg"
+        },
+        {
+          "title": "DM-ThePit",
+          "description": "",
+          "version": "",
+          "filesize": "",
+          "date": "2010-10",
+          "extraDetails": [],
+          "links": [
+            "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-ThePit.jpg"
+        },
+        {
+          "title": "DM-VoteFor",
+          "description": "",
+          "version": "",
+          "filesize": "",
+          "date": "2010-10",
+          "extraDetails": [],
+          "links": [
+            "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+          ],
+          "images": [],
+          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-VoteFor.jpg"
+        }
+      ]
+    }
+  }
+}

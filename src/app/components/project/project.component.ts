@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import * as projectData from '../../../assets/ut-projects.json';
-import {MapProject} from './entities/map-project';
 import {IMAGE_CONFIG, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {ProjectService} from "../../services/project.service";
+import {Project} from "../../services/project";
 
 @Component({
   selector: 'app-project',
@@ -22,7 +22,7 @@ import {IMAGE_CONFIG, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 export class ProjectComponent implements OnInit {
   public isLoading: boolean = false;
 
-  public project: MapProject | null = null;
+  public project: Project | null = null;
 
   public selectedImageUrl = '';
   public selectedImageId = "";
@@ -33,7 +33,8 @@ export class ProjectComponent implements OnInit {
   totalImages: number = 0;
   loadedImages: number = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) {
+  }
 
   async ngOnInit(): Promise<void> {
     this.isSmallScreen = window.innerWidth < this.smallScreenSize;
@@ -42,7 +43,7 @@ export class ProjectComponent implements OnInit {
       const title = params.get('title') || '';
       this.project = await this.loadData(title);
 
-      this.totalImages = this.project?.images ? this.project.images.length : 0
+      this.totalImages = (this.project?.images ? this.project.images.length : 0) + 1
     });
 
     setTimeout(() => {
@@ -54,7 +55,7 @@ export class ProjectComponent implements OnInit {
     })
   }
 
-  protected changePictureEvent(idNumber : number, imageUrl: any) {
+  protected changePictureEvent(idNumber: number, imageUrl: any) {
     const element = document.getElementById("image-" + idNumber)
     if (!element) return;
     this.changePicture(element, imageUrl)
@@ -63,7 +64,7 @@ export class ProjectComponent implements OnInit {
   private changePicture(element: Element, imageUrl: any) {
     this.scrollTo(element)
 
-    if(this.selectedImageId != ""){
+    if (this.selectedImageId != "") {
       const toClear = document.getElementById(this.selectedImageId);
       if (toClear) toClear.classList.remove('imageHolder__image--active');
     }
@@ -74,7 +75,7 @@ export class ProjectComponent implements OnInit {
     this.selectedImageUrl = imageUrl;
   }
 
-  private scrollTo(element : Element){
+  private scrollTo(element: Element) {
     const imageHolder = element.parentElement;
     const imageScroller = document.getElementById("image-holder")
 
@@ -93,14 +94,8 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  private async loadData(projectName: string): Promise<MapProject | null> {
-    const data: any = projectData;
-
-    return this.mapData(data, projectName);
-  }
-
-  private mapData(json: any, title: string): MapProject | null {
-    return json.projects.find((proj: MapProject) => proj.title === title) || null;
+  private async loadData(projectName: string): Promise<Project | null> {
+    return this.projectService.findByTitle(projectName)
   }
 
   public onImageLoad() {
@@ -114,7 +109,7 @@ export class ProjectComponent implements OnInit {
     this.checkImageHolderSize();
   }
 
-  private checkImageHolderSize(){
+  private checkImageHolderSize() {
     const mainImageElement = document.getElementById("main-image") as HTMLElement | null;
     const imageHolderElement = document.getElementById("image-holder") as HTMLElement | null;
 
@@ -130,6 +125,4 @@ export class ProjectComponent implements OnInit {
       }
     }
   }
-
-  protected readonly statusbar = statusbar;
 }

@@ -59,6 +59,7 @@
   <div class="project__header">
     <div class="project__header__inner">
       <h1>{{ project.title }}</h1>
+      <h4>v{{project.version}}</h4>
     </div>
   </div>
 </ng-template>
@@ -71,10 +72,12 @@
 </ng-template>
 
 <ng-template #displayImage let-project>
-  <div class="project__view__main-image" id="main-image">
+  <div class="main-image" id="main-image-holder">
     <img src="{{selectedImageUrl}}"
          [alt]="project.title + ' | image'"
-         class="project__view__main-image__image"
+         class="main-image__image"
+         id="main-image"
+         (load)="onImageLoad()"
     >
   </div>
 </ng-template>
