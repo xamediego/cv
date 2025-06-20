@@ -207,7 +207,11 @@
     a {
       font-size: 0.95rem;
       color: #7fbfff;
+
+      text-align: start;
       text-decoration: underline;
+
+      word-wrap:break-word;
 
       &:hover {
         opacity: 0.8;

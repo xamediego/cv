@@ -121,8 +121,8 @@
   <div class="project__download">
     <div class="project__download__links">
       <h2>Download Mirrors:</h2>
-      <ng-container *ngFor="let link of project.links">
-        <a [href]="link" target="_blank">{{ link }}</a>
+      <ng-container *ngFor="let link of project.links; let i = index">
+        <a [href]="link.url">{{i + 1}}: {{ link.provider }}</a>
       </ng-container>
     </div>
   </div>

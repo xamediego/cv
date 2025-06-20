@@ -10,7 +10,7 @@ export interface Project {
   filesize : string,
   date : Date,
   extraDetails : ExtraDetail[],
-  links : string[],
+  links : Links[],
   images : string[]
   imageUrl : string
 }
@@ -18,4 +18,9 @@ export interface Project {
 export interface ExtraDetail {
   key : String,
   value : String
+}
+
+export interface Links{
+  provider : string,
+  url : string,
 }
