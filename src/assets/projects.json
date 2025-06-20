@@ -5,7 +5,7 @@
         {
           "title": "JFX-ImageCutter",
           "description": "Image cropper / cutter for avatars in javafx.\nTest project thingy. All of it just works.",
-          "version": "",
+          "version": "1.0",
           "filesize": "",
           "date": "2022-05",
           "extraDetails": [],
@@ -21,7 +21,7 @@
         {
           "title": "JFX-Game",
           "description": "Small game created in JavaFX for a school assignment, might have one or two bugs",
-          "version": "",
+          "version": "1.0",
           "filesize": "",
           "date": "2023-03",
           "extraDetails": [],
@@ -39,10 +39,23 @@
         {
           "title": "DM-Derelict",
           "description": "Remake of the halo map but then for UDK, also made an UT3 version but lost it and can't find it, map is mostly made of BSP",
-          "version": "",
-          "filesize": "",
+          "version": "2.0",
+          "filesize": "130.8",
           "date": "2012-11-15",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Deathmatch"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
+            }
+          ],
           "links": [
             {
               "provider": "Mega.nz",
@@ -50,17 +63,32 @@
             }
           ],
           "images": [
-            "ProjectThumbnails/UDK/DM-Derelict/1.jpg"
+            "Work_Images/UDK/Derelict/1.jpg",
+            "Work_Images/UDK/Derelict/2.jpg",
+            "Work_Images/UDK/Derelict/3.jpg"
           ],
           "imageUrl": "ProjectThumbnails/UDK/DM-Derelict/1.jpg"
         },
         {
           "title": "DM-MidShip",
-          "description": "Random MidShip i forgot how I ported this to UDK",
-          "version": "",
-          "filesize": "",
+          "description": "Port of an older Midship remake for Unreal Tournament",
+          "version": "1.0",
+          "filesize": "3.2",
           "date": "2012-10-16",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Deathmatch"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
+            }
+          ],
           "links": [
             {
               "provider": "Mega.nz",
@@ -68,7 +96,9 @@
             }
           ],
           "images": [
-            "ProjectThumbnails/UDK/DM-MidShip/1.jpg"
+            "Work_Images/UDK/Midship/1.jpg",
+            "Work_Images/UDK/Midship/2.jpg",
+            "Work_Images/UDK/Midship/3.jpg"
           ],
           "imageUrl": "ProjectThumbnails/UDK/DM-MidShip/1.jpg"
         }
@@ -83,7 +113,15 @@
           "extraDetails": [
             {
               "key": "players",
-              "value": "6-10"
+              "value": "6-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Capture The Flag"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
             }
           ],
           "links": [
@@ -108,7 +146,15 @@
           "extraDetails": [
             {
               "key": "players",
-              "value": "6-10"
+              "value": "4-12"
+            },
+            {
+              "key": "GameType",
+              "value": "Deathmatch, Capture The Flag"
+            },
+            {
+              "key": "Environment",
+              "value": "Fantasy"
             }
           ],
           "links": [
@@ -133,7 +179,7 @@
           "extraDetails": [
             {
               "key": "players",
-              "value": "6-10"
+              "value": "6-14"
             },
             {
               "key": "GameType",
@@ -141,7 +187,7 @@
             },
             {
               "key": "Environment",
-              "value": "Space"
+              "value": "Sci-Fi"
             }
           ],
           "links": [
@@ -166,7 +212,15 @@
           "extraDetails": [
             {
               "key": "players",
-              "value": "10-20"
+              "value": "6-12"
+            },
+            {
+              "key": "GameType",
+              "value": "Vehicular CTF"
+            },
+            {
+              "key": "Environment",
+              "value": "Realism"
             }
           ],
           "links": [
@@ -191,7 +245,15 @@
           "extraDetails": [
             {
               "key": "players",
-              "value": "10-24"
+              "value": "14-32"
+            },
+            {
+              "key": "GameType",
+              "value": "Vehicular CTF"
+            },
+            {
+              "key": "Environment",
+              "value": "Fantasy"
             }
           ],
           "links": [
@@ -218,7 +280,15 @@
           "extraDetails": [
             {
               "key": "players",
-              "value": "12-24"
+              "value": "24-36"
+            },
+            {
+              "key": "GameType",
+              "value": "Unreal Warfare"
+            },
+            {
+              "key": "Environment",
+              "value": "Glacier"
             }
           ],
           "links": [
@@ -242,97 +312,219 @@
         {
           "title": "DM-Dome",
           "description": "",
-          "version": "",
-          "filesize": "",
+          "version": "2.0",
+          "filesize": "45.5mb",
           "date": "2010-08",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Invasion"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
+            }
+          ],
           "links": [
             {
               "provider": "Gamefront",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+            },
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/UT2k4/Dome/1.jpg",
+            "Work_Images/UT2k4/Dome/2.jpg",
+            "Work_Images/UT2k4/Dome/3.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Dome.jpg"
         },
         {
           "title": "DM-Hellzone",
           "description": "",
-          "version": "",
-          "filesize": "",
+          "version": "4.0",
+          "filesize": "45.5mb",
           "date": "2010-08",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Invasion"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
+            }
+          ],
           "links": [
             {
               "provider": "Gamefront",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+            },
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/UT2k4/Hellzone/1.jpg",
+            "Work_Images/UT2k4/Hellzone/2.jpg",
+            "Work_Images/UT2k4/Hellzone/3.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Hellzone.jpg"
         },
         {
           "title": "DM-Instaltion-486",
           "description": "",
-          "version": "",
-          "filesize": "",
+          "version": "2.0",
+          "filesize": "45.5mb",
           "date": "2010-09",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Invasion"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
+            }
+          ],
           "links": [
             {
               "provider": "Gamefront",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/UT2k4/IST486/1.jpg",
+            "Work_Images/UT2k4/IST486/2.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Instaltion-486.jpg"
         },
         {
           "title": "DM-Legacy",
           "description": "",
-          "version": "",
-          "filesize": "",
+          "version": "2.0",
+          "filesize": "45.5mb",
           "date": "2010-10",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Invasion"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
+            }
+          ],
           "links": [
             {
               "provider": "Gamefront",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+            },
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/UT2k4/Legacy/1.jpg",
+            "Work_Images/UT2k4/Legacy/2.jpg",
+            "Work_Images/UT2k4/Legacy/3.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Legacy.jpg"
         },
         {
           "title": "DM-ThePit",
           "description": "",
-          "version": "",
-          "filesize": "",
+          "version": "2.0 - [Final]",
+          "filesize": "45.5mb",
           "date": "2010-10",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Invasion"
+            },
+            {
+              "key": "Environment",
+              "value": "Sci-Fi"
+            }
+          ],
           "links": [
             {
               "provider": "Gamefront",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+            },
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/UT2k4/ThePit/1.jpg",
+            "Work_Images/UT2k4/ThePit/2.jpg",
+            "Work_Images/UT2k4/ThePit/3.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-ThePit.jpg"
         },
         {
           "title": "DM-VoteFor",
           "description": "",
-          "version": "",
-          "filesize": "",
+          "version": "2.0",
+          "filesize": "45.5mb",
           "date": "2010-10",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "players",
+              "value": "4-8"
+            },
+            {
+              "key": "GameType",
+              "value": "Invasion"
+            },
+            {
+              "key": "Environment",
+              "value": "Ancient"
+            }
+          ],
           "links": [
             {
               "provider": "Gamefront",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
+            },
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/UT2k4/VoteFor/1.jpg",
+            "Work_Images/UT2k4/VoteFor/2.jpg",
+            "Work_Images/UT2k4/VoteFor/3.jpg",
+            "Work_Images/UT2k4/VoteFor/4.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-VoteFor.jpg"
         }
       ]
