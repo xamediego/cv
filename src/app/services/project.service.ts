@@ -8,6 +8,10 @@ import * as projectData from "../../assets/projects.json";
 export class ProjectService {
   constructor() { }
 
+  findAll(){
+    return this.loadData()
+  }
+
   findByType(type : String){
     return this.loadData()["type"];
   }

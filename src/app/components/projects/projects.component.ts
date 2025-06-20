@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ProjectType} from "./entities/ProjectType";
-import {Project} from "./entities/Project";
 import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
-import * as projectData from '../../../assets/project-types.json';
 import {Router} from "@angular/router";
+import {ProjectService} from "../../services/project.service";
+import {Project, ProjectType} from "../../services/project";
 
 @Component({
   selector: 'app-projects',
@@ -32,7 +31,8 @@ export class ProjectsComponent implements OnInit {
 
   filterGroup: FormGroup<{
     inputControl: FormControl<any>,
-    selectControl : FormControl<any> }> =
+    selectControl: FormControl<any>
+  }> =
     new FormGroup({
       inputControl: new FormControl(),
       selectControl: new FormControl,
@@ -40,7 +40,8 @@ export class ProjectsComponent implements OnInit {
 
   timeoutId: any = null;
 
-  constructor(private router : Router) {}
+  constructor(private router: Router, private projectService: ProjectService) {
+  }
 
   async ngOnInit(): Promise<void> {
     this.initDummyData();
@@ -57,7 +58,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   private initDummyData() {
-    const data = projectData;
+    const data = this.projectService.findAll();
 
     const projectTypes = this.convertToProjectTypes(data);
     projectTypes.forEach(pt => this.projectTypes.push(pt))
@@ -68,21 +69,13 @@ export class ProjectsComponent implements OnInit {
   private convertToProjectTypes(json: any): ProjectType[] {
     const projectTypes: ProjectType[] = [];
 
-    for (const type in json.projects) {
+    for (const type in json) {
       const projectsArray: Project[] = [];
 
-      for (const projectName in json.projects[type]) {
-        const projectData = json.projects[type][projectName];
-
-        const project: Project = {
-          name: projectData.name,
-          imageUrl: projectData.imageUrl,
-          publishedDate: new Date(projectData.publishedDate),
-          description: projectData.description,
-          downloadLink: projectData.downloadLink
-        };
-
-        projectsArray.push(project);
+      for (const projectName in json[type]) {
+        const projectData = json[type][projectName];
+        projectData.date = new Date(projectData.date)
+        projectsArray.push(projectData);
       }
 
       projectTypes.push({
@@ -103,15 +96,15 @@ export class ProjectsComponent implements OnInit {
       this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage)).filter((pt: ProjectType) => pt.type === this.selectedFilter);
     }
 
-    for(let pt of this.projectTypes){
-      for (let p of pt.projects){
+    for (let pt of this.projectTypes) {
+      for (let p of pt.projects) {
         this.totalImages += 1
       }
     }
 
     if (projectName !== "" && projectName !== undefined && projectName !== null) {
       this.projectTypes = this.projectTypes.filter(pt => {
-        pt.projects = pt.projects.filter(p => p.name.includes(projectName))
+        pt.projects = pt.projects.filter(p => p.title.includes(projectName))
         return pt.projects.length > 0;
       })
     }
@@ -119,18 +112,14 @@ export class ProjectsComponent implements OnInit {
     //Fix Date otherwise can use GetFullYear() etc anymore for some weird reason (maybe Javascript is the reason)
     this.projectTypes.map(pt => {
       pt.projects.map(p => {
-        p.publishedDate = new Date(p.publishedDate);
+        p.date = new Date(p.date);
       })
     })
   }
 
-  async navigate(downloadLink: string, type : string) {
-    const url = new URL(downloadLink, window.location.origin);
-    if(type == "Unreal Tournament 3"){
-      await this.router.navigate([url.pathname]);
-    } else {
-      window.location.href = downloadLink;
-    }
+  async navigate(title: string, type: string) {
+    const url = `project/${type}/${title}`
+    await this.router.navigate([url]);
   }
 
   public onImageLoad() {

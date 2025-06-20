@@ -7,7 +7,7 @@ import {ProjectComponent} from "./components/project/project.component";
 export const appRoutes: Routes = [
   {path: 'cv', component: CvComponent},
   {path: 'projects', component: ProjectsComponent},
-  {path: 'project/:title', component: ProjectComponent},
+  {path: 'project/:type/:title', component: ProjectComponent},
 
   //needs to be put at la bottom
   {path: '**', redirectTo : 'cv'},

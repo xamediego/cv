@@ -1,5 +1,5 @@
 export interface ProjectType{
-  projectType : string
+  type : string
   projects : Project[]
 }
 
@@ -12,6 +12,7 @@ export interface Project {
   extraDetails : ExtraDetail[],
   links : string[],
   images : string[]
+  imageUrl : string
 }
 
 export interface ExtraDetail {

@@ -95,7 +95,9 @@ export class ProjectComponent implements OnInit {
   }
 
   private async loadData(projectName: string): Promise<Project | null> {
-    return this.projectService.findByTitle(projectName)
+    const project =  this.projectService.findByTitle(projectName)
+    if (project) project.date = new Date(project.date)
+    return project
   }
 
   public onImageLoad() {

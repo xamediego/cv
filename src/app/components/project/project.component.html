@@ -110,7 +110,7 @@
   <div class="project__description__statistic">
     <h2>Statistics</h2>
     <p>Project Filesize: {{ project.filesize }}</p>
-    <p>Created Date: {{ project.date }}</p>
+    <p>Created Date: {{project.date.getFullYear()}}-{{project.date.getMonth()}}-{{project.date.getDate()}}</p>
     <ng-container *ngFor="let detail of project.extraDetails">
       <p>{{ detail.key }} : {{ detail.value }}</p>
     </ng-container>
