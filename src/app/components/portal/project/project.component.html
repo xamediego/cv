@@ -3,7 +3,7 @@
 </ng-container>
 
 <ng-template #mainview>
-  <div *ngIf="project; else noProject">
+  <div style="height: 100%" *ngIf="project; else noProject">
     <div class="project">
       <ng-container *ngIf="isSmallScreen">
         <ng-container [ngTemplateOutlet]="small"></ng-container>
