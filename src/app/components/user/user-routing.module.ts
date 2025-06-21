@@ -8,10 +8,9 @@ const routes: Routes = [
   {
     path: '',
     component: UserComponent,
-
     children: [
       {path: 'resume', title: 'Resume', component: ResumeComponent},
-      {path: 'archive', title: 'User Portal', component: ArchiveComponent},
+      {path: 'archive', title: 'Archive', component: ArchiveComponent},
     ]
   }
 ];
