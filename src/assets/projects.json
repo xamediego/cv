@@ -141,7 +141,7 @@
             "Work_Images/UT3/CTF-CrossFire/2.jpg",
             "Work_Images/UT3/CTF-CrossFire/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/CTF-Crossfire.jpg"
+          "imageUrl": "ProjectThumbnails/UT3/CTF-Crossfire.jpg"
         },
         {
           "title": "DM-CTF-Element",
@@ -174,7 +174,7 @@
             "Work_Images/UT3/DM-CTF-Element/2.jpg",
             "Work_Images/UT3/DM-CTF-Element/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/DM-CTF-Element.jpg"
+          "imageUrl": "ProjectThumbnails/UT3/DM-CTF-Element.jpg"
         },
         {
           "title": "DM-Esoteric",
@@ -207,7 +207,7 @@
             "Work_Images/UT3/DM-Esoteric/2.jpg",
             "Work_Images/UT3/DM-Esoteric/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/DM-Esoteric.jpg"
+          "imageUrl": "ProjectThumbnails/UT3/DM-Esoteric.jpg"
         },
         {
           "title": "VCTF-District",
@@ -240,7 +240,7 @@
             "Work_Images/UT3/VCTF-District/2.jpg",
             "Work_Images/UT3/VCTF-District/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/VCTF-District.jpg"
+          "imageUrl": "ProjectThumbnails/UT3/VCTF-District.jpg"
         },
         {
           "title": "VCTF-Retribution",
@@ -275,7 +275,7 @@
             "Work_Images/UT3/VCTF-Retribution/4.jpg",
             "Work_Images/UT3/VCTF-Retribution/5.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/VCTF-Retribution.jpg"
+          "imageUrl": "ProjectThumbnails/UT3/VCTF-Retribution.jpg"
         },
         {
           "title": "War-Snowbound",
@@ -311,7 +311,7 @@
             "Work_Images/UT3/War-Snowbound/5.jpg",
             "Work_Images/UT3/War-Snowbound/6.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 3/War-Snowbound.jpg"
+          "imageUrl": "ProjectThumbnails/UT3/War-Snowbound.jpg"
         }
       ],
       "Unreal Tournament 2004": [
@@ -320,6 +320,7 @@
           "title": "DM-Dome",
           "version": "2.0",
           "filesize": "45.5mb",
+          "date": "2010-08-01",
           "description": "A compact, sci-fi-themed Invasion RPG map enclosed in a box-like arena. Features a hidden control panel that can summon an Ion Tank for players who know the secret code. Ideal for small, high-intensity matches with strategic surprises.",
           "extraDetails": [
             {
@@ -335,11 +336,11 @@
               "value": "Sci-Fi"
             }
           ],
-          "projectFile": {
-            "provider": "Mega.nz",
-            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
-          },
-          "extraLinks": [
+          "links": [
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+            },
             {
               "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
@@ -350,13 +351,14 @@
             "Work_Images/UT2k4/Dome/2.jpg",
             "Work_Images/UT2k4/Dome/3.jpg"
           ],
-          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Dome.jpg"
+          "imageUrl": "ProjectThumbnails/UT2k4/DM-Dome.jpg"
         },
         {
           "projectType": "Unreal Tournament 2004",
           "title": "DM-Hellzone",
           "version": "4.0",
           "filesize": "45.5mb",
+          "date": "2010-08-01",
           "description": "An ultra-compact invasion RPG map with a box-style layout, designed with numerous hiding spots and ambush zones. Perfect for chaotic, close-quarters combat and quick monster waves.",
           "extraDetails": [
             {
@@ -372,11 +374,11 @@
               "value": "Sci-Fi"
             }
           ],
-          "projectFile": {
-            "provider": "Mega.nz",
-            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
-          },
-          "extraLinks": [
+          "links": [
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+            },
             {
               "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
@@ -387,13 +389,14 @@
             "Work_Images/UT2k4/Hellzone/2.jpg",
             "Work_Images/UT2k4/Hellzone/3.jpg"
           ],
-          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Hellzone.jpg"
+          "imageUrl": "ProjectThumbnails/UT2k4/DM-Hellzone.jpg"
         },
         {
           "projectType": "Unreal Tournament 2004",
           "title": "DM-Instaltion-486",
           "version": "2.0",
           "filesize": "45.5mb",
+          "date": "2010-09-23",
           "description": "A medium-sized Invasion RPG map inspired by the aesthetics of the Halo universe. Combines sci-fi corridors with open combat zones, offering a balance of exploration and fast-paced encounters.",
           "extraDetails": [
             {
@@ -409,11 +412,11 @@
               "value": "Sci-Fi"
             }
           ],
-          "projectFile": {
-            "provider": "Mega.nz",
-            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
-          },
-          "extraLinks": [
+          "links": [
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+            },
             {
               "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
@@ -424,13 +427,14 @@
             "Work_Images/UT2k4/IST486/2.jpg",
             "Work_Images/UT2k4/IST486/3.jpg"
           ],
-          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Instaltion-486.jpg"
+          "imageUrl": "ProjectThumbnails/UT2k4/DM-Instaltion-486.jpg"
         },
         {
           "projectType": "Unreal Tournament 2004",
           "title": "DM-Legacy",
           "version": "2.0",
           "filesize": "45.5mb",
+          "date": "2010-10-03",
           "description": "A dark and atmospheric invasion RPG map with shadowy corridors and moody lighting. Focuses on immersive sci-fi aesthetics and intense monster wave progression, encouraging defensive team play.",
           "extraDetails": [
             {
@@ -446,11 +450,11 @@
               "value": "Sci-Fi"
             }
           ],
-          "projectFile": {
-            "provider": "Mega.nz",
-            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
-          },
-          "extraLinks": [
+          "links": [
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+            },
             {
               "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
@@ -461,13 +465,14 @@
             "Work_Images/UT2k4/Legacy/2.jpg",
             "Work_Images/UT2k4/Legacy/3.jpg"
           ],
-          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Legacy.jpg"
+          "imageUrl": "ProjectThumbnails/UT2k4/DM-Legacy.jpg"
         },
         {
           "projectType": "Unreal Tournament 2004",
           "title": "DM-ThePit",
           "version": "2.0 - [Final]",
           "filesize": "45.5mb",
+          "date": "2010-10-05",
           "description": "A straightforward but effective Invasion RPG map centered around a large rectangular arena. Provides vehicle access and numerous nooks for tactical positioning, making it ideal for vehicle-monster hybrid combat.",
           "extraDetails": [
             {
@@ -483,11 +488,11 @@
               "value": "Sci-Fi"
             }
           ],
-          "projectFile": {
-            "provider": "Mega.nz",
-            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
-          },
-          "extraLinks": [
+          "links": [
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+            },
             {
               "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
@@ -498,13 +503,14 @@
             "Work_Images/UT2k4/ThePit/2.jpg",
             "Work_Images/UT2k4/ThePit/3.jpg"
           ],
-          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-ThePit.jpg"
+          "imageUrl": "ProjectThumbnails/UT2k4/DM-ThePit.jpg"
         },
         {
           "projectType": "Unreal Tournament 2004",
           "title": "DM-VoteFor",
           "version": "2.0",
           "filesize": "45.5mb",
+          "date": "2010-10-12",
           "description": "An Egyptian-themed invasion RPG map designed for strategic gameplay. The centerpiece is a trap-enabled floor that, when triggered, opens up and drops all surrounding enemies into a lava pit. Combines ancient aesthetics with functional gameplay mechanics.",
           "extraDetails": [
             {
@@ -520,11 +526,11 @@
               "value": "Ancient"
             }
           ],
-          "projectFile": {
-            "provider": "Mega.nz",
-            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
-          },
-          "extraLinks": [
+          "links": [
+            {
+              "provider": "Mega.nz",
+              "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+            },
             {
               "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
@@ -536,7 +542,7 @@
             "Work_Images/UT2k4/VoteFor/3.jpg",
             "Work_Images/UT2k4/VoteFor/4.jpg"
           ],
-          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-VoteFor.jpg"
+          "imageUrl": "ProjectThumbnails/UT2k4/DM-VoteFor.jpg"
         }
       ]
     }
