@@ -3,7 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {Router} from "@angular/router";
 import {ProjectService} from "../../../services/project/project.service";
-import {Project, ProjectType} from "../../../services/project/project";
+import {ProjectType} from "../../../services/project/project";
 
 @Component({
   selector: 'app-archive',
@@ -58,48 +58,15 @@ export class ArchiveComponent implements OnInit {
   }
 
   private initDummyData() {
-    const data = this.projectService.findAll();
-
-    const projectTypes = this.convertToProjectTypes(data);
-    projectTypes.forEach(pt => this.projectTypes.push(pt))
-
-    this.projectTypesStorage = JSON.parse(JSON.stringify(this.projectTypes))
-  }
-
-  private convertToProjectTypes(json: any): ProjectType[] {
-    const projectTypes: ProjectType[] = [];
-
-    for (const type in json) {
-      const projectsArray: Project[] = [];
-
-      for (const projectName in json[type]) {
-        const projectData = json[type][projectName];
-        projectData.date = new Date(projectData.date)
-        projectsArray.push(projectData);
-      }
-
-      projectTypes.push({
-        type: type,
-        projects: projectsArray
-      });
-
-    }
-
-    return projectTypes;
+    this.projectTypes = this.projectService.findAll();
+    this.projectTypesStorage = this.projectTypes
   }
 
   private filterProjects(projectName: string) {
-
     if (this.selectedFilter === "All") {
-      this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage));
+      this.projectTypes = this.projectTypesStorage;
     } else {
-      this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage)).filter((pt: ProjectType) => pt.type === this.selectedFilter);
-    }
-
-    for (let pt of this.projectTypes) {
-      for (let p of pt.projects) {
-        this.totalImages += 1
-      }
+      this.projectTypes = this.projectTypesStorage.filter((pt: ProjectType) => pt.title == this.selectedFilter);
     }
 
     if (projectName !== "" && projectName !== undefined && projectName !== null) {
@@ -109,7 +76,6 @@ export class ArchiveComponent implements OnInit {
       })
     }
 
-    //Fix Date otherwise can use GetFullYear() etc anymore for some weird reason (maybe Javascript is the reason)
     this.projectTypes.map(pt => {
       pt.projects.map(p => {
         p.date = new Date(p.date);

@@ -1,6 +1,7 @@
 export interface ProjectType{
-  type : string
-  projects : Project[]
+  type : string,
+  title : string,
+  projects : Project[],
 }
 
 export interface Project {
@@ -11,13 +12,13 @@ export interface Project {
   date : Date,
   extraDetails : ExtraDetail[],
   links : Links[],
-  images : string[]
-  imageUrl : string
+  images : string[],
+  imageUrl : string,
 }
 
 export interface ExtraDetail {
-  key : String,
-  value : String
+  key : string,
+  value : string,
 }
 
 export interface Links{

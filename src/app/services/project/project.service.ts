@@ -1,41 +1,38 @@
 import {Injectable} from '@angular/core';
-import {Project} from "./project";
+import {Project, ProjectType} from "./project";
 import * as projectData from "../../../assets/projects.json";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  constructor() { }
+  constructor() {
+  }
 
-  findAll(){
+  findAll(): ProjectType[] {
     return this.loadData()
   }
 
-  findByType(type : String){
-    return this.loadData()["type"];
-  }
-
-  findByTitle(title : String) : Project | null{
+  findByTitle(title: String): Project | null {
     const data = this.loadData()
-
-    for (const category in data) {
-      if (Array.isArray(data[category])) {
-        const project = data[category].find(proj => proj.title === title);
-
-        if (project) {
-          return  project ;
-        }
-      }
-    }
-
-    return null;
+    return data.map(r => r.projects.filter(p => p.title == title)).flat()[0];
   }
 
-  private loadData(): any {
+  private convertToProjectTypes(json: any): ProjectType[] {
+    const projectTypes: ProjectType[] = [];
+    for (const type in json) {
+      const projectType: ProjectType = json[type];
+      projectType.projects.map(p => {
+        p.date = new Date(p.date)
+        return p;
+      })
+      projectTypes.push(projectType);
+    }
+    return projectTypes;
+  }
+
+  private loadData(): ProjectType[] {
     const data = projectData.projects["project-types"];
-    console.log("Data:")
-    console.log(data)
-    return data;
+    return this.convertToProjectTypes(data);
   }
 }
