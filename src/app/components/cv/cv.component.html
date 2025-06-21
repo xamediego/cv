@@ -1,20 +1,22 @@
 <div class="cv">
-  <ng-container *ngIf="isSmallScreen; else left">
-    <ng-container *ngTemplateOutlet="left__small" />
-  </ng-container>
+  <ng-container *ngTemplateOutlet="title" />
 
-  <div class="cv__mid">
-    <div class="cv__mid__line"></div>
+  <div class="cv__content">
+    <ng-container *ngIf="isSmallScreen; else left">
+      <ng-container *ngTemplateOutlet="left__small" />
+    </ng-container>
+
+    <div class="cv__mid">
+      <div class="cv__mid__line"></div>
+    </div>
+    <ng-container *ngTemplateOutlet="right" />
   </div>
-
-  <ng-container *ngTemplateOutlet="right" />
 </div>
 
 <!-- Layers -->
 
 <ng-template #left>
   <div class="cv__left">
-    <ng-container *ngTemplateOutlet="pp" />
     <ng-container *ngTemplateOutlet="contact" />
     <ng-container *ngTemplateOutlet="education" />
     <ng-container *ngTemplateOutlet="skills" />
@@ -33,7 +35,6 @@
 
 <ng-template #right>
   <div class="cv__right">
-    <ng-container *ngTemplateOutlet="title" />
     <ng-container *ngTemplateOutlet="profile" />
     <ng-container *ngTemplateOutlet="work" />
   </div>
@@ -42,7 +43,7 @@
 <!-- Items -->
 
 <ng-template #title>
-  <div class="cv__right__title">
+  <div class="cv__title">
     <h1>Max de Jonge</h1>
     <h2 style="color: #bbbbbb">Software Engineer</h2>
   </div>

@@ -23,13 +23,13 @@
 
   <!-- Content -->
   <div class="project__content">
-    <div class="project__description">
-      <ng-container *ngTemplateOutlet="description; context : {$implicit : project}"/>
-    </div>
+
     <ng-container *ngTemplateOutlet="imageView; context : {$implicit : project}"/>
     <div class="project__description">
+      <ng-container *ngTemplateOutlet="description; context : {$implicit : project}"/>
       <ng-container *ngTemplateOutlet="projectInfo; context : {$implicit : project}"/>
     </div>
+
   </div>
 
   <!-- Download Section -->

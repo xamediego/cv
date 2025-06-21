@@ -12,10 +12,20 @@
   justify-content: start;
   align-items: center;
 
-  max-width: 1200px;
+  max-width: 1000px;
   height: 100%;
 
   margin-bottom: 40px;
+  margin-top: 10px;
+
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   p {
     font-size: 16px;
   }
@@ -27,7 +37,6 @@
     align-items: start;
 
     height: 100%;
-    width: 90%;
   }
 
   &__container {

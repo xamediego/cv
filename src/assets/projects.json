@@ -20,7 +20,7 @@
         },
         {
           "title": "JFX-Game",
-          "description": "Small game created in JavaFX for a school assignment, might have one or two bugs",
+          "description": "Small game created in JavaFX for a school assignment",
           "version": "1.0",
           "filesize": "",
           "date": "2023-03",
@@ -65,13 +65,16 @@
           "images": [
             "Work_Images/UDK/Derelict/1.jpg",
             "Work_Images/UDK/Derelict/2.jpg",
-            "Work_Images/UDK/Derelict/3.jpg"
+            "Work_Images/UDK/Derelict/3.jpg",
+            "Work_Images/UDK/Derelict/4.jpg",
+            "Work_Images/UDK/Derelict/5.jpg",
+            "Work_Images/UDK/Derelict/6.jpg"
           ],
           "imageUrl": "ProjectThumbnails/UDK/DM-Derelict/1.jpg"
         },
         {
           "title": "DM-MidShip",
-          "description": "Port of an older Midship remake for Unreal Tournament",
+          "description": "Port of an older Midship remake for Unreal Tournament.\n\nMidship is a small map, ideal for duels and small free-for-all games. Although not exactly symmetrical, it is considered to be a symmetrical map, due to the fact that the asymmetrical sections are equal distances from each base. Midship prominently features the purple/pink color combination of most Covenant architecture.",
           "version": "1.0",
           "filesize": "3.2",
           "date": "2012-10-16",
@@ -92,13 +95,16 @@
           "links": [
             {
               "provider": "Mega.nz",
-              "url": "https://mega.nz/file/U7MC2BDa#b-Y_20KNjPPfnxcAyPsup8VvDuqoQ95FKiuAIphwJa0"
+              "url": "https://mega.nz/file/M6dnhAIS#frZ95okR6YeTYUHppMmKebWVDwVdG2EScup8nvYMg7w"
             }
           ],
           "images": [
             "Work_Images/UDK/Midship/1.jpg",
             "Work_Images/UDK/Midship/2.jpg",
-            "Work_Images/UDK/Midship/3.jpg"
+            "Work_Images/UDK/Midship/3.jpg",
+            "Work_Images/UDK/Midship/4.jpg",
+            "Work_Images/UDK/Midship/5.jpg",
+            "Work_Images/UDK/Midship/6.jpg"
           ],
           "imageUrl": "ProjectThumbnails/UDK/DM-MidShip/1.jpg"
         }
@@ -106,7 +112,7 @@
       "Unreal Tournament 3": [
         {
           "title": "CTF-Crossfire",
-          "description": "A symmetrical map in a chilly environment where the bases are seperated by a bridge. The map is made for a 4v4 fight.",
+          "description": "CTF-Crossfire is a tightly designed symmetrical Capture The Flag map set in a chilly, snow-covered environment. The opposing bases are strategically placed on either side of a central bridge, encouraging intense head-on engagements. Ideal for 4v4 competitive play, the map emphasizes balanced team tactics and fast-paced action.",
           "version": "2.0",
           "filesize": "6.12",
           "date": "2011-5-3",
@@ -139,7 +145,7 @@
         },
         {
           "title": "DM-CTF-Element",
-          "description": "Remake of the Halo reach forge map MLG Element. The arena is a large indoor-outdoor, octagonally shaped brick building set in the mountains. The center courtyard area contains a raised pagoda-like structure that obscures the view to the other side. I only remade the gameplay, so I didn't add any Halo textures. I also didn't add the strut jump, and the other ramp jump.\n\nThe map pack contains both DM and CTF versions.",
+          "description": "DM-CTF-Element is a detailed remake of the competitive Halo: Reach map 'MLG Element'. Set within a massive octagonal structure nestled in the mountains, the arena features both indoor and outdoor combat zones. A central pagoda-style courtyard divides the map and creates dynamic sightlines and choke points. Gameplay has been preserved while adapting it to the UT3 engine, with DM and CTF modes included.",
           "version": "3.0",
           "filesize": "19.31",
           "date": "2011-11-20",
@@ -172,7 +178,7 @@
         },
         {
           "title": "DM-Esoteric",
-          "description": "A symmetrical Halo styled DM map for UT in a space cave.",
+          "description": "DM-Esoteric is a visually striking symmetrical Deathmatch map inspired by Halo’s design language. Set inside a mysterious space cave, the map blends organic cave formations with futuristic architecture to create an eerie, alien battleground. Its layout is optimized for mid- to large-scale skirmishes, offering verticality, cover options, and flowing combat routes.",
           "version": "1.0",
           "filesize": "38.84",
           "date": "2012-11-18",
@@ -205,7 +211,7 @@
         },
         {
           "title": "VCTF-District",
-          "description": "Just a VCTF map set in a city. You can take the fight to the open field with your hellbender, or just go trough the buildings with your flak cannon.",
+          "description": "VCTF-District drops players into an urban battlefield where intense vehicle and infantry combat collide. Navigate the streets and buildings on foot or unleash destruction in open areas using powerful vehicles like the Hellbender. The layout supports multiple playstyles, from close-quarters building skirmishes to large-scale vehicular confrontations.",
           "version": "3.0",
           "filesize": "10.78",
           "date": "2011-1-9",
@@ -238,7 +244,7 @@
         },
         {
           "title": "VCTF-Retribution",
-          "description": "Did you ever want to visit the main Necris city without the darkness and without the weird thingy that come from the sky, well now is your change. Liandra corp and a random Necris corporation turned a whole part of the city into a VCTF symmetrical map for you to fight on.",
+          "description": "VCTF-Retribution takes place in a transformed sector of the iconic Necris city, now repurposed for massive vehicular warfare. The map offers a symmetrical layout optimized for large team battles, with a balanced blend of urban structures and open driving lanes. Gone are the eerie Necris elements—replaced by a daylight setting and a sleek corporate warzone aesthetic.",
           "version": "3.0",
           "filesize": "9.85",
           "date": "2012-11-11",
@@ -273,7 +279,7 @@
         },
         {
           "title": "War-Snowbound",
-          "description": "A symmetrical warfare map that is set in an icy canyon on a remote planet that used to be colonized by the forerunners.",
+          "description": "War-Snowbound is an expansive Warfare map set in a remote, icy canyon once inhabited by an ancient civilization. The symmetrical layout supports large-scale strategic gameplay with objectives spread across frozen terrain and massive structures. Players must coordinate vehicle usage, team roles, and base control to secure victory in this visually immersive frozen battlefield.",
           "version": "3.0",
           "filesize": "53.98",
           "date": "2011-8-24",
@@ -310,11 +316,11 @@
       ],
       "Unreal Tournament 2004": [
         {
+          "projectType": "Unreal Tournament 2004",
           "title": "DM-Dome",
-          "description": "",
           "version": "2.0",
           "filesize": "45.5mb",
-          "date": "2010-08",
+          "description": "A compact, sci-fi-themed Invasion RPG map enclosed in a box-like arena. Features a hidden control panel that can summon an Ion Tank for players who know the secret code. Ideal for small, high-intensity matches with strategic surprises.",
           "extraDetails": [
             {
               "key": "players",
@@ -329,14 +335,14 @@
               "value": "Sci-Fi"
             }
           ],
-          "links": [
+          "projectFile": {
+            "provider": "Mega.nz",
+            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+          },
+          "extraLinks": [
             {
-              "provider": "Gamefront",
+              "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
-            },
-            {
-              "provider": "Mega.nz",
-              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
           "images": [
@@ -344,14 +350,14 @@
             "Work_Images/UT2k4/Dome/2.jpg",
             "Work_Images/UT2k4/Dome/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Dome.jpg"
+          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Dome.jpg"
         },
         {
+          "projectType": "Unreal Tournament 2004",
           "title": "DM-Hellzone",
-          "description": "",
           "version": "4.0",
           "filesize": "45.5mb",
-          "date": "2010-08",
+          "description": "An ultra-compact invasion RPG map with a box-style layout, designed with numerous hiding spots and ambush zones. Perfect for chaotic, close-quarters combat and quick monster waves.",
           "extraDetails": [
             {
               "key": "players",
@@ -366,14 +372,14 @@
               "value": "Sci-Fi"
             }
           ],
-          "links": [
+          "projectFile": {
+            "provider": "Mega.nz",
+            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+          },
+          "extraLinks": [
             {
-              "provider": "Gamefront",
+              "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
-            },
-            {
-              "provider": "Mega.nz",
-              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
           "images": [
@@ -381,14 +387,14 @@
             "Work_Images/UT2k4/Hellzone/2.jpg",
             "Work_Images/UT2k4/Hellzone/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Hellzone.jpg"
+          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Hellzone.jpg"
         },
         {
+          "projectType": "Unreal Tournament 2004",
           "title": "DM-Instaltion-486",
-          "description": "",
           "version": "2.0",
           "filesize": "45.5mb",
-          "date": "2010-09",
+          "description": "A medium-sized Invasion RPG map inspired by the aesthetics of the Halo universe. Combines sci-fi corridors with open combat zones, offering a balance of exploration and fast-paced encounters.",
           "extraDetails": [
             {
               "key": "players",
@@ -403,24 +409,29 @@
               "value": "Sci-Fi"
             }
           ],
-          "links": [
+          "projectFile": {
+            "provider": "Mega.nz",
+            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+          },
+          "extraLinks": [
             {
-              "provider": "Gamefront",
+              "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
             }
           ],
           "images": [
             "Work_Images/UT2k4/IST486/1.jpg",
-            "Work_Images/UT2k4/IST486/2.jpg"
+            "Work_Images/UT2k4/IST486/2.jpg",
+            "Work_Images/UT2k4/IST486/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Instaltion-486.jpg"
+          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Instaltion-486.jpg"
         },
         {
+          "projectType": "Unreal Tournament 2004",
           "title": "DM-Legacy",
-          "description": "",
           "version": "2.0",
           "filesize": "45.5mb",
-          "date": "2010-10",
+          "description": "A dark and atmospheric invasion RPG map with shadowy corridors and moody lighting. Focuses on immersive sci-fi aesthetics and intense monster wave progression, encouraging defensive team play.",
           "extraDetails": [
             {
               "key": "players",
@@ -435,14 +446,14 @@
               "value": "Sci-Fi"
             }
           ],
-          "links": [
+          "projectFile": {
+            "provider": "Mega.nz",
+            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+          },
+          "extraLinks": [
             {
-              "provider": "Gamefront",
+              "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
-            },
-            {
-              "provider": "Mega.nz",
-              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
           "images": [
@@ -450,14 +461,14 @@
             "Work_Images/UT2k4/Legacy/2.jpg",
             "Work_Images/UT2k4/Legacy/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-Legacy.jpg"
+          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-Legacy.jpg"
         },
         {
+          "projectType": "Unreal Tournament 2004",
           "title": "DM-ThePit",
-          "description": "",
           "version": "2.0 - [Final]",
           "filesize": "45.5mb",
-          "date": "2010-10",
+          "description": "A straightforward but effective Invasion RPG map centered around a large rectangular arena. Provides vehicle access and numerous nooks for tactical positioning, making it ideal for vehicle-monster hybrid combat.",
           "extraDetails": [
             {
               "key": "players",
@@ -472,14 +483,14 @@
               "value": "Sci-Fi"
             }
           ],
-          "links": [
+          "projectFile": {
+            "provider": "Mega.nz",
+            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+          },
+          "extraLinks": [
             {
-              "provider": "Gamefront",
+              "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
-            },
-            {
-              "provider": "Mega.nz",
-              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
           "images": [
@@ -487,14 +498,14 @@
             "Work_Images/UT2k4/ThePit/2.jpg",
             "Work_Images/UT2k4/ThePit/3.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-ThePit.jpg"
+          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-ThePit.jpg"
         },
         {
+          "projectType": "Unreal Tournament 2004",
           "title": "DM-VoteFor",
-          "description": "",
           "version": "2.0",
           "filesize": "45.5mb",
-          "date": "2010-10",
+          "description": "An Egyptian-themed invasion RPG map designed for strategic gameplay. The centerpiece is a trap-enabled floor that, when triggered, opens up and drops all surrounding enemies into a lava pit. Combines ancient aesthetics with functional gameplay mechanics.",
           "extraDetails": [
             {
               "key": "players",
@@ -509,14 +520,14 @@
               "value": "Ancient"
             }
           ],
-          "links": [
+          "projectFile": {
+            "provider": "Mega.nz",
+            "url": "https://mega.nz/file/R2sDQTJI#DF9BDGR3qts3uKzoxzIMaA_lzHg02JP007nhoDuceBc"
+          },
+          "extraLinks": [
             {
-              "provider": "Gamefront",
+              "provider": "Gamefront (Outdated)",
               "url": "https://www.gamefront.com/games/unreal-tournament-2004/file/invasion-mappack"
-            },
-            {
-              "provider": "Mega.nz",
-              "url": "https://mega.nz/file/lmMxhK4b#qFCoAWmhPqTgTkh-dg5S7KMwz_2qLh2od9yiniOeEy8k"
             }
           ],
           "images": [
@@ -525,7 +536,7 @@
             "Work_Images/UT2k4/VoteFor/3.jpg",
             "Work_Images/UT2k4/VoteFor/4.jpg"
           ],
-          "imageUrl": "ProjectThumbnails/Unreal Tournament 2004/DM-VoteFor.jpg"
+          "thumbnail": "ProjectThumbnails/Unreal Tournament 2004/DM-VoteFor.jpg"
         }
       ]
     }
