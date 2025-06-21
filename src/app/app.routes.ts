@@ -1,16 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
-import {CvComponent} from "./components/cv/cv.component";
-import {ProjectsComponent} from "./components/projects/projects.component";
 import {NgModule} from "@angular/core";
-import {ProjectComponent} from "./components/project/project.component";
 
 export const appRoutes: Routes = [
-  {path: 'cv', component: CvComponent},
-  {path: 'projects', component: ProjectsComponent},
-  {path: 'project/:type/:title', component: ProjectComponent},
+  {path: '', loadChildren: () => import('./components/user/user.module').then((m) => m.UserModule)},
+  {path: '', loadChildren: () => import('./components/portal/portal.module').then((m) => m.PortalModule)},
 
-  //needs to be put at la bottom
-  {path: '**', redirectTo : 'cv'},
+  {path: '**', redirectTo : 'resume'},
 ];
 
 @NgModule({

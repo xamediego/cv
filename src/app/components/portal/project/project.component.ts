@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {IMAGE_CONFIG, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
-import {ProjectService} from "../../services/project.service";
-import {Project} from "../../services/project";
+import {ProjectService} from "../../../services/project/project.service";
+import {Project} from "../../../services/project/project";
 
 @Component({
   selector: 'app-project',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {HeaderComponent} from "./components/header/header.component";
+import {HeaderComponent} from "./components/user/header/header.component";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import {HeaderComponent} from "./components/header/header.component";
 })
 
 export class AppComponent {
-  title = 'cv';
+  title = 'resume';
 }
 
 

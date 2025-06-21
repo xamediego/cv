@@ -13,7 +13,7 @@
   flex-direction: column;
 
   max-width: 1000px;
-  padding: 2rem;
+  padding: 0 2rem 2rem;
 
   @media screen and (max-width: 768px) {
     padding: 1rem;
@@ -27,7 +27,6 @@
 
     width: 100%;
 
-    margin-top: 50px;
     margin-bottom: 60px;
 
     @media screen and (max-width: 768px) {

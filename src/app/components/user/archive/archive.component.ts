@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {Router} from "@angular/router";
-import {ProjectService} from "../../services/project.service";
-import {Project, ProjectType} from "../../services/project";
+import {ProjectService} from "../../../services/project/project.service";
+import {Project, ProjectType} from "../../../services/project/project";
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-archive',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -15,10 +15,10 @@ import {Project, ProjectType} from "../../services/project";
     NgForOf,
     NgIf
   ],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+  templateUrl: './archive.component.html',
+  styleUrl: './archive.component.scss'
 })
-export class ProjectsComponent implements OnInit {
+export class ArchiveComponent implements OnInit {
   public isLoading: boolean = false;
 
   projectTypesStorage: ProjectType[] = [];
