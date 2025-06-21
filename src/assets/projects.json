@@ -4,34 +4,69 @@
       "Java": [
         {
           "title": "JFX-ImageCutter",
-          "description": "Image cropper / cutter for avatars in javafx.\nTest project thingy. All of it just works.",
+          "description": "JFX-ImageCutter is a lightweight image cropping tool developed with JavaFX. It allows users to select and trim images to custom or preset dimensions, making it suitable for avatar or profile picture formatting. The application showcases essential JavaFX functionality like mouse interaction, real-time previews, and layout control. Originally built as a learning project, it remains a functional and responsive utility.",
           "version": "1.0",
-          "filesize": "",
+          "filesize": "1.2",
           "date": "2022-05",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "Language",
+              "value": "Java"
+            },
+            {
+              "key": "Framework",
+              "value": "JavaFX"
+            },
+            {
+              "key": "Purpose",
+              "value": "ImageCropping"
+            }
+          ],
           "links": [
             {
               "provider": "Github",
               "url": "https://github.com/xamediego/JFX_IMAGE_CUTTER"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/JAVA/JFX/1.jpg",
+            "Work_Images/JAVA/JFX/2.jpg",
+            "Work_Images/JAVA/JFX/3.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Java/JFX-ImageCutter.jpg"
         },
         {
           "title": "JFX-Game",
-          "description": "Small game created in JavaFX for a school assignment",
+          "description": "JFX-Game is a small arcade-style mini-game built using JavaFX for a school assignment. It demonstrates the basics of real-time rendering, keyboard interaction, and object collision in a simple 2D environment. The game features animated elements and scoring mechanics and was used to explore game loop logic within a Java GUI framework.",
           "version": "1.0",
-          "filesize": "",
+          "filesize": "2.8",
           "date": "2023-03",
-          "extraDetails": [],
+          "extraDetails": [
+            {
+              "key": "Language",
+              "value": "Java"
+            },
+            {
+              "key": "Framework",
+              "value": "JavaFX"
+            },
+            {
+              "key": "Genre",
+              "value": "Arcade"
+            }
+          ],
           "links": [
             {
               "provider": "Github",
               "url": "https://github.com/xamediego/DEDS-Game"
             }
           ],
-          "images": [],
+          "images": [
+            "Work_Images/JAVA/DEDS/1.jpg",
+            "Work_Images/JAVA/DEDS/2.jpg",
+            "Work_Images/JAVA/DEDS/3.jpg",
+            "Work_Images/JAVA/DEDS/4.jpg"
+          ],
           "imageUrl": "ProjectThumbnails/Java/JFX-Game.jpg"
         }
       ],
