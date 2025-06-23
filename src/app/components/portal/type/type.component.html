@@ -1,0 +1,22 @@
+<div class="type">
+  @if (projectType != null){
+    <div class="type__header">
+      <img class="type__header__icon" ngSrc="{{projectType.icon}}" width="65" height="65"
+           alt="{{projectType.type}} - icon"/>
+      <div class="type__header__info">
+        <h2>{{ projectType.title }}</h2>
+        <div class="type__header__info__details">
+          <p>
+            Items: {{ projectType.projects.length }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr class="slice-line">
+    <div class="type__content">
+      @for (project of projectType.projects; track $index){
+        <project-holder [project]="project" [projectType]="projectType"/>
+      }
+    </div>
+  }
+</div>

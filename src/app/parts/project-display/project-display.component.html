@@ -1,0 +1,27 @@
+@if (project != null && projectType != null){
+  <div class="project-holder">
+    <a class="project-holder__link" (click)="navigate(project.title, projectType.type)">
+      <div class="project-holder__title">
+        <div class="project-holder__title__left">
+          <p class="s_t">
+            {{project.title}}
+          </p>
+        </div>
+
+        <div class="project-holder__title__right">
+          <p class="s_t">
+            {{createProjectString(project.publishedDate)}}
+
+          </p>
+        </div>
+
+      </div>
+      <img
+        alt="{{project.title}} - Image"
+        src="{{project.projectThumbnail}}"
+        (load)="onImageLoad()"
+        class="project-holder__img"
+      />
+    </a>
+  </div>
+}

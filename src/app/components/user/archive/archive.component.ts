@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {Router} from "@angular/router";
-import {ProjectService} from "../../../services/project/project.service";
-import {ProjectType} from "../../../services/project/project";
+
+import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
+import {ProjectType} from "../../../services/entities/ProjectType";
+import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 
 @Component({
-  selector: 'app-archive',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    NgTemplateOutlet,
-    NgForOf,
-    NgIf
-  ],
-  templateUrl: './archive.component.html',
-  styleUrl: './archive.component.scss'
+    selector: 'app-archive',
+    imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        NgTemplateOutlet,
+        ProjectDisplayComponent
+    ],
+    templateUrl: './archive.component.html',
+    styleUrl: './archive.component.scss'
 })
 export class ArchiveComponent implements OnInit {
   public isLoading: boolean = false;
@@ -40,11 +40,11 @@ export class ArchiveComponent implements OnInit {
 
   timeoutId: any = null;
 
-  constructor(private router: Router, private projectService: ProjectService) {
+  constructor(private router: Router, private projectTypeService: ProjectTypeService) {
   }
 
   async ngOnInit(): Promise<void> {
-    this.initDummyData();
+    await this.initDummyData();
 
     this.selectedFilter = "All"
 
@@ -57,9 +57,13 @@ export class ArchiveComponent implements OnInit {
     })
   }
 
-  private initDummyData() {
-    this.projectTypes = this.projectService.findAll();
-    this.projectTypesStorage = this.projectTypes
+  private async initDummyData() {
+    const result = await this.projectTypeService.findAllComplete();
+
+    if(result.statusCode == 200){
+      this.projectTypes = result.responseBody;
+      this.projectTypesStorage = this.projectTypes;
+    }
   }
 
   private filterProjects(projectName: string) {
@@ -78,13 +82,13 @@ export class ArchiveComponent implements OnInit {
 
     this.projectTypes.map(pt => {
       pt.projects.map(p => {
-        p.date = new Date(p.date);
+        p.publishedDate = new Date(p.publishedDate);
       })
     })
   }
 
   async navigate(title: string, type: string) {
-    const url = `project/${type}/${title}`
+    const url = `home/${type}/${title}`
     await this.router.navigate([url]);
   }
 

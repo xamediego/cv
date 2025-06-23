@@ -1,0 +1,14 @@
+<div class="header">
+  @for (link of getLink(); track i; let i = $index){
+    <a
+      [class.final]="i + 1 === getLink().length"
+      [class.clickable]="i + 1 < getLink().length"
+      (click)="i + 1 < getLink().length && navigate(i)">
+      {{ link }}
+    </a>
+
+    @if (i + 1 < getLink().length){
+      <p class="separator"> > </p>
+    }
+  }
+</div>

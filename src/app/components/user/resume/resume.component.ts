@@ -1,15 +1,13 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {NgIf, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
-  selector: 'app-resume',
-  standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    NgIf
-  ],
-  templateUrl: './resume.component.html',
-  styleUrl: './resume.component.scss',
+    selector: 'app-resume',
+    imports: [
+        NgTemplateOutlet,
+    ],
+    templateUrl: './resume.component.html',
+    styleUrl: './resume.component.scss'
 })
 export class ResumeComponent implements OnInit{
 

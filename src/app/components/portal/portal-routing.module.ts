@@ -2,6 +2,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {PortalComponent} from './portal.component';
 import {ProjectComponent} from "./project/project.component";
+import {CatalogComponent} from "./catalog/catalog.component";
+import {TypeComponent} from "./type/type.component";
 
 
 const routes: Routes = [
@@ -10,7 +12,11 @@ const routes: Routes = [
     component: PortalComponent,
 
     children: [
-      {path: 'project/:type/:title', component: ProjectComponent},
+      {path: '', component: CatalogComponent},
+
+      {path: 'catalog', component: CatalogComponent},
+      {path: ':type', component: TypeComponent},
+      {path: ':type/:title', component: ProjectComponent},
     ]
   }
 ];

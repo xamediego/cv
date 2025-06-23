@@ -5,7 +5,7 @@ export const appRoutes: Routes = [
   {path: '', pathMatch : "full", redirectTo : 'resume'},
 
   {path: '', loadChildren: () => import('./components/user/user.module').then((m) => m.UserModule)},
-  {path: '', loadChildren: () => import('./components/portal/portal.module').then((m) => m.PortalModule)},
+  {path: 'home', loadChildren: () => import('./components/portal/portal.module').then((m) => m.PortalModule)},
 ];
 
 @NgModule({

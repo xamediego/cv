@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'Segoe UI', sans-serif;
+  gap: 0.5rem;
+
+  width: 100%;
+  max-width: 1000px;
+
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    transition: opacity 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+    cursor: pointer;
+
+    &.clickable {
+      opacity: 0.8;
+
+      &:hover {
+        text-decoration: underline;
+        opacity: 1;
+      }
+    }
+
+    &.final {
+      font-weight: bold;
+      pointer-events: none;
+      cursor: default;
+      opacity: 1;
+    }
+  }
+
+  .separator {
+    margin: 0 0.25rem;
+    user-select: none;
+  }
+}

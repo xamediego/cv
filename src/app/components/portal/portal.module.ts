@@ -3,13 +3,13 @@ import {CommonModule,  NgClass, NgForOf, NgIf, NgTemplateOutlet} from '@angular/
 
 import {RouterLink} from '@angular/router';
 import {PortalRoutingModule} from './portal-routing.module';
-import {PortalComponent} from './portal.component';
-import {HeaderComponent} from "./header/header.component";
-
+import {BreadcrumbsComponent} from "./breadcrumbs/breadcrumbs.component";
+import {PortalComponent} from "./portal.component";
+import {HeaderComponent} from "../user/header/header.component";
 
 @NgModule({
   declarations: [
-    PortalComponent,
+    PortalComponent
   ],
 
   imports: [
@@ -20,6 +20,7 @@ import {HeaderComponent} from "./header/header.component";
     NgIf,
     NgClass,
     NgForOf,
+    BreadcrumbsComponent,
     HeaderComponent,
   ]
 })
