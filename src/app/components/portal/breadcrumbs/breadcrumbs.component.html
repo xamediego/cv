@@ -1,12 +1,14 @@
 <div class="header">
-  <ng-container *ngFor="let link of getLink(); let i = index">
+  @for (link of getLink(); track i; let i = $index){
     <a
       [class.final]="i + 1 === getLink().length"
       [class.clickable]="i + 1 < getLink().length"
-      (click)="i + 1 < getLink().length && navigate(i)"
-    >
+      (click)="i + 1 < getLink().length && navigate(i)">
       {{ link }}
     </a>
-    <p class="separator" *ngIf="i + 1 < getLink().length"> > </p>
-  </ng-container>
+
+    @if (i + 1 < getLink().length){
+      <p class="separator"> > </p>
+    }
+  }
 </div>

@@ -1,19 +1,21 @@
-<ng-container *ngIf="isLoading else mainview">
+@if(isLoading){
   <div class="spinner"></div>
-</ng-container>
+} @else{
+  <ng-container [ngTemplateOutlet]="mainview" />
+}
 
 <ng-template #mainview>
-  <div style="height: 100%" *ngIf="project; else noProject">
+  @if (project) {
     <div class="project">
-      <ng-container *ngIf="isSmallScreen">
-        <ng-container [ngTemplateOutlet]="small"></ng-container>
-      </ng-container>
-
-      <ng-container *ngIf="!isSmallScreen">
-        <ng-container [ngTemplateOutlet]="large"></ng-container>
-      </ng-container>
+      @if (isSmallScreen) {
+        <ng-container [ngTemplateOutlet]="small" />
+      } @else {
+        <ng-container [ngTemplateOutlet]="large" />
+      }
     </div>
-  </div>
+  } @else {
+    <p>No project found</p>
+  }
 </ng-template>
 
 
@@ -77,14 +79,13 @@
          [alt]="project.title + ' | image'"
          class="main-image__image"
          id="main-image"
-         (load)="onImageLoad()"
-    >
+         (load)="onImageLoad()">
   </div>
 </ng-template>
 
 <ng-template #imageList let-project>
   <div class="imageHolder" id="image-holder">
-    <ng-container *ngFor="let image of project.images, let i = index">
+    @for (image of project.images; track i; let i = $index){
       <div class="imageHolder__holder"
            (click)="changePictureEvent(i, image)">
         <img class="imageHolder__image"
@@ -92,10 +93,9 @@
              id="image-{{i}}"
              alt="{{project.title}} - {{i}}"
              (load)="onImageLoad()"
-             loading="eager"
-        >
+             loading="eager">
       </div>
-    </ng-container>
+    }
   </div>
 </ng-template>
 
@@ -110,10 +110,7 @@
   <div class="project__description__statistic">
     <h2>Statistics</h2>
     <p>Project Filesize: {{ project.filesize }}</p>
-    <p>Created Date: {{project.date.getFullYear()}}-{{project.date.getMonth()}}-{{project.date.getDate()}}</p>
-    <ng-container *ngFor="let detail of project.extraDetails">
-      <p>{{ detail.key }} : {{ detail.value }}</p>
-    </ng-container>
+    <p>{{createProjectString(project.publishedDate)}}</p>
   </div>
 </ng-template>
 
@@ -121,9 +118,9 @@
   <div class="project__download">
     <div class="project__download__links">
       <h2>External Mirrors:</h2>
-      <ng-container *ngFor="let link of project.links; let i = index">
+      @for (link of project.links; track i; let i = $index){
         <a [href]="link.url">{{i + 1}}: {{ link.provider }}</a>
-      </ng-container>
+      }
     </div>
   </div>
 </ng-template>

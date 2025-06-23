@@ -1,15 +1,14 @@
 import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
-import {Project, ProjectType} from "../../services/entities/Project";
-import {NgIf} from "@angular/common";
+
+import {Project} from "../../services/entities/Project";
+import {ProjectType} from "../../services/entities/ProjectType";
 
 @Component({
     selector: 'project-holder',
     templateUrl: './project-display.component.html',
     styleUrls: ['./project-display.component.scss'],
-    imports: [
-        NgIf
-    ]
+    imports: []
 })
 export class ProjectDisplayComponent{
 
@@ -25,5 +24,11 @@ export class ProjectDisplayComponent{
 
   onImageLoad() {
 
+  }
+
+  createProjectString(publishedDate: Date) {
+    const date = new Date(publishedDate);
+
+    return `Created:${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
 }

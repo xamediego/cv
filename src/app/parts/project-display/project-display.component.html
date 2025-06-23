@@ -1,4 +1,4 @@
-<ng-container *ngIf="project != null && projectType != null">
+@if (project != null && projectType != null){
   <div class="project-holder">
     <a class="project-holder__link" (click)="navigate(project.title, projectType.type)">
       <div class="project-holder__title">
@@ -10,17 +10,18 @@
 
         <div class="project-holder__title__right">
           <p class="s_t">
-            Created:{{project.date.getFullYear()}}-{{project.date.getMonth()}}-{{project.date.getDate()}}
+            {{createProjectString(project.publishedDate)}}
+
           </p>
         </div>
 
       </div>
       <img
         alt="{{project.title}} - Image"
-        src="{{project.imageUrl}}"
+        src="{{project.projectThumbnail}}"
         (load)="onImageLoad()"
         class="project-holder__img"
       />
     </a>
   </div>
-</ng-container>
+}

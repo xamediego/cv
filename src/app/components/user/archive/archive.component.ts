@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
 import {Router} from "@angular/router";
-import {ProjectService} from "../../../services/project/project.service";
+
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
 import {ProjectType} from "../../../services/entities/ProjectType";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
@@ -13,8 +13,6 @@ import {ProjectTypeService} from "../../../services/projecttype/project-type.ser
         ReactiveFormsModule,
         FormsModule,
         NgTemplateOutlet,
-        NgForOf,
-        NgIf,
         ProjectDisplayComponent
     ],
     templateUrl: './archive.component.html',
@@ -60,7 +58,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   private async initDummyData() {
-    const result = await this.projectTypeService.findAll();
+    const result = await this.projectTypeService.findAllComplete();
 
     if(result.statusCode == 200){
       this.projectTypes = result.responseBody;

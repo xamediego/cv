@@ -40,10 +40,10 @@
 
 <ng-template #projectView>
   <div class="archive__bottom__projects__wrapper">
-    <ng-container *ngIf="!isLoading else spinner">
+    @if (!isLoading) {
       <ng-container *ngTemplateOutlet="archiveFilter"/>
-      <ng-container *ngFor="let projectType of projectTypes">
-        <ng-container *ngIf="selectedFilter === 'All' || projectType.title === selectedFilter">
+      @for (projectType of projectTypes; track $index){
+        @if(selectedFilter === 'All' || projectType.title === selectedFilter){
           <div class="archive__bottom__project-types">
 
             <div class="archive__bottom__title__wrapper">
@@ -51,7 +51,7 @@
               <div class="archive__bottom__title__wrapper__head">
 
                 <div class="archive__bottom__title__wrapper__head__left">
-                  <h2>{{projectType.title}}</h2>
+                  <h2>{{ projectType.title }}</h2>
                 </div>
 
               </div>
@@ -59,18 +59,19 @@
             </div>
             <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
           </div>
-        </ng-container>
-
-      </ng-container>
-    </ng-container>
+        }
+      }
+    } @else {
+      <ng-container *ngTemplateOutlet="spinner"/>
+    }
   </div>
 </ng-template>
 
 <ng-template #projects let-projectType>
   <div class="projects">
-    <ng-container *ngFor="let project of projectType.projects">
+    @for (project of projectType.projects; track $index){
       <project-holder [project]="project" [projectType]="projectType"/>
-    </ng-container>
+    }
   </div>
 </ng-template>
 
@@ -88,11 +89,12 @@
 
         <option value="All" selected="selected">All</option>
 
-        <option
-          *ngFor="let projectType of projectTypesStorage"
-          [value]="projectType.title">
-          {{ projectType.title }}
-        </option>
+        @for (projectType of projectTypesStorage; track $index) {
+          <option
+            [value]="projectType.title">
+            {{ projectType.title }}
+          </option>
+        }
       </select>
     </div>
 

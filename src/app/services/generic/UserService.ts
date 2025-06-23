@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from 'rxjs';
 import {CookieService} from "ngx-cookie-service";
+import {jwtDecode} from "jwt-decode";
 
 @Injectable({
   providedIn: 'root',
@@ -38,37 +39,21 @@ export class UserService {
   }
 
   public getUserClaims() : string[] {
-    const decoded : string = jwt_decode(this.getJwtToken());
+    const decoded : string = jwtDecode(this.getJwtToken());
 
     // @ts-ignore
     return decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/authentication'];
   }
 
   public getUsernameFromJwt(): string {
-    const decoded = jwt_decode(this.getJwtToken());
+    const decoded = jwtDecode(this.getJwtToken());
 
     // @ts-ignore
     return decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
   }
 
-  public getRegistrationProcess(): RegistrationProcess {
-    const decoded = jwt_decode(this.getJwtToken());
-
-    // @ts-ignore
-    const process = decoded['RegistrationProcess'];
-
-    if (process !== undefined && process !== null) {
-      if (Object.values(RegistrationProcess).includes(process)) {
-        return Object.values(RegistrationProcess).indexOf(process)
-      }
-    }
-
-    throw new Error('Invalid or missing RegistrationProcess in JWT');
-  }
-
-
   public isRegistrationFinished(): boolean {
-    const decoded = jwt_decode(this.getJwtToken());
+    const decoded = jwtDecode(this.getJwtToken());
 
     // @ts-ignore
     const finished  = decoded['RegistrationFinished'];

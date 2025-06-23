@@ -27,4 +27,11 @@ export class ProjectTypeService {
 
     return await this.fetchService.fetchData<ProjectType>(apiLink, method);
   }
+
+  async findAllComplete() {
+    const apiLink = `${this.apiLink}/all/complete`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
+  }
 }

@@ -1,6 +1,5 @@
 <div class="type">
-  <ng-container *ngIf="projectType != null">
-
+  @if (projectType != null){
     <div class="type__header">
       <img class="type__header__icon" ngSrc="{{projectType.icon}}" width="65" height="65"
            alt="{{projectType.type}} - icon"/>
@@ -15,9 +14,9 @@
     </div>
     <hr class="slice-line">
     <div class="type__content">
-      <ng-container *ngFor="let project of projectType.projects">
+      @for (project of projectType.projects; track $index){
         <project-holder [project]="project" [projectType]="projectType"/>
-      </ng-container>
+      }
     </div>
-  </ng-container>
+  }
 </div>

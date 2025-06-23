@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgOptimizedImage} from "@angular/common";
 
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
 import {ProjectType} from "../../../services/entities/ProjectType";
@@ -9,9 +9,7 @@ import {ProjectTypeService} from "../../../services/projecttype/project-type.ser
 @Component({
     selector: 'app-type',
     imports: [
-        NgIf,
         NgOptimizedImage,
-        NgForOf,
         ProjectDisplayComponent
     ],
     templateUrl: './type.component.html',

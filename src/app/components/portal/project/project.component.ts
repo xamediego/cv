@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {NgTemplateOutlet} from "@angular/common";
+
 import {ProjectService} from "../../../services/project/project.service";
 import {Project} from "../../../services/entities/Project";
 
@@ -8,8 +9,6 @@ import {Project} from "../../../services/entities/Project";
     selector: 'app-project',
     templateUrl: './project.component.html',
     imports: [
-        NgForOf,
-        NgIf,
         NgTemplateOutlet
     ],
     styleUrls: ['./project.component.scss']
@@ -37,17 +36,16 @@ export class ProjectComponent<T extends Project> implements OnInit {
     this.route.paramMap.subscribe(async params => {
       const title = params.get('title') || '';
       await this.loadData(title);
-
       this.totalImages = (this.project?.images ? this.project.images.length : 0) + 1;
+
+      setTimeout(() => {
+        const imageHolder = document.getElementById("image-0")
+
+        if (imageHolder) this.changePicture(imageHolder, this.project?.images[0])
+
+        this.checkImageHolderSize();
+      })
     });
-
-    setTimeout(() => {
-      const imageHolder = document.getElementById("image-0")
-
-      if (imageHolder) this.changePicture(imageHolder, this.project?.images[0])
-
-      this.checkImageHolderSize();
-    })
   }
 
   protected changePictureEvent(idNumber: number, imageUrl: any) {
@@ -123,5 +121,11 @@ export class ProjectComponent<T extends Project> implements OnInit {
         imageHolderElement.style.removeProperty('overflow-x');
       }
     }
+  }
+
+  createProjectString(publishedDate: Date) {
+    const date = new Date(publishedDate);
+
+    return `Created:${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
 }

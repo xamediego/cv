@@ -1,15 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-
-import {NgForOf} from "@angular/common";
 import {Router} from "@angular/router";
+
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {ProjectType} from "../../../services/entities/ProjectType";
 
 @Component({
     selector: 'app-catalog',
-    imports: [
-        NgForOf
-    ],
     templateUrl: './catalog.component.html',
     styleUrl: './catalog.component.scss'
 })

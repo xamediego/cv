@@ -2,9 +2,11 @@
   <ng-container *ngTemplateOutlet="title" />
 
   <div class="cv__content">
-    <ng-container *ngIf="isSmallScreen; else left">
+    @if (isSmallScreen) {
       <ng-container *ngTemplateOutlet="left__small" />
-    </ng-container>
+    } @else {
+      <ng-container *ngTemplateOutlet="left" />
+    }
 
     <div class="cv__mid">
       <div class="cv__mid__line"></div>

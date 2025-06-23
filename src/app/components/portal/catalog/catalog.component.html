@@ -6,7 +6,7 @@
   </div>
 
   <div class="catalog__content">
-    <ng-container *ngFor="let type of projectTypes">
+    @for (type of projectTypes; track $index) {
       <div class="catalog__type">
         <a class="catalog__type__link" (click)="navigate(type)">
           <div class="catalog__type__title">
@@ -19,11 +19,11 @@
             <div class="catalog__type__title__right">
               <p></p>
             </div>
-
           </div>
+
           <img
-            alt="{{type.title}} - Image"
-            src="{{type.thumbnail}}"
+            alt="{{ type.title }} - Image"
+            src="{{ type.thumbnail }}"
             (load)="onImageLoad()"
             class="catalog__type__image"
           />
@@ -38,10 +38,9 @@
             <div class="catalog__type__title__right">
               <p></p>
             </div>
-
           </div>
         </a>
       </div>
-    </ng-container>
+    }
   </div>
 </div>
