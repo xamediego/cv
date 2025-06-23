@@ -69,39 +69,14 @@
 <ng-template #projects let-projectType>
   <div class="projects">
     <ng-container *ngFor="let project of projectType.projects">
-      <div class="project">
-        <a class="project__link" (click)="navigate(project.title, projectType.type)">
-          <div class="project__title">
-            <div class="project__title__left">
-              <p class="s_t">
-                {{project.title}}
-              </p>
-            </div>
-
-            <div class="project__title__right">
-              <p class="s_t">
-                Created:{{project.date.getFullYear()}}-{{project.date.getMonth()}}-{{project.date.getDate()}}
-              </p>
-            </div>
-
-          </div>
-          <img
-            alt="{{project.title}} - Image"
-            src="{{project.imageUrl}}"
-            (load)="onImageLoad()"
-            class="project__img"
-          />
-        </a>
-      </div>
+      <project-holder [project]="project" [projectType]="projectType"/>
     </ng-container>
   </div>
 </ng-template>
 
 <ng-template #archiveFilter>
   <form class="archive__filter" [formGroup]="filterGroup">
-
     <div class="archive__filter__selection">
-
       <p class="archive__filter__title s_t">
         Selection:
       </p>
@@ -118,9 +93,7 @@
           [value]="projectType.title">
           {{ projectType.title }}
         </option>
-
       </select>
-
     </div>
 
     <div class="archive__filter__form">
@@ -136,9 +109,7 @@
           placeholder="filter..."
           type="text"/>
       </div>
-
     </div>
-
   </form>
 </ng-template>
 

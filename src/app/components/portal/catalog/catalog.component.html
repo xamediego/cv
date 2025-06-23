@@ -1,0 +1,47 @@
+<div class="catalog">
+  <div class="catalog__header">
+    <h1>
+      Catalog
+    </h1>
+  </div>
+
+  <div class="catalog__content">
+    <ng-container *ngFor="let type of projectTypes">
+      <div class="catalog__type">
+        <a class="catalog__type__link" (click)="navigate(type)">
+          <div class="catalog__type__title">
+            <div class="catalog__type__title__left">
+              <p>
+                {{ type.title }}
+              </p>
+            </div>
+
+            <div class="catalog__type__title__right">
+              <p></p>
+            </div>
+
+          </div>
+          <img
+            alt="{{type.title}} - Image"
+            src="{{type.thumbnail}}"
+            (load)="onImageLoad()"
+            class="catalog__type__image"
+          />
+
+          <div class="catalog__type__title">
+            <div class="catalog__type__title__left">
+              <p>
+                Items: {{ type.projects.length }}
+              </p>
+            </div>
+
+            <div class="catalog__type__title__right">
+              <p></p>
+            </div>
+
+          </div>
+        </a>
+      </div>
+    </ng-container>
+  </div>
+</div>

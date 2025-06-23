@@ -4,6 +4,8 @@
       {
         "type": "Java",
         "title": "Java",
+        "thumbnail" : "TypeTumbnails/java_logo.png",
+        "icon" : "TypeIcons/java_icon.png",
         "projects": [
           {
             "title": "JFX-ImageCutter",
@@ -12,14 +14,6 @@
             "filesize": "1.2",
             "date": "2022-05",
             "extraDetails": [
-              {
-                "key": "Language",
-                "value": "Java"
-              },
-              {
-                "key": "Framework",
-                "value": "JavaFX"
-              },
               {
                 "key": "Purpose",
                 "value": "ImageCropping"
@@ -46,16 +40,8 @@
             "date": "2023-03",
             "extraDetails": [
               {
-                "key": "Language",
-                "value": "Java"
-              },
-              {
-                "key": "Framework",
-                "value": "JavaFX"
-              },
-              {
-                "key": "Genre",
-                "value": "Arcade"
+                "key": "Purpose",
+                "value": "Game"
               }
             ],
             "links": [
@@ -77,10 +63,12 @@
       {
         "type": "UDK",
         "title": "Unreal Development Kit (UDK)",
+        "thumbnail" : "TypeTumbnails/udk_logo.png",
+        "icon" : "TypeIcons/udk_icon.png",
         "projects": [
           {
             "title": "DM-Derelict",
-            "description": "Remake of the halo map but then for UDK, also made an UT3 version but lost it and can't find it, map is mostly made of BSP",
+            "description": "Remake of the halo map but then for UDK, also made an UT3 version but lost it and can't find it, map is mostly made of BSP\n\nDerelict is a multiplayer map in Halo: Combat Evolved. It is set aboard a Forerunner space station apparently in orbit around Threshold, as the planet is visible through the windows, as well as the moon Basis. It is cataloged by the UNSC as Deep-Space Anomaly #0198. It is a very small level that is best suited for 10 or fewer players, as more can become extremely chaotic unless that is the desired effect.",
             "version": "2.0",
             "filesize": "130.8",
             "date": "2012-11-15",
@@ -155,6 +143,8 @@
       {
         "type": "UT3",
         "title": "Unreal Tournament 3",
+        "thumbnail" : "TypeTumbnails/ut3_logo.png",
+        "icon" : "TypeIcons/ut3_icon.png",
         "projects": [
           {
             "title": "CTF-Crossfire",
@@ -364,9 +354,10 @@
       {
         "type": "UT2k4",
         "title": "Unreal Tournament 2004",
+        "thumbnail" : "TypeTumbnails/ut2k4_logo.png",
+        "icon" : "TypeIcons/ut2k4_icon.png",
         "projects": [
           {
-            "projectType": "Unreal Tournament 2004",
             "title": "DM-Dome",
             "version": "2.0",
             "filesize": "45.5mb",
@@ -404,7 +395,6 @@
             "imageUrl": "ProjectThumbnails/UT2k4/DM-Dome.jpg"
           },
           {
-            "projectType": "Unreal Tournament 2004",
             "title": "DM-Hellzone",
             "version": "4.0",
             "filesize": "45.5mb",
@@ -442,7 +432,6 @@
             "imageUrl": "ProjectThumbnails/UT2k4/DM-Hellzone.jpg"
           },
           {
-            "projectType": "Unreal Tournament 2004",
             "title": "DM-Instaltion-486",
             "version": "2.0",
             "filesize": "45.5mb",
@@ -480,7 +469,6 @@
             "imageUrl": "ProjectThumbnails/UT2k4/DM-Instaltion-486.jpg"
           },
           {
-            "projectType": "Unreal Tournament 2004",
             "title": "DM-Legacy",
             "version": "2.0",
             "filesize": "45.5mb",
@@ -518,7 +506,6 @@
             "imageUrl": "ProjectThumbnails/UT2k4/DM-Legacy.jpg"
           },
           {
-            "projectType": "Unreal Tournament 2004",
             "title": "DM-ThePit",
             "version": "2.0 - [Final]",
             "filesize": "45.5mb",
@@ -556,7 +543,6 @@
             "imageUrl": "ProjectThumbnails/UT2k4/DM-ThePit.jpg"
           },
           {
-            "projectType": "Unreal Tournament 2004",
             "title": "DM-VoteFor",
             "version": "2.0",
             "filesize": "45.5mb",

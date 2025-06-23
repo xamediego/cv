@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {IMAGE_CONFIG, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {ProjectService} from "../../../services/project/project.service";
-import {Project} from "../../../services/project/project";
+import {Project} from "../../../services/entities/Project";
 
 @Component({
   selector: 'app-project',
@@ -14,15 +14,11 @@ import {Project} from "../../../services/project/project";
     NgTemplateOutlet
   ],
   styleUrls: ['./project.component.scss'],
-  providers: [{
-    provide: IMAGE_CONFIG,
-    useValue: {breakpoints: [16, 48, 96, 128, 384, 640, 750, 828, 1080, 1200, 1920]}
-  },],
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent<T extends Project> implements OnInit {
   public isLoading: boolean = false;
 
-  public project: Project | null = null;
+  public project: T | null = null;
 
   public selectedImageUrl = '';
   public selectedImageId = "";
@@ -33,7 +29,7 @@ export class ProjectComponent implements OnInit {
   totalImages: number = 0;
   loadedImages: number = 0;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService) {
+  constructor(private route: ActivatedRoute, private projectService: ProjectService<T>) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -41,9 +37,9 @@ export class ProjectComponent implements OnInit {
 
     this.route.paramMap.subscribe(async params => {
       const title = params.get('title') || '';
-      this.project = await this.loadData(title);
+      await this.loadData(title);
 
-      this.totalImages = (this.project?.images ? this.project.images.length : 0) + 1
+      this.totalImages = (this.project?.images ? this.project.images.length : 0) + 1;
     });
 
     setTimeout(() => {
@@ -94,10 +90,12 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  private async loadData(projectName: string): Promise<Project | null> {
-    const project =  this.projectService.findByTitle(projectName)
-    if (project) project.date = new Date(project.date)
-    return project
+  private async loadData(projectName: string) {
+    const result = await this.projectService.findByTitle(projectName)
+
+    if(result.statusCode == 200){
+      this.project = result.responseBody
+    }
   }
 
   public onImageLoad() {

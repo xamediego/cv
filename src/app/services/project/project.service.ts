@@ -1,38 +1,29 @@
 import {Injectable} from '@angular/core';
-import {Project, ProjectType} from "./project";
-import * as projectData from "../../../assets/projects.json";
+import {Project} from "../entities/Project";
+import {environment} from "../../../environments/environment";
+import {FetchService} from "../generic/FetchService";
+import {FetchResponse} from "../generic/entities/FetchResponse";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
-  constructor() {
+export class ProjectService<T extends Project> {
+
+  private apiLink: string = `${environment.MainApi}/Project`;
+
+  constructor(private fetchService : FetchService) {}
+
+  public async findAll(): Promise<FetchResponse<T[]>> {
+    const apiLink = `${this.apiLink}/all`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchData<T[]>(apiLink, method);
   }
 
-  findAll(): ProjectType[] {
-    return this.loadData()
-  }
+  public async findByTitle(title: String): Promise<FetchResponse<T>> {
+    const apiLink = `${this.apiLink}/title/${title}`;
+    const method = 'GET';
 
-  findByTitle(title: String): Project | null {
-    const data = this.loadData()
-    return data.map(r => r.projects.filter(p => p.title == title)).flat()[0];
-  }
-
-  private convertToProjectTypes(json: any): ProjectType[] {
-    const projectTypes: ProjectType[] = [];
-    for (const type in json) {
-      const projectType: ProjectType = json[type];
-      projectType.projects.map(p => {
-        p.date = new Date(p.date)
-        return p;
-      })
-      projectTypes.push(projectType);
-    }
-    return projectTypes;
-  }
-
-  private loadData(): ProjectType[] {
-    const data = projectData.projects["project-types"];
-    return this.convertToProjectTypes(data);
+    return await this.fetchService.fetchData<T>(apiLink, method);
   }
 }
