@@ -7,16 +7,15 @@ import {ProjectType} from "../../../services/entities/ProjectType";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 
 @Component({
-  selector: 'app-type',
-  standalone: true,
-  imports: [
-    NgIf,
-    NgOptimizedImage,
-    NgForOf,
-    ProjectDisplayComponent
-  ],
-  templateUrl: './type.component.html',
-  styleUrl: './type.component.scss'
+    selector: 'app-type',
+    imports: [
+        NgIf,
+        NgOptimizedImage,
+        NgForOf,
+        ProjectDisplayComponent
+    ],
+    templateUrl: './type.component.html',
+    styleUrl: './type.component.scss'
 })
 export class TypeComponent implements OnInit {
 

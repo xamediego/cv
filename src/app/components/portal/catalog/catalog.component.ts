@@ -6,13 +6,12 @@ import {ProjectTypeService} from "../../../services/projecttype/project-type.ser
 import {ProjectType} from "../../../services/entities/ProjectType";
 
 @Component({
-  selector: 'app-catalog',
-  standalone: true,
-  imports: [
-    NgForOf
-  ],
-  templateUrl: './catalog.component.html',
-  styleUrl: './catalog.component.scss'
+    selector: 'app-catalog',
+    imports: [
+        NgForOf
+    ],
+    templateUrl: './catalog.component.html',
+    styleUrl: './catalog.component.scss'
 })
 export class CatalogComponent implements OnInit {
 

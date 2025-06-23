@@ -4,13 +4,12 @@ import {Project, ProjectType} from "../../services/entities/Project";
 import {NgIf} from "@angular/common";
 
 @Component({
-  selector: 'project-holder',
-  standalone: true,
-  templateUrl: './project-display.component.html',
-  styleUrls: ['./project-display.component.scss'],
-  imports: [
-    NgIf
-  ]
+    selector: 'project-holder',
+    templateUrl: './project-display.component.html',
+    styleUrls: ['./project-display.component.scss'],
+    imports: [
+        NgIf
+    ]
 })
 export class ProjectDisplayComponent{
 

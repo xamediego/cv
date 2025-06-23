@@ -4,14 +4,13 @@ import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-breadcrumbs',
-  standalone: true,
-  imports: [
-    NgForOf,
-    NgIf
-  ],
-  templateUrl: './breadcrumbs.component.html',
-  styleUrl: './breadcrumbs.component.scss'
+    selector: 'app-breadcrumbs',
+    imports: [
+        NgForOf,
+        NgIf
+    ],
+    templateUrl: './breadcrumbs.component.html',
+    styleUrl: './breadcrumbs.component.scss'
 })
 export class BreadcrumbsComponent {
 

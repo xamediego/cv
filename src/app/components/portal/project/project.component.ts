@@ -5,15 +5,14 @@ import {ProjectService} from "../../../services/project/project.service";
 import {Project} from "../../../services/entities/Project";
 
 @Component({
-  selector: 'app-project',
-  standalone: true,
-  templateUrl: './project.component.html',
-  imports: [
-    NgForOf,
-    NgIf,
-    NgTemplateOutlet
-  ],
-  styleUrls: ['./project.component.scss'],
+    selector: 'app-project',
+    templateUrl: './project.component.html',
+    imports: [
+        NgForOf,
+        NgIf,
+        NgTemplateOutlet
+    ],
+    styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent<T extends Project> implements OnInit {
   public isLoading: boolean = false;

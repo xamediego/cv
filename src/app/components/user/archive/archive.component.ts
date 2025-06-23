@@ -8,18 +8,17 @@ import {ProjectType} from "../../../services/entities/ProjectType";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 
 @Component({
-  selector: 'app-archive',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    NgTemplateOutlet,
-    NgForOf,
-    NgIf,
-    ProjectDisplayComponent
-  ],
-  templateUrl: './archive.component.html',
-  styleUrl: './archive.component.scss'
+    selector: 'app-archive',
+    imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        NgTemplateOutlet,
+        NgForOf,
+        NgIf,
+        ProjectDisplayComponent
+    ],
+    templateUrl: './archive.component.html',
+    styleUrl: './archive.component.scss'
 })
 export class ArchiveComponent implements OnInit {
   public isLoading: boolean = false;
