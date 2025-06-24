@@ -4,17 +4,20 @@ import {NgTemplateOutlet} from "@angular/common";
 
 import {ProjectService} from "../../../services/project/project.service";
 import {Project} from "../../../services/entities/Project";
+import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 
 @Component({
     selector: 'app-project',
     templateUrl: './project.component.html',
-    imports: [
-        NgTemplateOutlet
-    ],
+  imports: [
+    NgTemplateOutlet,
+    EventSpinnerDirective
+  ],
     styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent<T extends Project> implements OnInit {
-  public isLoading: boolean = false;
+  imagesLoaded : boolean = false;
+  contentLoaded : boolean = false;
 
   public project: T | null = null;
 
@@ -92,12 +95,16 @@ export class ProjectComponent<T extends Project> implements OnInit {
 
     if(result.statusCode == 200){
       this.project = result.responseBody
+
+      this.totalImages = (this.project?.images.length + 1)
     }
+
+    this.contentLoaded = true;
   }
 
   public onImageLoad() {
     this.loadedImages++;
-    if (this.loadedImages >= this.totalImages + 1) this.isLoading = false;
+    if (this.loadedImages == this.totalImages) this.imagesLoaded = true;
   }
 
   @HostListener('window:resize')
@@ -125,7 +132,10 @@ export class ProjectComponent<T extends Project> implements OnInit {
 
   createProjectString(publishedDate: Date) {
     const date = new Date(publishedDate);
-
     return `Created:${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  }
+
+  public isLoaded() : boolean{
+    return this.imagesLoaded && this.contentLoaded;
   }
 }

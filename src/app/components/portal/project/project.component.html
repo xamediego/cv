@@ -1,16 +1,15 @@
-@if(isLoading){
-  <div class="spinner"></div>
-} @else{
-  <ng-container [ngTemplateOutlet]="mainview" />
-}
+<ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Project....', stretchToParent : true}"/>
+<div [hidden]="!isLoaded()">
+  <ng-container [ngTemplateOutlet]="mainview"/>
+</div>
 
 <ng-template #mainview>
   @if (project) {
     <div class="project">
       @if (isSmallScreen) {
-        <ng-container [ngTemplateOutlet]="small" />
+        <ng-container [ngTemplateOutlet]="small"/>
       } @else {
-        <ng-container [ngTemplateOutlet]="large" />
+        <ng-container [ngTemplateOutlet]="large"/>
       }
     </div>
   } @else {
@@ -61,7 +60,7 @@
   <div class="project__header">
     <div class="project__header__inner">
       <h1>{{ project.title }}</h1>
-      <h4>v{{project.version}}</h4>
+      <h4>v{{ project.version }}</h4>
     </div>
   </div>
 </ng-template>
@@ -85,7 +84,7 @@
 
 <ng-template #imageList let-project>
   <div class="imageHolder" id="image-holder">
-    @for (image of project.images; track i; let i = $index){
+    @for (image of project.images; track i; let i = $index) {
       <div class="imageHolder__holder"
            (click)="changePictureEvent(i, image)">
         <img class="imageHolder__image"
@@ -110,7 +109,7 @@
   <div class="project__description__statistic">
     <h2>Statistics</h2>
     <p>Project Filesize: {{ project.filesize }}</p>
-    <p>{{createProjectString(project.publishedDate)}}</p>
+    <p>{{ createProjectString(project.publishedDate) }}</p>
   </div>
 </ng-template>
 
@@ -118,8 +117,8 @@
   <div class="project__download">
     <div class="project__download__links">
       <h2>External Mirrors:</h2>
-      @for (link of project.links; track i; let i = $index){
-        <a [href]="link.url">{{i + 1}}: {{ link.provider }}</a>
+      @for (link of project.links; track i; let i = $index) {
+        <a [href]="link.url">{{ i + 1 }}: {{ link.provider }}</a>
       }
     </div>
   </div>

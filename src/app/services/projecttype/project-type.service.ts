@@ -21,6 +21,13 @@ export class ProjectTypeService {
     return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
   }
 
+  async findAllComplete() {
+    const apiLink = `${this.apiLink}/all/complete`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
+  }
+
   public async findByType(type: string): Promise<FetchResponse<ProjectType>> {
     const apiLink = `${this.apiLink}/type/${type}`;
     const method = 'GET';
@@ -28,10 +35,10 @@ export class ProjectTypeService {
     return await this.fetchService.fetchData<ProjectType>(apiLink, method);
   }
 
-  async findAllComplete() {
-    const apiLink = `${this.apiLink}/all/complete`;
+  async findByTypeComplete(type: string) {
+    const apiLink = `${this.apiLink}/type/complete/${type}`;
     const method = 'GET';
 
-    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
+    return await this.fetchService.fetchData<ProjectType>(apiLink, method);
   }
 }

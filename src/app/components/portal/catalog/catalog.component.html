@@ -5,7 +5,8 @@
     </h1>
   </div>
 
-  <div class="catalog__content">
+  <ng-container *appEventSpinner="{condition : isLoaded() ,eventMessage : 'Loading Catalog....', stretchToParent : true}"/>
+  <div [hidden]="!isLoaded()" class="catalog__content">
     @for (type of projectTypes; track $index) {
       <div class="catalog__type">
         <a class="catalog__type__link" (click)="navigate(type)">

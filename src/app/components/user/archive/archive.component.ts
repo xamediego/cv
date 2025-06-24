@@ -1,25 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgTemplateOutlet} from "@angular/common";
-import {Router} from "@angular/router";
 
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
 import {ProjectType} from "../../../services/entities/ProjectType";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
+import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 
 @Component({
     selector: 'app-archive',
-    imports: [
-        ReactiveFormsModule,
-        FormsModule,
-        NgTemplateOutlet,
-        ProjectDisplayComponent
-    ],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    NgTemplateOutlet,
+    ProjectDisplayComponent,
+    EventSpinnerDirective
+  ],
     templateUrl: './archive.component.html',
     styleUrl: './archive.component.scss'
 })
 export class ArchiveComponent implements OnInit {
-  public isLoading: boolean = false;
+  imagesLoaded : boolean = false;
+  contentLoaded : boolean = false;
+
 
   projectTypesStorage: ProjectType[] = [];
   projectTypes: ProjectType[] = [];
@@ -40,11 +43,13 @@ export class ArchiveComponent implements OnInit {
 
   timeoutId: any = null;
 
-  constructor(private router: Router, private projectTypeService: ProjectTypeService) {
+  constructor(private projectTypeService: ProjectTypeService) {
   }
 
   async ngOnInit(): Promise<void> {
     await this.initDummyData();
+
+    this.projectTypes.forEach(pt => pt.projects.forEach(p => this.totalImages += 1));
 
     this.selectedFilter = "All"
 
@@ -64,6 +69,8 @@ export class ArchiveComponent implements OnInit {
       this.projectTypes = result.responseBody;
       this.projectTypesStorage = this.projectTypes;
     }
+
+    this.contentLoaded = true;
   }
 
   private filterProjects(projectName: string) {
@@ -87,13 +94,12 @@ export class ArchiveComponent implements OnInit {
     })
   }
 
-  async navigate(title: string, type: string) {
-    const url = `home/${type}/${title}`
-    await this.router.navigate([url]);
+  public onImagesLoad(){
+    this.loadedImages += 1;
+    if(this.loadedImages == this.totalImages) this.imagesLoaded = true;
   }
 
-  public onImageLoad() {
-    this.loadedImages++;
-    if (this.loadedImages >= this.totalImages + 1) this.isLoading = false;
+  public isLoaded() : boolean{
+    return this.imagesLoaded && this.contentLoaded;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {Project} from "../../services/entities/Project";
@@ -14,6 +14,7 @@ export class ProjectDisplayComponent{
 
   @Input() project: Project | null = null;
   @Input() projectType: ProjectType | null = null;
+  @Output() loaded : EventEmitter<boolean> = new EventEmitter();
 
   constructor(private router : Router) {}
 
@@ -23,7 +24,9 @@ export class ProjectDisplayComponent{
   }
 
   onImageLoad() {
+    console.log("Loaded")
 
+    this.loaded.emit(true);
   }
 
   createProjectString(publishedDate: Date) {

@@ -3,15 +3,22 @@ import {Router} from "@angular/router";
 
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {ProjectType} from "../../../services/entities/ProjectType";
+import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 
 @Component({
-    selector: 'app-catalog',
-    templateUrl: './catalog.component.html',
-    styleUrl: './catalog.component.scss'
+  selector: 'app-catalog',
+  templateUrl: './catalog.component.html',
+  imports: [
+    EventSpinnerDirective
+  ],
+  styleUrl: './catalog.component.scss'
 })
 export class CatalogComponent implements OnInit {
+  imagesLoaded : boolean = false;
+  contentLoaded : boolean = false
 
-  public isLoading: boolean = true;
+  totalImages: number = 0;
+  loadedImages: number = 0;
 
   public projectTypes: ProjectType[] = [];
 
@@ -24,7 +31,9 @@ export class CatalogComponent implements OnInit {
       this.projectTypes = result.responseBody;
     }
 
-    this.isLoading = false;
+    this.contentLoaded = false;
+
+    this.totalImages = this.projectTypes.length;
   }
 
   async navigate(type: ProjectType) {
@@ -32,6 +41,11 @@ export class CatalogComponent implements OnInit {
   }
 
   onImageLoad() {
+    this.loadedImages += 1;
+    if(this.loadedImages == this.totalImages) this.imagesLoaded = true;
+  }
 
+  public isLoaded() : boolean{
+    return this.imagesLoaded && this.contentLoaded;
   }
 }

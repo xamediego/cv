@@ -34,16 +34,13 @@
   </div>
 </div>
 
-<ng-template #spinner>
-  <div class="spinner"></div>
-</ng-template>
-
 <ng-template #projectView>
   <div class="archive__bottom__projects__wrapper">
-    @if (!isLoading) {
+    <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects....', stretchToParent : true}"/>
+    <div [hidden]="!isLoaded()">
       <ng-container *ngTemplateOutlet="archiveFilter"/>
-      @for (projectType of projectTypes; track $index){
-        @if(selectedFilter === 'All' || projectType.title === selectedFilter){
+      @for (projectType of projectTypes; track $index) {
+        @if (selectedFilter === 'All' || projectType.title === selectedFilter) {
           <div class="archive__bottom__project-types">
 
             <div class="archive__bottom__title__wrapper">
@@ -61,16 +58,14 @@
           </div>
         }
       }
-    } @else {
-      <ng-container *ngTemplateOutlet="spinner"/>
-    }
+    </div>
   </div>
 </ng-template>
 
 <ng-template #projects let-projectType>
   <div class="projects">
-    @for (project of projectType.projects; track $index){
-      <project-holder [project]="project" [projectType]="projectType"/>
+    @for (project of projectType.projects; track $index) {
+      <project-holder [project]="project" [projectType]="projectType" (loaded)="onImagesLoad()"/>
     }
   </div>
 </ng-template>
@@ -114,5 +109,3 @@
     </div>
   </form>
 </ng-template>
-
-
