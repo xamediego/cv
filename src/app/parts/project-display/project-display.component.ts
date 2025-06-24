@@ -24,8 +24,6 @@ export class ProjectDisplayComponent{
   }
 
   onImageLoad() {
-    console.log("Loaded")
-
     this.loaded.emit(true);
   }
 
