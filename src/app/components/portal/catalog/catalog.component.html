@@ -6,6 +6,7 @@
   </div>
 
   <ng-container *appEventSpinner="{condition : isLoaded() ,eventMessage : 'Loading Catalog....', stretchToParent : true}"/>
+
   <div [hidden]="!isLoaded()" class="catalog__content">
     @for (type of projectTypes; track $index) {
       <div class="catalog__type">

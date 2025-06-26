@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
 
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
-import {ProjectType} from "../../../services/entities/ProjectType";
+import {ProjectTypeDto} from "../../../services/entities/ProjectTypeDto";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 
@@ -24,7 +24,7 @@ export class TypeComponent implements OnInit {
   totalImages: number = 0;
   loadedImages: number = 0;
 
-  public projectType: ProjectType | null = null;
+  public projectType: ProjectTypeDto | null = null;
 
   constructor(private route: ActivatedRoute, private projectTypeService: ProjectTypeService) {}
 

@@ -3,23 +3,23 @@ import {ActivatedRoute} from '@angular/router';
 import {NgTemplateOutlet} from "@angular/common";
 
 import {ProjectService} from "../../../services/project/project.service";
-import {Project} from "../../../services/entities/Project";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
+import {ProjectDto} from "../../../services/entities/ProjectDto";
 
 @Component({
-    selector: 'app-project',
-    templateUrl: './project.component.html',
+  selector: 'app-project',
+  templateUrl: './project.component.html',
   imports: [
     NgTemplateOutlet,
     EventSpinnerDirective
   ],
-    styleUrls: ['./project.component.scss']
+  styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent<T extends Project> implements OnInit {
-  imagesLoaded : boolean = false;
-  contentLoaded : boolean = false;
+export class ProjectComponent implements OnInit {
+  imagesLoaded: boolean = false;
+  contentLoaded: boolean = false;
 
-  public project: T | null = null;
+  public project: ProjectDto | null = null;
 
   public selectedImageUrl = '';
   public selectedImageId = "";
@@ -30,8 +30,7 @@ export class ProjectComponent<T extends Project> implements OnInit {
   totalImages: number = 0;
   loadedImages: number = 0;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService<T>) {
-  }
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) {}
 
   async ngOnInit(): Promise<void> {
     this.isSmallScreen = window.innerWidth < this.smallScreenSize;
@@ -93,9 +92,8 @@ export class ProjectComponent<T extends Project> implements OnInit {
   private async loadData(projectName: string) {
     const result = await this.projectService.findByTitle(projectName)
 
-    if(result.statusCode == 200){
+    if (result.statusCode == 200) {
       this.project = result.responseBody
-
       this.totalImages = (this.project?.images.length + 1)
     }
 
@@ -135,7 +133,7 @@ export class ProjectComponent<T extends Project> implements OnInit {
     return `Created:${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
 
-  public isLoaded() : boolean{
+  public isLoaded(): boolean {
     return this.imagesLoaded && this.contentLoaded;
   }
 }

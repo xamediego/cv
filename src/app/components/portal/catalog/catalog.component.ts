@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
-import {ProjectType} from "../../../services/entities/ProjectType";
+import {ProjectTypeDto} from "../../../services/entities/ProjectTypeDto";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 
 @Component({
@@ -20,7 +20,7 @@ export class CatalogComponent implements OnInit {
   totalImages: number = 0;
   loadedImages: number = 0;
 
-  public projectTypes: ProjectType[] = [];
+  public projectTypes: ProjectTypeDto[] = [];
 
   constructor(private projectTypeService: ProjectTypeService, private router: Router) {}
 
@@ -36,7 +36,7 @@ export class CatalogComponent implements OnInit {
     this.totalImages = this.projectTypes.length;
   }
 
-  async navigate(type: ProjectType) {
+  async navigate(type: ProjectTypeDto) {
     await this.router.navigate([`home/${type.type}`]);
   }
 

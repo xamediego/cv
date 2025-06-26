@@ -1,4 +1,4 @@
-<ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Project....', stretchToParent : true}"/>
+<ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading ProjectDto....', stretchToParent : true}"/>
 <div [hidden]="!isLoaded()">
   <ng-container [ngTemplateOutlet]="mainview"/>
 </div>
@@ -53,7 +53,7 @@
 </ng-template>
 
 <ng-template #noProject>
-  <p>No Project Found</p>
+  <p>No ProjectDto Found</p>
 </ng-template>
 
 <ng-template #header let-project>
@@ -110,6 +110,9 @@
     <h2>Statistics</h2>
     <p>Project Filesize: {{ project.filesize }}</p>
     <p>{{ createProjectString(project.publishedDate) }}</p>
+    @for (detail of project.extraDetails; track i; let i = $index){
+      <p>{{detail.key}} : {{ detail.value }}</p>
+    }
   </div>
 </ng-template>
 

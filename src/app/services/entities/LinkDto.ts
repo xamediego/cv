@@ -1,4 +1,4 @@
-export interface Link {
+export interface LinkDto {
   provider: string;
   url: string;
 }

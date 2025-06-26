@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {Project} from "../../services/entities/Project";
-import {ProjectType} from "../../services/entities/ProjectType";
+import {ProjectDto} from "../../services/entities/ProjectDto";
+import {ProjectTypeDto} from "../../services/entities/ProjectTypeDto";
 
 @Component({
     selector: 'project-holder',
@@ -12,14 +12,15 @@ import {ProjectType} from "../../services/entities/ProjectType";
 })
 export class ProjectDisplayComponent{
 
-  @Input() project: Project | null = null;
-  @Input() projectType: ProjectType | null = null;
+  @Input() project: ProjectDto | null = null;
+  @Input() projectType: ProjectTypeDto | null = null;
   @Output() loaded : EventEmitter<boolean> = new EventEmitter();
 
   constructor(private router : Router) {}
 
   async navigate(title: string, type: string) {
     const url = `home/${type}/${title}`
+
     await this.router.navigate([url]);
   }
 
