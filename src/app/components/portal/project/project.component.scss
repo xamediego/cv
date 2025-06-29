@@ -307,6 +307,11 @@
 
   width: 595px;
 
+  @media screen and (max-width: 920px) {
+    width: unset;
+  }
+
+
   &__image {
     width: 100%;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
