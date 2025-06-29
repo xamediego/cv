@@ -11,7 +11,7 @@ export class ProjectService {
 
   private apiLink: string = `${environment.MainApi}/Project`;
 
-  constructor(private fetchService : FetchService) {}
+  constructor(private fetchService: FetchService) {}
 
   public async findAll(): Promise<FetchResponse<ProjectDto[]>> {
     const apiLink = `${this.apiLink}/all`;
@@ -25,5 +25,16 @@ export class ProjectService {
     const method = 'GET';
 
     return await this.fetchService.fetchData<ProjectDto>(apiLink, method);
+  }
+
+  public async download(fileName: string,
+                        title: string,
+                        id: number,
+                        onResponse : ((response : Response) => void),
+                        onProgress: ((received: number, total: number) => void)): Promise<Response> {
+    const apiLink = `${this.apiLink}/download/${title}/${id}`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchBlob(apiLink, method, fileName, undefined, undefined, onResponse, onProgress);
   }
 }

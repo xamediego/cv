@@ -1,0 +1,23 @@
+<button
+  [ngClass]="downloading ? ''
+    : downloadFinished ? '' : 'download__button__clickable'"
+  class="download__button"
+  id="download-button"
+  (click)="downloadFile()">
+  @if (downloading) {
+    <div class="download__button__spinner">
+      <ng-container
+        *appEventSpinner="{condition : downloading , eventMessage : '', stretchToParent : false, size : 'small'}"/>
+      <p class="download__button__percentage">{{ downloadPercentage }}</p>
+    </div>
+  }
+  <div class="download__button__text">
+    <p class="download__button__text__title"
+       [ngClass]="{ 'downloading-anim': downloading, 'center' : !downloading }">
+      {{ downloadButtonText }}
+    </p>
+    @if (downloading) {
+      <p class="download__button__text__progress">{{ formattedProgress }}</p>
+    }
+  </div>
+</button>

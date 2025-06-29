@@ -1,29 +1,31 @@
-.spinner__root{
+.spinner__root {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.spinner__stretch{
+.spinner__stretch {
   height: 100%;
   width: 100%;
 }
 
-.spinner__inner{
+.spinner__inner {
   display: flex;
   align-items: center;
   justify-content: center;
-
   flex-direction: column;
-
   gap: 30px;
 }
 
+.spinner__wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .spinner__animation {
-  margin: auto;
-  width: 40px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: #fff;
@@ -33,5 +35,34 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.spinner__progress {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: green;
+    transform: rotate(calc(var(--fill, 0%) * 3.6deg));
+    transform-origin: center;
+    box-sizing: border-box;
+    transition: transform 0.2s ease-in-out;
   }
 }

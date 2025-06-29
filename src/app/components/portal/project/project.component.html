@@ -1,4 +1,5 @@
-<ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading ProjectDto....', stretchToParent : true}"/>
+<ng-container
+  *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading ProjectDto....', stretchToParent : true}"/>
 <div [hidden]="!isLoaded()">
   <ng-container [ngTemplateOutlet]="mainview"/>
 </div>
@@ -106,14 +107,24 @@
 </ng-template>
 
 <ng-template #projectInfo let-project>
-  <div class="project__description__statistic">
-    <h2>Statistics</h2>
-    <p>Project Filesize: {{ project.filesize }}</p>
-    <p>{{ createProjectString(project.publishedDate) }}</p>
-    @for (detail of project.extraDetails; track i; let i = $index){
-      <p>{{detail.key}} : {{ detail.value }}</p>
-    }
+  <div class="project__description__info">
+    <div class="project__description__statistic">
+      <h2>Details:</h2>
+      <p>Project Filesize: {{ project.filesize }}</p>
+      <p>{{ createProjectString(project.publishedDate) }}</p>
+      @for (detail of project.extraDetails; track i; let i = $index) {
+        <p>{{ detail.key }} : {{ detail.value }}</p>
+      }
+    </div>
+    <ng-container *ngTemplateOutlet="projectDownload; context : {$implicit : project}"/>
   </div>
+</ng-template>
+
+<ng-template #projectDownload let-project>
+  <app-download-button
+    [apiLink]="createLink(project)"
+    [method]="'get'"
+    [filename]="project.fileName"/>
 </ng-template>
 
 <ng-template #download let-project>

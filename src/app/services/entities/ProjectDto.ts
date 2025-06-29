@@ -2,6 +2,7 @@ import {LinkDto} from "./LinkDto";
 import {ProjectSubType} from "../enums/ProjectSubType";
 
 export interface ProjectDto {
+  id : number;
   title: string;
   description: string;
   version: string;
@@ -10,6 +11,7 @@ export interface ProjectDto {
   publishedDate: Date;
   links: LinkDto[];
   images: string[];
+  fileName : string;
 
   extraDetails : [
     {

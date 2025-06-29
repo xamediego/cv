@@ -1,6 +1,16 @@
 <div class="spinner__root" [class.spinner__stretch]="stretchToParent">
-  <div class="spinner__inner">
-    <div class="spinner__animation"></div>
-    <span>{{ eventMessage }}</span>
+  <div class="spinner__inner" [ngStyle]="{ 'gap': gap }">
+    @if (progress) {
+      <div class="spinner__progress"></div>
+    } @else {
+      <div class="spinner__animation"
+           [ngStyle]="{ 'width': spinnerSize, 'height': spinnerSize }">
+      </div>
+    }
+    @if(eventMessage != ''){
+      <span [ngStyle]="{ 'font-size': fontSize, 'font-weight': fontWeight }">
+      {{ eventMessage }}
+    </span>
+    }
   </div>
 </div>

@@ -5,17 +5,22 @@ import {NgTemplateOutlet} from "@angular/common";
 import {ProjectService} from "../../../services/project/project.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {ProjectDto} from "../../../services/entities/ProjectDto";
+import {DownloadButtonComponent} from "../../../parts/download-button/download-button.component";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   imports: [
     NgTemplateOutlet,
-    EventSpinnerDirective
+    EventSpinnerDirective,
+    DownloadButtonComponent
   ],
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+  private apiLink: string = `${environment.MainApi}/Project`;
+
   imagesLoaded: boolean = false;
   contentLoaded: boolean = false;
 
@@ -30,7 +35,10 @@ export class ProjectComponent implements OnInit {
   totalImages: number = 0;
   loadedImages: number = 0;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService) {}
+  constructor(private route: ActivatedRoute,
+              private projectService: ProjectService
+  ) {
+  }
 
   async ngOnInit(): Promise<void> {
     this.isSmallScreen = window.innerWidth < this.smallScreenSize;
@@ -128,12 +136,16 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  createProjectString(publishedDate: Date) {
+  public createProjectString(publishedDate: Date) {
     const date = new Date(publishedDate);
     return `Created:${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
 
   public isLoaded(): boolean {
     return this.imagesLoaded && this.contentLoaded;
+  }
+
+  public createLink(project: ProjectDto) {
+    return `${this.apiLink}/download/${project.title}/${project.id}`;
   }
 }

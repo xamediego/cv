@@ -1,0 +1,141 @@
+:host{
+  width: 100%;
+}
+
+.download__button {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  flex-direction: row;
+  gap: 25px;
+  padding: 12px 24px;
+  margin-top: 1rem;
+  background: rgba(18, 18, 18);
+  color: #f0f0f0;
+  border: unset;
+  width: 100%;
+
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s ease-in-out;
+
+  &__clickable{
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
+
+  &__downloading{
+    &:hover {
+      cursor: wait;
+    }
+  }
+
+
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 8px;
+
+    animation: slideInLeftToRight 0.4s ease forwards;
+  }
+
+  &__percentage{
+    font-size: 0.8rem;
+    color: #bbbbbb;
+    margin: 0.1rem 0;
+    text-align: start;
+
+  }
+
+  &__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    gap: 4px;
+
+    &__title{
+      width: 100%;
+      text-align: start;
+      &.center{
+        text-align: center;
+      }
+
+      &.downloading-anim {
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 1)
+        );
+
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: pulseBackground 2s linear infinite;
+      }
+    }
+
+    &__progress{
+      font-size: 0.8rem;
+      color: #bbbbbb;
+      margin: 0.1rem 0;
+      text-align: start;
+      width: 100%;
+
+      opacity: 0;
+      animation: slideInBottomToTop 0.4s ease forwards;
+      animation-delay: 0.2s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes pulseBackground {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes slideInLeftToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInBottomToTop {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
