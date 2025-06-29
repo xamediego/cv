@@ -1,5 +1,5 @@
 <ng-container
-  *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading ProjectDto....', stretchToParent : true}"/>
+  *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Project...', stretchToParent : true}"/>
 <div [hidden]="!isLoaded()">
   <ng-container [ngTemplateOutlet]="mainview"/>
 </div>
@@ -54,7 +54,7 @@
 </ng-template>
 
 <ng-template #noProject>
-  <p>No ProjectDto Found</p>
+  <p>No Project Found</p>
 </ng-template>
 
 <ng-template #header let-project>

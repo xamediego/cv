@@ -266,6 +266,7 @@
 
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+
   -webkit-overflow-scrolling: touch;
 
   flex-wrap: nowrap;
@@ -303,6 +304,8 @@
 .main-image {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 5px;
+
+  width: 595px;
 
   &__image {
     width: 100%;
