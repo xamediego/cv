@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgTemplateOutlet} from "@angular/common";
+import {NgStyle, NgTemplateOutlet} from "@angular/common";
 
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
 import {ProjectTypeDto} from "../../../services/entities/ProjectTypeDto";
@@ -14,7 +14,8 @@ import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
     FormsModule,
     NgTemplateOutlet,
     ProjectDisplayComponent,
-    EventSpinnerDirective
+    EventSpinnerDirective,
+    NgStyle
   ],
     templateUrl: './archive.component.html',
     styleUrl: './archive.component.scss'
@@ -43,8 +44,7 @@ export class ArchiveComponent implements OnInit {
 
   timeoutId: any = null;
 
-  constructor(private projectTypeService: ProjectTypeService) {
-  }
+  constructor(private projectTypeService: ProjectTypeService) {}
 
   async ngOnInit(): Promise<void> {
     await this.loadProjects();

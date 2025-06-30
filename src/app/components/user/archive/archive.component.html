@@ -37,14 +37,10 @@
 <ng-template #projectView>
   <div class="projects">
     <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects....', stretchToParent : true}"/>
-
-    <div class="projects__wrapper" [hidden]="!isLoaded()">
+    <div class="projects__wrapper" [ngStyle]="!isLoaded() ? {'display' : 'none'} : {'display' : 'flex'}">
       <ng-container *ngTemplateOutlet="archiveFilter"/>
-
       @if (projectTypes.length == 0) {
-        <div class="projects__wrapper__error">
-          <p>No Projects Found...</p>
-        </div>
+        <div class="projects__wrapper__error"><p>No Projects Found...</p></div>
       } @else {
         @for (projectType of projectTypes; track $index) {
           @if (selectedFilter === 'All' || projectType.title === selectedFilter) {
