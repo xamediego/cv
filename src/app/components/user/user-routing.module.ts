@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: UserComponent,
     children: [
-      // {path: '', title: 'Home', component: HomeComponent},
+      {path: '', title: 'Home', component: HomeComponent},
       {path: 'resume', title: 'Resume', component: ResumeComponent},
       {path: 'archive', title: 'Archive', component: ArchiveComponent},
     ]

@@ -1,8 +1,29 @@
 <div class="home">
-  <div class="home__title">
-    <h1>Max de Jonge</h1>
-    <h2>Software Engineer | Web Developer</h2>
-    <p></p>
-    <button (click)="changeTheme()">Change</button>
+
+  <section class="home__intro">
+    <div class="home__intro__content">
+      <h1 class="home__title">Max de Jonge</h1>
+      <h2 class="home__subtitle">Software Engineer</h2>
+      <p class="home__description">
+        Passionate about building scalable software, exploring modern frameworks, and crafting engaging user experiences.
+      </p>
+    </div>
+  </section>
+
+  <section class="home__projects">
+    <h2 class="home__projects__title">Featured Projects</h2>
+    <div class="home__slideshow">
+      @for (project of featuredProjects; track i; let i = $index){
+        <div class="home__slide" [class.active]="i === activeIndex">
+          <img [src]="project.image" [alt]="project.title" />
+        </div>
+      }
+    </div>
+  </section>
+
+  <div class="home__buttons">
+    <a routerLink="/resume" class="button">Resumé</a>
+    <a routerLink="/archive" class="button button--secondary">Projects</a>
   </div>
+
 </div>

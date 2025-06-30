@@ -76,7 +76,8 @@
         width: 160px;
         height: 160px;
         border-radius: 25%;
-        border: 1px solid #444;
+        border: 1px solid var(--border-color);
+
         object-fit: cover;
         box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
       }
@@ -95,7 +96,7 @@
         margin-bottom: 0.5rem;
 
         font-size: 1.1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.3rem;
         text-transform: uppercase;
         letter-spacing: 0.7px;
@@ -119,7 +120,7 @@
 
   &__mid {
     width: 2px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--border-color);
     position: relative;
 
     &__line {
@@ -146,7 +147,7 @@
       h2 {
         margin-bottom: 0.7rem;
 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--border-color);
 
         padding-bottom: 0.3rem;
         text-transform: uppercase;
