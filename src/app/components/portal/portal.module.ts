@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule,  NgClass, NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
+import {CommonModule,  NgClass, NgTemplateOutlet} from '@angular/common';
 
 import {RouterLink} from '@angular/router';
 import {PortalRoutingModule} from './portal-routing.module';
@@ -17,9 +17,7 @@ import {HeaderComponent} from "../user/header/header.component";
     RouterLink,
     PortalRoutingModule,
     NgTemplateOutlet,
-    NgIf,
     NgClass,
-    NgForOf,
     BreadcrumbsComponent,
     HeaderComponent,
   ]

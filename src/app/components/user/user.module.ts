@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule,  NgClass, NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
+import {CommonModule,  NgClass, NgTemplateOutlet} from '@angular/common';
 
 import {RouterLink} from '@angular/router';
 import {UserRoutingModule} from './user-routing.module';
@@ -17,9 +17,7 @@ import {HeaderComponent} from "./header/header.component";
     RouterLink,
     UserRoutingModule,
     NgTemplateOutlet,
-    NgIf,
     NgClass,
-    NgForOf,
     HeaderComponent,
   ]
 })

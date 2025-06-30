@@ -11,8 +11,7 @@
   gap: 25px;
   padding: 12px 24px;
   margin-top: 1rem;
-  background: rgba(18, 18, 18);
-  color: #f0f0f0;
+
   border: unset;
   width: 100%;
 
@@ -54,10 +53,9 @@
 
   &__percentage{
     font-size: 0.8rem;
-    color: #bbbbbb;
+
     margin: 0.1rem 0;
     text-align: start;
-
   }
 
   &__text {
@@ -93,7 +91,7 @@
 
     &__progress{
       font-size: 0.8rem;
-      color: #bbbbbb;
+
       margin: 0.1rem 0;
       text-align: start;
       width: 100%;

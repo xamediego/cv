@@ -1,17 +1,8 @@
 :host {
   display: flex;
   flex-direction: column;
-  position: absolute;
 
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  background: rgba(18, 18, 18);
-
-  color: #f1f1f1;
-  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  height: 100%;
 }
 
 .App_Holder {
@@ -22,13 +13,4 @@
 
   align-self: stretch;
   flex-grow: 1;
-
-  background: rgba(18, 18, 18);
-}
-
-.stretch{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
 }

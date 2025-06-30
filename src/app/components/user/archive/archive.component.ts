@@ -47,7 +47,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.initDummyData();
+    await this.loadProjects();
 
     this.projectTypes.forEach(pt => pt.projects.forEach(p => this.totalImages += 1));
 
@@ -58,16 +58,16 @@ export class ArchiveComponent implements OnInit {
 
       this.timeoutId = setTimeout(async () => {
         this.filterProjects(v.inputControl)
-      }, 500);
+      }, 0);
     })
   }
 
-  private async initDummyData() {
+  private async loadProjects() {
     const result = await this.projectTypeService.findAllComplete();
 
     if(result.statusCode == 200){
       this.projectTypes = result.responseBody;
-      this.projectTypesStorage = this.projectTypes;
+      this.projectTypesStorage = JSON.parse(JSON.stringify(this.projectTypes))
     }
 
     this.contentLoaded = true;
@@ -75,7 +75,7 @@ export class ArchiveComponent implements OnInit {
 
   private filterProjects(projectName: string) {
     if (this.selectedFilter === "All") {
-      this.projectTypes = this.projectTypesStorage;
+      this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage))
     } else {
       this.projectTypes = this.projectTypesStorage.filter((pt: ProjectTypeDto) => pt.title == this.selectedFilter);
     }

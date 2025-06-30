@@ -1,0 +1,15 @@
+@use './themes/dark';
+@use './themes/light';
+
+body {
+  background-color: var(--primary-color);
+
+  input, select {background-color: var(--input-color)}
+
+  h1, h2, a, button p {color: var(--text-primary);}
+  h3 {color: var(--text-secondary);}
+  h4 {color: var(--text-tertiary);}
+  p {color: var(--text-muted);}
+  span {color: var(--text-span);}
+  button, input, select {color: var(--text-button);}
+}

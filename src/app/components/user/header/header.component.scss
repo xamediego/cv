@@ -33,6 +33,8 @@
   }
 
   &__link {
+    text-decoration: unset;
+
     font-size: 18px;
     font-weight: 500;
 
@@ -44,6 +46,7 @@
     &__active {
       font-size: 19px;
       font-weight: 700;
+
       border-bottom: 1px solid #ffffff;
     }
   }

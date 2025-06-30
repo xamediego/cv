@@ -1,0 +1,19 @@
+$primary-color: rgba(18, 18, 18);
+$input-color: #1b1b1b;
+$text-primary: #ffffff;
+$text-secondary: #eeeeee;
+$text-tertiary: #cecece;
+$text-muted: #bbbbbb;
+$text-span: #cccccc;
+$text-button: #f1f1f1;
+
+.dark-theme {
+  --primary-color: #{$primary-color};
+  --input-color: #{$input-color};
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-tertiary: #{$text-tertiary};
+  --text-muted: #{$text-muted};
+  --text-span: #{$text-span};
+  --text-button: #{$text-button};
+}

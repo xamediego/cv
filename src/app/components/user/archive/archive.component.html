@@ -4,7 +4,7 @@
       <div class="archive__bottom">
 
         <div class="archive__top__title">
-          <h2>The Archive</h2>
+          <h1>The Archive</h1>
           <hr class="slice-line">
         </div>
 
@@ -35,27 +35,35 @@
 </div>
 
 <ng-template #projectView>
-  <div class="archive__bottom__projects__wrapper">
+  <div class="projects">
     <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects....', stretchToParent : true}"/>
-    <div [hidden]="!isLoaded()">
+
+    <div class="projects__wrapper" [hidden]="!isLoaded()">
       <ng-container *ngTemplateOutlet="archiveFilter"/>
-      @for (projectType of projectTypes; track $index) {
-        @if (selectedFilter === 'All' || projectType.title === selectedFilter) {
-          <div class="archive__bottom__project-types">
 
-            <div class="archive__bottom__title__wrapper">
+      @if (projectTypes.length == 0) {
+        <div class="projects__wrapper__error">
+          <p>No Projects Found...</p>
+        </div>
+      } @else {
+        @for (projectType of projectTypes; track $index) {
+          @if (selectedFilter === 'All' || projectType.title === selectedFilter) {
+            <div class="archive__bottom__project-types">
 
-              <div class="archive__bottom__title__wrapper__head">
+              <div class="archive__bottom__title__wrapper">
 
-                <div class="archive__bottom__title__wrapper__head__left">
-                  <h2>{{ projectType.title }}</h2>
+                <div class="archive__bottom__title__wrapper__head">
+
+                  <div class="archive__bottom__title__wrapper__head__left">
+                    <h2>{{ projectType.title }}</h2>
+                  </div>
+
                 </div>
-
+                <hr class="slice-line">
               </div>
-              <hr class="slice-line">
+              <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
             </div>
-            <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
-          </div>
+          }
         }
       }
     </div>
@@ -63,7 +71,7 @@
 </ng-template>
 
 <ng-template #projects let-projectType>
-  <div class="projects">
+  <div class="projects__content">
     @for (project of projectType.projects; track $index) {
       <project-holder [project]="project" [projectType]="projectType" (loaded)="onImagesLoad()"/>
     }
@@ -97,7 +105,7 @@
     <div class="archive__filter__form">
 
       <p class="archive__filter__title s_t">
-        ProjectDto Search:
+        Project Search:
       </p>
 
       <div class="archive__filter__form__wrapper">
