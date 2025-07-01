@@ -14,7 +14,7 @@
     <h2 class="home__projects__title">Featured Projects</h2>
     <div class="home__slideshow">
       @for (project of featuredProjects; track i; let i = $index){
-        <div class="home__slide" [class.active]="i === activeIndex">
+        <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
           <img [src]="project.image" [alt]="project.title" />
         </div>
       }
@@ -25,5 +25,4 @@
     <a routerLink="/resume" class="button">Resumé</a>
     <a routerLink="/archive" class="button button--secondary">Projects</a>
   </div>
-
 </div>
