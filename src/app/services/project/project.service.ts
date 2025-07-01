@@ -27,6 +27,13 @@ export class ProjectService {
     return await this.fetchService.fetchData<ProjectDto>(apiLink, method);
   }
 
+  public async findFeatured(): Promise<FetchResponse<ProjectDto[]>>{
+    const apiLink = `${this.apiLink}/featured`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchData<ProjectDto[]>(apiLink, method);
+  }
+
   public async download(fileName: string,
                         title: string,
                         id: number,
