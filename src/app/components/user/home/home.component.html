@@ -3,7 +3,7 @@
   <section class="home__intro">
     <div class="home__intro__content">
       <h1 class="home__title">Max de Jonge</h1>
-      <h2 class="home__subtitle">Software Engineer</h2>
+      <h2 class="home__subtitle">Software Engineer | Level Designer</h2>
       <p class="home__description">
         Passionate about building scalable software, exploring modern frameworks, and crafting engaging user
         experiences.
@@ -14,9 +14,11 @@
   <section class="home__projects">
     <h2 class="home__projects__title">Featured Projects</h2>
     <div class="home__slideshow">
+      <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : '', stretchToParent : true}"/>
+
       @for (project of featuredProjects; track i; let i = $index) {
         <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
-          <img [src]="project.images[0]" [alt]="project.title"/>
+          <img [src]="project.projectThumbnail" [alt]="project.title" (load)="onImagesLoad(i)">
           <div class="home__slide__caption">{{ project.title }}</div>
         </div>
       }
