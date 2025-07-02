@@ -3,12 +3,15 @@ import {RouterLink} from "@angular/router";
 import {ProjectService} from "../../../services/project/project.service";
 import {ProjectDto} from "../../../services/entities/ProjectDto";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
+import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'app-home',
   imports: [
     RouterLink,
-    EventSpinnerDirective
+    EventSpinnerDirective,
+    NgTemplateOutlet,
+
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

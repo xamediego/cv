@@ -1,32 +1,157 @@
 <div class="home">
-
-  <section class="home__intro">
-    <div class="home__intro__content">
-      <h1 class="home__title">Max de Jonge</h1>
-      <h2 class="home__subtitle">Software Engineer | Level Designer</h2>
-      <p class="home__description">
-        Passionate about building scalable software, exploring modern frameworks, and crafting engaging user
-        experiences.
-      </p>
-    </div>
-  </section>
-
-  <section class="home__projects">
-    <h2 class="home__projects__title">Featured Projects</h2>
-    <div class="home__slideshow">
-      <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : '', stretchToParent : true}"/>
-
-      @for (project of featuredProjects; track i; let i = $index) {
-        <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
-          <img [src]="project.projectThumbnail" [alt]="project.title" (load)="onImagesLoad(i)">
-          <div class="home__slide__caption">{{ project.title }}</div>
-        </div>
-      }
-    </div>
-  </section>
-
-  <div class="home__buttons">
-    <a routerLink="/resume" class="button">Resumé</a>
-    <a routerLink="/archive" class="button button--secondary">Projects</a>
-  </div>
+  <ng-container *ngTemplateOutlet="header"/>
+  <ng-container *ngTemplateOutlet="experience"/>
+  <ng-container *ngTemplateOutlet="personal"/>
+  <ng-container *ngTemplateOutlet="contact"/>
 </div>
+
+<ng-template #header>
+  <div class="home__header">
+    <section class="home__intro">
+      <div class="home__intro__content">
+        <h1 class="home__title">Max de Jonge</h1>
+        <h2 class="home__subtitle">Software Engineer | Level Designer</h2>
+        <p class="home__description">
+          Passionate about building scalable software, exploring modern frameworks, and crafting engaging user
+          experiences.
+        </p>
+      </div>
+    </section>
+
+    <section class="home__projects">
+      <h2 class="home__projects__title">Featured Projects</h2>
+      <div class="home__slideshow">
+        <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : '', stretchToParent : true}"/>
+
+        @for (project of featuredProjects; track i; let i = $index) {
+          <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
+            <img [src]="project.projectThumbnail" [alt]="project.title" (load)="onImagesLoad(i)">
+            <div class="home__slide__caption">{{ project.title }}</div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <div class="home__buttons">
+      <a routerLink="/resume" class="button">Resumé</a>
+      <a routerLink="/archive" class="button button--secondary">Projects</a>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #experience>
+  <div class="home__experience">
+    <h2 class="home__section-title">Experience</h2>
+    <div class="experience__card">
+      <img src="assets/logo/sg.png" alt="Sogeti Logo" class="experience__logo">
+      <div class="experience__content">
+        <h3>Sogeti</h3>
+        <h4>Software Engineer</h4>
+        <p>
+          During my graduation internship at Sogeti, I designed and implemented a modern containerized architecture
+          leveraging <strong>Java WebAssembly (TeaVM)</strong> and <strong>Spinkube</strong>. I built a microservice-based registration platform
+          using Kotlin for the backend and TeaVM/HTML/CSS for the frontend, deploying it with <strong>Helm on Kubernetes</strong> (EKS).
+          The project demonstrated the feasibility of Java-based SPA architectures using TeaVM and WASI runtimes, overcoming
+          limitations such as missing reflection and JS interop. I also implemented a custom <strong>SPA router, Shadow DOM-based component system</strong>,
+          and dynamic JSON parsing logic.
+        </p>
+        <p class="experience__tags">
+          Java • WebAssembly • TeaVM • Kubernetes • Spinkube • Kotlin • OAuth • Shadow DOM
+        </p>
+      </div>
+    </div>
+
+    <div class="experience__card">
+      <img src="assets/logo/ch.png" alt="Cohelion Logo" class="experience__logo">
+      <div class="experience__content">
+        <h3>Cohelion</h3>
+        <h4>Developer Intern</h4>
+        <p>
+          At Cohelion, I worked on a business intelligence platform that transformed client data into
+          actionable dashboards. I focused on <strong>data ingestion pipelines</strong>, mapping and transforming raw data
+          into normalized formats using automated ETL flows. I also created visual dashboards to support operational
+          decision-making.
+        </p>
+        <p class="experience__tags">
+          ETL • Dashboards • BI • SQL • Data Normalization • JavaScript
+        </p>
+      </div>
+    </div>
+
+    <div class="experience__card">
+      <img src="assets/logo/ut.png" alt="Unreal Tournament Logo" class="experience__logo">
+      <div class="experience__content">
+        <h3>Unreal Tournament Projects</h3>
+        <h4>Level Designer</h4>
+        <p>
+          In my spare time, I designed and iteratively tested multiplayer maps for Unreal Tournament,
+          balancing visual aesthetics and competitive gameplay flow. These maps were shared with the community
+          where some of them ran for years on public servers, and received player feedback which I used to fine-tune layout and pickup placements.
+        </p>
+        <p class="experience__tags">
+          Unreal Editor • Level Design • Gameplay Balancing • Community Playtesting
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #personal>
+  <div class="home__personal">
+    <h1 class="home__projects__title">Personal</h1>
+
+    <div class="personal__block right">
+      <img src="assets/personal/japan-1.jpg" alt="Traveling in Japan"/>
+      <div class="personal__text">
+        <h3>Travel and Living in Japan</h3>
+        <p>
+          My time in Japan included visits and short stays in Tokyo, Kyoto, and Nara. I was fascinated by the blend
+          of ancient culture and futuristic city life. The Japanese approach to minimalism, attention to detail, and
+          respect for nature had a lasting influence on how I think about design and software architecture.
+        </p>
+      </div>
+    </div>
+
+    <div class="personal__block left">
+      <div class="personal__text">
+        <h3>Life and Study in China</h3>
+        <p>
+          I've had the unique opportunity to live and study in China, where I immersed myself in the culture,
+          language, and daily life. This experience broadened my worldview and taught me to thrive in diverse
+          environments. I explored cities like Shanghai and Hangzhou, learned Mandarin, and got a deep look into the
+          academic and social dynamics of Chinese life.
+        </p>
+      </div>
+      <img src="assets/personal/china-1.jpg" alt="Studying in China"/>
+    </div>
+
+    <div class="personal__block right">
+      <div class="personal__text">
+        <h3>Overland Journey from Russia to Japan</h3>
+        <p>
+          One of my most formative experiences was traveling overland from Moscow to Tokyo — crossing through Siberia,
+          Mongolia, and China by train and bus. It was a deeply immersive adventure through time zones, cultures,
+          climates, and languages. That journey gave me lasting perspective on resilience, adaptability, and the
+          interconnectedness of people and technology across borders.
+        </p>
+      </div>
+      <img src="assets/personal/rus-1.jpg" alt="Russia to Japan journey"/>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contact>
+  <div class="home__contact">
+    <div class="home__icon-buttons">
+      <a href="https://github.com/xamediego" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/max-de-jonge" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://www.instagram.com/maxjdej" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</ng-template>
