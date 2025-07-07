@@ -23,12 +23,26 @@
       <div class="home__slideshow">
         <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : '', stretchToParent : true}"/>
 
-        @for (project of featuredProjects; track i; let i = $index) {
-          <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
-            <img [src]="project.url" [alt]="project.title" (load)="onImagesLoad(i)">
-            <div class="home__slide__caption">{{ project.title }}</div>
+        <div class="home__slideshow__content">
+
+          <div class="home__slideshow__navigation">
+            <button (click)="previous()" aria-label="Previous Slide">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="home__slideshow__navigation__filler"></div>
+            <button (click)="next()" aria-label="Next Slide">
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
-        }
+
+          @for (project of featuredProjects; track i; let i = $index) {
+            <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
+              <img [src]="project.url" [alt]="project.title" (load)="onImagesLoad(i)">
+              <div class="home__slide__caption">{{ project.title }}</div>
+            </div>
+          }
+        </div>
+
       </div>
     </section>
 
@@ -49,10 +63,14 @@
         <h4>Software Engineer</h4>
         <p>
           During my graduation internship at Sogeti, I designed and implemented a modern containerized architecture
-          leveraging <strong>Java WebAssembly (TeaVM)</strong> and <strong>Spinkube</strong>. I built a registration platform
-          using Kotlin for the backend and TeaVM/HTML/CSS for the frontend, deploying it with <strong>Helm on Kubernetes</strong> (EKS).
-          The project demonstrated the feasibility of Java-based SPA architectures using TeaVM and WASI runtimes, overcoming
-          limitations such as missing reflection and missing standard and external libraries. I also implemented a custom <strong>SPA router, Shadow DOM-based component system</strong>,
+          leveraging <strong>Java WebAssembly (TeaVM)</strong> and <strong>Spinkube</strong>. I built a registration
+          platform
+          using Kotlin for the backend and TeaVM/HTML/CSS for the frontend, deploying it with <strong>Helm on
+          Kubernetes</strong> (EKS).
+          The project demonstrated the feasibility of Java-based SPA architectures using TeaVM and WASI runtimes,
+          overcoming
+          limitations such as missing reflection and missing standard and external libraries. I also implemented a
+          custom <strong>SPA router, Shadow DOM-based component system</strong>,
           and dynamic JSON parsing logic.
         </p>
         <p class="experience__tags">
@@ -67,9 +85,12 @@
         <h3>Cohelion</h3>
         <h4>Software Development Intern</h4>
         <p>
-          During my internship at Cohelion, I contributed to the development of a DevOps tool for visualizing and managing dependencies across customer-specific Git repositories and submodules. I focused on
-          <strong>data transformation pipelines</strong>, <strong>backend architecture redesign</strong> using SOLID principles, and created intuitive
-          <strong>dashboard features</strong> with Angular and .NET Core. My work included recursive algorithms for mapping Git trees, visual dependency graphs, and interactive UI components for version control operations.
+          During my internship at Cohelion, I contributed to the development of a DevOps tool for visualizing and
+          managing dependencies across customer-specific Git repositories and submodules. I focused on
+          <strong>data transformation pipelines</strong>, <strong>backend architecture redesign</strong> using SOLID
+          principles, and created intuitive
+          <strong>dashboard features</strong> with Angular and .NET Core. My work included recursive algorithms for
+          mapping Git trees, visual dependency graphs, and interactive UI components for version control operations.
         </p>
         <p class="experience__tags">
           Angular • .NET Core • Git • SOLID • Dependency Mapping • UI/UX • Software Architecture • TypeScript
@@ -86,7 +107,8 @@
         <p>
           In my spare time, I designed and iteratively tested multiplayer maps for Unreal Tournament,
           balancing visual aesthetics and gameplay flow. These maps were shared with the community
-          where some of them ran for years on public servers, and received player feedback which I used to fine-tune layout and pickup placements.
+          where some of them ran for years on public servers, and received player feedback which I used to fine-tune
+          layout and pickup placements.
         </p>
         <p class="experience__tags">
           Unreal Editor • Level Design • Gameplay Balancing • Community Playtesting
@@ -101,13 +123,17 @@
     <h1 class="home__personal__title">Personal</h1>
 
     <div class="personal__block right">
-      <img src="assets/personal/japan-1.jpg" alt="Traveling in Japan" />
+      <img src="assets/personal/japan-1.jpg" alt="Traveling in Japan"/>
       <div class="personal__text">
         <h3>Travel and Living in Japan</h3>
         <p>
-          My time in Japan included a minor study at Kansai University, a three-month stay in Tokyo where I took language classes, and an extended trip around the country.
-          I was fascinated by the blend of ancient culture and futuristic city life. The Japanese approach to minimalism, attention to detail, and respect for nature had a lasting impact on how I think about design and life in general.
-          It also allowed me to gain a decent grasp of the language, which I still use today for hobbies such as reading Japanese books and watching movies.
+          My time in Japan included a minor study at Kansai University, a three-month stay in Tokyo where I took
+          language classes, and an extended trip around the country.
+          I was fascinated by the blend of ancient culture and futuristic city life. The Japanese approach to
+          minimalism, attention to detail, and respect for nature had a lasting impact on how I think about design and
+          life in general.
+          It also allowed me to gain a decent grasp of the language, which I still use today for hobbies such as reading
+          Japanese books and watching movies.
         </p>
       </div>
     </div>
@@ -116,22 +142,26 @@
       <div class="personal__text">
         <h3>Life and Study in China</h3>
         <p>
-          I had the unique opportunity to live and study in Shenzhen, China, where I immersed myself in the culture, language, and daily life.
+          I had the unique opportunity to live and study in Shenzhen, China, where I immersed myself in the culture,
+          language, and daily life.
           This experience broadened my worldview and taught me to thrive in diverse environments.
-          I explored cities like Shenzhen and Xiamen, learned Mandarin, and gained a deep understanding of the academic and social dynamics of Chinese life.
+          I explored cities like Shenzhen and Xiamen, learned Mandarin, and gained a deep understanding of the academic
+          and social dynamics of Chinese life.
         </p>
       </div>
-      <img src="assets/personal/china-1.jpg" alt="Studying in China" />
+      <img src="assets/personal/china-1.jpg" alt="Studying in China"/>
     </div>
 
     <div class="personal__block right">
-      <img src="assets/personal/rus-1.jpg" alt="Russia to Japan journey" />
+      <img src="assets/personal/rus-1.jpg" alt="Russia to Japan journey"/>
       <div class="personal__text">
         <h3>Overland Journey from Russia to Japan</h3>
         <p>
-          One of my most formative experiences was traveling overland from St. Petersburg to Tokyo — crossing through Siberia, Kazakhstan, and Mongolia by train and car.
+          One of my most formative experiences was traveling overland from St. Petersburg to Tokyo — crossing through
+          Siberia, Kazakhstan, and Mongolia by train and car.
           It was a deeply immersive adventure through time zones, cultures, climates, and languages.
-          That journey gave me lasting perspective on resilience, adaptability, and the interconnectedness of people and technology across borders.
+          That journey gave me lasting perspective on resilience, adaptability, and the interconnectedness of people and
+          technology across borders.
         </p>
       </div>
     </div>

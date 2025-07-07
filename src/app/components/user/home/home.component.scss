@@ -76,7 +76,7 @@
     align-items: center;
     flex-direction: column;
 
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
     height: 100%;
 
@@ -100,12 +100,71 @@
 
       width: 100%;
       height: 600px;
+      position: relative;
 
       @media screen and (max-width: 850px) {
         height: unset;
       }
 
+      &__content {
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: row;
+
+        width: 100%;
+        height: 100%;
+      }
+
+      &__navigation {
+        z-index: 1;
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: row;
+
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        button {
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          font-size: 1.2rem;
+
+          height: 30px;
+          width: 30px;
+
+          opacity: 0;
+          transition: opacity 1s ease-in-out;
+          pointer-events: none;
+
+          &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+          }
+        }
+
+        @media screen and (min-width: 600px) {
+          &:hover {
+            button {
+              opacity: 1;
+              pointer-events: auto;
+            }
+          }
+        }
+
+        &__filler {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+
       .home__slide {
+        z-index: 0;
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -120,6 +179,7 @@
         opacity: 0;
 
         transition: opacity 1s ease-in-out;
+        pointer-events: none;
 
         &.active {
           width: 100%;
@@ -238,7 +298,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
-    &:last-child{
+    &:last-child {
       margin-bottom: 0;
     }
 
@@ -257,7 +317,7 @@
       padding: 0.5rem;
 
       @media (max-width: 768px) {
-          display: none;
+        display: none;
       }
     }
 
@@ -299,7 +359,7 @@
   flex-direction: column;
   gap: 3rem;
 
-  &__title{
+  &__title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
     text-align: start;

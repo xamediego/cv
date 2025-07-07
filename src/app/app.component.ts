@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-
 import {ThemeService} from "./services/generic/theme.service";
 
 @Component({
@@ -12,10 +11,11 @@ import {ThemeService} from "./services/generic/theme.service";
 
 export class AppComponent implements OnInit {
 
-  constructor(private themeService : ThemeService) {
-  }
+  constructor(private themeService : ThemeService) {}
 
   ngOnInit(): void {
+
+
     if (window.matchMedia) {
       if(window.matchMedia('(prefers-color-scheme: dark)').matches){
         console.log("Set Dark")
