@@ -5,6 +5,10 @@
       "url" : "assets/personal/projects/Healthmate.jpg"
     },
     {
+      "title" : "JFX Imagecutter",
+      "url" : "assets/personal/projects/Imagecutter.jpg"
+    },
+    {
       "title" : "DM-Derelict",
       "url" : "assets/personal/projects/Derelict.jpg"
     },
@@ -27,6 +31,11 @@
     {
       "title" : "DM-Legacy",
       "url" : "assets/personal/projects/Legacy.jpg"
+    }
+  ,
+    {
+      "title" : "DM-VoteFor",
+      "url" : "assets/personal/projects/VoteFor.jpg"
     }
   ]
 }
