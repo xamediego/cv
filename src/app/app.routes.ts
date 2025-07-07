@@ -4,6 +4,7 @@ import {NgModule} from "@angular/core";
 export const appRoutes: Routes = [
   {path: '', loadChildren: () => import('./components/user/user.module').then((m) => m.UserModule)},
   {path: 'home', loadChildren: () => import('./components/portal/portal.module').then((m) => m.PortalModule)},
+  {path: 'auth', loadChildren: () => import('./components/authentication/authentication.module').then((m) => m.AuthenticationModule)},
 
   {path: '**', pathMatch : "full", redirectTo : ''},
 ];

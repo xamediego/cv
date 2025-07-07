@@ -6,13 +6,13 @@ import {CatalogComponent} from "./catalog/catalog.component";
 import {TypeComponent} from "./type/type.component";
 
 const routes: Routes = [
+
   {
     path: '',
     component: PortalComponent,
 
     children: [
       {path: '', component: CatalogComponent},
-
       {path: 'catalog', component: CatalogComponent},
       {path: ':type', component: TypeComponent},
       {path: ':type/:title', component: ProjectComponent},

@@ -1,0 +1,10 @@
+<div class="Confirm-Container">
+  <h2>{{ confirmMessage }}</h2>
+
+  @if (confirmed){
+    <button
+      (click)="showLogin()">
+      Proceed to login
+    </button>
+  }
+</div>

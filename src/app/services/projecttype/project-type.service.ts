@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {FetchService} from "../generic/FetchService";
+import {FetchService} from "../generic/fetch.service";
 
 import { FetchResponse } from '../generic/entities/FetchResponse';
-import {ProjectTypeDto} from "../entities/ProjectTypeDto";
+import {ProjectTypeDto} from "../entities/project-type.dto";
 
 @Injectable({
   providedIn: 'root'

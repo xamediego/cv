@@ -1,4 +1,4 @@
-import {LinkDto} from "./LinkDto";
+import {LinkDto} from "./link.dto";
 import {ProjectSubType} from "../enums/ProjectSubType";
 
 export interface ProjectDto {

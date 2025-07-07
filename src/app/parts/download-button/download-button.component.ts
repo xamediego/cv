@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {EventSpinnerDirective} from "../event-spinner.directive";
-import {DownloadService} from "../../services/download/DownloadService";
+import {DownloadService} from "../../services/download/download.service";
 
 @Component({
   selector: 'app-download-button',

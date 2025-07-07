@@ -4,7 +4,7 @@ import {NgTemplateOutlet} from "@angular/common";
 
 import {ProjectService} from "../../../services/project/project.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
-import {ProjectDto} from "../../../services/entities/ProjectDto";
+import {ProjectDto} from "../../../services/entities/project.dto";
 import {DownloadButtonComponent} from "../../../parts/download-button/download-button.component";
 import {environment} from "../../../../environments/environment";
 

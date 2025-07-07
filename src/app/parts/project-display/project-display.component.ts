@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {ProjectDto} from "../../services/entities/ProjectDto";
-import {ProjectTypeDto} from "../../services/entities/ProjectTypeDto";
+import {ProjectDto} from "../../services/entities/project.dto";
+import {ProjectTypeDto} from "../../services/entities/project-type.dto";
 
 @Component({
     selector: 'project-holder',

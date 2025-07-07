@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {ProjectService} from "../../../services/project/project.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
-import {NgTemplateOutlet} from "@angular/common";
+import {NgStyle, NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import {NgTemplateOutlet} from "@angular/common";
     RouterLink,
     EventSpinnerDirective,
     NgTemplateOutlet,
+    NgStyle,
 
   ],
   templateUrl: './home.component.html',

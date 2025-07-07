@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
 
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
-import {ProjectTypeDto} from "../../../services/entities/ProjectTypeDto";
+import {ProjectTypeDto} from "../../../services/entities/project-type.dto";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 

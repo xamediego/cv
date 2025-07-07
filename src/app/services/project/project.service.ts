@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ProjectDto} from "../entities/ProjectDto";
+import {ProjectDto} from "../entities/project.dto";
 import {environment} from "../../../environments/environment";
-import {FetchService} from "../generic/FetchService";
+import {FetchService} from "../generic/fetch.service";
 import {FetchResponse} from "../generic/entities/FetchResponse";
 import featured from "../../../assets/featured.json";
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
-import {ProjectTypeDto} from "../../../services/entities/ProjectTypeDto";
+import {ProjectTypeDto} from "../../../services/entities/project-type.dto";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 
 @Component({

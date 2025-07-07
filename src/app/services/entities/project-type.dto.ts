@@ -1,4 +1,4 @@
-import {ProjectDto} from "./ProjectDto";
+import {ProjectDto} from "./project.dto";
 
 export interface ProjectTypeDto {
   type: string;

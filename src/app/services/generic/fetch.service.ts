@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {FetchResponse} from './entities/FetchResponse';
-import {UserService} from "./UserService";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class FetchService {
 
       const returnVal: FetchResponse<T> = {
         statusCode: res.status,
-
+        statusText : res.statusText,
         responseBody:
           contentType && contentType.includes(content)
             ? await res.json()
