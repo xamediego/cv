@@ -1,0 +1,32 @@
+{
+  "projects" : [
+    {
+      "title" : "Healthmate",
+      "url" : "assets/personal/projects/Healthmate.jpg"
+    },
+    {
+      "title" : "DM-Derelict",
+      "url" : "assets/personal/projects/Derelict.jpg"
+    },
+    {
+      "title" : "DM-Retribution",
+      "url" : "assets/personal/projects/Retribution.jpg"
+    },
+    {
+      "title" : "DM-Esoteric",
+      "url" : "assets/personal/projects/Esoteric.jpg"
+    },
+    {
+      "title" : "DM-Midship",
+      "url" : "assets/personal/projects/Midship.jpg"
+    },
+    {
+      "title" : "WAR-Snowbound",
+      "url" : "assets/personal/projects/Snowbound.jpg"
+    },
+    {
+      "title" : "DM-Legacy",
+      "url" : "assets/personal/projects/Legacy.jpg"
+    }
+  ]
+}

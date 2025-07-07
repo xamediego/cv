@@ -3,6 +3,7 @@ import {ProjectDto} from "../entities/ProjectDto";
 import {environment} from "../../../environments/environment";
 import {FetchService} from "../generic/FetchService";
 import {FetchResponse} from "../generic/entities/FetchResponse";
+import featured from "../../../assets/featured.json";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,11 @@ export class ProjectService {
     return await this.fetchService.fetchData<ProjectDto>(apiLink, method);
   }
 
-  public async findFeatured(): Promise<FetchResponse<ProjectDto[]>>{
+  public findFeaturedLocal(): {title : string, url : string}[]{
+    return featured.projects;
+  }
+
+  public async findFeaturedUser(): Promise<FetchResponse<ProjectDto[]>>{
     const apiLink = `${this.apiLink}/featured`;
     const method = 'GET';
 

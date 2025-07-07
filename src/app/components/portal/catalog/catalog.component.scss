@@ -71,6 +71,7 @@
       justify-content: start;
       align-items: center;
       flex-direction: row;
+      height: 100%;
 
       &__right,
       &__left {
@@ -88,6 +89,7 @@
     &__image {
       width: inherit;
       max-height: inherit;
+
       flex-shrink: 0;
       border-radius: 5px;
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);

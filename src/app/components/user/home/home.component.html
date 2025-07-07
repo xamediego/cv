@@ -25,7 +25,7 @@
 
         @for (project of featuredProjects; track i; let i = $index) {
           <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
-            <img [src]="project.projectThumbnail" [alt]="project.title" (load)="onImagesLoad(i)">
+            <img [src]="project.url" [alt]="project.title" (load)="onImagesLoad(i)">
             <div class="home__slide__caption">{{ project.title }}</div>
           </div>
         }

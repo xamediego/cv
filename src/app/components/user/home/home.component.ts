@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {ProjectService} from "../../../services/project/project.service";
-import {ProjectDto} from "../../../services/entities/ProjectDto";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {NgTemplateOutlet} from "@angular/common";
 
@@ -18,12 +17,13 @@ import {NgTemplateOutlet} from "@angular/common";
 })
 export class HomeComponent implements OnInit {
 
-  private dataLoaded : boolean = false;
-  private initialImageLoaded : boolean = false;
+  private dataLoaded: boolean = false;
+  private initialImageLoaded: boolean = false;
 
-  public featuredProjects : ProjectDto[] = [];
+  public featuredProjects: {title : string, url : string}[] = [];
 
-  constructor(private projectService : ProjectService) {}
+  constructor(private projectService: ProjectService) {
+  }
 
   public activeIndex = 0;
 
@@ -35,20 +35,17 @@ export class HomeComponent implements OnInit {
     }, 5000);
   }
 
-  private async loadData(){
-    const result = await this.projectService.findFeatured();
+  private async loadData() {
+    const result = this.projectService.findFeaturedLocal();
+    this.featuredProjects = [...result];
     this.dataLoaded = true;
-
-    if(result.statusCode == 200){
-      this.featuredProjects = [...result.responseBody]
-    }
   }
 
-  public onImagesLoad(index : number){
-    if(index == 0) this.initialImageLoaded = true
+  public onImagesLoad(index: number) {
+    if (index == 0) this.initialImageLoaded = true
   }
 
-  public isLoaded() : boolean {
+  public isLoaded(): boolean {
     return this.dataLoaded && this.initialImageLoaded;
   }
 }
