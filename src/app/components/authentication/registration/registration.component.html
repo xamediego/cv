@@ -66,20 +66,21 @@
       [password]="registerForm.value.password">
     </app-password-validator>
 
-    @if (registerForm.invalid && error) {
+    @if (registerForm.invalid || error) {
       <p class="register__error">{{ error }}</p>
     }
 
     <div class="register__button-group">
       <button type="button" (click)="cancel()">Cancel</button>
-      <button type="submit" [disabled]="registerForm.invalid || registering">Confirm</button>
+      <button type="submit" [disabled]="registering">Confirm</button>
     </div>
   </form>
 </ng-template>
 
 <ng-template #success>
-  <div>
+  <div class="register__success">
     <h2>Registration Complete!</h2>
-    <p>Your account has been registered. A verification mail has been sent to your account that you can use to activate your account. After this you can login to the platform</p>
+    <p>Your account has been registered.<br>A verification mail has been sent to your account that you can use to activate your account.<br>After this you can login to the platform</p>
+    <a routerLink="/auth">Return</a>
   </div>
 </ng-template>

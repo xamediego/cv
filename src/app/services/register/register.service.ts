@@ -28,13 +28,13 @@ export class RegisterService {
     return await this.fetchService.fetchData(apiLink, method, registerDto)
   }
 
-  async confirmRegistration(username: string, token : string) : Promise<FetchResponse<string>>  {
-    const apiLink = `${this.apiLink}/confirm`;
+  async confirmRegistration(username: string, emailToken : string) : Promise<FetchResponse<string>>  {
+    const apiLink = `${this.apiLink}/confirmRegister`;
     const method = "POST";
 
     const confirmDto: ConfirmDto = {
       username,
-      token
+      emailToken
     };
 
     return await this.fetchService.fetchData(apiLink, method, confirmDto)

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {LoginService} from "../../../services/login/login.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {NgTemplateOutlet} from "@angular/common";
@@ -29,7 +29,7 @@ export class LoginComponent {
     });
   }
 
-  public async login(): Promise<void> {
+  public async onLogin(): Promise<void> {
     if (this.loginForm.invalid) {
       this.errorMessage = 'Please correct the highlighted fields.';
 
@@ -39,23 +39,28 @@ export class LoginComponent {
 
     const {username, password} = this.loginForm.value;
 
+    await this.login(username, password, "")
+  }
+
+  public async cancel() {
+    await this.router.navigate(['/auth']);
+  }
+
+  private async login(username : string, password : string, code : string){
+    this.loggingIn = true;
+
     try {
-      const response = await this.loginService.login(username, password);
+      const response = await this.loginService.login(username, password, code);
       if (response.statusCode == 200) {
         await this.router.navigate(['/home']);
-      } else if (response.statusCode == 401) {
-        this.errorMessage = 'Invalid username or password.';
       } else {
-        this.errorMessage = response.statusText;
+        // @ts-ignore
+        this.errorMessage = response.responseBody.error;
       }
     } catch (err) {
       this.errorMessage = 'An error occurred. Please try again.';
     } finally {
       this.loggingIn = false;
     }
-  }
-
-  public async cancel() {
-    await this.router.navigate(['/auth']);
   }
 }

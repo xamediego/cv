@@ -1,10 +1,21 @@
 <div class="Confirm-Container">
+  <img alt="icon" src="/ico.png" width="200" height="200">
+
   <h2>{{ confirmMessage }}</h2>
 
-  @if (confirmed){
-    <button
-      (click)="showLogin()">
-      Proceed to login
-    </button>
+  <ng-container *appEventSpinner="{condition : confirming ,eventMessage : 'Confirming Email....', stretchToParent : true}"/>
+
+  @if (!confirming){
+    @if (statusText) {
+      <p>{{ statusText }}</p>
+    }
+
+    @if (confirmed) {
+      <button
+        (click)="showLogin()">
+        Proceed to login
+      </button>
+    }
   }
+
 </div>

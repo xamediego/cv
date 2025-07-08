@@ -6,14 +6,14 @@ import {RegisterService} from "../../../services/register/register.service";
 import {FormEmailValidator} from "../tools/EmailValidator";
 import {PasswordValidator} from "../tools/PasswordValidator";
 import {PasswordValidatorComponent} from "../../../parts/password-validator/password-validator.component";
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule, PasswordValidatorComponent, EventSpinnerDirective, NgTemplateOutlet],
+  imports: [ReactiveFormsModule, PasswordValidatorComponent, EventSpinnerDirective, NgTemplateOutlet, RouterLink],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
@@ -48,6 +48,8 @@ export class RegistrationComponent {
   }
 
   public async register(): Promise<void> {
+    console.log("Submit")
+
     if (this.registerForm.invalid) {
       this.error = 'Please correct the highlighted fields.';
       this.registerForm.markAllAsTouched();
@@ -59,10 +61,12 @@ export class RegistrationComponent {
 
     try {
       const response = await this.registrationService.register(username, password, email);
+      console.log(response)
       if (response.statusCode === 200) {
         this.registerComplete = true;
       } else {
-        this.error = response.statusText || 'Registration failed.';
+        // @ts-ignore
+        this.error = response.responseBody.error;
       }
     } catch (err) {
       this.error = 'An error occurred during registration.';

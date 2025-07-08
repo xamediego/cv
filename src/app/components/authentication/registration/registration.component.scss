@@ -83,4 +83,16 @@
       }
     }
   }
+
+  &__success{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    text-align: center;
+
+    gap: 5px;
+  }
 }

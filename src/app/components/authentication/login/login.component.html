@@ -2,7 +2,8 @@
   <img alt="icon" src="/ico.png" width="200" height="200">
   <h2>Login</h2>
 
-  <ng-container *appEventSpinner="{condition : loggingIn ,eventMessage : 'Registering Account....', stretchToParent : true}"/>
+  <ng-container *appEventSpinner="{condition : loggingIn ,eventMessage : 'Logging in....', stretchToParent : true}"/>
+
   @if (!loggingIn){
     <ng-container *ngTemplateOutlet="form" />
   }
@@ -10,7 +11,7 @@
 
 
 <ng-template #form>
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login__form">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login__form">
 
     <div class="login__input-group">
       <label
