@@ -31,6 +31,7 @@ export class RegistrationComponent {
     this.registerForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(2)]],
+        displayName : ['', [Validators.required, Validators.minLength(2)]],
         email: ['', [Validators.required, FormEmailValidator()]],
         password: ['', [Validators.required, PasswordValidator()]],
         confirmPassword: ['', [Validators.required]]
@@ -48,19 +49,17 @@ export class RegistrationComponent {
   }
 
   public async register(): Promise<void> {
-    console.log("Submit")
-
     if (this.registerForm.invalid) {
       this.error = 'Please correct the highlighted fields.';
       this.registerForm.markAllAsTouched();
       return;
     }
 
-    const { username, email, password } = this.registerForm.value;
+    const { username, displayName, email, password } = this.registerForm.value;
     this.registering = true;
 
     try {
-      const response = await this.registrationService.register(username, password, email);
+      const response = await this.registrationService.register(username, displayName, password, email);
       console.log(response)
       if (response.statusCode === 200) {
         this.registerComplete = true;

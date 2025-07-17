@@ -41,4 +41,11 @@ export class ProjectTypeService {
 
     return await this.fetchService.fetchData<ProjectTypeDto>(apiLink, method);
   }
+
+  async findCatalog() {
+    const apiLink = `${this.apiLink}/catalog`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchData<ProjectTypeDto[]>(apiLink, method);
+  }
 }

@@ -26,6 +26,17 @@
     </div>
 
     <div class="register__input-group">
+      <label class="register__label" [class.error]="registerForm.get('displayName')?.invalid && registerForm.get('displayName')?.touched">
+        DisplayName
+      </label>
+      <input
+        type="text"
+        formControlName="displayName"
+        class="register__input"
+        [class.error]="registerForm.get('displayName')?.invalid && registerForm.get('displayName')?.touched" />
+    </div>
+
+    <div class="register__input-group">
       <label class="register__label"
              [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
         Email

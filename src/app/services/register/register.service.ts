@@ -15,12 +15,13 @@ export class RegisterService {
   constructor(private fetchService: FetchService) {
   }
 
-  public async register(username: string, password: string, email: string): Promise<FetchResponse<string>> {
+  public async register(username: string, displayName : string, password: string, email: string): Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/register`;
     const method = "POST";
 
     const registerDto: RegisterDto = {
       username,
+      displayName,
       password,
       email
     };

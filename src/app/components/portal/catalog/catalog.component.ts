@@ -25,7 +25,7 @@ export class CatalogComponent implements OnInit {
   constructor(private projectTypeService: ProjectTypeService, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    const result = await this.projectTypeService.findAll();
+    const result = await this.projectTypeService.findCatalog();
 
     if (result.statusCode == 200) {
       this.projectTypes = result.responseBody;
