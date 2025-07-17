@@ -6,7 +6,6 @@ import {CatalogComponent} from "./catalog/catalog.component";
 import {TypeComponent} from "./type/type.component";
 
 const routes: Routes = [
-
   {
     path: '',
     component: PortalComponent,

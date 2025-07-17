@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {LoginService} from "../../../services/login/login.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {NgTemplateOutlet} from "@angular/common";
@@ -14,7 +14,7 @@ import {NgTemplateOutlet} from "@angular/common";
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  loggingIn : boolean = false;
+  loggingIn: boolean = false;
   errorMessage: string = '';
 
   constructor(
@@ -32,7 +32,6 @@ export class LoginComponent {
   public async onLogin(): Promise<void> {
     if (this.loginForm.invalid) {
       this.errorMessage = 'Please correct the highlighted fields.';
-
       this.loginForm.markAllAsTouched();
       return;
     }
@@ -46,21 +45,19 @@ export class LoginComponent {
     await this.router.navigate(['/auth']);
   }
 
-  private async login(username : string, password : string, code : string){
+  private async login(username: string, password: string, code: string) {
     this.loggingIn = true;
+    const response = await this.loginService.login(username, password, code);
+    this.loggingIn = false;
 
-    try {
-      const response = await this.loginService.login(username, password, code);
-      if (response.statusCode == 200) {
-        await this.router.navigate(['/home']);
-      } else {
-        // @ts-ignore
-        this.errorMessage = response.responseBody.error;
-      }
-    } catch (err) {
-      this.errorMessage = 'An error occurred. Please try again.';
-    } finally {
-      this.loggingIn = false;
+    if (response.statusCode == 200) {
+      await this.router.navigate(['/home']);
+    } else {
+      // @ts-ignore
+      console.log(response.responseBody.error)
+      this.loginForm.markAllAsTouched();
+      // @ts-ignore
+      this.errorMessage = response.responseBody.error;
     }
   }
 }

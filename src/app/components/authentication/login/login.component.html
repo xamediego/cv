@@ -45,13 +45,13 @@
       />
     </div>
 
-    @if (loginForm.invalid && errorMessage) {
+    @if (loginForm.invalid || errorMessage) {
       <p class="login__error">{{errorMessage}}</p>
     }
 
     <div class="login__button-group">
       <button type="button" (click)="cancel()">Cancel</button>
-      <button type="submit" [disabled]="loginForm.invalid">Confirm</button>
+      <button type="submit">Confirm</button>
     </div>
   </form>
 </ng-template>
