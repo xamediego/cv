@@ -12,6 +12,7 @@ export interface ProjectDto {
   links: LinkDto[];
   images: string[];
   fileName : string;
+  publisherName : string;
 
   extraDetails : [
     {

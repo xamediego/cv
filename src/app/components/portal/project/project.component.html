@@ -110,6 +110,7 @@
   <div class="project__description__info">
     <div class="project__description__statistic">
       <h2>Details:</h2>
+      <p>Publisher: {{ project.publisherName }}</p>
       <p>Project Filesize: {{ project.filesize }}</p>
       <p>{{ createProjectString(project.publishedDate) }}</p>
       @for (detail of project.extraDetails; track i; let i = $index) {

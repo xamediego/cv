@@ -60,7 +60,6 @@ export class RegistrationComponent {
 
     try {
       const response = await this.registrationService.register(username, displayName, password, email);
-      console.log(response)
       if (response.statusCode === 200) {
         this.registerComplete = true;
       } else {
