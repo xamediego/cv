@@ -4,15 +4,16 @@ import {FetchService} from "../generic/fetch.service";
 import {LoginDto} from "../entities/login.dto"
 import {FetchResponse} from "../generic/entities/FetchResponse";
 import {UserService} from "../generic/user.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthenticationService {
 
-  private apiLink: string = `${environment.MainApi}/auth/login`;
+  private apiLink: string = `${environment.MainApi}/auth/authentication`;
 
-  constructor(private fetchService : FetchService, private userService : UserService) {}
+  constructor(private fetchService : FetchService, private userService : UserService, private router : Router) {}
 
   public async login(username : string, password : string, code : string) : Promise<FetchResponse<string>>{
     const apiLink = `${this.apiLink}/login`;
@@ -29,5 +30,18 @@ export class LoginService {
     if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
 
     return result;
+  }
+
+  public async logout() : Promise<void>{
+    const apiLink = `${this.apiLink}/logout`;
+    const method = "POST";
+
+    const result : FetchResponse<string> = await this.fetchService.fetchData(apiLink, method)
+
+    if(result.statusCode == 200){
+      this.userService.removeJwtToken();
+
+      location.href = "/home";
+    }
   }
 }

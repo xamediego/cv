@@ -49,7 +49,7 @@ export class RegistrationConfirmationComponent implements OnInit {
     if (confirmResult.statusCode === 200) {
       this.confirmed = true;
       this.confirmMessage = 'Email confirmed.';
-      this.statusText = 'Your email has been successfully confirmed, you can now login, upload, comment and rate.'
+      this.statusText = 'Your email has been successfully confirmed, you can now authentication, upload, comment and rate.'
     } else {
       this.confirmMessage = confirmResult.statusText;
     }

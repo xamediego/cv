@@ -2,10 +2,29 @@
   <div class="header__content">
     <div class="header__left">
       <a class="header__home" routerLink="/">
-        <img src="logo.png" alt="Max de Jonge " class="header__logo" />
+        <img src="logo.png" alt="Max de Jonge" class="header__logo" />
       </a>
     </div>
     <div class="header__right">
+      @if (!userService.hasJwt()) {
+        <a class="header__link" routerLink="/auth" routerLinkActive="header__link__active">Login</a>
+      } @else {
+        <div class="header__dropdown" #dropdownRef>
+          <button class="header__dropdown__toggle" (click)="toggleDropdown()">
+            <a>
+              {{ userService.getUsernameFromJwt() }}
+            </a>
+            <img class="header__dropdown__profile-picture" src="defaultProfImage.png" alt="pf-pic"/>
+          </button>
+          @if(showDropdown){
+            <div class="header__dropdown__menu">
+              <a class="header__link" routerLink="/user/settings" routerLinkActive="header__link__active"
+                 (click)="closeDropdown()">Settings</a>
+              <a class="header__link" (click)="logout()">Logout</a>
+            </div>
+          }
+        </div>
+      }
     </div>
   </div>
 </div>

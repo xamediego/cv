@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {LoginService} from "../../../services/login/login.service";
+import {AuthenticationService} from "../../../services/authentication/authentication.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-authentication',
   standalone: true,
   imports: [ReactiveFormsModule, EventSpinnerDirective, NgTemplateOutlet],
   templateUrl: './login.component.html',
@@ -19,7 +19,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginService,
+    private loginService: AuthenticationService,
     private router: Router
   ) {
 
