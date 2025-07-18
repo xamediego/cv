@@ -1,0 +1,226 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.user-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  height: 100%;
+  margin-block: 20px;
+
+  &__account-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+
+    &-text {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+  }
+
+  &__border {
+    width: 100%;
+    height: 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  &__account-info,
+  &__account-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__account-options {
+    gap: 40px;
+    border-radius: 8px;
+
+    &__row {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &-title {
+        font-weight: 525;
+        font-size: 18px;
+        white-space: nowrap;
+        margin: 0;
+      }
+
+      &-data {
+        font-weight: 300;
+        font-size: 16px;
+        white-space: nowrap;
+        margin: 0;
+      }
+    }
+
+    &__button {
+      display: flex;
+      justify-content: center;
+
+      &-element {
+        width: 75px;
+        height: 35px;
+        background: var(--button-primary);
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    h2, h3 {
+      margin: 0;
+    }
+  }
+
+  &__account-protection {
+    &__options-root {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &__option {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 400px;
+
+      &-title {
+        font-size: 20px;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      &-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: left;
+        margin: 0;
+      }
+
+      &-button {
+        width: 200px;
+        height: 35px;
+        background: var(--button-secondary);
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  &__remove {
+    &__low {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      width: 100%;
+
+      &__text {
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 500px;
+        margin: 0;
+        text-align: left;
+      }
+
+      &-button {
+        width: 200px;
+        height: 35px;
+        background: var(--button-warning);
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+// ---------- Media Queries ----------
+
+@media (max-width: 1000px) {
+  .user-settings__container {
+    max-width: unset;
+  }
+}
+
+@media (max-width: 945px) {
+  .user-settings__account-protection__option-text {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 740px) {
+  .user-settings__account-protection__option-text {
+    max-width: unset;
+  }
+}
+
+@media (max-width: 500px) {
+  .user-settings__account-protection__option-button,
+  .user-settings__remove__low-button {
+    width: 100%;
+  }
+
+  .user-settings__account-options {
+    border-radius: 0;
+  }
+
+  .user-settings__remove__low {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

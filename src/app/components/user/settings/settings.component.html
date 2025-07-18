@@ -1,0 +1,98 @@
+<ng-container>
+  <portal-app-header />
+
+  <div class="user-settings">
+    <ng-container *ngTemplateOutlet="top" />
+    <ng-container *ngTemplateOutlet="mid" />
+    <ng-container *ngTemplateOutlet="low" />
+  </div>
+</ng-container>
+
+<ng-template #top>
+  <section class="user-settings__account-section">
+    <div class="user-settings__container">
+      <header class="user-settings__title">
+        <h1 class="user-settings__title-text">My Account</h1>
+      </header>
+
+      <div class="user-settings__account-info">
+        <div class="user-settings__account-options">
+
+          <div class="user-settings__account-options__row">
+            <div class="user-settings__account-options__info">
+              <h2 class="user-settings__account-options__info-title">Username</h2>
+              <p class="user-settings__account-options__info-data">{{ userData.username }}</p>
+            </div>
+            <div class="user-settings__account-options__button">
+              <button class="user-settings__account-options__button-element" (click)="showChangeUsername()">Edit</button>
+            </div>
+          </div>
+
+          <div class="user-settings__account-options__row">
+            <div class="user-settings__account-options__info">
+              <h2 class="user-settings__account-options__info-title">Email Address</h2>
+              <p class="user-settings__account-options__info-data">{{ userData.email }}</p>
+            </div>
+            <div class="user-settings__account-options__button">
+              <button class="user-settings__account-options__button-element" (click)="showChangeEmail()">Edit</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="user-settings__border"></div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #mid>
+  <section class="user-settings__account-section">
+    <div class="user-settings__container">
+      <header class="user-settings__title">
+        <h1 class="user-settings__title-text">Password and Authentication</h1>
+      </header>
+
+      <div class="user-settings__account-protection__options-root">
+
+        <div class="user-settings__account-protection__option">
+          <h2 class="user-settings__account-protection__option-title">Reset Password</h2>
+          <p class="user-settings__account-protection__option-text">
+            You can reset your password if you think it is no longer secure. A link will be sent to your e-mail address where you can set a new password.
+          </p>
+          <button class="user-settings__account-protection__option-button" (click)="showResetPassword()">Change Password</button>
+        </div>
+
+        <div class="user-settings__account-protection__option">
+          <h2 class="user-settings__account-protection__option-title">Two-Factor Authentication</h2>
+          <p class="user-settings__account-protection__option-text">
+            Protect your account with an extra layer of security. When you activate this, you must enter a password and an authentication code from your phone to log in.
+          </p>
+          <button class="user-settings__account-protection__option-button" (click)="showEnable2FA()">
+            {{ userData.twoFactorEnabled ? 'Disable Two-Factor Auth' : 'Enable Two-Factor Auth' }}
+          </button>
+        </div>
+
+      </div>
+
+      <div class="user-settings__border"></div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #low>
+  <section class="user-settings__account-section">
+    <div class="user-settings__container">
+      <header class="user-settings__title">
+        <h1 class="user-settings__title-text">Account Removal</h1>
+      </header>
+
+      <div class="user-settings__remove__low">
+        <p class="user-settings__remove__low__text">
+          If you no longer wish to use your account, you can permanently delete it. Please note that this action is irreversible.
+        </p>
+        <button class="user-settings__remove__low-button" (click)="showDeleteAccount()">Delete Account</button>
+      </div>
+    </div>
+  </section>
+</ng-template>

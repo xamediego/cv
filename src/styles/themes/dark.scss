@@ -1,4 +1,10 @@
 $primary-color: rgba(18, 18, 18);
+$secondary-color: rgb(35, 35, 35);
+
+$button-primary: rgb(35, 35, 35);
+$button-secondary: rgb(19, 95, 181);
+$button-warning: rgb(218, 35, 35);
+
 $input-color: #1b1b1b;
 $border-color: rgba(255, 255, 255, 0.1);
 $text-primary: #ffffff;
@@ -10,6 +16,12 @@ $text-button: #f1f1f1;
 
 .dark-theme {
   --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+
+  --button-primary: #{$button-primary};
+  --button-secondary: #{$button-secondary};
+  --button-warning: #{$button-warning};
+
   --input-color: #{$input-color};
   --border-color: #{$border-color};
   --text-primary: #{$text-primary};
