@@ -1,0 +1,86 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  margin: 2rem;
+
+  &__form{
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__description {
+
+  }
+
+  &__label {
+    &.error {
+      color: var(--text-error);
+    }
+  }
+
+  &__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    input {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+
+      &.error {
+        border: 1px solid var(--error-color);
+        box-shadow: inset 0 0 6px rgba(215, 42, 42, 0.6), 0 0 4px rgba(215, 42, 42, 0.4);
+      }
+    }
+  }
+
+  &__error {
+    color: var(--text-error);
+    font-size: 0.9rem;
+
+    margin: 0;
+  }
+
+  &__button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  &__button {
+    height: 35px;
+    width: 100%;
+
+    border-radius: 5px;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    &__cancel {
+      border: 1px solid #ccc;
+    }
+
+    &__submit {
+      border: 1px solid var(--button-secondary);
+    }
+
+    &__dangerous {
+      background: var(--button-warning);
+      border: 1px solid var(--button-warning);
+    }
+  }
+}

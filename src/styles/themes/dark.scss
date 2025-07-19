@@ -1,9 +1,11 @@
 $primary-color: rgba(18, 18, 18);
 $secondary-color: rgb(35, 35, 35);
 
+$error-color: #d72a2a;
+
 $button-primary: rgb(35, 35, 35);
 $button-secondary: rgb(19, 95, 181);
-$button-warning: rgb(218, 35, 35);
+$button-warning: $error-color;
 
 $input-color: #1b1b1b;
 $border-color: rgba(255, 255, 255, 0.1);
@@ -18,15 +20,20 @@ $text-button: #f1f1f1;
   --primary-color: #{$primary-color};
   --secondary-color: #{$secondary-color};
 
+  --error-color : #{$error-color};
+
   --button-primary: #{$button-primary};
   --button-secondary: #{$button-secondary};
   --button-warning: #{$button-warning};
+
+  --mat-dialog-container-color: #{$primary-color};
 
   --input-color: #{$input-color};
   --border-color: #{$border-color};
   --text-primary: #{$text-primary};
   --text-secondary: #{$text-secondary};
   --text-tertiary: #{$text-tertiary};
+  --text-error: #{$error-color};
   --text-muted: #{$text-muted};
   --text-span: #{$text-span};
   --text-button: #{$text-button};

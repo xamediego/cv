@@ -1,0 +1,39 @@
+<div class="form">
+  @if(!processing){
+    @if(!updated){
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form__form">
+
+        <h2 class="form__title">Delete Account</h2>
+        <p class="form__description">Are you sure that you want to delete your account? This will immediately log you out of your account and you will not be able to login in again.</p>
+
+        <div class="form__input-group">
+          <label
+            class="form__label"
+            [class.error]="form.get('password')?.invalid && form.get('password')?.touched">
+            Password
+          </label>
+
+          <input
+            formControlName="password"
+            class="form__input"
+            [class.error]="form.get('password')?.invalid && form.get('password')?.touched"
+            type="password"
+          />
+        </div>
+
+          <p class="form__error">{{ errorMessage }}</p>
+
+
+        <div class="form__button-group">
+          <button class="form__button form__button__cancel" type="button" (click)="cancel()">Cancel</button>
+          <button class="form__button form__button__dangerous" type="submit">Confirm</button>
+        </div>
+      </form>
+    } @else {
+      <h2 class="form__title">Account Deleted</h2>
+      <p class="form__description">Your account has been deleted, you will now be redirected to the main page.</p>
+    }
+  }
+
+  <ng-container *appEventSpinner="{condition : processing ,eventMessage : 'Deleting Account', stretchToParent : false}"/>
+</div>

@@ -1,10 +1,13 @@
 <ng-container>
   <portal-app-header />
-
   <div class="user-settings">
-    <ng-container *ngTemplateOutlet="top" />
-    <ng-container *ngTemplateOutlet="mid" />
-    <ng-container *ngTemplateOutlet="low" />
+    @if(!loading){
+      <ng-container *ngTemplateOutlet="top" />
+      <ng-container *ngTemplateOutlet="mid" />
+      <ng-container *ngTemplateOutlet="low" />
+    } @else {
+      <ng-container *appEventSpinner="{condition : loading ,eventMessage : 'Loading Data', stretchToParent : true}"/>
+    }
   </div>
 </ng-container>
 
@@ -17,6 +20,16 @@
 
       <div class="user-settings__account-info">
         <div class="user-settings__account-options">
+
+          <div class="user-settings__account-options__row">
+            <div class="user-settings__account-options__info">
+              <h2 class="user-settings__account-options__info-title">DisplayName</h2>
+              <p class="user-settings__account-options__info-data">{{ userData.displayName }}</p>
+            </div>
+            <div class="user-settings__account-options__button">
+              <button class="user-settings__account-options__button-element" (click)="showChangeDisplayName()">Edit</button>
+            </div>
+          </div>
 
           <div class="user-settings__account-options__row">
             <div class="user-settings__account-options__info">

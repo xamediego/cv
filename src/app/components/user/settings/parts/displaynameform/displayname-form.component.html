@@ -1,0 +1,57 @@
+<div class="form">
+  @if (!processing) {
+    @if (!updated) {
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form__form">
+        <h2 class="form__title">Change DisplayName</h2>
+        <p class="form__description">This action will immediately update your display name to the changes you've
+          made.</p>
+
+        <div class="form__input-group">
+          <label
+            class="form__label"
+            [class.error]="form.get('displayName')?.invalid && form.get('displayName')?.touched">
+            New DisplayName
+          </label>
+
+          <input
+            formControlName="displayName"
+            class="form__input"
+            [class.error]="form.get('displayName')?.invalid && form.get('displayName')?.touched"
+            type="text"
+          />
+        </div>
+
+        <div class="form__input-group">
+          <label
+            class="form__label"
+            [class.error]="form.get('password')?.invalid && form.get('password')?.touched">
+            Password
+          </label>
+
+          <input
+            formControlName="password"
+            class="form__input"
+            [class.error]="form.get('password')?.invalid && form.get('password')?.touched"
+            type="password"
+          />
+        </div>
+
+          <p class="form__error">{{ errorMessage }}</p>
+
+
+        <div class="form__button-group">
+          <button class="form__button form__button__cancel" type="button" (click)="cancel()">Cancel</button>
+          <button class="form__button form__button__submit" type="submit">Confirm</button>
+        </div>
+      </form>
+    } @else {
+      <h2 class="form__title">DisplayName Updated</h2>
+      <p class="form__description">Your displayname has been successfully updated!</p>
+      <div class="form__button-group">
+        <button class="form__button form__button__cancel" type="button" (click)="cancel()">Return</button>
+      </div>
+    }
+  }
+
+  <ng-container *appEventSpinner="{condition : processing ,eventMessage : 'Updating DisplayName', stretchToParent : false}"/>
+</div>

@@ -1,0 +1,60 @@
+<div class="form">
+  @if (!processing) {
+    @if (!updated) {
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form__form">
+
+        <h2 class="form__title">Change Email</h2>
+        <p class="form__description">Upon completing this action a mail will be send to your email that you will have to
+          follow to confirm your new email account.</p>
+
+        <div class="form__input-group">
+          <label
+            class="form__label"
+            [class.error]="form.get('email')?.invalid && form.get('email')?.touched">
+            New Email
+          </label>
+
+          <input
+            formControlName="email"
+            class="form__input"
+            [class.error]="form.get('email')?.invalid && form.get('email')?.touched"
+            type="text"
+          />
+        </div>
+
+        <div class="form__input-group">
+          <label
+            class="form__label"
+            [class.error]="form.get('password')?.invalid && form.get('password')?.touched">
+            Password
+          </label>
+
+          <input
+            formControlName="password"
+            class="form__input"
+            [class.error]="form.get('password')?.invalid && form.get('password')?.touched"
+            type="password"
+          />
+        </div>
+
+        <p class="form__error">{{ errorMessage }}</p>
+
+        <div class="form__button-group">
+          <button class="form__button form__button__cancel" type="button" (click)="cancel()">Cancel</button>
+          <button class="form__button form__button__submit" type="submit">Confirm</button>
+        </div>
+      </form>
+    } @else {
+      <h2 class="form__title">Email Updated</h2>
+      <p class="form__description">
+        A confirmation link has been sent to your new email. Please verify it to complete the update. Until confirmed,
+        you won't be able to use your account.
+      </p>
+      <div class="form__button-group">
+        <button class="form__button form__button__cancel" type="button" (click)="cancel()">Return</button>
+      </div>
+    }
+  }
+
+  <ng-container *appEventSpinner="{condition : processing ,eventMessage : 'Updating Email', stretchToParent : false}"/>
+</div>

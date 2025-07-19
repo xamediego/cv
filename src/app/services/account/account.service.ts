@@ -1,0 +1,79 @@
+import {Injectable} from "@angular/core";
+import {environment} from "../../../environments/environment";
+import {FetchService} from "../generic/fetch.service";
+import {FetchResponse} from "../generic/entities/FetchResponse";
+import {UserdataDto} from "../entities/userdata.dto";
+import {UserService} from "../generic/user.service";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountService {
+  private apiLink: string = `${environment.MainApi}/auth/account`;
+
+  constructor(private fetchService: FetchService, private userService : UserService) {}
+
+  public async getAccountData(): Promise<FetchResponse<UserdataDto>> {
+    const apiLink = `${this.apiLink}/getAccountData`;
+    const method = "GET";
+
+    return await this.fetchService.fetchData<UserdataDto>(apiLink, method);
+  }
+
+  async deleteAccount(password: string) : Promise<FetchResponse<string>>  {
+    const apiLink = `${this.apiLink}/deleteAccount`;
+    const method = "DELETE";
+
+    const dto = {password}
+
+    return await this.fetchService.fetchData<string>(apiLink, method, dto);
+  }
+
+  async updateDisplayName(password: string, displayName: string) : Promise<FetchResponse<string>> {
+    const apiLink = `${this.apiLink}/updateDisplayName`;
+    const method = "PUT";
+
+    const dto = {password, displayName}
+
+    return await this.fetchService.fetchData<string>(apiLink, method, dto);
+  }
+
+  async updateEmail(password: string, email: string) : Promise<FetchResponse<string>> {
+    const apiLink = `${this.apiLink}/updateEmail`;
+    const method = "PUT";
+
+    const dto = {password, email}
+
+    const result = await this.fetchService.fetchData<string>(apiLink, method, dto);
+
+    if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
+
+    return result;
+  }
+
+  async updateUsername(password: string, username: string) : Promise<FetchResponse<string>> {
+    const apiLink = `${this.apiLink}/updateUsername`;
+    const method = "PUT";
+
+    const dto = {password, username}
+
+    const result = await this.fetchService.fetchData<string>(apiLink, method, dto);
+
+    if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
+
+    return result;
+  }
+
+  async updatePassword(password: string, newPassword: string) : Promise<FetchResponse<string>> {
+    const apiLink = `${this.apiLink}/updatePassword`;
+    const method = "PUT";
+
+    const dto = {password, newPassword}
+
+    const result = await this.fetchService.fetchData<string>(apiLink, method, dto);
+
+    if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
+
+    return result;
+  }
+}
