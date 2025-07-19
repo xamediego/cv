@@ -1,7 +1,12 @@
 <div class="form">
+  <div class="form__form">
+    <ng-container *ngTemplateOutlet="content" />
+  </div>
+</div>
 
+<ng-template #content>
   @if (mfaOperationSuccess) {
-    <div class="form__form">
+    <div class="form__content">
       <h2 class="form__title">{{ mfaOperationMessage }}</h2>
       <button class="form__button form__button__cancel"
               (click)="onFormClosed()">
@@ -13,8 +18,8 @@
   }
 
   <ng-template #MfaView>
-    <div class="form__form">
-      <h2 class="form__title">{{!mfaEnabled ? 'Enable MFA' : 'Disable MFA'}}</h2>
+    <div class="form__content">
+      <h2 class="form__title">{{ !mfaEnabled ? 'Enable MFA' : 'Disable MFA' }}</h2>
 
       @if (!mfaEnabled && !hasQr) {
         <div class="form__button-group ">
@@ -42,7 +47,7 @@
   </ng-template>
 
   <ng-template #MfaForm>
-    <form [formGroup]="form" (submit)="changeMFA()" class="form__form">
+    <form [formGroup]="form" (submit)="changeMFA()" class="form__content">
       @if (mfaEnabled) {
         <p>MFA is currently enabled on this account</p>
       }
@@ -89,4 +94,7 @@
       </div>
     </form>
   </ng-template>
-</div>
+</ng-template>
+
+
+

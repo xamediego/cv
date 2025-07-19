@@ -4,12 +4,25 @@
   justify-content: center;
   align-items: center;
 
-  width: 300px;
-  margin: 2rem;
+  max-width: 300px;
+  width: 100%;
 
-  &__form{
+  &__form {
     display: flex;
     flex-direction: column;
+    margin: 1rem;
+    flex-grow: 1;
+    align-self: stretch;
+
+    gap: 15px;
+  }
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+    align-self: stretch;
 
     gap: 15px;
   }
@@ -88,7 +101,7 @@
   }
 }
 
-.qr-div{
+.qr-div {
   display: flex;
   flex-direction: column;
   justify-content: center;

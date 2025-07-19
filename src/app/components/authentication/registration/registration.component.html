@@ -2,12 +2,14 @@
   <img alt="icon" src="/ico.png" width="200" height="200">
   <h2 class="register__title">Register</h2>
 
+  <div class="register__container">
   <ng-container *appEventSpinner="{condition : registering ,eventMessage : 'Registering Account....', stretchToParent : true}"/>
   @if (!registerComplete && !registering){
     <ng-container *ngTemplateOutlet="form" />
   } @else if (registerComplete && !registering){
     <ng-container *ngTemplateOutlet="success" />
   }
+  </div>
 </div>
 
 <ng-template #form>
