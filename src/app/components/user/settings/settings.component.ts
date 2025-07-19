@@ -1,32 +1,44 @@
 import {NgTemplateOutlet} from "@angular/common";
-import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  Type,
+  ViewChild,
+  ViewContainerRef
+} from "@angular/core";
 import {MatDialog} from '@angular/material/dialog';
 
 import {UserdataDto} from "../../../services/entities/userdata.dto";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {AccountService} from "../../../services/account/account.service";
 import {PortalHeaderComponent} from "../../portal/portal-header/portal.header.component";
-import {DeleteFormComponent} from "./parts/deleteform/delete-form.component";
 import {DisplaynameFormComponent} from "./parts/displaynameform/displayname-form.component";
-import {UsernameFormComponent} from "./parts/usernameform/username-form.component";
-import {EmailFormComponent} from "./parts/emailform/email-form.component";
-import {PasswordFormComponent} from "./parts/passwordform/password-form.component";
-import {MfaFormComponent} from "./parts/mfaform/mfa-form.component";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
+import {FormComponent} from "./parts/form.component";
+import {EmailFormComponent} from "./parts/emailform/email-form.component";
+import {UsernameFormComponent} from "./parts/usernameform/username-form.component";
+import {PasswordFormComponent} from "./parts/passwordform/password-form.component";
+import {DeleteFormComponent} from "./parts/deleteform/delete-form.component";
+import {MfaFormComponent} from "./parts/mfaform/mfa-form.component";
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
+  styleUrl: './settings.component.scss',
   imports: [
     NgTemplateOutlet,
     PortalHeaderComponent,
     EventSpinnerDirective
   ],
-  styleUrl: './settings.component.scss'
+  standalone: true
 })
 export class SettingsComponent implements OnInit {
+  public loading = false;
+  public isMobile = false;
 
-  public loading : boolean = false;
+  public activeFormComponent: Type<any> | null = null;
 
   public userData: UserdataDto = {
     displayName: "",
@@ -36,10 +48,22 @@ export class SettingsComponent implements OnInit {
     twoFactorEnabled: false
   };
 
-  constructor(private accountService: AccountService, private changeDec: ChangeDetectorRef, private dialog: MatDialog) {
+  constructor(
+    private accountService: AccountService,
+    private changeDec: ChangeDetectorRef,
+    private dialog: MatDialog,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {
   }
 
-  public async ngOnInit(): Promise<void> {
+  async ngOnInit(): Promise<void> {
+    this.isMobile = window.innerWidth <= 500;
+
+    window.addEventListener('resize', () => {
+      this.isMobile = window.innerWidth <= 500;
+      this.changeDec.detectChanges();
+    });
+
     await this.getUserData();
   }
 
@@ -50,35 +74,73 @@ export class SettingsComponent implements OnInit {
     const result: FetchResponse<UserdataDto> = await this.accountService.getAccountData();
     this.loading = false;
 
-    this.changeDec.detectChanges();
     this.userData = result.responseBody;
+    this.changeDec.detectChanges();
   }
 
-  public async showChangeDisplayName() {
-    this.openDisplay(DisplaynameFormComponent)
+  @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
+  public showForm(component: Type<FormComponent>) {
+    if (this.isMobile) {
+      this.showNormal(component);
+    } else {
+      this.showDialog(component);
+    }
   }
 
-  public async showChangeUsername() {
-    this.openDisplay(UsernameFormComponent)
+  public showDialog(component: Type<FormComponent>) {
+    const dialogRef = this.dialog.open(component, {
+      disableClose: true,
+    });
+
+    const instance = dialogRef.componentInstance;
+    if (instance) {
+      instance.onFormClosed = () => this.dialog.closeAll();
+      instance.onFormSuccess = async () => {
+        await this.getUserData();
+        this.dialog.closeAll();
+      };
+    }
   }
 
-  public async showChangeEmail() {
-    this.openDisplay(EmailFormComponent)
+  public showNormal(component: Type<FormComponent>){
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    const componentRef = this.dynamicComponentContainer.createComponent(componentFactory);
+    componentRef.instance.onFormClosed = () => this.closeEmbeddedForm();
+    componentRef.instance.onFormSuccess = () =>  this.onFormSuccess();
+
+    this.activeFormComponent = component;
   }
 
-  public async showResetPassword() {
-    this.openDisplay(PasswordFormComponent)
+  private async onFormSuccess() {
+    await this.getUserData();
   }
 
-  public async showDeleteAccount() {
-    this.openDisplay(DeleteFormComponent)
+  public async closeEmbeddedForm() {
+    this.dynamicComponentContainer.clear();
+    this.activeFormComponent = null;
   }
 
-  public async showEnable2FA() {
-    this.openDisplay(MfaFormComponent)
+  public showChangeDisplayName() {
+    this.showForm(DisplaynameFormComponent);
   }
 
-  private openDisplay(formComponent: any) {
-    this.dialog.open(formComponent);
+  public showChangeUsername() {
+    this.showForm(UsernameFormComponent);
+  }
+
+  public showChangeEmail() {
+    this.showForm(EmailFormComponent);
+  }
+
+  public showResetPassword() {
+    this.showForm(PasswordFormComponent);
+  }
+
+  public showDeleteAccount() {
+    this.showForm(DeleteFormComponent);
+  }
+
+  public showEnable2FA() {
+    this.showNormal(MfaFormComponent);
   }
 }

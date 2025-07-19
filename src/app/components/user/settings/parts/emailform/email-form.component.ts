@@ -1,9 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {EventSpinnerDirective} from "../../../../../parts/event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatDialogRef} from "@angular/material/dialog";
 import {AccountService} from "../../../../../services/account/account.service";
-import {UserService} from "../../../../../services/generic/user.service";
+import {FormComponent} from "../form.component";
 
 @Component({
   selector: 'app-email-form',
@@ -14,13 +13,14 @@ import {UserService} from "../../../../../services/generic/user.service";
   templateUrl: './email-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class EmailFormComponent {
+export class EmailFormComponent implements FormComponent{
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing : boolean = false;
   updated : boolean = false;
 
-  readonly dialogRef = inject(MatDialogRef<EmailFormComponent>);
+  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
+  @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,
@@ -45,18 +45,13 @@ export class EmailFormComponent {
     await this.updateEmail(password, email)
   }
 
-  public async cancel() {
-    if(this.dialogRef){
-      this.dialogRef.close();
-    }
-  }
-
   private async updateEmail(password : string, email : string){
     this.processing = true;
     const response = await this.accountService.updateEmail(password, email);
     this.processing = false;
 
     if (response.statusCode == 200) {
+      this.onFormSuccess();
       this.updated = true;
     } else {
       this.form.markAllAsTouched();

@@ -39,7 +39,7 @@
         <p class="form__error">{{ errorMessage }}</p>
 
         <div class="form__button-group">
-          <button class="form__button form__button__cancel" type="button" (click)="cancel()">Cancel</button>
+          <button class="form__button form__button__cancel" type="button" (click)="onFormClosed()">Cancel</button>
           <button class="form__button form__button__submit" type="submit">Confirm</button>
         </div>
       </form>
@@ -47,7 +47,7 @@
       <h2 class="form__title">Username Updated</h2>
       <p class="form__description">Your username has been successfully updated!</p>
       <div class="form__button-group">
-        <button class="form__button form__button__cancel" type="button" (click)="cancel()">Return</button>
+        <button class="form__button form__button__cancel" type="button" (click)="onFormClosed()">Return</button>
       </div>
     }
   }

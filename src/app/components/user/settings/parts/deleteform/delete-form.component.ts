@@ -1,11 +1,9 @@
-import {Component, inject} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AuthenticationService} from "../../../../../services/authentication/authentication.service";
-import {Router} from "@angular/router";
 import {AccountService} from "../../../../../services/account/account.service";
-import {MatDialogRef} from "@angular/material/dialog";
 import {EventSpinnerDirective} from "../../../../../parts/event-spinner.directive";
 import {UserService} from "../../../../../services/generic/user.service";
+import {FormComponent} from "../form.component";
 
 @Component({
   selector: 'app-delete-form',
@@ -16,14 +14,15 @@ import {UserService} from "../../../../../services/generic/user.service";
   templateUrl: './delete-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class DeleteFormComponent {
+export class DeleteFormComponent implements FormComponent{
 
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing : boolean = false;
   updated : boolean = false;
 
-  readonly dialogRef = inject(MatDialogRef<DeleteFormComponent>);
+  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
+  @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,
@@ -48,18 +47,13 @@ export class DeleteFormComponent {
     await this.deleteAccount(password)
   }
 
-  public async cancel() {
-      if(this.dialogRef){
-        this.dialogRef.close();
-      }
-  }
-
   private async deleteAccount(password : string){
     this.processing = true;
     const response = await this.accountService.deleteAccount(password);
     this.processing = false;
 
     if (response.statusCode == 200) {
+      this.onFormSuccess();
       this.updated = true;
       this.userService.removeJwtToken();
       location.href = "/home";

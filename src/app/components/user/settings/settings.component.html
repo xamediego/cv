@@ -1,15 +1,23 @@
-<ng-container>
-  <portal-app-header />
-  <div class="user-settings">
-    @if(!loading){
-      <ng-container *ngTemplateOutlet="top" />
-      <ng-container *ngTemplateOutlet="mid" />
-      <ng-container *ngTemplateOutlet="low" />
-    } @else {
-      <ng-container *appEventSpinner="{condition : loading ,eventMessage : 'Loading Data', stretchToParent : true}"/>
-    }
-  </div>
-</ng-container>
+<ng-container #dynamicComponentContainer/>
+
+@if (!activeFormComponent){
+  <ng-container *ngTemplateOutlet="settingsContent" />
+}
+
+<ng-template #settingsContent>
+  <ng-container>
+    <portal-app-header />
+    <div class="user-settings">
+      @if(!loading){
+        <ng-container *ngTemplateOutlet="top" />
+        <ng-container *ngTemplateOutlet="mid" />
+        <ng-container *ngTemplateOutlet="low" />
+      } @else {
+        <ng-container *appEventSpinner="{condition : loading ,eventMessage : 'Loading Data', stretchToParent : true}"/>
+      }
+    </div>
+  </ng-container>
+</ng-template>
 
 <ng-template #top>
   <section class="user-settings__account-section">

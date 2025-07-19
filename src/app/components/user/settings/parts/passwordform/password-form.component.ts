@@ -1,9 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {EventSpinnerDirective} from "../../../../../parts/event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatDialogRef} from "@angular/material/dialog";
 import {AccountService} from "../../../../../services/account/account.service";
-import {UserService} from "../../../../../services/generic/user.service";
+import {FormComponent} from "../form.component";
 
 @Component({
   selector: 'app-password-form',
@@ -14,13 +13,14 @@ import {UserService} from "../../../../../services/generic/user.service";
   templateUrl: './password-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class PasswordFormComponent {
+export class PasswordFormComponent implements FormComponent{
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing: boolean = false;
   updated: boolean = false;
 
-  readonly dialogRef = inject(MatDialogRef<PasswordFormComponent>);
+  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
+  @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,
@@ -46,18 +46,13 @@ export class PasswordFormComponent {
     await this.updateDisplayName(currentPassword, newPassword)
   }
 
-  public async cancel() {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
-  }
-
   private async updateDisplayName(password: string, newPassword: string) {
     this.processing = true;
     const response = await this.accountService.updatePassword(password, newPassword);
     this.processing = false;
 
     if (response.statusCode == 200) {
+      this.onFormSuccess();
       this.updated = true;
     } else {
       this.form.markAllAsTouched();
