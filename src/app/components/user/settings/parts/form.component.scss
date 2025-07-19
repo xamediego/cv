@@ -1,6 +1,8 @@
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   width: 300px;
   margin: 2rem;
@@ -61,6 +63,7 @@
   &__button {
     height: 35px;
     width: 100%;
+    max-width: 150px;
 
     border-radius: 5px;
     text-align: center;
@@ -83,4 +86,13 @@
       border: 1px solid var(--button-warning);
     }
   }
+}
+
+.qr-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 25px;
 }

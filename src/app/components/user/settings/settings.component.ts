@@ -141,6 +141,6 @@ export class SettingsComponent implements OnInit {
   }
 
   public showEnable2FA() {
-    this.showNormal(MfaFormComponent);
+    this.showForm(MfaFormComponent);
   }
 }

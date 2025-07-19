@@ -11,7 +11,6 @@ import {NgStyle, NgTemplateOutlet} from "@angular/common";
     EventSpinnerDirective,
     NgTemplateOutlet,
     NgStyle,
-
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

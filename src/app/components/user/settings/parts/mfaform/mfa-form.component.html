@@ -1,4 +1,92 @@
 <div class="form">
-  <h2 class="form__title">Not yet implemented</h2>
-  <ng-container *appEventSpinner="{condition : processing ,eventMessage : 'Updating Password', stretchToParent : false}"/>
+
+  @if (mfaOperationSuccess) {
+    <div class="form__form">
+      <h2 class="form__title">{{ mfaOperationMessage }}</h2>
+      <button class="form__button form__button__cancel"
+              (click)="onFormClosed()">
+        Return
+      </button>
+    </div>
+  } @else {
+    <ng-container *ngTemplateOutlet="MfaView"/>
+  }
+
+  <ng-template #MfaView>
+    <div class="form__form">
+      <h2 class="form__title">{{!mfaEnabled ? 'Enable MFA' : 'Disable MFA'}}</h2>
+
+      @if (!mfaEnabled && !hasQr) {
+        <div class="form__button-group ">
+          <button (click)="getQRCode()"
+                  class="form__button form__button__submit">
+            Generate QR code
+          </button>
+          <button (click)="onFormClosed()"
+                  class="form__button form__button__cancel">
+            Cancel
+          </button>
+        </div>
+      } @else if (hasQr || mfaEnabled) {
+        @if (!mfaEnabled && hasQr) {
+          <div class="qr-div">
+            <canvas id="qr-canvas"></canvas>
+          </div>
+        }
+        <ng-container *ngTemplateOutlet="MfaForm"/>
+      }
+
+      <p class="form__error">{{ qrError }}</p>
+
+    </div>
+  </ng-template>
+
+  <ng-template #MfaForm>
+    <form [formGroup]="form" (submit)="changeMFA()" class="form__form">
+      @if (mfaEnabled) {
+        <p>MFA is currently enabled on this account</p>
+      }
+
+      <div class="form__input-group">
+        <label
+          class="form__label"
+          [class.error]="form.get('password')?.invalid && form.get('password')?.touched">
+          Password
+        </label>
+
+        <input
+          formControlName="password"
+          class="form__input"
+          [class.error]="form.get('password')?.invalid && form.get('password')?.touched"
+          type="password"
+        />
+      </div>
+
+      <div class="form__input-group">
+        <label
+          class="form__label"
+          [class.error]="form.get('code')?.invalid && form.get('code')?.touched">
+          {{ mfaEnabled ? 'MFA Code' : 'Confirm Code' }}
+        </label>
+
+        <input
+          formControlName="code"
+          class="form__input"
+          [class.error]="form.get('code')?.invalid && form.get('code')?.touched"
+          type="text"
+        />
+      </div>
+
+      <p class="form__error">{{ mfaError }}</p>
+
+      <div class="form__button-group">
+        <button class="form__button form__button__cancel" type="button" (click)="onFormClosed()">
+          Cancel
+        </button>
+        <button class="form__button form__button__submit" type="submit">
+          {{ mfaEnabled ? 'Disable' : 'Enable' }}
+        </button>
+      </div>
+    </form>
+  </ng-template>
 </div>

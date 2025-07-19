@@ -20,7 +20,7 @@ export class AccountService {
     return await this.fetchService.fetchData<UserdataDto>(apiLink, method);
   }
 
-  async deleteAccount(password: string) : Promise<FetchResponse<string>>  {
+  public async deleteAccount(password: string) : Promise<FetchResponse<string>>  {
     const apiLink = `${this.apiLink}/deleteAccount`;
     const method = "DELETE";
 
@@ -29,7 +29,7 @@ export class AccountService {
     return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
 
-  async updateDisplayName(password: string, displayName: string) : Promise<FetchResponse<string>> {
+  public async updateDisplayName(password: string, displayName: string) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updateDisplayName`;
     const method = "PUT";
 
@@ -38,7 +38,7 @@ export class AccountService {
     return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
 
-  async updateEmail(password: string, email: string) : Promise<FetchResponse<string>> {
+  public async updateEmail(password: string, email: string) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updateEmail`;
     const method = "PUT";
 
@@ -51,7 +51,7 @@ export class AccountService {
     return result;
   }
 
-  async updateUsername(password: string, username: string) : Promise<FetchResponse<string>> {
+  public async updateUsername(password: string, username: string) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updateUsername`;
     const method = "PUT";
 
@@ -64,7 +64,7 @@ export class AccountService {
     return result;
   }
 
-  async updatePassword(password: string, newPassword: string) : Promise<FetchResponse<string>> {
+  public async updatePassword(password: string, newPassword: string) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updatePassword`;
     const method = "PUT";
 
@@ -75,5 +75,29 @@ export class AccountService {
     if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
 
     return result;
+  }
+
+  public async mfaEnabled(): Promise<FetchResponse<boolean>> {
+    const apiLink = `${this.apiLink}/mfaEnabled`;
+    const method: string = 'GET';
+
+    return await this.fetchService.fetchData<boolean>(apiLink, method);
+  }
+
+  public async enableMFA(password : string, code : string) : Promise<FetchResponse<string>> {
+    return await this.updateMfa(password, code, true)
+  }
+
+  public async disableMFA(password: string, code: string) : Promise<FetchResponse<string>> {
+    return await this.updateMfa(password, code, false)
+  }
+
+  private async updateMfa(password : string, code : string, isEnabled : boolean) : Promise<FetchResponse<string>>{
+    const apiLink = `${this.apiLink}/updateMfa`;
+    const method = "PUT";
+
+    const dto = {password, code, isEnabled}
+
+    return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
 }
