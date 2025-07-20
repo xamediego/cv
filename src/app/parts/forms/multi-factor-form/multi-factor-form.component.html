@@ -1,0 +1,32 @@
+<div class="form">
+  @if (!processing) {
+    <form class="form__form" [formGroup]="form" (submit)="onSubmit()">
+      <h2 class="form__title">Enter MFA Code</h2>
+      <p>Please insert a verification code from your authenticator</p>
+      <div class="form__input-group">
+        <label
+          class="form__label"
+          [class.error]="form.get('code')?.invalid && form.get('code')?.touched">
+          code
+        </label>
+
+        <input
+          formControlName="code"
+          class="form__input"
+          [class.error]="form.get('code')?.invalid && form.get('code')?.touched"
+          type="text"
+        />
+      </div>
+
+      <p class="form__error">{{ errorMessage }}</p>
+
+      <div class="form__button-group">
+        <button class="form__button form__button__cancel" type="button" (click)="return()">Cancel</button>
+        <button class="form__button form__button__submit" type="submit">Confirm</button>
+      </div>
+    </form>
+  } @else {
+    <ng-container *appEventSpinner="{condition : processing ,eventMessage : 'Validating Token', stretchToParent : false}"/>
+  }
+</div>
+

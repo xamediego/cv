@@ -1,24 +1,23 @@
-import {Component,  Inject} from '@angular/core';
-import {EventSpinnerDirective} from "../../../../../parts/event-spinner.directive";
+import {Component, Inject} from '@angular/core';
+import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AccountService} from "../../../../../services/account/account.service";
+import {AccountService} from "../../../services/account/account.service";
 import {FormComponent} from "../form.component";
 
 @Component({
-  selector: 'app-displayname-form',
+  selector: 'app-username-form',
   imports: [
     EventSpinnerDirective,
     ReactiveFormsModule
   ],
-  templateUrl: './displayname-form.component.html',
+  templateUrl: './username-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class DisplaynameFormComponent implements FormComponent{
-
+export class UsernameFormComponent implements FormComponent{
   form: FormGroup;
   errorMessage: string | undefined = undefined;
-  processing: boolean = false;
-  updated: boolean = false;
+  processing : boolean = false;
+  updated : boolean = false;
 
   @Inject('onFormClosed') public onFormClosed: () => void = () => {};
   @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
@@ -27,9 +26,10 @@ export class DisplaynameFormComponent implements FormComponent{
     private fb: FormBuilder,
     private accountService: AccountService,
   ) {
+
     this.form = this.fb.group({
       password: ['', Validators.required],
-      displayName: ['', Validators.required]
+      username: ['', Validators.required]
     });
   }
 
@@ -40,14 +40,14 @@ export class DisplaynameFormComponent implements FormComponent{
       return;
     }
 
-    const {password, displayName} = this.form.value;
+    const {password, username} = this.form.value;
 
-    await this.updateDisplayName(password, displayName)
+    await this.updateEmail(password, username)
   }
 
-  private async updateDisplayName(password: string, displayName: string) {
+  private async updateEmail(password : string, username : string){
     this.processing = true;
-    const response = await this.accountService.updateDisplayName(password, displayName);
+    const response = await this.accountService.updateUsername(password, username);
     this.processing = false;
 
     if (response.statusCode == 200) {

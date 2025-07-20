@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {FetchResponse} from './entities/FetchResponse';
 import {UserService} from "./user.service";
+import {MfaService} from "../mfa/mfa.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class FetchService {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private mfaService: MfaService) {
+  }
 
   async fetchData<T>(
     apiLink: string,
@@ -18,12 +20,12 @@ export class FetchService {
 
     const fetchData = this.createHeader(method, body, jwt);
 
-    return await fetch(apiLink, fetchData).then(async (res) => {
+    const fetchResult = await fetch(apiLink, fetchData).then(async (res) => {
       const contentType = res.headers.get('content-type');
 
       const returnVal: FetchResponse<T> = {
         statusCode: res.status,
-        statusText : res.statusText,
+        statusText: res.statusText,
         responseBody:
           contentType && contentType.includes(content)
             ? await res.json()
@@ -32,14 +34,16 @@ export class FetchService {
 
       return returnVal;
     });
+
+    return fetchResult;
   }
 
   async fetchBlob(apiLink: string,
                   method: string,
-                  filename : string,
+                  filename: string,
                   body?: any,
                   jwt?: string,
-                  onResponse? : ((response : Response) => void),
+                  onResponse?: ((response: Response) => void),
                   onProgress?: ((received: number, total: number) => void)): Promise<Response> {
     // this.createHeader(method, body, jwt);
 

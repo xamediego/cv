@@ -1,23 +1,23 @@
 import {Component, Inject} from '@angular/core';
-import {EventSpinnerDirective} from "../../../../../parts/event-spinner.directive";
+import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AccountService} from "../../../../../services/account/account.service";
+import {AccountService} from "../../../services/account/account.service";
 import {FormComponent} from "../form.component";
 
 @Component({
-  selector: 'app-username-form',
+  selector: 'app-password-form',
   imports: [
     EventSpinnerDirective,
     ReactiveFormsModule
   ],
-  templateUrl: './username-form.component.html',
+  templateUrl: './password-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class UsernameFormComponent implements FormComponent{
+export class PasswordFormComponent implements FormComponent{
   form: FormGroup;
   errorMessage: string | undefined = undefined;
-  processing : boolean = false;
-  updated : boolean = false;
+  processing: boolean = false;
+  updated: boolean = false;
 
   @Inject('onFormClosed') public onFormClosed: () => void = () => {};
   @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
@@ -28,8 +28,9 @@ export class UsernameFormComponent implements FormComponent{
   ) {
 
     this.form = this.fb.group({
-      password: ['', Validators.required],
-      username: ['', Validators.required]
+      currentPassword: ['', Validators.required],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     });
   }
 
@@ -40,14 +41,14 @@ export class UsernameFormComponent implements FormComponent{
       return;
     }
 
-    const {password, username} = this.form.value;
+    const {currentPassword, newPassword} = this.form.value;
 
-    await this.updateEmail(password, username)
+    await this.updateDisplayName(currentPassword, newPassword)
   }
 
-  private async updateEmail(password : string, username : string){
+  private async updateDisplayName(password: string, newPassword: string) {
     this.processing = true;
-    const response = await this.accountService.updateUsername(password, username);
+    const response = await this.accountService.updatePassword(password, newPassword);
     this.processing = false;
 
     if (response.statusCode == 200) {

@@ -6,10 +6,10 @@ import {Router} from '@angular/router';
 import QRCode from 'qrcode'
 
 import {FormComponent} from "../form.component";
-import {FetchResponse} from "../../../../../services/generic/entities/FetchResponse";
-import {AccountService} from "../../../../../services/account/account.service";
-import {TokenService} from "../../../../../services/token/token.service";
-import {EventSpinnerDirective} from "../../../../../parts/event-spinner.directive";
+import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
+import {AccountService} from "../../../services/account/account.service";
+import {TokenService} from "../../../services/token/token.service";
+import {EventSpinnerDirective} from "../../event-spinner.directive";
 
 @Component({
   selector: 'app-mfa-form',
@@ -89,7 +89,6 @@ export class MfaFormComponent implements FormComponent, OnInit {
 
   private renderQRCode(): void {
     const canvas = document.getElementById('qr-canvas') as HTMLCanvasElement;
-
     // @ts-ignore
     QRCode.toCanvas(canvas, this.qrCodeData, (error) => {
       if (error) console.error('QR code generation error:', error);

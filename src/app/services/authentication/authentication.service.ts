@@ -26,9 +26,7 @@ export class AuthenticationService {
     };
 
     const result : FetchResponse<string> = await this.fetchService.fetchData(apiLink, method, loginDto)
-
     if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
-
     return result;
   }
 

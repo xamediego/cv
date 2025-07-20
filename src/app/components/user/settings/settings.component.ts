@@ -15,14 +15,14 @@ import {UserdataDto} from "../../../services/entities/userdata.dto";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {AccountService} from "../../../services/account/account.service";
 import {PortalHeaderComponent} from "../../portal/portal-header/portal.header.component";
-import {DisplaynameFormComponent} from "./parts/displaynameform/displayname-form.component";
+import {DisplaynameFormComponent} from "../../../parts/forms/displaynameform/displayname-form.component";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
-import {FormComponent} from "./parts/form.component";
-import {EmailFormComponent} from "./parts/emailform/email-form.component";
-import {UsernameFormComponent} from "./parts/usernameform/username-form.component";
-import {PasswordFormComponent} from "./parts/passwordform/password-form.component";
-import {DeleteFormComponent} from "./parts/deleteform/delete-form.component";
-import {MfaFormComponent} from "./parts/mfaform/mfa-form.component";
+import {FormComponent} from "../../../parts/forms/form.component";
+import {EmailFormComponent} from "../../../parts/forms/emailform/email-form.component";
+import {UsernameFormComponent} from "../../../parts/forms/usernameform/username-form.component";
+import {PasswordFormComponent} from "../../../parts/forms/passwordform/password-form.component";
+import {DeleteFormComponent} from "../../../parts/forms/deleteform/delete-form.component";
+import {MfaFormComponent} from "../../../parts/forms/mfaform/mfa-form.component";
 
 @Component({
   selector: 'app-settings',
@@ -80,7 +80,6 @@ export class SettingsComponent implements OnInit {
   }
 
   @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
-
   public showForm(component: Type<FormComponent>) {
     if (this.isMobile) {
       this.showNormal(component);
