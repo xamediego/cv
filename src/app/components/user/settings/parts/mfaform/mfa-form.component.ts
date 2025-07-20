@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
-import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
 
 import QRCode from 'qrcode'
@@ -9,131 +9,129 @@ import {FormComponent} from "../form.component";
 import {FetchResponse} from "../../../../../services/generic/entities/FetchResponse";
 import {AccountService} from "../../../../../services/account/account.service";
 import {TokenService} from "../../../../../services/token/token.service";
+import {EventSpinnerDirective} from "../../../../../parts/event-spinner.directive";
 
 @Component({
   selector: 'app-mfa-form',
-  imports: [NgTemplateOutlet, ReactiveFormsModule],
+  standalone: true,
+  imports: [NgTemplateOutlet, ReactiveFormsModule, EventSpinnerDirective],
   templateUrl: './mfa-form.component.html',
-  styleUrl: '../form.component.scss'
+  styleUrls: ['../form.component.scss']
 })
 export class MfaFormComponent implements FormComponent, OnInit {
+  public processing = false;
+  public eventMessage = '';
 
-  public processing: boolean = false;
+  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
+  @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
 
-  @Inject('onFormClosed') public onFormClosed: () => void = () => {
-  };
-  @Inject('onFormSuccess') public onFormSuccess: () => void = () => {
-  };
+  public mfaEnabled = false;
+  public mfaOperationSuccess = false;
+  public mfaOperationMessage = '';
+  public qrError = '';
+  public hasQr = false;
+  public mfaError = '';
 
-  mfaEnabled: boolean = false;
+  public form: FormGroup;
+  private qrCodeData = '';
 
-  qrError: string = '';
-  qrCodeData = "";
-  hasQr: boolean = false;
-
-  mfaError: string = "";
-  form;
-
-  mfaOperationSuccess: boolean = false;
-  mfaOperationMessage: string = "";
-
-  constructor(public router: Router, private tokenService: TokenService, private fb: FormBuilder
-    , private accountService: AccountService) {
+  constructor(
+    public router: Router,
+    private tokenService: TokenService,
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private crf : ChangeDetectorRef
+  ) {
     this.form = this.fb.group({
-      password: ['', {validators: [Validators.required]}],
-      code: ['', {validators: [Validators.required]}]
+      password: ['', Validators.required],
+      code: ['', Validators.required],
     });
   }
 
-  public async ngOnInit(): Promise<void> {
+  async ngOnInit(): Promise<void> {
     await this.checkMfa();
-    this.setMfaValidation()
+    this.updateCodeValidators();
   }
 
-  private setMfaValidation() {
-    if (this.mfaEnabled) {
-      this.form.get('code')?.setValidators([Validators.required]);
-    } else {
-      this.form.get('code')?.clearValidators();
-    }
-    this.form.get('code')?.updateValueAndValidity();
+  private updateCodeValidators(): void {
+    const codeControl = this.form.get('code');
+    codeControl?.setValidators(this.mfaEnabled ? [Validators.required] : []);
+    codeControl?.updateValueAndValidity();
   }
 
-  public async checkMfa() {
-    const result: FetchResponse<boolean> = await this.accountService.mfaEnabled();
-    if (result.statusCode === 200) this.mfaEnabled = result.responseBody;
-  }
-
-  public async getQRCode() {
-    this.hasQr = true;
-
-    await this.getTotpSecretKey()
-  }
-
-  public async getTotpSecretKey() {
-    const result = await this.tokenService.getTotpSecretKey();
+  private async checkMfa(): Promise<void> {
+    const result = await this.accountService.mfaEnabled();
     if (result.statusCode === 200) {
-      this.qrCodeData = result.responseBody;
-      this.generateQRCode()
-    } else if (result.statusCode !== 500) {
-      this.qrError = result.responseBody;
-    } else {
-      this.qrError = "Server Error";
+      this.mfaEnabled = result.responseBody;
     }
   }
 
-  public generateQRCode() {
-    const qrCanvas = document.getElementById('qr-canvas') as HTMLCanvasElement;
+  public async getQRCode(): Promise<void> {
+    this.hasQr = true;
+    await this.generateSecretKey();
+  }
+
+  private async generateSecretKey(): Promise<void> {
+    this.processing = true;
+    this.eventMessage = "Generating Secret";
+
+    const result = await this.tokenService.getTotpSecretKey();
+    this.processing = false;
+
+    if (result.statusCode === 200) {
+      this.crf.detectChanges();
+      this.qrCodeData = result.responseBody;
+      this.renderQRCode();
+    } else {
+      this.qrError = result.statusCode !== 500 ? result.responseBody : "Server Error";
+    }
+  }
+
+  private renderQRCode(): void {
+    const canvas = document.getElementById('qr-canvas') as HTMLCanvasElement;
 
     // @ts-ignore
-    QRCode.toCanvas(qrCanvas, this.qrCodeData, (error) => {
-      if (error) {
-        console.error('Error generating QR code:', error);
-      } else {
-        console.log('QR code generated successfully.');
-      }
+    QRCode.toCanvas(canvas, this.qrCodeData, (error) => {
+      if (error) console.error('QR code generation error:', error);
+      else console.log('QR code generated.');
     });
   }
 
-  public async changeMFA() {
+  public async changeMFA(): Promise<void> {
+    this.processing = true;
     this.mfaError = "";
 
-    let result: FetchResponse<string>;
+    const result = this.mfaEnabled
+      ? await this.disableMFA()
+      : await this.enableMFA();
 
-    if (this.mfaEnabled) {
-      result = await this.disableMFA();
-    } else {
-      result = await this.setUpMFA();
-    }
+    this.processing = false;
 
     if (result.statusCode === 200) {
-      this.onFormSuccess();
       this.mfaOperationSuccess = true;
       this.mfaOperationMessage = result.responseBody;
+      this.onFormSuccess();
       await this.checkMfa();
-    } else if (result.statusCode === 401) {
-      this.mfaError = "Invalid credentials."
     } else {
-      this.mfaError = "Internal server error."
+      this.mfaError = result.statusCode === 401 ? "Invalid credentials." : "Internal server error.";
     }
   }
 
-  public async setUpMFA(): Promise<FetchResponse<string>> {
-    const body = {
-      password: this.form.value.password as string,
-      code: this.form.value.code as string,
-      totpSecurityKey: this.qrCodeData as string,
-    }
-
-    return await this.accountService.enableMFA(body.password, body.code);
+  private async enableMFA(): Promise<FetchResponse<string>> {
+    this.eventMessage = "Enabling MFA";
+    const { password, code } = this.form.value;
+    return await this.accountService.enableMFA(password, code);
   }
 
-  public async disableMFA(): Promise<FetchResponse<string>> {
-    const body = {
-      password: this.form.value.password as string,
-      code: this.form.value.code as string,
-    }
+  private async disableMFA(): Promise<FetchResponse<string>> {
+    this.eventMessage = "Disabling MFA";
+    const { password, code } = this.form.value;
+    return await this.accountService.disableMFA(password, code);
+  }
 
-    return await this.accountService.disableMFA(body.password, body.code);
+  public hasError(field: string): boolean {
+    const control = this.form.get(field);
+    return !!control && control.invalid && control.touched;
   }
 }
+
