@@ -9,6 +9,7 @@ import {
   ViewContainerRef
 } from "@angular/core";
 import {MatDialog} from '@angular/material/dialog';
+import { Location } from '@angular/common';
 
 import {UserdataDto} from "../../../services/entities/userdata.dto";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
@@ -37,6 +38,7 @@ import {MfaFormComponent} from "./parts/mfaform/mfa-form.component";
 export class SettingsComponent implements OnInit {
   public loading = false;
   public isMobile = false;
+  private formPushedToHistory = false;
 
   public activeFormComponent: Type<any> | null = null;
 
@@ -53,6 +55,7 @@ export class SettingsComponent implements OnInit {
     private changeDec: ChangeDetectorRef,
     private dialog: MatDialog,
     private componentFactoryResolver: ComponentFactoryResolver,
+    private location: Location
   ) {
   }
 
@@ -79,6 +82,7 @@ export class SettingsComponent implements OnInit {
   }
 
   @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
+
   public showForm(component: Type<FormComponent>) {
     if (this.isMobile) {
       this.showNormal(component);
@@ -88,9 +92,11 @@ export class SettingsComponent implements OnInit {
   }
 
   public showDialog(component: Type<FormComponent>) {
-    const dialogRef = this.dialog.open(component, {
-      disableClose: true,
-    });
+    const dialogRef = this.dialog.open(
+      component, {
+        maxWidth: 300,
+        disableClose: true,
+      });
 
     const instance = dialogRef.componentInstance;
     if (instance) {
@@ -102,14 +108,28 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  public showNormal(component: Type<FormComponent>){
+  public showNormal(component: Type<FormComponent>) {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
     const componentRef = this.dynamicComponentContainer.createComponent(componentFactory);
     componentRef.instance.onFormClosed = () => this.closeEmbeddedForm();
-    componentRef.instance.onFormSuccess = () =>  this.onFormSuccess();
+    componentRef.instance.onFormSuccess = () => this.onFormSuccess();
 
     this.activeFormComponent = component;
+
+    if (!this.formPushedToHistory) {
+      this.location.go(this.location.path(), '', null);
+      this.formPushedToHistory = true;
+      window.addEventListener('popstate', this.handlePopState);
+    }
   }
+
+  private handlePopState = () => {
+    if (this.activeFormComponent) {
+      this.closeEmbeddedForm();
+      this.formPushedToHistory = false;
+      window.removeEventListener('popstate', this.handlePopState);
+    }
+  };
 
   private async onFormSuccess() {
     await this.getUserData();
@@ -118,6 +138,12 @@ export class SettingsComponent implements OnInit {
   public async closeEmbeddedForm() {
     this.dynamicComponentContainer.clear();
     this.activeFormComponent = null;
+
+    if (this.formPushedToHistory) {
+      this.formPushedToHistory = false;
+      window.removeEventListener('popstate', this.handlePopState);
+      this.location.back();
+    }
   }
 
   public showChangeDisplayName() {

@@ -93,9 +93,6 @@ export class MfaFormComponent implements FormComponent, OnInit {
         console.log('QR code generated successfully.');
       }
     });
-
-    qrCanvas.style.width = '100%';
-    qrCanvas.style.height = 'unset';
   }
 
   public async changeMFA() {
