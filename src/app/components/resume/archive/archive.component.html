@@ -36,7 +36,7 @@
 
 <ng-template #projectView>
   <div class="projects">
-    <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects....', stretchToParent : true}"/>
+    <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects...', stretchToParent : true}"/>
     <div class="projects__wrapper" [ngStyle]="!isLoaded() ? {'display' : 'none'} : {'display' : 'flex'}">
       <ng-container *ngTemplateOutlet="archiveFilter"/>
       @if (projectTypes.length == 0) {

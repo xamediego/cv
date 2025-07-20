@@ -8,9 +8,7 @@
       </div>
     }
     @if(eventMessage != ''){
-      <span [ngStyle]="{ 'font-size': fontSize, 'font-weight': fontWeight }">
-      {{ eventMessage }}
-    </span>
+      <span  class="spinner__text" [ngStyle]="{ 'font-size': fontSize, 'font-weight': fontWeight}">{{ eventMessage }}</span>
     }
   </div>
 </div>

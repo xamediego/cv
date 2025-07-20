@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   public onImagesLoad(index: number) {
-    if (index == 0) this.initialImageLoaded = true
+    if (index == 0) this.initialImageLoaded = false
   }
 
   public isLoaded(): boolean {
@@ -69,8 +69,6 @@ export class HomeComponent implements OnInit {
   }
 
   public previous(){
-    console.log(this.activeIndex)
-
     this.resetInterval();
 
     if(this.activeIndex == 0){

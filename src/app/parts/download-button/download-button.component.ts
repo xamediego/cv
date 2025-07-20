@@ -30,7 +30,7 @@ export class DownloadButtonComponent {
   public async downloadFile() {
     if (this.downloading || this.downloadFinished) return;
 
-    this.downloadButtonText = "Download Starting....";
+    this.downloadButtonText = "Download Starting...";
     let dotInterval: any;
 
     const response = await this.downloadService.download(

@@ -1,3 +1,12 @@
+.spinner__stretch {
+  height: 100%;
+  width: 100%;
+  :host{
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .spinner__root {
   display: flex;
   align-items: center;
@@ -5,16 +14,13 @@
   flex-direction: column;
 }
 
-.spinner__stretch {
-  height: 100%;
-  width: 100%;
-}
-
 .spinner__inner {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  width: 100%;
   gap: 30px;
 }
 
@@ -32,6 +38,24 @@
   border-left-color: #fff;
 
   animation: spin 1s linear infinite;
+}
+
+.spinner__text {
+  width: 100%;
+  text-align: center;
+
+  background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 1)
+  );
+
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulseBackground 2s linear infinite;
+
 }
 
 @keyframes spin {

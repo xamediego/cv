@@ -6,8 +6,7 @@
   (click)="downloadFile()">
   @if (downloading) {
     <div class="download__button__spinner">
-      <ng-container
-        *appEventSpinner="{condition : downloading , eventMessage : '', stretchToParent : false, size : 'small'}"/>
+      <ng-container *appEventSpinner="{condition : downloading , eventMessage : '', stretchToParent : false, size : 'small'}"/>
       <p class="download__button__percentage">{{ downloadPercentage }}</p>
     </div>
   }

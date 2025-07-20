@@ -9,7 +9,7 @@ import {NgStyle} from "@angular/common";
   ],
   styleUrl: './event-spinner.component.scss'
 })
-export class EventSpinnerComponent {
+export class EventSpinnerComponent{
 
   @Input() eventMessage: string = '';
   @Input() gap: string = '30px';
