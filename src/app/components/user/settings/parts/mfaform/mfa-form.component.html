@@ -35,7 +35,7 @@
       } @else if (hasQr || mfaEnabled) {
         @if (!mfaEnabled && hasQr) {
           <div class="qr-div">
-            <canvas id="qr-canvas"></canvas>
+            <canvas class="qr-canvas" id="qr-canvas"></canvas>
           </div>
         }
         <ng-container *ngTemplateOutlet="MfaForm"/>

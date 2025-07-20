@@ -84,6 +84,7 @@ export class MfaFormComponent implements FormComponent, OnInit {
 
   public generateQRCode() {
     const qrCanvas = document.getElementById('qr-canvas') as HTMLCanvasElement;
+
     // @ts-ignore
     QRCode.toCanvas(qrCanvas, this.qrCodeData, (error) => {
       if (error) {
@@ -92,6 +93,9 @@ export class MfaFormComponent implements FormComponent, OnInit {
         console.log('QR code generated successfully.');
       }
     });
+
+    qrCanvas.style.width = '100%';
+    qrCanvas.style.height = 'unset';
   }
 
   public async changeMFA() {
