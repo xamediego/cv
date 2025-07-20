@@ -15,10 +15,10 @@ import {EventSpinnerDirective} from "../../event-spinner.directive";
   selector: 'app-mfa-form',
   standalone: true,
   imports: [NgTemplateOutlet, ReactiveFormsModule, EventSpinnerDirective],
-  templateUrl: './mfa-form.component.html',
-  styleUrls: ['../form.component.scss']
+  templateUrl: './set-mfa-form.component.html',
+  styleUrls: ['../form.component.scss', 'set-mfa-form.component.scss']
 })
-export class MfaFormComponent implements FormComponent, OnInit {
+export class SetMfaFormComponent implements FormComponent, OnInit {
   public processing = false;
   public eventMessage = '';
 

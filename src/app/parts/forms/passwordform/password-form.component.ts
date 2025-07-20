@@ -3,12 +3,14 @@ import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AccountService} from "../../../services/account/account.service";
 import {FormComponent} from "../form.component";
+import {PasswordValidatorComponent} from "../../password-validator/password-validator.component";
 
 @Component({
   selector: 'app-password-form',
   imports: [
     EventSpinnerDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PasswordValidatorComponent
   ],
   templateUrl: './password-form.component.html',
   styleUrl: '../form.component.scss'

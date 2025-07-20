@@ -14,7 +14,6 @@
 
           <input
             formControlName="displayName"
-            class="form__input"
             [class.error]="form.get('displayName')?.invalid && form.get('displayName')?.touched"
             type="text"
           />
@@ -29,7 +28,6 @@
 
           <input
             formControlName="password"
-            class="form__input"
             [class.error]="form.get('password')?.invalid && form.get('password')?.touched"
             type="password"
           />

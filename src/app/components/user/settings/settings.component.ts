@@ -22,7 +22,7 @@ import {EmailFormComponent} from "../../../parts/forms/emailform/email-form.comp
 import {UsernameFormComponent} from "../../../parts/forms/usernameform/username-form.component";
 import {PasswordFormComponent} from "../../../parts/forms/passwordform/password-form.component";
 import {DeleteFormComponent} from "../../../parts/forms/deleteform/delete-form.component";
-import {MfaFormComponent} from "../../../parts/forms/mfaform/mfa-form.component";
+import {SetMfaFormComponent} from "../../../parts/forms/mfaform/set-mfa-form.component";
 
 @Component({
   selector: 'app-settings',
@@ -150,6 +150,6 @@ export class SettingsComponent implements OnInit {
   }
 
   public showEnable2FA() {
-    this.showForm(MfaFormComponent);
+    this.showForm(SetMfaFormComponent);
   }
 }

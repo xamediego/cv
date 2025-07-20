@@ -55,7 +55,7 @@
         <label class="form__label" [class.error]="hasError('code')">
           {{ mfaEnabled ? 'MFA Code' : 'Confirm Code' }}
         </label>
-        <input type="text" formControlName="code" class="form__input" [class.error]="hasError('code')" />
+        <input type="text" formControlName="code" class="form__mfa-input" [class.error]="hasError('code')" />
       </div>
 
       <p class="form__error">{{ mfaError }}</p>

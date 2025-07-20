@@ -64,6 +64,11 @@
     }
   }
 
+  &__mfa-input{
+    text-align: center;
+    letter-spacing: 10px;
+  }
+
   &__error {
     color: var(--text-error);
     font-size: 0.9rem;
@@ -80,38 +85,44 @@
   }
 
   &__button {
-    height: 35px;
     width: 100%;
     max-width: 150px;
 
-    border-radius: 5px;
     text-align: center;
 
+    padding: 0.8rem 1.6rem;
+    background-color: transparent;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s, color 0.3s;
+
     &:hover {
+
       cursor: pointer;
       opacity: 0.8;
     }
 
     &__cancel {
       border: 1px solid #ccc;
+      &:hover {
+        color: #000;
+        background-color: #f0f0f0;
+      }
     }
 
     &__submit {
       border: 1px solid var(--button-secondary);
+      &:hover {
+        background-color: var(--button-secondary);
+      }
     }
 
     &__dangerous {
       background: var(--button-warning);
       border: 1px solid var(--button-warning);
+      &:hover {
+        background-color: var(--button-warning);
+      }
     }
   }
-}
-
-.qr-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  gap: 25px;
 }

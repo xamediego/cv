@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
@@ -11,38 +11,56 @@ import {EventSpinnerDirective} from "../../event-spinner.directive";
   styleUrls: ['../form.component.scss']
 })
 export class MultiFactorFormComponent {
-  @Input() fetchRequest!: (code : string) => Promise<FetchResponse<any>>;
-  @Output() afterMfa = new EventEmitter();
 
-  processing: boolean = false;
-  errorMessage: string = '';
-  form;
+  @Input() public fetchRequest!: (code: string) => Promise<FetchResponse<any>>;
+  @Output() public afterMfa = new EventEmitter();
 
-  constructor(private fb: FormBuilder) {this.form = this.fb.group({code: ['', {validators: [Validators.required]}]})}
+  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
 
-  async onSubmit() {
+  public processing: boolean = false;
+  public errorMessage: string = '';
+  public form;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      code: ['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]],
+    })
+  }
+
+  public async onSubmit() {
     this.errorMessage = "";
+    await this.processToken();
+  }
 
+  private async processToken() {
     if (this.form.status === 'VALID') {
       const code = this.form.value.code;
       this.processing = true;
       // @ts-ignore
-      const result =  await this.fetchRequest(code);
+      const result = await this.fetchRequest(code);
       this.processing = false;
       if (result.statusCode === 200) {
         await this.afterSuccess(result);
       } else if (result.statusCode === 500) {
         this.errorMessage = 'Server Error';
       } else {
-        this.errorMessage = result.responseBody;
+        this.errorMessage = result.responseBody.error;
       }
     }
   }
-  async afterSuccess(response: FetchResponse<any>) {
+
+  private async afterSuccess(response: FetchResponse<any>) {
     this.afterMfa.emit(response);
   }
 
-  return() {
+  async onCodeInput() {
+    let code = this.form.get('code')?.value || '';
+    code = code.replace(/\D/g, '');
+    code = code.slice(0, 6);
+    this.form.get('code')?.setValue(code, { emitEvent: false });
 
+    if (code.length === 6) {
+     await this.processToken();
+    }
   }
 }

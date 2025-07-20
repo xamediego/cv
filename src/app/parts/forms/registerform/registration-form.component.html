@@ -1,0 +1,93 @@
+<div class="form">
+  <h2 class="form__title">Register</h2>
+  <ng-container
+    *appEventSpinner="{condition : registering ,eventMessage : 'Registering Account....', stretchToParent : true}"/>
+  @if (!registerComplete && !registering) {
+    <ng-container *ngTemplateOutlet="form"/>
+  } @else if (registerComplete && !registering) {
+    <ng-container *ngTemplateOutlet="success"/>
+  }
+</div>
+
+<ng-template #form>
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="form__form">
+
+    <div class="form__input-group">
+      <label class="form__label"
+             [class.error]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+        Username
+      </label>
+      <input
+        type="text"
+        formControlName="username"
+        [class.error]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"/>
+    </div>
+
+    <div class="form__input-group">
+      <label class="form__label"
+             [class.error]="registerForm.get('displayName')?.invalid && registerForm.get('displayName')?.touched">
+        DisplayName
+      </label>
+      <input
+        type="text"
+        formControlName="displayName"
+        [class.error]="registerForm.get('displayName')?.invalid && registerForm.get('displayName')?.touched"/>
+    </div>
+
+    <div class="form__input-group">
+      <label class="form__label"
+             [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        Email
+      </label>
+      <input
+        type="email"
+        formControlName="email"
+        [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"/>
+    </div>
+
+    <div class="form__input-group">
+      <label class="form__label"
+             [class.error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        Password
+      </label>
+      <input
+        type="password"
+        formControlName="password"
+        [class.error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"/>
+    </div>
+
+    <div class="form__input-group">
+      <label class="form__label"
+             [class.error]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+        Confirm Password
+      </label>
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        [class.error]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"/>
+    </div>
+
+    <app-password-validator
+      style="width: 100%"
+      [password]="registerForm.value.password">
+    </app-password-validator>
+
+    @if (error){
+      <p class="form__error">{{ error }}</p>
+    }
+
+    <div class="form__button-group">
+      <button class="form__button form__button__cancel" type="button" (click)="cancel()">Cancel</button>
+      <button class="form__button form__button__submit" type="submit" [disabled]="registering">Confirm</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #success>
+  <div class="register__success">
+    <h2>Registration Complete!</h2>
+    <p>Your account has been registered.<br>A verification mail has been sent to your account that you can use to
+      activate your account.<br>After this you can login to the platform</p>
+    <a routerLink="/auth">Return</a>
+  </div>
+</ng-template>

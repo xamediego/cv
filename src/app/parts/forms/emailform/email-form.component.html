@@ -16,7 +16,6 @@
 
           <input
             formControlName="email"
-            class="form__input"
             [class.error]="form.get('email')?.invalid && form.get('email')?.touched"
             type="text"
           />
@@ -31,7 +30,6 @@
 
           <input
             formControlName="password"
-            class="form__input"
             [class.error]="form.get('password')?.invalid && form.get('password')?.touched"
             type="password"
           />

@@ -3,6 +3,7 @@
     <form class="form__form" [formGroup]="form" (submit)="onSubmit()">
       <h2 class="form__title">Enter MFA Code</h2>
       <p>Please insert a verification code from your authenticator</p>
+
       <div class="form__input-group">
         <label
           class="form__label"
@@ -12,16 +13,21 @@
 
         <input
           formControlName="code"
-          class="form__input"
+          class="form__mfa-input"
           [class.error]="form.get('code')?.invalid && form.get('code')?.touched"
+          [class.valid]="form.get('code')?.value?.length === 6"
           type="text"
+          maxlength="6"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          (input)="onCodeInput()"
         />
       </div>
 
       <p class="form__error">{{ errorMessage }}</p>
 
       <div class="form__button-group">
-        <button class="form__button form__button__cancel" type="button" (click)="return()">Cancel</button>
+        <button class="form__button form__button__cancel" type="button" (click)="onFormClosed()">Cancel</button>
         <button class="form__button form__button__submit" type="submit">Confirm</button>
       </div>
     </form>

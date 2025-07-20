@@ -1,0 +1,49 @@
+<div class="form">
+  <ng-container #dynamicComponentContainer/>
+  @if (!mfaCheck) {
+    <h2 class="form__title">Login</h2>
+    @if (!loggingIn) {<ng-container *ngTemplateOutlet="form"/>}
+    <ng-container *appEventSpinner="{condition : loggingIn ,eventMessage : 'Logging in....', stretchToParent : true}"/>
+  }
+</div>
+
+<ng-template #form>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form__form">
+    <div class="form__input-group">
+      <label
+        class="form__label"
+        [class.error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+      >
+        Username
+      </label>
+
+      <input
+        formControlName="username"
+        [class.error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+        type="text"
+      />
+    </div>
+
+    <div class="form__input-group">
+      <label
+        class="form__label"
+        [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+      >
+        Password
+      </label>
+
+      <input
+        formControlName="password"
+        [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        type="password"
+      />
+    </div>
+
+    <p class="form__error">{{ errorMessage }}</p>
+
+    <div class="form__button-group">
+      <button class="form__button form__button__cancel" type="button" (click)="cancel()">Cancel</button>
+      <button class="form__button form__button__submit" type="submit">Confirm</button>
+    </div>
+  </form>
+</ng-template>
