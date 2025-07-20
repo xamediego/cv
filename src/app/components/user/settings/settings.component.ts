@@ -23,7 +23,6 @@ import {UsernameFormComponent} from "./parts/usernameform/username-form.componen
 import {PasswordFormComponent} from "./parts/passwordform/password-form.component";
 import {DeleteFormComponent} from "./parts/deleteform/delete-form.component";
 import {MfaFormComponent} from "./parts/mfaform/mfa-form.component";
-import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
