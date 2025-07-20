@@ -8,8 +8,8 @@ import {
   ViewChild,
   ViewContainerRef
 } from "@angular/core";
+
 import {MatDialog} from '@angular/material/dialog';
-import { Location } from '@angular/common';
 
 import {UserdataDto} from "../../../services/entities/userdata.dto";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
@@ -23,6 +23,7 @@ import {UsernameFormComponent} from "./parts/usernameform/username-form.componen
 import {PasswordFormComponent} from "./parts/passwordform/password-form.component";
 import {DeleteFormComponent} from "./parts/deleteform/delete-form.component";
 import {MfaFormComponent} from "./parts/mfaform/mfa-form.component";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
@@ -38,7 +39,6 @@ import {MfaFormComponent} from "./parts/mfaform/mfa-form.component";
 export class SettingsComponent implements OnInit {
   public loading = false;
   public isMobile = false;
-  private formPushedToHistory = false;
 
   public activeFormComponent: Type<any> | null = null;
 
@@ -55,7 +55,6 @@ export class SettingsComponent implements OnInit {
     private changeDec: ChangeDetectorRef,
     private dialog: MatDialog,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private location: Location
   ) {
   }
 
@@ -116,37 +115,23 @@ export class SettingsComponent implements OnInit {
 
     this.activeFormComponent = component;
 
-    if (!this.formPushedToHistory) {
-      this.location.go(this.location.path(), '', null);
-      this.formPushedToHistory = true;
-      window.addEventListener('popstate', this.handlePopState);
-    }
-  }
-
-  private handlePopState = () => {
-    if (this.activeFormComponent) {
-      this.closeEmbeddedForm();
-      this.formPushedToHistory = false;
-      window.removeEventListener('popstate', this.handlePopState);
-    }
-  };
-
-  private async onFormSuccess() {
-    await this.getUserData();
+    history.pushState(null, '', (window.location.origin + window.location.pathname));
+    window.addEventListener('popstate', this.handlePopState);
   }
 
   public async closeEmbeddedForm() {
     this.dynamicComponentContainer.clear();
     this.activeFormComponent = null;
-
-    if (this.formPushedToHistory) {
-      this.formPushedToHistory = false;
-      window.removeEventListener('popstate', this.handlePopState);
-      this.location.back();
-    }
+    window.removeEventListener('popstate', this.handlePopState);
   }
 
-  public showChangeDisplayName() {
+  private handlePopState = async () => {await this.closeEmbeddedForm();}
+
+  private async onFormSuccess() {
+    await this.getUserData();
+  }
+
+  public async showChangeDisplayName() {
     this.showForm(DisplaynameFormComponent);
   }
 

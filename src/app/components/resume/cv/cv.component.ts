@@ -2,14 +2,14 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
-    selector: 'app-resume',
+    selector: 'app-cv',
     imports: [
         NgTemplateOutlet,
     ],
-    templateUrl: './resume.component.html',
-    styleUrl: './resume.component.scss'
+    templateUrl: './cv.component.html',
+    styleUrl: './cv.component.scss'
 })
-export class ResumeComponent implements OnInit{
+export class CvComponent implements OnInit{
 
   isSmallScreen: boolean = false;
   smallScreen : number = 768;

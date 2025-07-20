@@ -3,7 +3,7 @@ import {NgModule} from "@angular/core";
 import {SettingsComponent} from "./components/user/settings/settings.component";
 
 export const appRoutes: Routes = [
-  {path: '', loadChildren: () => import('./components/resume/user.module').then((m) => m.UserModule)},
+  {path: '', loadChildren: () => import('./components/resume/resume.module').then((m) => m.ResumeModule)},
   {path: 'home', loadChildren: () => import('./components/portal/portal.module').then((m) => m.PortalModule)},
   {path: 'auth', loadChildren: () => import('./components/authentication/authentication.module').then((m) => m.AuthenticationModule)},
   {path: 'user/settings', component : SettingsComponent},
