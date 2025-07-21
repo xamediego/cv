@@ -32,11 +32,12 @@
         </form>
       } @else {
         <h2 class="form__title">Account Deleted</h2>
-        <p class="form__description">Your account has been deleted, you will now be redirected to the main page.</p>
+        <p class="form__description" style="text-align: center">
+          Your account has been deleted, you will now be redirected to the main page.</p>
       }
     }
 
     <ng-container
-      *appEventSpinner="{condition : processing && !mfaCheck ,eventMessage : 'Updating Password', stretchToParent : false}"/>
+      *appEventSpinner="{condition : processing && !mfaCheck ,eventMessage : processMessage, stretchToParent : false}"/>
   </div>
 </div>

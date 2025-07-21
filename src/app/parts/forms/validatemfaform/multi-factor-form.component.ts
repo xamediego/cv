@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 
 @Component({
-  selector: 'app-validatemfaform',
+  selector: 'app-validate-mfa-form',
   templateUrl: './multi-factor-form.component.html',
   imports: [ReactiveFormsModule, EventSpinnerDirective],
   styleUrls: ['../form.component.scss']
@@ -15,7 +15,10 @@ export class MultiFactorFormComponent {
   @Input() public fetchRequest!: (code: string) => Promise<FetchResponse<any>>;
   @Output() public afterMfa = new EventEmitter();
 
-  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
+  @Input() public onFormClosed: () => void = () => {};
+  @Input() public onFormSuccess: () => void = () => {};
+
+  @Input() public processMessage : string = '';
 
   public processing: boolean = false;
   public errorMessage: string = '';

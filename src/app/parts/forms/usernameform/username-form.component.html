@@ -45,13 +45,14 @@
       </form>
     } @else {
       <h2 class="form__title">Username Updated</h2>
-      <p class="form__description">Your username has been successfully updated!</p>
+        <p class="form__description" style="text-align: center">
+        Your username has been successfully updated!</p>
       <div class="form__button-group" style="justify-content: center">
         <button class="form__button form__button__cancel" type="button" (click)="onFormClosed()">Return</button>
       </div>
     }
   }
-    <ng-container *appEventSpinner="{condition : processing && !mfaCheck ,eventMessage : 'Updating Password', stretchToParent : false}"/>
+    <ng-container *appEventSpinner="{condition : processing && !mfaCheck ,eventMessage : processMessage, stretchToParent : false}"/>
   </div>
 </div>
 

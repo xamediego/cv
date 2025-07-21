@@ -11,28 +11,22 @@
 
   width: 100%;
 
-  &__content{
-    display: flex;
-    flex-direction: column;
-
-    margin: 2rem;
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-
-    flex-grow: 1;
-    align-self: stretch;
-
-    gap: 15px;
-  }
-
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    flex-grow: 1;
+
+    align-self: stretch;
+    margin: 1rem;
+    gap: 15px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
 
     flex-grow: 1;
     align-self: stretch;
@@ -92,19 +86,30 @@
   }
 
   &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 100%;
     max-width: 150px;
 
-    text-align: center;
+    max-height: 25px;
+    height: 100%;
 
-    padding: 0.8rem 1.6rem;
+    padding: 0.8rem 0.8rem;
     background-color: transparent;
-    text-decoration: none;
+
     border-radius: 6px;
     transition: background 0.3s, color 0.3s;
 
-    &:hover {
+    p{
+      all :unset;
+    }
 
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
       cursor: pointer;
       opacity: 0.8;
     }

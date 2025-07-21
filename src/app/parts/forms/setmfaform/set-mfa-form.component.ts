@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
@@ -22,8 +22,9 @@ export class SetMfaFormComponent implements FormComponent, OnInit {
   public processing = false;
   public eventMessage = '';
 
-  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
-  @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
+  @Input() public onFormClosed: () => void = () => {};
+  @Input() public onFormSuccess: () => void = () => {};
+
 
   public mfaEnabled = false;
   public mfaOperationSuccess = false;

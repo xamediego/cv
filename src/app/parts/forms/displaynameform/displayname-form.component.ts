@@ -1,4 +1,4 @@
-import {Component, Inject, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, Input, ViewChild, ViewContainerRef} from '@angular/core';
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AccountService} from "../../../services/account/account.service";
@@ -21,10 +21,11 @@ export class DisplaynameFormComponent extends MfaFormAbstract implements FormCom
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing: boolean = false;
+  processMessage : string = 'Updating Display Name...';
   updated: boolean = false;
 
-  @Inject('onFormClosed') public onFormClosed: () => void = () => {};
-  @Inject('onFormSuccess') public onFormSuccess: () => void = () => {};
+  @Input() public onFormClosed: () => void = () => {};
+  @Input() public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,
@@ -58,7 +59,8 @@ export class DisplaynameFormComponent extends MfaFormAbstract implements FormCom
         this.dynamicComponentContainer,
         async (code) => await fetchRequest(code),
         async () => await this.onSuccess(),
-        (message) => (this.errorMessage = message)
+        (message) => (this.errorMessage = message),
+        this.processMessage
       );
     } else {
       this.form.markAllAsTouched();

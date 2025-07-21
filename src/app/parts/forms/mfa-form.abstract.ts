@@ -3,23 +3,29 @@ import {FetchResponse} from "../../services/generic/entities/FetchResponse";
 import {MfaService} from "../../services/mfa/mfa.service";
 
 export abstract class MfaFormAbstract {
-  private mfaService : MfaService;
-  protected constructor(mfaService: MfaService) {this.mfaService = mfaService;}
-  mfaCheck = false;
+  private mfaService: MfaService;
 
+  protected constructor(mfaService: MfaService) {
+    this.mfaService = mfaService;
+  }
+
+  mfaCheck = false;
   protected async handleMfa<T>(
-    viewContainerRef : ViewContainerRef,
+    viewContainerRef: ViewContainerRef,
     fetchWithCode: (code: string) => Promise<FetchResponse<T>>,
     onSuccess: (response: FetchResponse<T>) => void,
-    onError: (message: string) => void) {
+    onError: (message: string) => void,
+    processMessage : string) {
     try {
       this.mfaCheck = true;
       const response = await this.mfaService.openMfaScreen<T>(
         fetchWithCode,
         () => {
           this.mfaCheck = false;
-          viewContainerRef.clear();},
-        viewContainerRef
+          viewContainerRef.clear();
+        },
+        viewContainerRef,
+        processMessage
       );
       if (response.statusCode === 200) {
         onSuccess(response);

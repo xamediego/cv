@@ -1,34 +1,36 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgTemplateOutlet} from "@angular/common";
-import {Router, RouterLink} from '@angular/router';
 
 import {RegisterService} from "../../../services/register/register.service";
 import {PasswordValidatorComponent} from "../../password-validator/password-validator.component";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormEmailValidator} from "../../../tools/EmailValidator";
 import {PasswordValidator} from "../../../tools/PasswordValidator";
+import {FormComponent} from "../form.component";
+import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 
 @Component({
   selector: 'app-registration-form',
   standalone: true,
-  imports: [ReactiveFormsModule, PasswordValidatorComponent, EventSpinnerDirective, NgTemplateOutlet, RouterLink],
+  imports: [ReactiveFormsModule, PasswordValidatorComponent, EventSpinnerDirective],
   templateUrl: './registration-form.component.html',
   styleUrls: ['../form.component.scss']
 })
-export class RegistrationFormComponent {
+export class RegistrationFormComponent implements FormComponent{
 
-  registerForm: FormGroup;
-  error: string = '';
-  registering: boolean = false;
-  registerComplete: boolean = false;
+  form: FormGroup;
+  errorMessage: string | undefined = undefined;
+  processing : boolean = false;
+  processMessage : string = 'Registering New Account...'
+  updated : boolean = false;
+
+  @Input() public onFormClosed: () => void = () => {};
+  @Input() public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,
-    private registrationService: RegisterService,
-    private router: Router
-  ) {
-    this.registerForm = this.fb.group(
+    private registrationService: RegisterService) {
+    this.form = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(2)]],
         displayName : ['', [Validators.required, Validators.minLength(2)]],
@@ -48,32 +50,39 @@ export class RegistrationFormComponent {
     return password === confirmPassword ? null : { mismatch: true };
   }
 
-  public async register(): Promise<void> {
-    if (this.registerForm.invalid) {
-      this.error = 'Please correct the highlighted fields.';
-      this.registerForm.markAllAsTouched();
+  public async submit() {
+    if (this.form.invalid) {
+      this.errorMessage = 'Please correct the highlighted fields.';
+      this.form.markAllAsTouched();
       return;
     }
 
-    const { username, displayName, email, password } = this.registerForm.value;
-    this.registering = true;
+    await this.processForm<string>(this.updateRequest());
+  }
 
-    try {
-      const response = await this.registrationService.register(username, displayName, password, email);
-      if (response.statusCode === 200) {
-        this.registerComplete = true;
-      } else {
-        // @ts-ignore
-        this.error = response.responseBody.error;
-      }
-    } catch (err) {
-      this.error = 'An error occurred during registration.';
-    } finally {
-      this.registering = false;
+  private async processForm<T>(fetchRequest: (code?: string) => Promise<FetchResponse<T>>) {
+    const response = await fetchRequest();
+    if (response.statusCode === 200) {
+      await this.onSuccess();
+    }else {
+      this.form.markAllAsTouched();
+      // @ts-ignore
+      this.errorMessage = response.responseBody.error;
     }
   }
 
-  public async cancel() {
-    await this.router.navigate(['/auth']);
+  private onSuccess: () => Promise<void> = async () => {
+    this.onFormSuccess();
+    this.updated = true;
+  }
+
+  private updateRequest(): () => Promise<FetchResponse<string>> {
+    const { username, displayName, email, password } = this.form.value;
+    return async () => {
+      this.processing = true
+      const result = await this.registrationService.register(username, displayName, password, email);
+      this.processing = false;
+      return result;
+    };
   }
 }

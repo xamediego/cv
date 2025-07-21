@@ -12,11 +12,13 @@ export class MfaService {
   public openMfaScreen<T>(
     fetchRequest: (code: string) => Promise<FetchResponse<T>>,
     onClose: () => void,
-    viewContainer: ViewContainerRef
+    viewContainer: ViewContainerRef,
+    processMessage : string
   ): Promise<FetchResponse<T>> {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(MultiFactorFormComponent);
     const componentRef = viewContainer.createComponent(componentFactory);
 
+    componentRef.instance.processMessage = processMessage;
     componentRef.instance.fetchRequest = fetchRequest;
     componentRef.instance.onFormClosed = onClose;
 

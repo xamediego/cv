@@ -13,9 +13,9 @@ export class AuthenticationService {
 
   private apiLink: string = `${environment.MainApi}/auth/authentication`;
 
-  constructor(private fetchService : FetchService, private userService : UserService, private router : Router) {}
+  constructor(private fetchService : FetchService, private userService : UserService) {}
 
-  public async login(username : string, password : string, code : string) : Promise<FetchResponse<string>>{
+  public async login(username : string, password : string, code : string | undefined) : Promise<FetchResponse<string>>{
     const apiLink = `${this.apiLink}/login`;
     const method = "POST";
 
@@ -38,7 +38,6 @@ export class AuthenticationService {
 
     if(result.statusCode == 200){
       this.userService.removeJwtToken();
-
       location.href = "/home";
     }
   }

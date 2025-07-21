@@ -44,11 +44,7 @@ export class AccountService {
 
     const dto = {password, email, code}
 
-    const result = await this.fetchService.fetchData<string>(apiLink, method, dto);
-
-    if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
-
-    return result;
+    return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
 
   public async updateUsername(password: string, username: string, code: string | undefined) : Promise<FetchResponse<string>> {

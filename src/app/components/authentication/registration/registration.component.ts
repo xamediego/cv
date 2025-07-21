@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegistrationFormComponent} from "../../../parts/forms/registerform/registration-form.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -9,4 +10,9 @@ import {RegistrationFormComponent} from "../../../parts/forms/registerform/regis
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {}
+export class RegistrationComponent {
+  constructor(private router : Router) {}
+  onRegisterClose = async () => {
+    await this.router.navigate(['auth']);
+  };
+}

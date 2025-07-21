@@ -42,10 +42,24 @@
 
       &__details{
         display: flex;
-        justify-content: start;
+        justify-content: space-between;
         align-items: center;
         flex-direction: row;
+
+        width: 100%;
       }
+    }
+  }
+
+  &__new-project{
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    gap : 5px;
+
+    &:hover{
+      opacity: 0.8;
+      cursor: pointer;
     }
   }
 

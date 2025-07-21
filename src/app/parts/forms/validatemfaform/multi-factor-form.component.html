@@ -31,7 +31,7 @@
       </div>
     </form>
   } @else {
-    <ng-container *appEventSpinner="{condition : processing ,eventMessage : 'Validating Token', stretchToParent : false}"/>
+    <ng-container *appEventSpinner="{condition : processing ,eventMessage : processMessage, stretchToParent : false}"/>
   }
 </div>
 

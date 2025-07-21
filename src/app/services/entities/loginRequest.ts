@@ -1,5 +1,5 @@
 export interface LoginRequest {
   username : string;
   password : string;
-  code : string;
+  code : string | undefined;
 }
