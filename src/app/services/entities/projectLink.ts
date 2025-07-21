@@ -1,4 +1,4 @@
-export interface LinkDto {
+export interface ProjectLink {
   provider: string;
   url: string;
 }

@@ -1,7 +1,7 @@
-import {LinkDto} from "./link.dto";
+import {ProjectLink} from "./projectLink";
 import {ProjectSubType} from "../enums/ProjectSubType";
 
-export interface ProjectDto {
+export interface Project {
   id : number;
   title: string;
   description: string;
@@ -9,17 +9,11 @@ export interface ProjectDto {
   filesize: string;
   projectThumbnail: string;
   publishedDate: Date;
-  links: LinkDto[];
+  links: ProjectLink[];
   images: string[];
   fileName : string;
   publisherName : string;
 
-  extraDetails : [
-    {
-      key : string,
-      value : string
-    }
-  ]
-
+  extraDetails : [{ key : string, value : string }];
   projectSubType : ProjectSubType;
 }

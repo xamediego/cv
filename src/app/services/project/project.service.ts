@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {ProjectDto} from "../entities/project.dto";
 import {environment} from "../../../environments/environment";
 import {FetchService} from "../generic/fetch.service";
 import {FetchResponse} from "../generic/entities/FetchResponse";
 import featured from "../../../assets/featured.json";
+import { Project } from '../entities/project';
 
 @Injectable({
   providedIn: 'root'
@@ -14,29 +14,29 @@ export class ProjectService {
 
   constructor(private fetchService: FetchService) {}
 
-  public async findAll(): Promise<FetchResponse<ProjectDto[]>> {
+  public async findAll(): Promise<FetchResponse<Project[]>> {
     const apiLink = `${this.apiLink}/all`;
     const method = 'GET';
 
-    return await this.fetchService.fetchData<ProjectDto[]>(apiLink, method);
+    return await this.fetchService.fetchData<Project[]>(apiLink, method);
   }
 
-  public async findByTitle(title: String): Promise<FetchResponse<ProjectDto>> {
+  public async findByTitle(title: String): Promise<FetchResponse<Project>> {
     const apiLink = `${this.apiLink}/title/${title}`;
     const method = 'GET';
 
-    return await this.fetchService.fetchData<ProjectDto>(apiLink, method);
+    return await this.fetchService.fetchData<Project>(apiLink, method);
   }
 
   public findFeaturedLocal(): {title : string, url : string}[]{
     return featured.projects;
   }
 
-  public async findFeaturedUser(): Promise<FetchResponse<ProjectDto[]>>{
+  public async findFeaturedUser(): Promise<FetchResponse<Project[]>>{
     const apiLink = `${this.apiLink}/featured`;
     const method = 'GET';
 
-    return await this.fetchService.fetchData<ProjectDto[]>(apiLink, method);
+    return await this.fetchService.fetchData<Project[]>(apiLink, method);
   }
 
   public async download(fileName: string,

@@ -11,7 +11,7 @@ import {
 
 import {MatDialog} from '@angular/material/dialog';
 
-import {UserdataDto} from "../../../services/entities/userdata.dto";
+import {UserData} from "../../../services/entities/userData";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {AccountService} from "../../../services/account/account.service";
 import {PortalHeaderComponent} from "../../portal/portal-header/portal.header.component";
@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
 
   public activeFormComponent: Type<any> | null = null;
 
-  public userData: UserdataDto = {
+  public userData: UserData = {
     displayName: "",
     username: "",
     email: "",
@@ -72,7 +72,7 @@ export class SettingsComponent implements OnInit {
     this.changeDec.detectChanges();
 
     this.loading = true;
-    const result: FetchResponse<UserdataDto> = await this.accountService.getAccountData();
+    const result: FetchResponse<UserData> = await this.accountService.getAccountData();
     this.loading = false;
 
     this.userData = result.responseBody;

@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {FetchService} from "../generic/fetch.service";
-import {RegisterDto} from "../entities/register.dto";
+import {RegisterRequest} from "../entities/registerRequest";
 import {FetchResponse} from "../generic/entities/FetchResponse";
-import {ConfirmDto} from "../entities/confirm.dto";
+import {ConfirmEmail} from "../entities/confirmEmail";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class RegisterService {
     const apiLink = `${this.apiLink}/register`;
     const method = "POST";
 
-    const registerDto: RegisterDto = {
+    const registerDto: RegisterRequest = {
       username,
       displayName,
       password,
@@ -33,7 +33,7 @@ export class RegisterService {
     const apiLink = `${this.apiLink}/confirmRegister`;
     const method = "POST";
 
-    const confirmDto: ConfirmDto = {
+    const confirmDto: ConfirmEmail = {
       username,
       emailToken
     };

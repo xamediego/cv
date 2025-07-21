@@ -74,7 +74,7 @@ export class EmailFormComponent extends MfaFormAbstract implements FormComponent
     const {password, email} = this.form.value;
     return async (code?: string) => {
       this.processing = true
-      const result = await this.accountService.updatePassword(password, email, code);
+      const result = await this.accountService.updateEmail(password, email, code);
       this.processing = false;
       return result;
     };

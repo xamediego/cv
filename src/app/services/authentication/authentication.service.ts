@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {FetchService} from "../generic/fetch.service";
-import {LoginDto} from "../entities/login.dto"
+import {LoginRequest} from "../entities/loginRequest"
 import {FetchResponse} from "../generic/entities/FetchResponse";
 import {UserService} from "../generic/user.service";
 import {Router} from "@angular/router";
@@ -19,7 +19,7 @@ export class AuthenticationService {
     const apiLink = `${this.apiLink}/login`;
     const method = "POST";
 
-    const loginDto: LoginDto = {
+    const loginDto: LoginRequest = {
       username,
       password,
       code

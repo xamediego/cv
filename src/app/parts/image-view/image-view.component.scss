@@ -1,0 +1,151 @@
+.image-view {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+
+  max-width: 600px;
+
+  gap: 10px;
+
+  @media screen and (max-width: 920px) {
+    width: 100%;
+    max-width: unset;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.main-image {
+  position: relative;
+
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: row;
+
+  height: 100%;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 5px;
+
+  width: 595px;
+
+  @media screen and (max-width: 920px) {
+    width: unset;
+  }
+
+  &__image {
+    width: 100%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
+}
+
+.fade-in{
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.imageHolder {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  gap: 5px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  -webkit-overflow-scrolling: touch;
+
+  flex-wrap: nowrap;
+  @media screen and (max-width: 920px) {
+    width: 100%;
+  }
+
+  &__holder {
+    max-width: 185px;
+    min-width: 0;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+
+    padding: 5px;
+  }
+
+  &__image {
+    width: 100%;
+
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+
+    &--active {
+      box-shadow: 0 0 8px 3px rgba(0, 140, 255, 0.6);
+      border-radius: 5px;
+    }
+  }
+}
+
+
+.navigation {
+  z-index: 1;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+
+    height: 30px;
+    width: 30px;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    pointer-events: none;
+
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    &:hover {
+      button {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  &__filler {
+    width: 100%;
+    height: 100%;
+  }
+}

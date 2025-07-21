@@ -3,7 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {NgStyle, NgTemplateOutlet} from "@angular/common";
 
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
-import {ProjectTypeDto} from "../../../services/entities/project-type.dto";
+import {ProjectType} from "../../../services/entities/project.type";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 
@@ -25,8 +25,8 @@ export class ArchiveComponent implements OnInit {
   contentLoaded : boolean = false;
 
 
-  projectTypesStorage: ProjectTypeDto[] = [];
-  projectTypes: ProjectTypeDto[] = [];
+  projectTypesStorage: ProjectType[] = [];
+  projectTypes: ProjectType[] = [];
 
   totalImages: number = 0;
   loadedImages: number = 0;
@@ -77,7 +77,7 @@ export class ArchiveComponent implements OnInit {
     if (this.selectedFilter === "All") {
       this.projectTypes = JSON.parse(JSON.stringify(this.projectTypesStorage))
     } else {
-      this.projectTypes = this.projectTypesStorage.filter((pt: ProjectTypeDto) => pt.title == this.selectedFilter);
+      this.projectTypes = this.projectTypesStorage.filter((pt: ProjectType) => pt.title == this.selectedFilter);
     }
 
     if (projectName !== "" && projectName !== undefined && projectName !== null) {

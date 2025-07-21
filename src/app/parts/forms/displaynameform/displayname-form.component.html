@@ -1,6 +1,8 @@
 <div class="form">
-  @if (!processing) {
-    @if (!updated) {
+  <div class="form__content">
+    <ng-container #dynamicComponentContainer></ng-container>
+    @if (!processing && !mfaCheck) {
+      @if (!updated) {
       <form [formGroup]="form" (ngSubmit)="submit()" class="form__form">
         <h2 class="form__title">Change DisplayName</h2>
         <p class="form__description">This action will immediately update your display name to the changes you've made.</p>
@@ -46,5 +48,7 @@
       </div>
     }
   }
-  <ng-container *appEventSpinner="{condition : processing ,eventMessage : 'Updating DisplayName', stretchToParent : false}"/>
+    <ng-container
+      *appEventSpinner="{condition : processing && !mfaCheck ,eventMessage : 'Updating Password', stretchToParent : false}"/>
+  </div>
 </div>

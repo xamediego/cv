@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {ProjectDto} from "../../services/entities/project.dto";
-import {ProjectTypeDto} from "../../services/entities/project-type.dto";
+import {Project} from "../../services/entities/project";
+import {ProjectType} from "../../services/entities/project.type";
 
 @Component({
     selector: 'project-holder',
@@ -12,8 +12,8 @@ import {ProjectTypeDto} from "../../services/entities/project-type.dto";
 })
 export class ProjectDisplayComponent{
 
-  @Input() project: ProjectDto | null = null;
-  @Input() projectType: ProjectTypeDto | null = null;
+  @Input() project: Project | null = null;
+  @Input() projectType: ProjectType | null = null;
   @Output() loaded : EventEmitter<boolean> = new EventEmitter();
 
   constructor(private router : Router) {}

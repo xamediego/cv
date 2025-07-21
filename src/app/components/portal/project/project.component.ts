@@ -4,9 +4,11 @@ import {NgTemplateOutlet} from "@angular/common";
 
 import {ProjectService} from "../../../services/project/project.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
-import {ProjectDto} from "../../../services/entities/project.dto";
 import {DownloadButtonComponent} from "../../../parts/download-button/download-button.component";
 import {environment} from "../../../../environments/environment";
+import {ImageViewComponent} from "../../../parts/image-view/image-view.component";
+import {Project} from "../../../services/entities/project";
+
 
 @Component({
   selector: 'app-project',
@@ -14,31 +16,22 @@ import {environment} from "../../../../environments/environment";
   imports: [
     NgTemplateOutlet,
     EventSpinnerDirective,
-    DownloadButtonComponent
+    DownloadButtonComponent,
+    ImageViewComponent
   ],
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+  public project: Project | undefined;
   private apiLink: string = `${environment.MainApi}/Project`;
-
-  imagesLoaded: boolean = false;
-  contentLoaded: boolean = false;
-
-  public project: ProjectDto | null = null;
-
-  public selectedImageUrl = '';
-  public selectedImageId = "";
 
   public isSmallScreen: boolean = false;
   private readonly smallScreenSize: number = 920;
 
-  totalImages: number = 0;
-  loadedImages: number = 0;
+  private contentLoaded: boolean = false;
+  private projectImagesLoaded: boolean = false;
 
-  constructor(private route: ActivatedRoute,
-              private projectService: ProjectService
-  ) {
-  }
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) {}
 
   async ngOnInit(): Promise<void> {
     this.isSmallScreen = window.innerWidth < this.smallScreenSize;
@@ -46,71 +39,13 @@ export class ProjectComponent implements OnInit {
     this.route.paramMap.subscribe(async params => {
       const title = params.get('title') || '';
       await this.loadData(title);
-      this.totalImages = (this.project?.images ? this.project.images.length : 0) + 1;
-
-      setTimeout(() => {
-        const imageHolder = document.getElementById("image-0")
-
-        if (imageHolder) this.changePicture(imageHolder, this.project?.images[0])
-
-        this.checkImageHolderSize();
-      })
     });
-  }
-
-  protected changePictureEvent(idNumber: number, imageUrl: any) {
-    const element = document.getElementById("image-" + idNumber)
-    if (!element) return;
-    this.changePicture(element, imageUrl)
-  }
-
-  private changePicture(element: Element, imageUrl: any) {
-    this.scrollTo(element)
-
-    if (this.selectedImageId != "") {
-      const toClear = document.getElementById(this.selectedImageId);
-      if (toClear) toClear.classList.remove('imageHolder__image--active');
-    }
-
-    element.classList.add('imageHolder__image--active');
-
-    this.selectedImageId = element.id;
-    this.selectedImageUrl = imageUrl;
-  }
-
-  private scrollTo(element: Element) {
-    const imageHolder = element.parentElement;
-    const imageScroller = document.getElementById("image-holder")
-
-    if (imageScroller && imageHolder) {
-      const parentRect = imageScroller.getBoundingClientRect();
-      const elementRect = imageHolder.getBoundingClientRect();
-
-      const parentScrollLeft = imageScroller.scrollLeft;
-      const offset = elementRect.left - parentRect.left;
-      const scrollTo = offset - imageScroller.clientWidth / 2 + imageHolder.clientWidth / 2;
-
-      imageScroller.scrollTo({
-        left: parentScrollLeft + scrollTo,
-        behavior: 'smooth',
-      });
-    }
   }
 
   private async loadData(projectName: string) {
     const result = await this.projectService.findByTitle(projectName)
-
-    if (result.statusCode == 200) {
-      this.project = result.responseBody
-      this.totalImages = (this.project?.images.length + 1)
-    }
-
+    if (result.statusCode == 200) {this.project = result.responseBody}
     this.contentLoaded = true;
-  }
-
-  public onImageLoad() {
-    this.loadedImages++;
-    if (this.loadedImages == this.totalImages) this.imagesLoaded = true;
   }
 
   @HostListener('window:resize')
@@ -142,10 +77,14 @@ export class ProjectComponent implements OnInit {
   }
 
   public isLoaded(): boolean {
-    return this.imagesLoaded && this.contentLoaded;
+    return this.projectImagesLoaded && this.contentLoaded;
   }
 
-  public createLink(project: ProjectDto) {
+  public createLink(project: Project) {
     return `${this.apiLink}/download/${project.title}/${project.id}`;
+  }
+
+  public onAllImagesLoaded() {
+    this.projectImagesLoaded = true;
   }
 }

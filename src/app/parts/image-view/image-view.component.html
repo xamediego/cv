@@ -1,0 +1,45 @@
+<ng-container *ngTemplateOutlet="imageView"></ng-container>
+
+<ng-template #imageView>
+  <div class="image-view">
+    <ng-container *ngTemplateOutlet="displayImage"></ng-container>
+    @if (showImageList) {
+      <ng-container *ngTemplateOutlet="imageList"></ng-container>
+    }
+  </div>
+</ng-template>
+
+<ng-template #displayImage>
+  <div class="main-image">
+    <div class="navigation">
+      <button (click)="previous()" aria-label="Previous Slide">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="navigation__filler"></div>
+      <button (click)="next()" aria-label="Next Slide">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <img [src]="selectedImageUrl"
+         class="main-image__image"
+         alt="main-image"
+         id="main-image"
+         (load)="onImageLoad()">
+  </div>
+</ng-template>
+
+<ng-template #imageList>
+  <div class="imageHolder" id="image-holder">
+    @for (image of images; track i; let i = $index) {
+      <div class="imageHolder__holder" (click)="onThumbnailClick(i, image)">
+        <img class="imageHolder__image"
+             [src]="image"
+             [id]="'image-' + i"
+             [alt]="'image - ' + i"
+             (load)="onImageLoad()"
+             loading="eager">
+      </div>
+    }
+  </div>
+</ng-template>

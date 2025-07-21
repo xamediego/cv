@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {FetchService} from "../generic/fetch.service";
 import {FetchResponse} from "../generic/entities/FetchResponse";
-import {UserdataDto} from "../entities/userdata.dto";
+import {UserData} from "../entities/userData";
 import {UserService} from "../generic/user.service";
 
 @Injectable({
@@ -13,11 +13,11 @@ export class AccountService {
 
   constructor(private fetchService: FetchService, private userService : UserService) {}
 
-  public async getAccountData(): Promise<FetchResponse<UserdataDto>> {
+  public async getAccountData(): Promise<FetchResponse<UserData>> {
     const apiLink = `${this.apiLink}/getAccountData`;
     const method = "GET";
 
-    return await this.fetchService.fetchData<UserdataDto>(apiLink, method);
+    return await this.fetchService.fetchData<UserData>(apiLink, method);
   }
 
   public async deleteAccount(password: string, code: string | undefined) : Promise<FetchResponse<string>>  {
@@ -29,20 +29,20 @@ export class AccountService {
     return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
 
-  public async updateDisplayName(password: string, displayName: string) : Promise<FetchResponse<string>> {
+  public async updateDisplayName(password: string, displayName: string, code: string | undefined) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updateDisplayName`;
     const method = "PUT";
 
-    const dto = {password, displayName}
+    const dto = {password, displayName, code}
 
     return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
 
-  public async updateEmail(password: string, email: string) : Promise<FetchResponse<string>> {
+  public async updateEmail(password: string, email: string, code: string | undefined) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updateEmail`;
     const method = "PUT";
 
-    const dto = {password, email}
+    const dto = {password, email, code}
 
     const result = await this.fetchService.fetchData<string>(apiLink, method, dto);
 
