@@ -5,7 +5,7 @@ import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 
 @Component({
-  selector: 'app-multi-factor-form',
+  selector: 'app-validatemfaform',
   templateUrl: './multi-factor-form.component.html',
   imports: [ReactiveFormsModule, EventSpinnerDirective],
   styleUrls: ['../form.component.scss']
@@ -55,12 +55,8 @@ export class MultiFactorFormComponent {
 
   async onCodeInput() {
     let code = this.form.get('code')?.value || '';
-    code = code.replace(/\D/g, '');
-    code = code.slice(0, 6);
     this.form.get('code')?.setValue(code, { emitEvent: false });
 
-    if (code.length === 6) {
-     await this.processToken();
-    }
+    if (code.length === 6) await this.processToken();
   }
 }

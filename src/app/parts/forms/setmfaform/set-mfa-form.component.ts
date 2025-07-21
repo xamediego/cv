@@ -44,7 +44,7 @@ export class SetMfaFormComponent implements FormComponent, OnInit {
   ) {
     this.form = this.fb.group({
       password: ['', Validators.required],
-      code: ['', Validators.required],
+      code: ['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]],
     });
   }
 
@@ -92,7 +92,6 @@ export class SetMfaFormComponent implements FormComponent, OnInit {
     // @ts-ignore
     QRCode.toCanvas(canvas, this.qrCodeData, (error) => {
       if (error) console.error('QR code generation error:', error);
-      else console.log('QR code generated.');
     });
   }
 
@@ -100,9 +99,7 @@ export class SetMfaFormComponent implements FormComponent, OnInit {
     this.processing = true;
     this.mfaError = "";
 
-    const result = this.mfaEnabled
-      ? await this.disableMFA()
-      : await this.enableMFA();
+    const result = this.mfaEnabled ? await this.disableMFA() : await this.enableMFA();
 
     this.processing = false;
 
@@ -131,6 +128,13 @@ export class SetMfaFormComponent implements FormComponent, OnInit {
   public hasError(field: string): boolean {
     const control = this.form.get(field);
     return !!control && control.invalid && control.touched;
+  }
+
+  async onCodeInput() {
+    let code = this.form.get('code')?.value || '';
+    this.form.get('code')?.setValue(code, { emitEvent: false });
+
+    if (code.length === 6) await this.changeMFA();
   }
 }
 

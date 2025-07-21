@@ -8,14 +8,13 @@
         <label
           class="form__label"
           [class.error]="form.get('code')?.invalid && form.get('code')?.touched">
-          code
+          MFA Code
         </label>
 
         <input
           formControlName="code"
           class="form__mfa-input"
           [class.error]="form.get('code')?.invalid && form.get('code')?.touched"
-          [class.valid]="form.get('code')?.value?.length === 6"
           type="text"
           maxlength="6"
           inputmode="numeric"

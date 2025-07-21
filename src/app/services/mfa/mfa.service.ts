@@ -2,7 +2,7 @@ import {ComponentFactoryResolver, Injectable, ViewContainerRef} from "@angular/c
 import {FetchResponse} from "../generic/entities/FetchResponse";
 import {
   MultiFactorFormComponent
-} from "../../parts/forms/multi-factor-form/multi-factor-form.component";
+} from "../../parts/forms/validatemfaform/multi-factor-form.component";
 
 @Injectable({
   providedIn: 'root'

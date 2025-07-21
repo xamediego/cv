@@ -20,11 +20,11 @@ export class AccountService {
     return await this.fetchService.fetchData<UserdataDto>(apiLink, method);
   }
 
-  public async deleteAccount(password: string) : Promise<FetchResponse<string>>  {
+  public async deleteAccount(password: string, code: string | undefined) : Promise<FetchResponse<string>>  {
     const apiLink = `${this.apiLink}/deleteAccount`;
     const method = "DELETE";
 
-    const dto = {password}
+    const dto = {password, code}
 
     return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
@@ -51,11 +51,11 @@ export class AccountService {
     return result;
   }
 
-  public async updateUsername(password: string, username: string) : Promise<FetchResponse<string>> {
+  public async updateUsername(password: string, username: string, code: string | undefined) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updateUsername`;
     const method = "PUT";
 
-    const dto = {password, username}
+    const dto = {password, username, code}
 
     const result = await this.fetchService.fetchData<string>(apiLink, method, dto);
 
@@ -64,17 +64,13 @@ export class AccountService {
     return result;
   }
 
-  public async updatePassword(password: string, newPassword: string) : Promise<FetchResponse<string>> {
+  public async updatePassword(password: string, newPassword: string, code: string | undefined) : Promise<FetchResponse<string>> {
     const apiLink = `${this.apiLink}/updatePassword`;
     const method = "PUT";
 
-    const dto = {password, newPassword}
+    const dto = {password, newPassword, code}
 
-    const result = await this.fetchService.fetchData<string>(apiLink, method, dto);
-
-    if(result.statusCode == 200) this.userService.setJwtToken(result.responseBody);
-
-    return result;
+    return await this.fetchService.fetchData<string>(apiLink, method, dto);
   }
 
   public async mfaEnabled(): Promise<FetchResponse<boolean>> {

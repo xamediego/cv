@@ -5,7 +5,7 @@ import {AuthenticationService} from "../../../services/authentication/authentica
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {NgTemplateOutlet} from "@angular/common";
 import {MfaService} from "../../../services/mfa/mfa.service";
-import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
+import {MfaFormAbstract} from "../mfa-form.abstract";
 
 @Component({
   selector: 'app-login-form',
@@ -14,34 +14,33 @@ import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
   templateUrl: './login-form.component.html',
   styleUrls: ['../form.component.scss']
 })
-export class LoginFormComponent {
+export class LoginFormComponent extends MfaFormAbstract {
 
   loginForm: FormGroup;
   loggingIn = false;
   errorMessage = '';
-  mfaCheck = false;
 
   constructor(
     private fb: FormBuilder,
     private loginService: AuthenticationService,
-    private mfaService: MfaService,
+    mfaService: MfaService,
     private router: Router
   ) {
+    super(mfaService);
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
-  public async onLogin(): Promise<void> {
+  public async submit(): Promise<void> {
     if (this.loginForm.invalid) {
       this.errorMessage = 'Please correct the highlighted fields.';
       this.loginForm.markAllAsTouched();
       return;
     }
 
-    const { username, password } = this.loginForm.value;
+    const {username, password} = this.loginForm.value;
     await this.login(username, password);
   }
 
@@ -49,47 +48,25 @@ export class LoginFormComponent {
     await this.router.navigate(['/auth']);
   }
 
+  @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
   private async login(username: string, password: string): Promise<void> {
-    const loginResponse = await this.tryLogin(username, password, '');
+    this.loggingIn = true;
+    const response = await this.loginService.login(username, password, '');
+    this.loggingIn = false;
 
-    if (loginResponse.statusCode === 200) {
+    if (response.statusCode === 200) {
       await this.router.navigate(['/home']);
-    } else if (loginResponse.statusCode == 409) {
-      this.mfaCheck = true;
-      const mfaFetch = async (code: string): Promise<FetchResponse<string>> => {
-        return await this.tryLogin(username, password, code);
-      };
-      try {
-        const mfaResponse = await this.mfaService.openMfaScreen<string>(
-          mfaFetch,
-          this.closeMfa,
-          this.dynamicComponentContainer);
-        if (mfaResponse.statusCode === 200) {
-          await this.router.navigate(['/home']);
-        } else {
-          this.errorMessage = mfaResponse.responseBody;
-        }
-      } catch (err) {
-        this.errorMessage = 'MFA failed. Please try again.';
-      }
+    } else if (response.statusCode === 409) {
+      await this.handleMfa<string>(
+        this.dynamicComponentContainer,
+        async (code) => await this.loginService.login(username, password, code),
+        async () => await this.router.navigate(['/home']),
+        (message) => (this.errorMessage = message)
+      );
     } else {
       this.loginForm.markAllAsTouched();
       // @ts-ignore
-      this.errorMessage = loginResponse.responseBody?.error ?? 'Unknown error';
-    }
-  }
-
-  private closeMfa = () => {
-    this.mfaCheck = false;
-    this.dynamicComponentContainer.clear();
-  }
-
-  private async tryLogin(username: string, password: string, code: string): Promise<FetchResponse<string>> {
-    this.loggingIn = true;
-    try {
-      return await this.loginService.login(username, password, code);
-    } finally {
-      this.loggingIn = false;
+      this.errorMessage = response.responseBody?.error ?? 'Unknown error';
     }
   }
 }

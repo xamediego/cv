@@ -22,7 +22,7 @@ import {EmailFormComponent} from "../../../parts/forms/emailform/email-form.comp
 import {UsernameFormComponent} from "../../../parts/forms/usernameform/username-form.component";
 import {PasswordFormComponent} from "../../../parts/forms/passwordform/password-form.component";
 import {DeleteFormComponent} from "../../../parts/forms/deleteform/delete-form.component";
-import {SetMfaFormComponent} from "../../../parts/forms/mfaform/set-mfa-form.component";
+import {SetMfaFormComponent} from "../../../parts/forms/setmfaform/set-mfa-form.component";
 
 @Component({
   selector: 'app-settings',
@@ -100,7 +100,6 @@ export class SettingsComponent implements OnInit {
       instance.onFormClosed = () => this.dialog.closeAll();
       instance.onFormSuccess = async () => {
         await this.getUserData();
-        this.dialog.closeAll();
       };
     }
   }
