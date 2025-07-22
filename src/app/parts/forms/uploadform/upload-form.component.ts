@@ -71,4 +71,6 @@ export class UploadFormComponent implements FormComponent {
   public cancel() {
     this.file = undefined;
   }
+
+  protected readonly formatBytes = formatBytes;
 }
