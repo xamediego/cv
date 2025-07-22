@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {EventSpinnerDirective} from "../event-spinner.directive";
-import {DownloadService} from "../../services/download/download.service";
+import {FileService} from "../../services/download/file.service";
 
 @Component({
   selector: 'app-download-button',
@@ -24,7 +24,7 @@ export class DownloadButtonComponent {
   downloading: boolean = false;
   downloadFinished: boolean = false;
 
-  constructor(private downloadService: DownloadService) {}
+  constructor(private downloadService: FileService) {}
 
   public async downloadFile() {
     if (this.downloading || this.downloadFinished) return;

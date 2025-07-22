@@ -57,10 +57,10 @@ export class ProjectService {
     return await this.fetchService.fetchData<void>(apiLink, method);
   }
 
-  public async upload(file: FormData) {
+  public async upload(file: FormData, onProgress: (bytes: number) => void, onFinished: () => void) {
     const apiLink = `${this.apiLink}/upload`;
     const method = 'POST';
 
-    return await this.fetchService.upload(apiLink, method, file);
+    return await this.fetchService.upload(apiLink, method, file, onProgress, onFinished);
   }
 }

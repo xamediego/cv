@@ -29,8 +29,10 @@ export class JwtService {
 
     const helper = new JwtHelperService();
 
-    if(!helper.isTokenExpired(token)) return false;
+    if(helper.isTokenExpired(token)) return false;
 
-    return this.userService.getUserClaims().includes('admin');
+    const claims = this.userService.getUserClaims();
+
+    return claims.includes('admin');
   }
 }

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {FormComponent} from "../form.component";
 import {ProjectService} from "../../../services/project/project.service";
@@ -8,17 +8,16 @@ import {EventSpinnerDirective} from "../../event-spinner.directive";
 
 
 @Component({
-  selector: 'app-new-project-form',
+  selector: 'app-upload-form',
   standalone: true,
   imports: [ReactiveFormsModule, NgTemplateOutlet, EventSpinnerDirective],
-  templateUrl: 'new-project-form.component.html',
+  templateUrl: 'upload-form.component.html',
   styleUrls: [
     '../form.component.scss',
-    'new-project-form.component.scss']
+    'upload-form.component.scss']
 })
-export class NewProjectFormComponent implements FormComponent {
+export class UploadFormComponent implements FormComponent {
 
-  form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing: boolean = false;
   processMessage: string = 'Saving Project...';
@@ -33,15 +32,7 @@ export class NewProjectFormComponent implements FormComponent {
   @Input() public onFormClosed: () => void = () => {};
   @Input() public onFormSuccess: () => void = () => {};
 
-  constructor(
-    private fb: FormBuilder,
-    private projectService: ProjectService
-  ) {
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-    });
-  }
+  constructor(private projectService: ProjectService) {}
 
   public selectFile() {
     const input = document.createElement('input');
@@ -60,7 +51,14 @@ export class NewProjectFormComponent implements FormComponent {
       const formData = new FormData();
       formData.append('file', this.file);
 
-      await this.projectService.upload(formData)
+      await this.projectService.upload(
+        formData,
+        (bytes) => {this.formatBytes(bytes)},
+        () => {
+          this.uploadFinished = true;
+          this.file = undefined;
+        },
+      )
     }
   }
 
