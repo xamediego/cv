@@ -47,6 +47,20 @@ export class ProjectService {
     const apiLink = `${this.apiLink}/download/${title}/${id}`;
     const method = 'GET';
 
-    return await this.fetchService.fetchBlob(apiLink, method, fileName, undefined, undefined, onResponse, onProgress);
+    return await this.fetchService.fetchBlob(apiLink, method, fileName, undefined, undefined, undefined, onResponse, onProgress);
+  }
+
+  public async save() : Promise<FetchResponse<void>> {
+    const apiLink = `${this.apiLink}/save`;
+    const method = 'POST';
+
+    return await this.fetchService.fetchData<void>(apiLink, method);
+  }
+
+  public async upload(file: FormData) {
+    const apiLink = `${this.apiLink}/upload`;
+    const method = 'POST';
+
+    return await this.fetchService.upload(apiLink, method, file);
   }
 }

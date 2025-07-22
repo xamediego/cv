@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from "@angular/core";
 
-import {AuthGuard, RevAuthGuard} from './services/guards/VerificationGuard';
+import {AuthGuard, RevAuthGuard} from './services/guards/guards';
 import {SettingsComponent} from "./components/user/settings/settings.component";
 
 export const appRoutes: Routes = [

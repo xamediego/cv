@@ -16,6 +16,6 @@ export class DownloadService {
     onProgress: ((received: number, total: number) => void),
     body? : any): Promise<Response> {
 
-    return await this.fetchService.fetchBlob(apiLink, method, fileName, body, undefined, onResponse, onProgress);
+    return await this.fetchService.fetchBlob(apiLink, method, fileName, body, undefined, undefined, onResponse, onProgress);
   }
 }

@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {FetchResponse} from './entities/FetchResponse';
 import {UserService} from "./user.service";
-import {MfaService} from "../mfa/mfa.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class FetchService {
-  constructor(private userService: UserService, private mfaService: MfaService) {
-  }
+  constructor(private userService: UserService) {}
 
   async fetchData<T>(
     apiLink: string,
@@ -17,12 +15,9 @@ export class FetchService {
     jwt?: string,
     content: string = 'application/json'
   ): Promise<FetchResponse<T>> {
-
-    const fetchData = this.createHeader(method, body, jwt);
-
-    const fetchResult = await fetch(apiLink, fetchData).then(async (res) => {
+    const fetchData = this.createHeader(method, body, jwt, content);
+    return await fetch(apiLink, fetchData).then(async (res) => {
       const contentType = res.headers.get('content-type');
-
       const returnVal: FetchResponse<T> = {
         statusCode: res.status,
         statusText: res.statusText,
@@ -31,11 +26,8 @@ export class FetchService {
             ? await res.json()
             : await res.text(),
       };
-
       return returnVal;
     });
-
-    return fetchResult;
   }
 
   async fetchBlob(apiLink: string,
@@ -43,14 +35,13 @@ export class FetchService {
                   filename: string,
                   body?: any,
                   jwt?: string,
+                  content: string = 'application/json',
                   onResponse?: ((response: Response) => void),
                   onProgress?: ((received: number, total: number) => void)): Promise<Response> {
-    // this.createHeader(method, body, jwt);
-
-    const response = await fetch(apiLink);
+    const fetchData = this.createHeader(method, body, jwt, content);
+    const response = await fetch(apiLink, fetchData);
 
     if (onResponse) onResponse(response);
-
     if (!response.ok) return response;
 
     const cHeader = "Content-Length";
@@ -79,24 +70,23 @@ export class FetchService {
     const blob = new Blob(chunks);
     const downloadUrl = URL.createObjectURL(blob);
 
-    // Trigger download
+    this.triggerDownload(downloadUrl, filename)
+    return response;
+  }
+
+  private triggerDownload(downloadUrl: string, filename: string) {
     const a = document.createElement("a");
     a.href = downloadUrl;
     a.download = filename;
     a.click();
-
     URL.revokeObjectURL(downloadUrl);
-
-    return response;
   }
 
   private createHeader(method: string,
                        body?: any,
                        jwt?: string,
                        content: string = 'application/json'): any {
-    const headers: any = {
-      Authorization: jwt ? `Bearer ${jwt}` : `Bearer ${this.userService.getJwtToken()}`,
-    };
+    const headers: any = {Authorization: jwt ? `Bearer ${jwt}` : `Bearer ${this.userService.getJwtToken()}`,};
 
     if (!(body instanceof FormData)) headers['Content-Type'] = content;
 
@@ -105,5 +95,33 @@ export class FetchService {
       method,
       body: body instanceof FormData ? body : JSON.stringify(body),
     };
+  }
+
+  async upload(apiLink: string, method: string, formData: FormData, jwt?: string) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.upload.onprogress = (event: ProgressEvent) => {
+      if (event.lengthComputable) {
+        const percentComplete = (event.loaded / event.total) * 100;
+        console.log(`Upload progress: ${percentComplete.toFixed(2)}%`);
+      }
+    };
+
+    xhr.onload = () => {
+      if (xhr.status === 201) {
+        console.log('Upload complete:', xhr.responseText);
+      } else {
+        console.error('Upload failed:', xhr.statusText);
+      }
+    };
+
+    xhr.onerror = () => {
+      console.error('An error occurred during the upload.');
+    };
+
+    xhr.open(method, apiLink);
+    xhr.setRequestHeader("Authorization", "Bearer " + (jwt ? jwt : this.userService.getJwtToken()))
+
+    xhr.send(formData);
   }
 }

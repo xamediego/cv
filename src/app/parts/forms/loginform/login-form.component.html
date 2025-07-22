@@ -1,6 +1,7 @@
 <div class="form">
   <div class="form__content">
     <ng-container #dynamicComponentContainer></ng-container>
+
     @if (!processing && !mfaCheck) {
       @if (!updated) {
         <form [formGroup]="form" (ngSubmit)="submit()" class="form__form">
@@ -38,7 +39,7 @@
 
           <div class="form__button-group">
             <button class="form__button form__button__cancel" type="button" (click)="onFormClosed()">Cancel</button>
-            <button class="form__button form__button__submit" type="submit">Confirm</button>
+            <button class="form__button form__button__submit" type="submit">Save</button>
           </div>
         </form>
       } @else {

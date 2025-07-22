@@ -13,14 +13,16 @@
           <p>
             Items: {{ projectType.projects.length }}
           </p>
-          <button class="type__new-project" (click)="newProject()">
-            <p>
-              New
-            </p>
-            <p>
-              +
-            </p>
-          </button>
+          @if (jwtService.isAdmin()){
+            <button class="type__new-project" (click)="newProject()">
+              <p>
+                New
+              </p>
+              <p>
+                +
+              </p>
+            </button>
+          }
         </div>
       </div>
     </div>

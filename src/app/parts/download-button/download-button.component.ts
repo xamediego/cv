@@ -24,8 +24,7 @@ export class DownloadButtonComponent {
   downloading: boolean = false;
   downloadFinished: boolean = false;
 
-  constructor(private downloadService: DownloadService) {
-  }
+  constructor(private downloadService: DownloadService) {}
 
   public async downloadFile() {
     if (this.downloading || this.downloadFinished) return;
@@ -41,7 +40,7 @@ export class DownloadButtonComponent {
       (response: Response) => {
         if (response.status == 200) {
           this.downloading = true;
-          dotInterval = this.progressTextDots();
+          dotInterval = this.progressTextDots("Downloading");
         } else {
           this.downloadButtonText = response.statusText;
         }
@@ -79,13 +78,13 @@ export class DownloadButtonComponent {
     return `${formatted} ${sizes[i]}`;
   }
 
-  private progressTextDots() : any {
-    let dotCount = 1;
-    this.downloadButtonText = "Downloading.";
+  private progressTextDots(text : string) : any {
+    let dotCount = 0;
+    this.downloadButtonText = text;
 
    return setInterval(() => {
       dotCount = (dotCount % 3) + 1;
-      this.downloadButtonText = "Downloading" + ".".repeat(dotCount);
+      this.downloadButtonText = text + ".".repeat(dotCount);
     }, 500);
   }
 }

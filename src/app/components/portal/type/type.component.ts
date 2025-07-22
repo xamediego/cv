@@ -6,6 +6,7 @@ import {ProjectDisplayComponent} from "../../../parts/project-display/project-di
 import {ProjectType} from "../../../services/entities/project.type";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
+import {JwtService} from "../../../services/guards/jwt.service";
 
 @Component({
   selector: 'app-type',
@@ -26,7 +27,12 @@ export class TypeComponent implements OnInit {
 
   public projectType: ProjectType | null = null;
 
-  constructor(private route: ActivatedRoute, private projectTypeService: ProjectTypeService, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private projectTypeService: ProjectTypeService,
+    protected jwtService : JwtService
+) {
   }
 
   async ngOnInit(): Promise<void> {
