@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {EventSpinnerDirective} from "../event-spinner.directive";
 import {FileService} from "../../services/download/file.service";
-import {formatBytes, progressTextDots} from "../../tools/RandomStuff";
+import {formatBytes} from "../../tools/RandomStuff";
 
 @Component({
   selector: 'app-download-button',
@@ -41,7 +41,7 @@ export class DownloadButtonComponent {
       (response: Response) => {
         if (response.status == 200) {
           this.downloading = true;
-          dotInterval = progressTextDots("Downloading", this.downloadButtonText);
+          dotInterval = this.progressTextDots("Downloading");
         } else {
           this.downloadButtonText = response.statusText;
         }
@@ -67,4 +67,15 @@ export class DownloadButtonComponent {
       this.downloadButtonText = response.statusText
     }
   }
+
+  private progressTextDots(baseText: string): any {
+    let dotCount = 0;
+    this.downloadButtonText = baseText;
+
+    return setInterval(() => {
+      dotCount = (dotCount % 3) + 1;
+      this.downloadButtonText = baseText + ".".repeat(dotCount);
+    }, 500);
+  }
+
 }

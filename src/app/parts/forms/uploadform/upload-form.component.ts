@@ -5,7 +5,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FormComponent} from "../form.component";
 import {ProjectService} from "../../../services/project/project.service";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
-import {formatBytes, progressTextDots} from "../../../tools/RandomStuff";
+import {formatBytes} from "../../../tools/RandomStuff";
 
 @Component({
   selector: 'app-upload-form',
@@ -47,7 +47,7 @@ export class UploadFormComponent implements FormComponent {
 
   public async upload() {
     this.uploading = true;
-    const dotInterval = progressTextDots("Uploading", this.uploadMessage);
+    const dotInterval = this.progressTextDots("Uploading");
 
     if(this.file){
       const formData = new FormData();
@@ -70,6 +70,16 @@ export class UploadFormComponent implements FormComponent {
 
   public cancel() {
     this.file = undefined;
+  }
+
+  private progressTextDots(baseText: string): any {
+    let dotCount = 0;
+    this.uploadMessage = baseText;
+
+    return setInterval(() => {
+      dotCount = (dotCount % 3) + 1;
+      this.uploadMessage = baseText + ".".repeat(dotCount);
+    }, 500);
   }
 
   protected readonly formatBytes = formatBytes;

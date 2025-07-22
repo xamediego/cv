@@ -8,14 +8,3 @@ export function formatBytes(bytes : number): string {
 
   return `${formatted} ${sizes[i]}`;
 }
-
-
-export function progressTextDots(baseText: string, targetText: string): any {
-  let dotCount = 0;
-  targetText = baseText;
-
-  return setInterval(() => {
-    dotCount = (dotCount % 3) + 1;
-    targetText = baseText + ".".repeat(dotCount);
-  }, 500);
-}
