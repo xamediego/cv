@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {EventSpinnerDirective} from "../event-spinner.directive";
 import {FileService} from "../../services/download/file.service";
+import {formatBytes, progressTextDots} from "../../tools/RandomStuff";
 
 @Component({
   selector: 'app-download-button',
@@ -40,7 +41,7 @@ export class DownloadButtonComponent {
       (response: Response) => {
         if (response.status == 200) {
           this.downloading = true;
-          dotInterval = this.progressTextDots("Downloading");
+          dotInterval = progressTextDots("Downloading", this.downloadButtonText);
         } else {
           this.downloadButtonText = response.statusText;
         }
@@ -49,8 +50,8 @@ export class DownloadButtonComponent {
       (received: number, total: number) => {
         const percent = total ? Math.round((received / total) * 100) : 0;
 
-        const receivedFormatted = this.formatBytes(received);
-        const totalFormatted = this.formatBytes(total);
+        const receivedFormatted = formatBytes(received);
+        const totalFormatted = formatBytes(total);
 
         this.formattedProgress = `${receivedFormatted} / ${totalFormatted}`;
         this.downloadPercentage = `${percent}%`;
@@ -65,26 +66,5 @@ export class DownloadButtonComponent {
     } else {
       this.downloadButtonText = response.statusText
     }
-  }
-
-  private formatBytes(bytes: number): string {
-    if (bytes === 0) return '0.00 B';
-
-    const k = 1024;
-    const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    const formatted = (bytes / Math.pow(k, i)).toFixed(2);
-
-    return `${formatted} ${sizes[i]}`;
-  }
-
-  private progressTextDots(text : string) : any {
-    let dotCount = 0;
-    this.downloadButtonText = text;
-
-   return setInterval(() => {
-      dotCount = (dotCount % 3) + 1;
-      this.downloadButtonText = text + ".".repeat(dotCount);
-    }, 500);
   }
 }

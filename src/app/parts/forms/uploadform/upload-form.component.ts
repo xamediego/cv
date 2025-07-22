@@ -5,7 +5,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FormComponent} from "../form.component";
 import {ProjectService} from "../../../services/project/project.service";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
-
+import {formatBytes, progressTextDots} from "../../../tools/RandomStuff";
 
 @Component({
   selector: 'app-upload-form',
@@ -47,43 +47,25 @@ export class UploadFormComponent implements FormComponent {
 
   public async upload() {
     this.uploading = true;
-    this.progressTextDots("Uploading");
+    const dotInterval = progressTextDots("Uploading", this.uploadMessage);
+
     if(this.file){
       const formData = new FormData();
       formData.append('file', this.file);
-
       await this.projectService.upload(
         formData,
         (bytes) => {
-          this.currentProgress = this.formatBytes(bytes)
+          this.currentProgress = formatBytes(bytes)
+          // @ts-ignore
+          if(bytes == this.file.size) this.uploadFinished = true;
         },
         () => {
+          clearInterval(dotInterval);
           this.uploadFinished = true;
           this.file = undefined;
         },
       )
     }
-  }
-
-  public formatBytes(bytes: number): string {
-    if (bytes === 0) return '0.00 B';
-
-    const k = 1024;
-    const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    const formatted = (bytes / Math.pow(k, i)).toFixed(2);
-
-    return `${formatted} ${sizes[i]}`;
-  }
-
-  private progressTextDots(text: string): any {
-    let dotCount = 0;
-    this.uploadMessage = text;
-
-    return setInterval(() => {
-      dotCount = (dotCount % 3) + 1;
-      this.uploadMessage = text + ".".repeat(dotCount);
-    }, 500);
   }
 
   public cancel() {

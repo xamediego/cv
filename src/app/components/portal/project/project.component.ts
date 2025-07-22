@@ -9,7 +9,6 @@ import {environment} from "../../../../environments/environment";
 import {ImageViewComponent} from "../../../parts/image-view/image-view.component";
 import {Project} from "../../../services/entities/project";
 
-
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
