@@ -9,7 +9,7 @@
         <ng-container *appEventSpinner="{condition : uploading , stretchToParent : true}"/>
         <p>
           {{ uploadMessage }}<br>
-          {{currentProgress()}}/{{ formatBytes(file.size) }}
+          {{currentProgress}}/{{ formatBytes(file.size) }}
         </p>
       } @else {
         @if (file) {

@@ -28,6 +28,7 @@ export class UploadFormComponent implements FormComponent {
   uploading: boolean = false;
   uploadMessage: string = "";
   uploadFinished: boolean = false;
+  currentProgress : string = "";
 
   @Input() public onFormClosed: () => void = () => {};
   @Input() public onFormSuccess: () => void = () => {};
@@ -53,7 +54,9 @@ export class UploadFormComponent implements FormComponent {
 
       await this.projectService.upload(
         formData,
-        (bytes) => {this.formatBytes(bytes)},
+        (bytes) => {
+          this.currentProgress = this.formatBytes(bytes)
+        },
         () => {
           this.uploadFinished = true;
           this.file = undefined;
@@ -85,9 +88,5 @@ export class UploadFormComponent implements FormComponent {
 
   public cancel() {
     this.file = undefined;
-  }
-
-  currentProgress() {
-    return this.formatBytes(0);
   }
 }

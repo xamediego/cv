@@ -6,7 +6,8 @@ import {UserService} from "./user.service";
   providedIn: 'root',
 })
 export class FetchService {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+  }
 
   async fetchData<T>(
     apiLink: string,
@@ -97,12 +98,12 @@ export class FetchService {
     };
   }
 
-  async upload(apiLink: string, method: string, formData: FormData, onProgress : (bytes: number) => void, onFinished  : () => void, jwt?: string) {
+  async upload(apiLink: string, method: string, formData: FormData, onProgress: (bytes: number) => void, onFinished: () => void, jwt?: string) {
     const xhr = new XMLHttpRequest();
 
     xhr.upload.onprogress = (event: ProgressEvent) => {
       if (event.lengthComputable) {
-         onProgress(event.loaded);
+        onProgress(event.loaded);
         const percentComplete = (event.loaded / event.total) * 100;
         console.log(`Upload progress: ${percentComplete.toFixed(2)}%`);
       }
