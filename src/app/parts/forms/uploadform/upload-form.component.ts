@@ -47,7 +47,7 @@ export class UploadFormComponent implements FormComponent {
 
   public async upload() {
     this.uploading = true;
-    const dotInterval = this.progressTextDots("Uploading");
+    let dotInterval = this.progressTextDots("Uploading");
 
     if(this.file){
       const formData = new FormData();
@@ -56,8 +56,11 @@ export class UploadFormComponent implements FormComponent {
         formData,
         (bytes) => {
           this.currentProgress = formatBytes(bytes)
-          // @ts-ignore
-          if(bytes == this.file.size) this.uploadFinished = true;
+          if(this.file && bytes >= this.file.size){
+            this.uploadFinished = true;
+            dotInterval = this.progressTextDots("Finalizing Upload");
+            return;
+          }
         },
         () => {
           clearInterval(dotInterval);
