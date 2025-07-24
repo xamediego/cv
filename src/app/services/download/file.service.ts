@@ -20,13 +20,4 @@ export class FileService {
 
     return await this.fetchService.fetchBlob(apiLink, method, fileName, body, jwt, undefined, onResponse, onProgress);
   }
-
-  public async upload(apiLink: string,
-                      method: string,
-                      formData: FormData,
-                      onProgress : ((bytes : number) => void),
-                      onFinished : () => void
-  ) {
-    await this.fetchService.upload(apiLink, method, formData, onProgress, onFinished);
-  }
 }

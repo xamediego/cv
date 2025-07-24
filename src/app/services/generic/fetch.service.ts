@@ -97,33 +97,4 @@ export class FetchService {
       body: body instanceof FormData ? body : JSON.stringify(body),
     };
   }
-
-  async upload(apiLink: string, method: string, formData: FormData, onProgress: (bytes: number) => void, onFinished: () => void, jwt?: string) {
-    const xhr = new XMLHttpRequest();
-
-    xhr.upload.onprogress = (event: ProgressEvent) => {
-      if (event.lengthComputable) {
-        onProgress(event.loaded);
-        const percentComplete = (event.loaded / event.total) * 100;
-        console.log(`Upload progress: ${percentComplete.toFixed(2)}%`);
-      }
-    };
-
-    xhr.onload = () => {
-      if (xhr.status === 201) {
-        console.log('Upload complete:', xhr.responseText);
-      } else {
-        console.error('Upload failed:', xhr.statusText);
-      }
-      onFinished();
-    };
-
-    xhr.onerror = () => {
-      console.error('An error occurred during the upload.');
-    };
-
-    xhr.open(method, apiLink);
-    xhr.setRequestHeader("Authorization", "Bearer " + (jwt ? jwt : this.userService.getJwtToken()))
-    xhr.send(formData);
-  }
 }

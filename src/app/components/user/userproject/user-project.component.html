@@ -1,38 +1,12 @@
+<portal-app-header />
 <div class="archive">
-  <div class="archive__wrapper">
-    <div class="archive__container">
-      <div class="archive__bottom">
-
-        <div class="archive__top__title">
-          <h1>The Archive</h1>
-          <hr class="slice-line">
-        </div>
-
-        <div class="archive__bottom__descriptions">
-          <p class="s_t">
-            Welcome to my personal project archive! Here, you'll find a collection of custom levels designed for Unreal
-            Tournament 2004 (UT2K4), Unreal Tournament 3 (UT3), and Unreal Development Kit (UDK). Each level has been
-            crafted with attention to detail, aiming to provide a unique and engaging experience for players. Dive into
-            the maps and discover new battlegrounds, hidden secrets, and challenging scenarios.
-          </p>
-          <p class="s_t">
-            In addition to my work on Unreal levels, I've also explored various projects in Java. From simple
-            applications to more complex systems, these projects showcase my journey through learning and applying Java
-            programming concepts. Whether you're here for the Unreal levels or curious about my Java projects, I hope
-            you
-            find something that sparks your interest and inspires your own creativity.
-          </p>
-        </div>
-
-        <div class="archive__bottom__title__wrapper">
-          <h2>Old Projects</h2>
-          <hr class="slice-line">
-        </div>
-        <ng-container *ngTemplateOutlet="projectView"/>
-      </div>
-    </div>
-  </div>
+  @if (!isEditing && !projectToEdit){
+    <ng-container *ngTemplateOutlet="projectView" />
+  } @else {
+    <app-project-form [project]="projectToEdit" [projectTypes]="projectTypes" [onFormClosed]="closeEdit"/>
+  }
 </div>
+
 
 <ng-template #projectView>
   <div class="projects">
@@ -69,7 +43,7 @@
 <ng-template #projects let-projectType>
   <div class="projects__content">
     @for (project of projectType.projects; track $index) {
-      <project-holder [project]="project" [projectType]="projectType" [onSelect]="navigate" (loaded)="onImagesLoad()"/>
+      <project-holder [project]="project" [projectType]="projectType" [onSelect]="viewEdit" (loaded)="onImagesLoad()"/>
     }
   </div>
 </ng-template>

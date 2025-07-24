@@ -1,45 +1,65 @@
 <div class="form">
-  <ng-container *ngTemplateOutlet="uploadScreen"/>
+  <ng-container *ngTemplateOutlet="uploadScreen"></ng-container>
 </div>
 
 <ng-template #uploadScreen>
   <div class="upload">
-    @if(!uploadFinished){
+    @if (!uploadFinished) {
       @if (uploading && file) {
-        <ng-container *appEventSpinner="{condition : uploading , stretchToParent : true}"/>
+        <ng-container *appEventSpinner="{ condition: uploading, stretchToParent: true }"></ng-container>
         <p>
           {{ uploadMessage }}<br>
-          {{currentProgress}}/{{ formatBytes(file.size) }}
+          {{ currentProgress ? currentProgress : formatBytes(0) }}/{{ formatBytes(file.size) }}
         </p>
-      } @else {
-        @if (file) {
-          <div class="upload__button" (click)="upload()">
-            <i class="fas fa-upload upload__button__icon"></i>
-            <div>
-              <h2 class="upload__button__title">Upload File</h2>
-              <p>Filename: {{ file.name }}<br>Filesize: {{ formatBytes(file.size) }}</p>
-            </div>
-            <div class="form__button-group">
-              <button class="form__button form__button__cancel" type="button" (click)="cancel()">Cancel</button>
-              <button class="form__button form__button__submit" type="submit">Upload</button>
-            </div>
+        <button
+          class="form__button form__button__dangerous"
+          (click)="cancelUpload()"
+          type="button">
+          Cancel
+        </button>
+      } @else if (file) {
+        <div class="upload__button" (click)="upload()">
+          <i class="fas fa-upload upload__button__icon"></i>
+          <div>
+            <h2 class="upload__button__title">Upload File</h2>
+            <p>
+              Filename: {{ file.name }}<br>
+              Filesize: {{ formatBytes(file.size) }}
+            </p>
           </div>
-        } @else {
-          <button class="upload__button" [class.selectable]="file === undefined" (click)="selectFile()">
-            <i class="fas fa-upload upload__button__icon"></i>
-            <div>
-              <h2 class="upload__button__title">Upload a file</h2>
-              <p>
-                Click here to upload a file.
-                <br>
-                The file has to be either in .zip or .rar format.
-              </p>
-            </div>
-          </button>
-        }
+          <div class="form__button-group">
+            <button
+              class="form__button form__button__cancel"
+              type="button"
+              (click)="removeFile()">
+              Cancel
+            </button>
+            <button
+              class="form__button form__button__submit"
+              type="submit">
+              Upload
+            </button>
+          </div>
+        </div>
+      } @else {
+        <button
+          class="upload__button"
+          [class.selectable]="file === undefined"
+          (click)="selectFile()">
+          <i class="fas fa-upload upload__button__icon"></i>
+          <div>
+            <h2 class="upload__button__title">Upload a file</h2>
+            <p>
+              Click here to upload a file.
+              <br />
+              The file has to be either in .zip or .rar format.
+            </p>
+          </div>
+        </button>
       }
     } @else {
-     <h2>Upload Finished</h2>
+    <h2>{{uploadResultTitle}}</h2>
+    <p>{{uploadResultMessage}}</p>
     }
   </div>
 </ng-template>

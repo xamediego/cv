@@ -1,6 +1,7 @@
 import {Project} from "./project";
 
 export interface ProjectType {
+  projectTypeId : number;
   type: string;
   title: string;
   thumbnail: string;

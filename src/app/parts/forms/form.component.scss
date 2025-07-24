@@ -1,4 +1,4 @@
-:host{
+:host {
   max-width: 300px;
   width: 100%;
 }
@@ -18,7 +18,6 @@
     align-items: center;
 
     flex-grow: 1;
-
     align-self: stretch;
     margin: 1rem;
     gap: 15px;
@@ -27,19 +26,13 @@
   &__form {
     display: flex;
     flex-direction: column;
-
     flex-grow: 1;
     align-self: stretch;
-
     gap: 15px;
   }
 
   &__title {
     text-align: center;
-  }
-
-  &__description {
-
   }
 
   &__label {
@@ -53,19 +46,88 @@
     flex-direction: column;
     gap: 5px;
     width: 100%;
-    input {
+
+    input,
+    textarea,
+    select {
       padding: 0.6rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--secondary-color);
       border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
 
       &.error {
         border: 1px solid var(--error-color);
         box-shadow: inset 0 0 6px rgba(215, 42, 42, 0.6), 0 0 4px rgba(215, 42, 42, 0.4);
       }
     }
+
+    textarea {
+      border: none;
+      outline: none;
+      resize: none;
+      min-height: 80px;
+    }
+
+    &--checkbox-row {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
-  &__mfa-input{
+  &__radio-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    input[type="radio"] {
+      all: unset;
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    label {
+      position: relative;
+      font-size: 18px;
+      font-weight: 500;
+      padding-bottom: 4px;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: all 0.1s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        background-color: currentColor;
+        transition: width 0.1s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+
+      &.error {
+        color: var(--text-error);
+      }
+    }
+
+    input[type="radio"]:checked + label {
+      font-size: 19px;
+      font-weight: 700;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__mfa-input {
     text-align: center;
     letter-spacing: 10px;
   }
@@ -73,7 +135,6 @@
   &__error {
     color: var(--text-error);
     font-size: 0.9rem;
-
     margin: 0;
   }
 
@@ -92,7 +153,6 @@
 
     width: 100%;
     max-width: 150px;
-
     max-height: 25px;
     height: 100%;
 
@@ -102,8 +162,8 @@
     border-radius: 6px;
     transition: background 0.3s, color 0.3s;
 
-    p{
-      all :unset;
+    p {
+      all: unset;
     }
 
     text-align: center;
@@ -116,6 +176,7 @@
 
     &__cancel {
       border: 1px solid #ccc;
+
       &:hover {
         color: #000;
         background-color: #f0f0f0;
@@ -124,6 +185,7 @@
 
     &__submit {
       border: 1px solid var(--button-secondary);
+
       &:hover {
         background-color: var(--button-secondary);
       }
@@ -132,6 +194,7 @@
     &__dangerous {
       background: var(--button-warning);
       border: 1px solid var(--button-warning);
+
       &:hover {
         background-color: var(--button-warning);
       }

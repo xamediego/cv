@@ -48,4 +48,12 @@ export class ProjectTypeService {
 
     return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
   }
+
+  // if owner or admin then also retrieve hidden and unpublished
+  async findByUsername(username: any, retrieveHidden: boolean, retrieveUnpublished: boolean) : Promise<FetchResponse<ProjectType[]>>{
+    const apiLink = `${this.apiLink}/user/${username}`;
+    const method = 'POST';
+
+    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method, {retrieveHidden, retrieveUnpublished});
+  }
 }

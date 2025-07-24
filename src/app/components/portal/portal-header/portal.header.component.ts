@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {UserService} from "../../../services/generic/user.service";
 import {AuthenticationService} from "../../../services/authentication/authentication.service";
 
@@ -19,8 +19,14 @@ export class PortalHeaderComponent {
 
   constructor(
     public userService: UserService,
+    private router: Router,
     private authenticationService: AuthenticationService
-  ) {}
+  ) {
+  }
+
+  public getUserName(): string {
+    return this.userService.getUsernameFromJwt()
+  }
 
   public async logout() {
     await this.authenticationService.logout();
@@ -33,6 +39,10 @@ export class PortalHeaderComponent {
 
   public closeDropdown(): void {
     this.showDropdown = false;
+  }
+
+  public async navigate(route: string) {
+    await this.router.navigate([route])
   }
 
   @HostListener('document:click', ['$event'])

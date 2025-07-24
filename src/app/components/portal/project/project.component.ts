@@ -80,7 +80,7 @@ export class ProjectComponent implements OnInit {
   }
 
   public createLink(project: Project) {
-    return `${this.apiLink}/download/${project.title}/${project.id}`;
+    return `${this.apiLink}/download/${project.title}/${project.projectId}`;
   }
 
   public onAllImagesLoaded() {

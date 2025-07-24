@@ -18,8 +18,8 @@
           </button>
           @if(showDropdown){
             <div class="header__dropdown__menu">
-              <a class="header__link" routerLink="/user/settings" routerLinkActive="header__link__active"
-                 (click)="closeDropdown()">Settings</a>
+              <a class="header__link" routerLinkActive="header__link__active" (click)="navigate('/user/settings')">Settings</a>
+              <a class="header__link" routerLinkActive="header__link__active" (click)="navigate(`/user/${getUserName()}/projects`)">Projects</a>
               <a class="header__link" (click)="logout()">Logout</a>
             </div>
           }

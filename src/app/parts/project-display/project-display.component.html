@@ -1,6 +1,6 @@
 @if (project != null && projectType != null){
   <div class="project-holder">
-    <a class="project-holder__link" (click)="navigate(project.title, projectType.type)">
+    <a class="project-holder__link" (click)="onSelect(project.title, projectType.type)">
       <div class="project-holder__title">
         <div class="project-holder__title__left">
           <p class="s_t">

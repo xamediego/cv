@@ -6,9 +6,10 @@ import {ProjectDisplayComponent} from "../../../parts/project-display/project-di
 import {ProjectType} from "../../../services/entities/project.type";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
+import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-archive',
+  selector: 'app-archive',
   imports: [
     ReactiveFormsModule,
     FormsModule,
@@ -17,13 +18,12 @@ import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
     EventSpinnerDirective,
     NgStyle
   ],
-    templateUrl: './archive.component.html',
-    styleUrl: './archive.component.scss'
+  templateUrl: './archive.component.html',
+  styleUrl: './archive.component.scss'
 })
 export class ArchiveComponent implements OnInit {
   imagesLoaded : boolean = false;
   contentLoaded : boolean = false;
-
 
   projectTypesStorage: ProjectType[] = [];
   projectTypes: ProjectType[] = [];
@@ -44,7 +44,7 @@ export class ArchiveComponent implements OnInit {
 
   timeoutId: any = null;
 
-  constructor(private projectTypeService: ProjectTypeService) {}
+  constructor(private projectTypeService: ProjectTypeService, private router : Router) {}
 
   async ngOnInit(): Promise<void> {
     await this.loadProjects();
@@ -62,7 +62,15 @@ export class ArchiveComponent implements OnInit {
     })
   }
 
+  navigate : (title: string, type: string) => void = async (title, type) => {
+    const url = `home/${type}/${title}`
+
+    await this.router.navigate([url]);
+  }
+
   private async loadProjects() {
+    this.contentLoaded = false;
+
     const result = await this.projectTypeService.findAllComplete();
 
     if(result.statusCode == 200){
