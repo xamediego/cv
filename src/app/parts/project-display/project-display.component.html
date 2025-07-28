@@ -1,8 +1,8 @@
 @if (projectTypesStorage.length > 0) {
-  @if(!isEditing){
+  @if(!isEditing && !projectToEdit){
     <ng-container *ngTemplateOutlet="projectView"/>
   } @else {
-    <app-project-form [onFormClosed]="cancelEdit"/>
+    <app-project-form [onFormClosed]="cancelEdit" [project]="projectToEdit"/>
   }
 } @else {
   <p>No projects found</p>

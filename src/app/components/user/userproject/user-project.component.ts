@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {ProjectType} from "../../../services/entities/project.type";
@@ -25,10 +25,13 @@ export class UserProjectComponent implements OnInit {
   contentLoaded: boolean = false;
   projectTypes: ProjectType[] = [];
 
+  isOwner : boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private projectTypeService: ProjectTypeService,
     private userService: UserService,
+    private router : Router,
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -36,6 +39,7 @@ export class UserProjectComponent implements OnInit {
       const username = params.get('username') || '';
 
       if (this.userService.getUsernameFromJwt() === username) {
+        this.isOwner = true;
         await this.loadPersonalData();
       } else {
         await this.loadUserData(username);
@@ -57,5 +61,8 @@ export class UserProjectComponent implements OnInit {
     this.contentLoaded = true;
   }
 
-  public onProjectSelect: (projectType: ProjectType, project: Project) => void = () => {};
+  public  onProjectSelect : (projectType: ProjectType, project: Project) => void = async (projectType, project) => {
+    const url = `home/${projectType.type}/${project.title}`
+    await this.router.navigate([url]);
+  };
 }

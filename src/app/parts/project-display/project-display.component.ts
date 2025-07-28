@@ -82,7 +82,8 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
   }
 
   public cancelEdit: () => void = () => {
-
+    this.isEditing = false;
+    this.projectToEdit = undefined;
   };
 
   private filterProjects(projectName: string) {

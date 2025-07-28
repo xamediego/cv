@@ -12,6 +12,7 @@ import {ImageCutterComponent} from "../../image-cutter/image-cutter.component";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UploadControl} from "../../../services/generic/upload.service";
 import {formatBytes} from "../../../tools/RandomStuff";
+import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 
 @Component({
   selector: 'app-project-form',
@@ -51,6 +52,7 @@ export class ProjectFormComponent implements FormComponent, OnInit {
   constructor(
     private fb: FormBuilder,
     private projectService: ProjectService,
+    private projectTypeService : ProjectTypeService,
     private dialog: MatDialog
   ) {
     this.form = this.fb.group({
@@ -62,12 +64,9 @@ export class ProjectFormComponent implements FormComponent, OnInit {
     });
   }
 
-  ngOnInit(): void {
+  public async ngOnInit() {
     if (this.project) {
       this.projectImages = this.project.images;
-
-      console.log(this.project.projectTypeId)
-      console.log(this.projectTypes)
 
       this.form.patchValue({
         title: this.project.title,
@@ -76,9 +75,20 @@ export class ProjectFormComponent implements FormComponent, OnInit {
         isHidden: this.project.isHidden,
         projectTypeId: this.project.projectTypeId,
       });
-
-      console.log(this.form.value.projectTypeId)
     }
+
+    if(this.projectTypes.length < 1) await this.retrieveProjectTypes();
+  }
+
+  private async retrieveProjectTypes(){
+    this.processing = true;
+    this.processMessage = 'Retrieving types';
+
+    const response = await this.projectTypeService.findAll();
+    if(response.statusCode == 200) this.projectTypes = response.responseBody;
+
+    this.processing = false;
+    this.processMessage = '';
   }
 
   public async delete() {

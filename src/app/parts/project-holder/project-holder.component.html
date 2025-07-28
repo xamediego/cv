@@ -1,7 +1,16 @@
 @if (project != null && projectType != null) {
-  <div class="project-holder">
-    <a (click)="onEdit(projectType, project)"></a>
-    <a (click)="onProjectSelect(projectType, project)"></a>
+  <div
+    class="project-holder"
+    [class.project-holder--clickable]="!editable"
+    (click)="!editable && onProjectSelect(projectType, project)"
+  >
+
+    @if (editable){
+      <div class="project-holder__button-container" (click)="$event.stopPropagation()">
+        <a class="project-holder__button" (click)="onEdit(projectType, project)">Edit</a>
+        <a class="project-holder__button" (click)="onProjectSelect(projectType, project)">View</a>
+      </div>
+    }
 
     <div class="project-holder__title">
       <div class="project-holder__title__left">
@@ -9,20 +18,18 @@
           {{ project.title }}
         </p>
       </div>
-
       <div class="project-holder__title__right">
         <p>
           {{ createProjectString(project.publishedDate) }}
         </p>
       </div>
-
     </div>
+
     <img
-      alt="{{project.title}} - Image"
-      src="{{project.projectThumbnail}}"
+      alt="{{ project.title }} - Image"
+      src="{{ project.projectThumbnail }}"
       (load)="onImageLoad()"
       class="project-holder__img"
     />
-
   </div>
 }
