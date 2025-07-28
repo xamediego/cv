@@ -2,17 +2,18 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
 
-import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
+import {ProjectHolderComponent} from "../../../parts/project-holder/project-holder.component";
 import {ProjectType} from "../../../services/entities/project.type";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {JwtService} from "../../../services/guards/jwt.service";
+import {Project} from "../../../services/entities/project";
 
 @Component({
   selector: 'app-type',
   imports: [
     NgOptimizedImage,
-    ProjectDisplayComponent,
+    ProjectHolderComponent,
     EventSpinnerDirective
   ],
   templateUrl: './type.component.html',
@@ -35,7 +36,7 @@ export class TypeComponent implements OnInit {
 ) {
   }
 
-  async ngOnInit(): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(async params => {
       const type = params.get('type') || '';
       await this.loadData(type);
@@ -63,5 +64,10 @@ export class TypeComponent implements OnInit {
 
   public async newProject() {
     await this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  public onProjectSelect : (projectType: ProjectType, project: Project) => void = async (projectType,project) => {
+    const route = `home/${projectType.type}/${project.title}`
+    await this.router.navigate([route])
   }
 }

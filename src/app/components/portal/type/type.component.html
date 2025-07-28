@@ -29,7 +29,7 @@
     <hr class="slice-line">
     <div class="type__content">
       @for (project of projectType.projects; track $index){
-        <project-holder [project]="project" [projectType]="projectType" (loaded)="onImageLoad()"/>
+        <project-holder [project]="project" [projectType]="projectType" (loaded)="onImageLoad()" [onProjectSelect]="onProjectSelect"/>
       }
     </div>
   }

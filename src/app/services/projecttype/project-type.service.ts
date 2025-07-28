@@ -49,11 +49,24 @@ export class ProjectTypeService {
     return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
   }
 
-  // if owner or admin then also retrieve hidden and unpublished
-  async findByUsername(username: any, retrieveHidden: boolean, retrieveUnpublished: boolean) : Promise<FetchResponse<ProjectType[]>>{
+  async findByUsername(username: any) : Promise<FetchResponse<ProjectType[]>>{
     const apiLink = `${this.apiLink}/user/${username}`;
-    const method = 'POST';
+    const method = 'GET';
 
-    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method, {retrieveHidden, retrieveUnpublished});
+    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
+  }
+
+  async findByUsernameAll(username: any) : Promise<FetchResponse<ProjectType[]>>{
+    const apiLink = `${this.apiLink}/user/all/${username}`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
+  }
+
+  async findPersonal() : Promise<FetchResponse<ProjectType[]>>{
+    const apiLink = `${this.apiLink}/user/personal`;
+    const method = 'GET';
+
+    return await this.fetchService.fetchData<ProjectType[]>(apiLink, method);
   }
 }
