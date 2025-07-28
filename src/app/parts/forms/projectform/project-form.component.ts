@@ -36,8 +36,6 @@ export class ProjectFormComponent implements FormComponent, OnInit {
   processMessage: string = '';
 
   updated: boolean = false;
-  updatedTitle : string = 'Project Updated';
-  updatedMessage : string = 'Project successfully updated!';
 
   projectImages: string[] = []
 
@@ -47,6 +45,7 @@ export class ProjectFormComponent implements FormComponent, OnInit {
   @Input() public onProjectDelete: () => void = () => {};
   @Input() public onFormClosed: () => void = () => {};
   @Input() public onFormSuccess: () => void = () => {};
+
   private _snackBar = inject(MatSnackBar);
 
   constructor(

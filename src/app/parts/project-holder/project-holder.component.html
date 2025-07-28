@@ -1,26 +1,28 @@
-@if (project != null && projectType != null){
+@if (project != null && projectType != null) {
   <div class="project-holder">
-    <a class="project-holder__link" (click)="onProjectSelect(projectType, project)">
-      <div class="project-holder__title">
-        <div class="project-holder__title__left">
-          <p class="s_t">
-            {{project.title}}
-          </p>
-        </div>
+    <a (click)="onEdit(projectType, project)"></a>
+    <a (click)="onProjectSelect(projectType, project)"></a>
 
-        <div class="project-holder__title__right">
-          <p>
-            {{createProjectString(project.publishedDate)}}
-          </p>
-        </div>
-
+    <div class="project-holder__title">
+      <div class="project-holder__title__left">
+        <p class="s_t">
+          {{ project.title }}
+        </p>
       </div>
-      <img
-        alt="{{project.title}} - Image"
-        src="{{project.projectThumbnail}}"
-        (load)="onImageLoad()"
-        class="project-holder__img"
-      />
-    </a>
+
+      <div class="project-holder__title__right">
+        <p>
+          {{ createProjectString(project.publishedDate) }}
+        </p>
+      </div>
+
+    </div>
+    <img
+      alt="{{project.title}} - Image"
+      src="{{project.projectThumbnail}}"
+      (load)="onImageLoad()"
+      class="project-holder__img"
+    />
+
   </div>
 }

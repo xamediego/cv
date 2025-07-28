@@ -1,5 +1,9 @@
 @if (projectTypesStorage.length > 0) {
-  <ng-container *ngTemplateOutlet="projectView"/>
+  @if(!isEditing){
+    <ng-container *ngTemplateOutlet="projectView"/>
+  } @else {
+    <app-project-form [onFormClosed]="cancelEdit"/>
+  }
 } @else {
   <p>No projects found</p>
 }
@@ -29,7 +33,13 @@
 <ng-template #projects let-projectType>
   <div class="projects__content">
     @for (project of projectType.projects; track $index) {
-      <project-holder [project]="project" [projectType]="projectType" [onProjectSelect]="onProjectSelect" (loaded)="onImagesLoad()"/>
+      <project-holder
+        [project]="project"
+        [projectType]="projectType"
+        [editable]="editable"
+        [onEdit]="onEditSelect"
+        [onProjectSelect]="onProjectSelect"
+        (loaded)="onImagesLoad()"/>
     }
   </div>
 </ng-template>

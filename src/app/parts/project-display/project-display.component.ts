@@ -7,6 +7,7 @@ import {ProjectHolderComponent} from "../project-holder/project-holder.component
 
 import {ProjectType} from "../../services/entities/project.type";
 import {Project} from "../../services/entities/project";
+import {ProjectFormComponent} from "../forms/projectform/project-form.component";
 
 @Component({
   selector: 'project-display',
@@ -15,16 +16,19 @@ import {Project} from "../../services/entities/project";
     ReactiveFormsModule,
     NgStyle,
     EventSpinnerDirective,
-    NgTemplateOutlet
+    NgTemplateOutlet,
+    ProjectFormComponent
 
   ],
   templateUrl: './project-display.component.html',
   styleUrl: './project-display.component.scss'
 })
 export class ProjectDisplayComponent implements OnInit, OnChanges{
-  @Input() onProjectSelect: (projectType: ProjectType, project: Project) => void = () => {};
 
+  @Input() onProjectSelect: (projectType: ProjectType, project: Project) => void = () => {};
   @Input() projectTypes: ProjectType[] = [];
+  @Input() editable : boolean = false;
+
   projectTypesStorage: ProjectType[] = [];
 
   isEditing: boolean = false;
@@ -72,10 +76,14 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
     this.projectTypes.forEach(pt => pt.projects.forEach(p => this.totalImages += 1));
   }
 
-  public viewEdit: (project: Project) => void = (project) => {
+  public onEditSelect : (projectType : ProjectType, project : Project) => void = (projectType, project) => {
     this.isEditing = true;
     this.projectToEdit = project;
   }
+
+  public cancelEdit: () => void = () => {
+
+  };
 
   private filterProjects(projectName: string) {
     if (this.selectedFilter === "All") {

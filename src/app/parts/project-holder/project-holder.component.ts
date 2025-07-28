@@ -15,6 +15,10 @@ export class ProjectHolderComponent {
   @Input() projectType: ProjectType | null = null;
   @Input() onProjectSelect : (projectType: ProjectType, project: Project) => void = () => {};
   @Output() loaded : EventEmitter<boolean> = new EventEmitter();
+  @Input() editable: boolean = false;
+  @Input() onEdit: (projectType: ProjectType, project: Project) => void = (projectType, project) => {
+
+  };
 
   onImageLoad() {this.loaded.emit(true);}
 
