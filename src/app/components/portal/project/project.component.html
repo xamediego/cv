@@ -46,11 +46,13 @@
   <!-- Content -->
   <div class="project__content">
     <ng-container *ngTemplateOutlet="description; context : {$implicit : project}"/>
+
     <app-image-view [images]="project?.images ?? []"
                     [showImageList]="true"
                     [showNavigationButton]="true"
                     [useInterval]="true"
                     (allImagesLoadedChange)="onAllImagesLoaded()"/>
+
     <ng-container *ngTemplateOutlet="projectInfo; context : {$implicit : project}"/>
   </div>
 

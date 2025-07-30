@@ -1,36 +1,41 @@
+<app-breadcrumbs/>
 <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects....', stretchToParent : true}"/>
-<div [hidden]="!isLoaded()" class="type">
-  @if (projectType != null){
-    <div class="type__header">
-      <img class="type__header__icon"
-           ngSrc="{{projectType.icon}}"
-           width="65" height="65"
-           alt="{{projectType.type}} - icon"
-           (load)="onImageLoad()">
-      <div class="type__header__info">
-        <h2>{{ projectType.title }}</h2>
-        <div class="type__header__info__details">
-          <p>
-            Items: {{ projectType.projects.length }}
-          </p>
-          @if (jwtService.isAdmin()){
-            <button class="type__new-project" (click)="newProject()">
-              <p>
-                New
-              </p>
-              <p>
-                +
-              </p>
-            </button>
-          }
+
+<div [ngStyle]="isLoaded() ? {'display' : 'flex'} : {'display' : 'none'}" class="type">
+    @if (projectType != null){
+      <div class="type__header">
+        <img class="type__header__icon"
+             ngSrc="{{projectType.icon}}"
+             width="65" height="65"
+             alt="{{projectType.type}} - icon"
+             (load)="onImageLoad()">
+        <div class="type__header__info">
+          <h2>{{ projectType.title }}</h2>
+          <div class="type__header__info__details">
+            <p>
+              Items: {{ projectType.projects.length }}
+            </p>
+            @if (jwtService.isAdmin()){
+              <button class="type__new-project" (click)="newProject()">
+                <p>
+                  New
+                </p>
+                <p>
+                  +
+                </p>
+              </button>
+            }
+          </div>
         </div>
       </div>
-    </div>
-    <hr class="slice-line">
-    <div class="type__content">
-      @for (project of projectType.projects; track $index){
-        <project-holder [project]="project" [projectType]="projectType" (loaded)="onImageLoad()" [onProjectSelect]="onProjectSelect"/>
-      }
-    </div>
-  }
+      <hr class="slice-line">
+      <div class="type__projects">
+        @for (project of projectType.projects; track $index){
+          <project-holder [project]="project" [projectType]="projectType" (loaded)="onImageLoad()" [onProjectSelect]="onProjectSelect"/>
+        }
+      </div>
+    }
+
 </div>
+
+

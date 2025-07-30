@@ -23,8 +23,7 @@ export class UploadFormComponent<R extends FileUploadSummary> {
   @Input() apiLink: string = "";
   @Input() method: 'POST' | 'PUT' = 'POST';
 
-  @Input() onUploadFinished: (response: FetchResponse<R>) => void = () => {
-  };
+  @Input() onUploadFinished: (response: FetchResponse<R>) => void = () => {};
 
   file?: File;
   uploadRequest?: UploadControl;
@@ -43,7 +42,6 @@ export class UploadFormComponent<R extends FileUploadSummary> {
   updated = false;
 
   private dotInterval?: ReturnType<typeof setInterval>;
-
   constructor(private uploadService: UploadService) {}
 
   // === File Input ===

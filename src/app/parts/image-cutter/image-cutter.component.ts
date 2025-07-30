@@ -25,6 +25,7 @@ export class ImageCutterComponent implements AfterViewInit {
     this.croppie = new Croppie(this.container.nativeElement, {
       viewport: { width: 185, height: 115 },
       boundary: { width: 300, height: 200 },
+
       showZoomer: true,
       enableOrientation: true
     });
@@ -36,8 +37,8 @@ export class ImageCutterComponent implements AfterViewInit {
   }
 
   confirmCrop(): void {
-    this.croppie.result({ type: 'blob', size: 'viewport', format: "jpeg" }).then((blob: Blob) => {
-      this.dialogRef.close(blob);
+    this.croppie.result({ type: 'canvas', format: "png" }).then((canvas: any) => {
+      this.dialogRef.close(canvas);
     });
   }
 

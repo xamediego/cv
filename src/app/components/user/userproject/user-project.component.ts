@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {ProjectType} from "../../../services/entities/project.type";
@@ -7,8 +7,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {PortalHeaderComponent} from "../../portal/portal-header/portal.header.component";
 import {UserService} from "../../../services/generic/user.service";
 import {ProjectDisplayComponent} from "../../../parts/project-display/project-display.component";
-import {Project} from "../../../services/entities/project";
-
 
 @Component({
   selector: 'app-project',
@@ -31,7 +29,6 @@ export class UserProjectComponent implements OnInit {
     private route: ActivatedRoute,
     private projectTypeService: ProjectTypeService,
     private userService: UserService,
-    private router : Router,
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -60,9 +57,4 @@ export class UserProjectComponent implements OnInit {
     if (result.statusCode === 200) this.projectTypes = result.responseBody;
     this.contentLoaded = true;
   }
-
-  public  onProjectSelect : (projectType: ProjectType, project: Project) => void = async (projectType, project) => {
-    const url = `home/${projectType.type}/${project.title}`
-    await this.router.navigate([url]);
-  };
 }

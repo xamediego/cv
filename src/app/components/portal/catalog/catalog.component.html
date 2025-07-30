@@ -1,13 +1,12 @@
 <div class="catalog">
+  <app-breadcrumbs/>
   <div class="catalog__header">
     <h1>
       Catalog
     </h1>
   </div>
-
-  <ng-container *appEventSpinner="{condition : isLoaded() ,eventMessage : 'Loading Catalog....', stretchToParent : true}"/>
-
-  <div [hidden]="!isLoaded()" class="catalog__content">
+  <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Catalog....', stretchToParent : true}"/>
+  <div [ngStyle]="isLoaded() ? {'display' : 'flex'} : {'display' : 'none'}" class="catalog__content">
     @for (type of projectTypes; track $index) {
       <div class="catalog__type">
         <a class="catalog__type__link" (click)="navigate(type)">

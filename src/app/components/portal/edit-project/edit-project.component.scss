@@ -14,14 +14,14 @@
   }
 }
 
-.new-project{
+.edit-project {
+  box-sizing: border-box;
+
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
 
   max-width: 1000px;
   width: 100%;
-
-  gap: 10px;
 }

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {NgOptimizedImage} from "@angular/common";
+import {NgOptimizedImage, NgStyle} from "@angular/common";
 
 import {ProjectHolderComponent} from "../../../parts/project-holder/project-holder.component";
 import {ProjectType} from "../../../services/entities/project.type";
@@ -8,13 +8,16 @@ import {ProjectTypeService} from "../../../services/projecttype/project-type.ser
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {JwtService} from "../../../services/guards/jwt.service";
 import {Project} from "../../../services/entities/project";
+import {BreadcrumbsComponent} from "../breadcrumbs/breadcrumbs.component";
 
 @Component({
   selector: 'app-type',
   imports: [
     NgOptimizedImage,
     ProjectHolderComponent,
-    EventSpinnerDirective
+    EventSpinnerDirective,
+    BreadcrumbsComponent,
+    NgStyle
   ],
   templateUrl: './type.component.html',
   styleUrl: './type.component.scss'
@@ -32,7 +35,7 @@ export class TypeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private projectTypeService: ProjectTypeService,
-    protected jwtService : JwtService
+    protected jwtService : JwtService,
 ) {
   }
 
@@ -44,6 +47,7 @@ export class TypeComponent implements OnInit {
   }
 
   private async loadData(type: string) {
+    this.contentLoaded = false;
     const result = await this.projectTypeService.findByTypeComplete(type);
     if (result.statusCode == 200) {
       this.projectType = result.responseBody
@@ -63,11 +67,12 @@ export class TypeComponent implements OnInit {
   }
 
   public async newProject() {
-    await this.router.navigate(['new'], { relativeTo: this.route });
+    const route = `home/project/new`
+    await this.router.navigate([route]);
   }
 
-  public onProjectSelect : (projectType: ProjectType, project: Project) => void = async (projectType,project) => {
-    const route = `home/${projectType.type}/${project.title}`
-    await this.router.navigate([route])
+  public onProjectSelect : (projectType : ProjectType, project : Project) => void = async (projectType, project) => {
+    const route = `home/project/${projectType.type}/${project.title}`
+    await this.router.navigate([route]);
   }
 }

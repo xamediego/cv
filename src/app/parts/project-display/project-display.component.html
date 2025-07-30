@@ -1,30 +1,27 @@
 @if (projectTypesStorage.length > 0) {
-  @if(!isEditing && !projectToEdit){
-    <ng-container *ngTemplateOutlet="projectView"/>
-  } @else {
-    <app-project-form [onFormClosed]="cancelEdit" [project]="projectToEdit"/>
-  }
+  <ng-container *ngTemplateOutlet="projectView"/>
 } @else {
   <p>No projects found</p>
 }
 
 <ng-template #projectView>
   <div class="projects">
-    <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects...', stretchToParent : true}"/>
+    <ng-container
+      *appEventSpinner="{condition : !isLoaded() ,eventMessage : 'Loading Projects...', stretchToParent : true}"/>
     <div class="projects__wrapper" [ngStyle]="isLoaded() ? {'display' : 'flex'} : {'display' : 'none'}">
       <ng-container *ngTemplateOutlet="archiveFilter"/>
       @for (projectType of projectTypes; track $index) {
-          <div class="archive__bottom__project-types">
-            <div class="archive__bottom__title__wrapper">
-              <div class="archive__bottom__title__wrapper__head">
-                <div class="archive__bottom__title__wrapper__head__left">
-                  <h2>{{ projectType.title }}</h2>
-                </div>
+        <div class="archive__bottom__project-types">
+          <div class="archive__bottom__title__wrapper">
+            <div class="archive__bottom__title__wrapper__head">
+              <div class="archive__bottom__title__wrapper__head__left">
+                <h2>{{ projectType.title }}</h2>
               </div>
-              <hr class="slice-line">
             </div>
-            <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
+            <hr class="slice-line">
           </div>
+          <ng-container *ngTemplateOutlet="projects; context: { $implicit: projectType }"/>
+        </div>
       }
     </div>
   </div>

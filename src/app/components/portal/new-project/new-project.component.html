@@ -1,8 +1,4 @@
 <div class="new-project">
-    @if (!uploadFinished && !newProject) {
-      <app-upload-form [apiLink]="apiLink" [onUploadFinished]="onUploadFinished"/>
-    } @else {
-      <app-project-form [project]="newProject" [projectTypes]="projectTypes"/>
-    }
+  <app-upload-form [apiLink]="apiLink" [onUploadFinished]="onUploadFinished"/>
 </div>
 

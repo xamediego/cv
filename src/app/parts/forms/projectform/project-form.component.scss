@@ -35,21 +35,35 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
     gap: 20px;
     width: 100%;
     margin: 20px;
   }
 
   &__holder {
-    width: 25vw;
     aspect-ratio: 185 / 115;
-    max-width: 185px;
+
+    min-width: 185px;
+    max-width: 225px;
+    width: 100%;
+
     flex-shrink: 0;
     position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    @media screen and (max-width: 640px) {
+      max-width: unset;
+      width: 100%;
+    }
   }
 
   &__img {

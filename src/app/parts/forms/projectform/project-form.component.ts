@@ -52,7 +52,7 @@ export class ProjectFormComponent implements FormComponent, OnInit {
   constructor(
     private fb: FormBuilder,
     private projectService: ProjectService,
-    private projectTypeService : ProjectTypeService,
+    private projectTypeService: ProjectTypeService,
     private dialog: MatDialog
   ) {
     this.form = this.fb.group({
@@ -77,15 +77,15 @@ export class ProjectFormComponent implements FormComponent, OnInit {
       });
     }
 
-    if(this.projectTypes.length < 1) await this.retrieveProjectTypes();
+    if (this.projectTypes.length < 1) await this.retrieveProjectTypes();
   }
 
-  private async retrieveProjectTypes(){
+  private async retrieveProjectTypes() {
     this.processing = true;
     this.processMessage = 'Retrieving types';
 
     const response = await this.projectTypeService.findAll();
-    if(response.statusCode == 200) this.projectTypes = response.responseBody;
+    if (response.statusCode == 200) this.projectTypes = response.responseBody;
 
     this.processing = false;
     this.processMessage = '';
@@ -146,8 +146,8 @@ export class ProjectFormComponent implements FormComponent, OnInit {
       data.append('blob', image.blob, `${image.index}.jpg`);
     });
 
-    const totalSize : string = formatBytes(0);
-    let currentProgress : string = formatBytes(0);
+    const totalSize: string = formatBytes(0);
+    let currentProgress: string = formatBytes(0);
     return this.projectService.updateImages(
       projectData.projectId,
       data,
@@ -158,7 +158,7 @@ export class ProjectFormComponent implements FormComponent, OnInit {
         this._snackBar.open('Error while uploading images', undefined, {duration: 3000});
       },
       async (response: FetchResponse<string>) => {
-        if(response.statusCode == 200){
+        if (response.statusCode == 200) {
           const result = await this.projectService.updateProject(projectData);
           await this.onSuccess(result.responseBody)
         } else {
@@ -170,13 +170,12 @@ export class ProjectFormComponent implements FormComponent, OnInit {
 
   private selectedImageIndex: number = 0;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-
-  triggerImageSelect(index: number): void {
+  public triggerImageSelect(index: number): void {
     this.selectedImageIndex = index;
     this.fileInput.nativeElement.click();
   }
 
-  onFileSelected(event: Event): void {
+  public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input?.files?.[0];
     if (!file) return;
@@ -190,8 +189,9 @@ export class ProjectFormComponent implements FormComponent, OnInit {
         data: imageUrl
       });
 
-      dialogRef.afterClosed().subscribe((blob: Blob | null) => {
-        if (blob) {
+      dialogRef.afterClosed().subscribe((base64: string | null) => {
+        if (base64) {
+          const blob = this.base64ToBlob(base64, 'image/png');
           const imageUrl = URL.createObjectURL(blob);
 
           if (this.selectedImageIndex == -1) {
@@ -206,7 +206,13 @@ export class ProjectFormComponent implements FormComponent, OnInit {
     reader.readAsDataURL(file);
   }
 
-  return() {
-    this.updated = false;
+  private base64ToBlob(base64 : string, mime = 'image/png') {
+    const byteString = atob(base64.split(',')[1]);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], {type: mime});
   }
 }

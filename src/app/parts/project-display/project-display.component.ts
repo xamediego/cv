@@ -1,13 +1,13 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 import {EventSpinnerDirective} from "../event-spinner.directive";
 import {ProjectHolderComponent} from "../project-holder/project-holder.component";
 
 import {ProjectType} from "../../services/entities/project.type";
 import {Project} from "../../services/entities/project";
-import {ProjectFormComponent} from "../forms/projectform/project-form.component";
 
 @Component({
   selector: 'project-display',
@@ -17,27 +17,20 @@ import {ProjectFormComponent} from "../forms/projectform/project-form.component"
     NgStyle,
     EventSpinnerDirective,
     NgTemplateOutlet,
-    ProjectFormComponent
-
   ],
   templateUrl: './project-display.component.html',
   styleUrl: './project-display.component.scss'
 })
 export class ProjectDisplayComponent implements OnInit, OnChanges{
 
-  @Input() onProjectSelect: (projectType: ProjectType, project: Project) => void = () => {};
   @Input() projectTypes: ProjectType[] = [];
   @Input() editable : boolean = false;
+  @Input() contentLoaded!: boolean;
 
   projectTypesStorage: ProjectType[] = [];
 
-  isEditing: boolean = false;
-  projectToEdit: Project | undefined;
-
   selectedFilter: string = "All";
-
   imagesLoaded: boolean = false;
-  @Input() contentLoaded!: boolean;
 
   totalImages: number = 0;
   loadedImages: number = 0;
@@ -53,14 +46,13 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
 
   timeoutId: any = null;
 
+  constructor(private router : Router) {}
+
   public async ngOnInit() {
     this.configureView();
-
     this.selectedFilter = "All"
-
     this.filterGroup.valueChanges.subscribe((v) => {
       clearTimeout(this.timeoutId);
-
       this.timeoutId = setTimeout(async () => {
         this.filterProjects(v.inputControl)
       }, 0);
@@ -76,15 +68,15 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
     this.projectTypes.forEach(pt => pt.projects.forEach(p => this.totalImages += 1));
   }
 
-  public onEditSelect : (projectType : ProjectType, project : Project) => void = (projectType, project) => {
-    this.isEditing = true;
-    this.projectToEdit = project;
-  }
-
-  public cancelEdit: () => void = () => {
-    this.isEditing = false;
-    this.projectToEdit = undefined;
+  @Input() public onProjectSelect: (projectType: ProjectType, project: Project) => void = async (projectType, project) => {
+    const route = `home/project/${projectType.type}/${project.title}`
+    await this.router.navigate([route])
   };
+
+  public onEditSelect : (projectType : ProjectType, project : Project) => void = async (projectType, project) => {
+    const route = `home/project/edit/${projectType.type}/${project.title}`
+    await this.router.navigate([route], {state : {"project" : project}})
+  }
 
   private filterProjects(projectName: string) {
     if (this.selectedFilter === "All") {

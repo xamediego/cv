@@ -4,12 +4,16 @@ import {Router} from "@angular/router";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {ProjectType} from "../../../services/entities/project.type";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
+import {BreadcrumbsComponent} from "../breadcrumbs/breadcrumbs.component";
+import {NgStyle} from "@angular/common";
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   imports: [
-    EventSpinnerDirective
+    EventSpinnerDirective,
+    BreadcrumbsComponent,
+    NgStyle
   ],
   styleUrl: './catalog.component.scss'
 })
@@ -25,14 +29,14 @@ export class CatalogComponent implements OnInit {
   constructor(private projectTypeService: ProjectTypeService, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
+    this.contentLoaded = false;
     const result = await this.projectTypeService.findCatalog();
 
     if (result.statusCode == 200) {
       this.projectTypes = result.responseBody;
     }
 
-    this.contentLoaded = false;
-
+    this.contentLoaded = true;
     this.totalImages = this.projectTypes.length;
   }
 
