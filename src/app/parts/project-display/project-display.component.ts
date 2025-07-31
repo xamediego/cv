@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {NgStyle, NgTemplateOutlet} from "@angular/common";
+import {NgOptimizedImage, NgStyle, NgTemplateOutlet} from "@angular/common";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -17,6 +17,7 @@ import {Project} from "../../services/entities/project";
     NgStyle,
     EventSpinnerDirective,
     NgTemplateOutlet,
+    NgOptimizedImage,
   ],
   templateUrl: './project-display.component.html',
   styleUrl: './project-display.component.scss'

@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   public onImagesLoad(index: number) {
-    if (index == 0) this.initialImageLoaded = false
+    if (index == 0) this.initialImageLoaded = true
   }
 
   public isLoaded(): boolean {

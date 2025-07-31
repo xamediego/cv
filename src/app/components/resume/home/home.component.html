@@ -21,9 +21,9 @@
     <section class="home__projects">
       <h2 class="home__projects__title">Featured Projects</h2>
       <div class="home__slideshow">
-        <ng-container *appEventSpinner="{condition : isLoaded() ,eventMessage : '', stretchToParent : true}"/>
+        <ng-container *appEventSpinner="{condition : !isLoaded() ,eventMessage : '', stretchToParent : true}"/>
 
-        <div class="home__slideshow__content" [ngStyle]="{height: !isLoaded() ? '100%' : '0px'}">
+        <div class="home__slideshow__content" [ngStyle]="{display: isLoaded() ? 'flex' : 'none'}">
           <div class="home__slideshow__navigation">
             <button (click)="previous()" aria-label="Previous Slide">
               <i class="fas fa-arrow-left"></i>
