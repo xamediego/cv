@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
   private async loadData() {
     const result = this.projectService.findFeaturedLocal();
     this.featuredProjects = [...result];
-
     this.dataLoaded = true;
   }
 

@@ -10,17 +10,20 @@ import {ThemeService} from "./services/generic/theme.service";
 })
 
 export class AppComponent implements OnInit {
-  constructor(private themeService : ThemeService) {}
+  constructor(private themeService: ThemeService) {
+  }
+
   ngOnInit(): void {
-    if (window.matchMedia) {
-      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-        this.themeService.setTheme('dark')
-      } else {
-        this.themeService.setTheme('light')
-      }
-    } else {
-      this.themeService.setTheme('dark')
-    }
+    // if (window.matchMedia) {
+    //   if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    //     this.themeService.setTheme('dark')
+    //   } else {
+    //     this.themeService.setTheme('light')
+    //   }
+    // } else {
+    //   this.themeService.setTheme('dark')
+    // }
+    this.themeService.setTheme('dark')
   }
 }
 
