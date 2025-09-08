@@ -1,6 +1,6 @@
 @if (projectTypesStorage.length > 0) {
   <ng-container *ngTemplateOutlet="projectView"/>
-} @else {
+} @else if (contentLoaded) {
   <p>No projects found</p>
 }
 

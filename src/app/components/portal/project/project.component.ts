@@ -43,7 +43,9 @@ export class ProjectComponent implements OnInit {
 
   private async loadData(projectName: string) {
     const result = await this.projectService.findByTitle(projectName)
+
     if (result.statusCode == 200) {this.project = result.responseBody}
+
     this.contentLoaded = true;
   }
 

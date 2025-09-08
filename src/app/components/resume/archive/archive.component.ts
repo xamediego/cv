@@ -30,11 +30,6 @@ export class ArchiveComponent implements OnInit {
     await this.loadProjects();
   }
 
-  onProjectSelect: (projectType: ProjectType, project: Project) => void = async (projectType, project) => {
-    const url = `home/${projectType.type}/${project.title}`
-    await this.router.navigate([url]);
-  }
-
   private async loadProjects() {
     this.contentLoaded = false;
     const result = await this.projectTypeService.findAllComplete();
