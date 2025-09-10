@@ -33,7 +33,7 @@ export abstract class AbstractFormComponent<T> implements IFormComponent {
     await this.processForm(this.updateRequest());
   }
 
-  private async processForm(fetchRequest: () => Promise<FetchResponse<T>>) {
+  protected async processForm(fetchRequest: (code? : string) => Promise<FetchResponse<T>>) {
     const response = await fetchRequest();
     if (response.statusCode === 200) {
       await this.onSuccess(response.responseBody);
