@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 import {RegisterService} from "../../../services/register/register.service";
@@ -6,7 +6,7 @@ import {PasswordValidatorComponent} from "../../password-validator/password-vali
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormEmailValidator} from "../../../tools/EmailValidator";
 import {PasswordValidator} from "../../../tools/PasswordValidator";
-import {FormComponent} from "../form.component";
+import {AbstractFormComponent} from "../form.component";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 
 @Component({
@@ -16,20 +16,17 @@ import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
   templateUrl: './registration-form.component.html',
   styleUrls: ['../form.component.scss']
 })
-export class RegistrationFormComponent implements FormComponent{
+export class RegistrationFormComponent extends AbstractFormComponent{
 
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing : boolean = false;
-  processMessage : string = 'Registering New Account...'
   updated : boolean = false;
-
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,
     private registrationService: RegisterService) {
+    super();
     this.form = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(2)]],

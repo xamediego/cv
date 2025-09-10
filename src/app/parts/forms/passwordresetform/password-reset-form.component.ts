@@ -1,20 +1,24 @@
 import {Component, ViewChild, ViewContainerRef} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-
-import {AuthenticationService} from "../../../services/authentication/authentication.service";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {AccountService} from "../../../services/account/account.service";
+import {PasswordValidatorComponent} from "../../password-validator/password-validator.component";
 import {MfaService} from "../../../services/mfa/mfa.service";
-import {MfaFormAbstract} from "../mfa-form.abstract";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
+import {MfaFormAbstract} from "../mfa-form.abstract";
 
 @Component({
-  selector: 'app-login-form',
+  selector: 'app-password-form',
   standalone: true,
-  imports: [ReactiveFormsModule, EventSpinnerDirective],
-  templateUrl: './login-form.component.html',
-  styleUrls: ['../form.component.scss']
+  imports: [
+    ReactiveFormsModule,
+    PasswordValidatorComponent,
+    EventSpinnerDirective,
+  ],
+  templateUrl: './password-reset-form.component.html',
+  styleUrl: '../form.component.scss'
 })
-export class LoginFormComponent extends MfaFormAbstract{
+export class PasswordResetFormComponent extends MfaFormAbstract {
 
   form: FormGroup;
   errorMessage: string | undefined = undefined;
@@ -23,13 +27,14 @@ export class LoginFormComponent extends MfaFormAbstract{
 
   constructor(
     private fb: FormBuilder,
-    private loginService: AuthenticationService,
-    mfaService: MfaService,
+    private accountService: AccountService,
+    mfaService: MfaService
   ) {
     super(mfaService);
     this.form = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      currentPassword: ['', Validators.required],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     });
   }
 
@@ -58,20 +63,21 @@ export class LoginFormComponent extends MfaFormAbstract{
     } else {
       this.form.markAllAsTouched();
       // @ts-ignore
-      this.errorMessage = response.responseBody.error;
+      this.errorMessage = response.responseBody;
     }
   }
 
   private onSuccess: () => Promise<void> = async () => {
-    this.onFormSuccess();
     this.updated = true;
+    this.mfaCheck = false;
+    this.onFormSuccess();
   }
 
   private updateRequest(): (code?: string) => Promise<FetchResponse<string>> {
-    const {username, password} = this.form.value;
+    const {currentPassword, newPassword} = this.form.value;
     return async (code?: string) => {
-      this.processing = true
-      const result = await this.loginService.login(username, password, code);
+      this.processing = true;
+      const result = await this.accountService.updatePassword(currentPassword, newPassword, code);
       this.processing = false;
       return result;
     };

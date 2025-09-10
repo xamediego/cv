@@ -1,11 +1,13 @@
 import {ViewContainerRef} from "@angular/core";
 import {FetchResponse} from "../../services/generic/entities/FetchResponse";
 import {MfaService} from "../../services/mfa/mfa.service";
+import {AbstractFormComponent} from "./form.component";
 
-export abstract class MfaFormAbstract {
+export abstract class MfaFormAbstract extends AbstractFormComponent{
   private mfaService: MfaService;
 
   protected constructor(mfaService: MfaService) {
+    super();
     this.mfaService = mfaService;
   }
 

@@ -1,9 +1,9 @@
-import {Component, Input, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AccountService} from "../../../services/account/account.service";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {UserService} from "../../../services/generic/user.service";
-import {FormComponent} from "../form.component";
+
 import {MfaFormAbstract} from "../mfa-form.abstract";
 import {MfaService} from "../../../services/mfa/mfa.service";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
@@ -17,16 +17,12 @@ import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
   templateUrl: './delete-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class DeleteFormComponent extends MfaFormAbstract implements FormComponent{
-
+export class DeleteFormComponent extends MfaFormAbstract{
   form: FormGroup;
   errorMessage: string | undefined = undefined;
-  processing : boolean = false;
-  processMessage : string = 'Deleting Account';
-  updated : boolean = false;
 
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
+  processing : boolean = false;
+  updated : boolean = false;
 
   constructor(
     private fb: FormBuilder,

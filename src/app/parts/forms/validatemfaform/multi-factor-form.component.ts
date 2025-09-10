@@ -3,6 +3,7 @@ import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
+import {AbstractFormComponent} from "../form.component";
 
 @Component({
   selector: 'app-validate-mfa-form',
@@ -10,21 +11,16 @@ import {EventSpinnerDirective} from "../../event-spinner.directive";
   imports: [ReactiveFormsModule, EventSpinnerDirective],
   styleUrls: ['../form.component.scss']
 })
-export class MultiFactorFormComponent {
-
+export class MultiFactorFormComponent extends AbstractFormComponent{
   @Input() public fetchRequest!: (code: string) => Promise<FetchResponse<any>>;
   @Output() public afterMfa = new EventEmitter();
-
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
-
-  @Input() public processMessage : string = '';
 
   public processing: boolean = false;
   public errorMessage: string = '';
   public form;
 
   constructor(private fb: FormBuilder) {
+    super();
     this.form = this.fb.group({
       code: ['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]],
     })

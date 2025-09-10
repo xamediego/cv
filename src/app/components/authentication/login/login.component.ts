@@ -18,7 +18,7 @@ export class LoginComponent {
     await this.router.navigate(['auth']);
   };
 
-  onLogin = async () => {
+  onLoginComplete = async () => {
     await this.router.navigate(['home']);
   };
 

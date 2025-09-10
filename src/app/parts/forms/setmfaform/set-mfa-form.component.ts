@@ -1,11 +1,11 @@
-import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
 
 import QRCode from 'qrcode'
 
-import {FormComponent} from "../form.component";
+import {AbstractFormComponent} from "../form.component";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {AccountService} from "../../../services/account/account.service";
 import {TokenService} from "../../../services/token/token.service";
@@ -18,13 +18,9 @@ import {EventSpinnerDirective} from "../../event-spinner.directive";
   templateUrl: './set-mfa-form.component.html',
   styleUrls: ['../form.component.scss', 'set-mfa-form.component.scss']
 })
-export class SetMfaFormComponent implements FormComponent, OnInit {
+export class SetMfaFormComponent extends AbstractFormComponent implements  OnInit {
   public processing = false;
   public eventMessage = '';
-
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
-
 
   public mfaEnabled = false;
   public mfaOperationSuccess = false;
@@ -43,6 +39,7 @@ export class SetMfaFormComponent implements FormComponent, OnInit {
     private accountService: AccountService,
     private crf : ChangeDetectorRef
   ) {
+    super();
     this.form = this.fb.group({
       password: ['', Validators.required],
       code: ['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]],
@@ -74,7 +71,7 @@ export class SetMfaFormComponent implements FormComponent, OnInit {
 
   private async generateSecretKey(): Promise<void> {
     this.processing = true;
-    this.eventMessage = "Generating Secret";
+    this.eventMessage = "Generating Secret...";
 
     const result = await this.tokenService.getTotpSecretKey();
     this.processing = false;
