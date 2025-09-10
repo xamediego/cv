@@ -1,8 +1,8 @@
-import {Component, Input, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ViewChild, ViewContainerRef} from '@angular/core';
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AccountService} from "../../../services/account/account.service";
-import {FormComponent} from "../form.component";
+
 import {MfaFormAbstract} from "../mfa-form.abstract";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {MfaService} from "../../../services/mfa/mfa.service";
@@ -13,19 +13,15 @@ import {MfaService} from "../../../services/mfa/mfa.service";
     EventSpinnerDirective,
     ReactiveFormsModule
   ],
-  templateUrl: './displayname-form.component.html',
+  templateUrl: './display-name-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class DisplaynameFormComponent extends MfaFormAbstract implements FormComponent{
+export class DisplayNameFormComponent extends MfaFormAbstract{
 
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing: boolean = false;
-  processMessage : string = 'Updating Display Name...';
   updated: boolean = false;
-
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +34,6 @@ export class DisplaynameFormComponent extends MfaFormAbstract implements FormCom
       displayName: ['', Validators.required]
     });
   }
-
 
   public async submit() {
     if (this.form.invalid) {

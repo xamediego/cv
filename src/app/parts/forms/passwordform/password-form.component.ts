@@ -6,7 +6,6 @@ import {PasswordValidatorComponent} from "../../password-validator/password-vali
 import {MfaService} from "../../../services/mfa/mfa.service";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {MfaFormAbstract} from "../mfa-form.abstract";
-import {FormComponent} from "../form.component";
 
 @Component({
   selector: 'app-password-form',
@@ -19,15 +18,12 @@ import {FormComponent} from "../form.component";
   templateUrl: './password-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class PasswordFormComponent extends MfaFormAbstract implements FormComponent {
+export class PasswordFormComponent extends MfaFormAbstract{
+
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing : boolean = false;
-  processMessage : string = 'Updating Password...';
   updated : boolean = false;
-
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
 
   constructor(
     private fb: FormBuilder,

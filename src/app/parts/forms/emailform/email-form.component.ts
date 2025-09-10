@@ -1,8 +1,7 @@
-import {Component, Input, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ViewChild, ViewContainerRef} from '@angular/core';
 import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AccountService} from "../../../services/account/account.service";
-import {FormComponent} from "../form.component";
 import {MfaFormAbstract} from "../mfa-form.abstract";
 import {MfaService} from "../../../services/mfa/mfa.service";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
@@ -16,16 +15,12 @@ import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
   templateUrl: './email-form.component.html',
   styleUrl: '../form.component.scss'
 })
-export class EmailFormComponent extends MfaFormAbstract implements FormComponent{
+export class EmailFormComponent extends MfaFormAbstract{
+
   form: FormGroup;
   errorMessage: string | undefined = undefined;
   processing : boolean = false;
-  processMessage : string = 'Sending Confirmation Email...'
   updated : boolean = false;
-
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
-
 
   constructor(
     private fb: FormBuilder,

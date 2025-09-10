@@ -1,6 +1,6 @@
 import {Component, ElementRef, inject, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {FormComponent} from "../form.component";
+import {AbstractFormComponent} from "../form.component";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {ProjectService} from "../../../services/project/project.service";
 import {Project} from "../../../services/entities/project";
@@ -29,23 +29,18 @@ import {ProjectTypeService} from "../../../services/projecttype/project-type.ser
     'project-form.component.scss'
   ]
 })
-export class ProjectFormComponent implements FormComponent, OnInit {
+export class ProjectFormComponent extends AbstractFormComponent implements OnInit {
   form: FormGroup;
   errorMessage: string | undefined = undefined;
 
   processing: boolean = false;
-  processMessage: string = '';
-
   updated: boolean = false;
 
   projectImages: string[] = []
 
   @Input() public project: Project | undefined;
   @Input() public projectTypes: ProjectType[] = [];
-
   @Input() public onProjectDelete: () => void = () => {};
-  @Input() public onFormClosed: () => void = () => {};
-  @Input() public onFormSuccess: () => void = () => {};
 
   private _snackBar = inject(MatSnackBar);
 
@@ -55,6 +50,7 @@ export class ProjectFormComponent implements FormComponent, OnInit {
     private projectTypeService: ProjectTypeService,
     private dialog: MatDialog
   ) {
+    super();
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(250)]],
       description: ['', Validators.maxLength(1000)],

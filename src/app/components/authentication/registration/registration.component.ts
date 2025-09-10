@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 })
 export class RegistrationComponent {
   constructor(private router : Router) {}
+
   onRegisterClose = async () => {
     await this.router.navigate(['auth']);
   };
