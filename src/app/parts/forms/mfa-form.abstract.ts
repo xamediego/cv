@@ -1,13 +1,15 @@
-import {ViewContainerRef} from "@angular/core";
+import {Directive, ViewChild, ViewContainerRef} from "@angular/core";
 import {FetchResponse} from "../../services/generic/entities/FetchResponse";
 import {MfaService} from "../../services/mfa/mfa.service";
-import {AbstractFormComponent} from "./form.component";
+import {AbstractFormComponent, IFormComponent} from "./form.component";
+import {FormGroup} from "@angular/forms";
 
-export abstract class MfaFormAbstract extends AbstractFormComponent{
+@Directive()
+export abstract class MfaFormAbstract<T> extends AbstractFormComponent<T> implements IFormComponent{
   private mfaService: MfaService;
 
-  protected constructor(mfaService: MfaService) {
-    super();
+  protected constructor(mfaService: MfaService, form: FormGroup) {
+    super(form);
     this.mfaService = mfaService;
   }
 

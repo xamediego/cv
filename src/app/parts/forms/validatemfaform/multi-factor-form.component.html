@@ -1,6 +1,6 @@
 <div class="form">
   @if (!processing) {
-    <form class="form__form" [formGroup]="form" (submit)="onSubmit()">
+    <form class="form__form" [formGroup]="form" (submit)="submit()">
       <h2 class="form__title">Enter MFA Code</h2>
       <p>Please insert a verification code from your authenticator</p>
 

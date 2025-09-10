@@ -1,5 +1,5 @@
-import {Component, ViewChild, ViewContainerRef} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 import {AuthenticationService} from "../../../services/authentication/authentication.service";
 import {EventSpinnerDirective} from "../../event-spinner.directive";
@@ -14,60 +14,18 @@ import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
   templateUrl: './login-form.component.html',
   styleUrls: ['../form.component.scss']
 })
-export class LoginFormComponent extends MfaFormAbstract{
-
-  form: FormGroup;
-  errorMessage: string | undefined = undefined;
-  processing : boolean = false;
-  updated : boolean = false;
-
+export class LoginFormComponent extends MfaFormAbstract<string>{
   constructor(
-    private fb: FormBuilder,
     private loginService: AuthenticationService,
     mfaService: MfaService,
   ) {
-    super(mfaService);
-    this.form = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+    super(mfaService, new FormGroup({
+      password: new FormControl(['', Validators.required]),
+      displayName: new FormControl(['', Validators.required]),
+    }));
   }
 
-  public async submit() {
-    if (this.form.invalid) {
-      this.errorMessage = 'Please correct the highlighted fields.';
-      this.form.markAllAsTouched();
-      return;
-    }
-    await this.processForm<string>(this.updateRequest());
-  }
-
-  @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
-  private async processForm<T>(fetchRequest: (code?: string) => Promise<FetchResponse<T>>) {
-    const response = await fetchRequest();
-    if (response.statusCode === 200) {
-      await this.onSuccess();
-    } else if (response.statusCode === 409) {
-      await this.handleMfa<T>(
-        this.dynamicComponentContainer,
-        async (code) => await fetchRequest(code),
-        async () => await this.onSuccess(),
-        (message) => (this.errorMessage = message),
-        this.processMessage
-      );
-    } else {
-      this.form.markAllAsTouched();
-      // @ts-ignore
-      this.errorMessage = response.responseBody.error;
-    }
-  }
-
-  private onSuccess: () => Promise<void> = async () => {
-    this.onFormSuccess();
-    this.updated = true;
-  }
-
-  private updateRequest(): (code?: string) => Promise<FetchResponse<string>> {
+  protected updateRequest(): (code?: string) => Promise<FetchResponse<string>> {
     const {username, password} = this.form.value;
     return async (code?: string) => {
       this.processing = true
