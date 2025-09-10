@@ -29,14 +29,16 @@ import {ProjectTypeService} from "../../../services/projecttype/project-type.ser
     'project-form.component.scss'
   ]
 })
-export class ProjectFormComponent extends AbstractFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit {
   form: FormGroup;
   errorMessage: string | undefined = undefined;
-
   processing: boolean = false;
   updated: boolean = false;
-
   projectImages: string[] = []
+
+  @Input() public onFormClosed: () => void = () => {};
+  @Input() public onFormSuccess: () => void = () => {};
+  @Input() public processMessage: string = '';
 
   @Input() public project: Project | undefined;
   @Input() public projectTypes: ProjectType[] = [];
@@ -50,7 +52,6 @@ export class ProjectFormComponent extends AbstractFormComponent implements OnIni
     private projectTypeService: ProjectTypeService,
     private dialog: MatDialog
   ) {
-    super();
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(250)]],
       description: ['', Validators.maxLength(1000)],

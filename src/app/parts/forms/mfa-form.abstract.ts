@@ -1,17 +1,45 @@
-import {ViewContainerRef} from "@angular/core";
+import {Directive, ViewChild, ViewContainerRef} from "@angular/core";
 import {FetchResponse} from "../../services/generic/entities/FetchResponse";
 import {MfaService} from "../../services/mfa/mfa.service";
-import {AbstractFormComponent} from "./form.component";
+import {AbstractFormComponent, IFormComponent} from "./form.component";
+import {FormGroup} from "@angular/forms";
 
-export abstract class MfaFormAbstract extends AbstractFormComponent{
+@Directive()
+export abstract class MfaFormAbstract<T> extends AbstractFormComponent<T> implements IFormComponent{
   private mfaService: MfaService;
+  public mfaCheck = false;
 
-  protected constructor(mfaService: MfaService) {
-    super();
+  protected constructor(mfaService: MfaService, form: FormGroup) {
+    super(form);
     this.mfaService = mfaService;
   }
 
-  mfaCheck = false;
+  @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
+  protected override async processForm(fetchRequest: (code?: string) => Promise<FetchResponse<T>>) {
+    const response = await fetchRequest();
+    if (response.statusCode === 200) {
+      await this.onSuccess();
+    } else if (response.statusCode === 409) {
+      await this.handleMfa<T>(
+        this.dynamicComponentContainer,
+        async (code) => await fetchRequest(code),
+        async () => await this.onSuccess(),
+        (message) => (this.errorMessage = message),
+        this.processMessage
+      );
+    } else {
+      this.form.markAllAsTouched();
+      // @ts-ignore
+      this.errorMessage = response.responseBody;
+    }
+  }
+
+  protected override onSuccess: () => Promise<void> = async () => {
+    this.mfaCheck = true;
+    this.updated = true;
+    this.onFormSuccess();
+  }
+
   protected async handleMfa<T>(
     viewContainerRef: ViewContainerRef,
     fetchWithCode: (code: string) => Promise<FetchResponse<T>>,

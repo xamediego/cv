@@ -22,7 +22,6 @@ import {UploadControl, UploadService} from "../../../services/generic/upload.ser
 export class UploadFormComponent<R extends FileUploadSummary> {
   @Input() apiLink: string = "";
   @Input() method: 'POST' | 'PUT' = 'POST';
-
   @Input() onUploadFinished: (response: FetchResponse<R>) => void = () => {};
 
   file?: File;

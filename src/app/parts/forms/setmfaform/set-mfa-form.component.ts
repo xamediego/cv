@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {NgTemplateOutlet} from "@angular/common";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from '@angular/router';
 
 import QRCode from 'qrcode'
@@ -18,32 +18,27 @@ import {EventSpinnerDirective} from "../../event-spinner.directive";
   templateUrl: './set-mfa-form.component.html',
   styleUrls: ['../form.component.scss', 'set-mfa-form.component.scss']
 })
-export class SetMfaFormComponent extends AbstractFormComponent implements  OnInit {
-  public processing = false;
-  public eventMessage = '';
-
+export class SetMfaFormComponent extends AbstractFormComponent<string> implements  OnInit {
   public mfaEnabled = false;
   public mfaOperationSuccess = false;
   public mfaOperationMessage = '';
+
   public qrError = '';
   public hasQr = false;
   public mfaError = '';
 
-  public form: FormGroup;
   private qrCodeData = '';
 
   constructor(
     public router: Router,
     private tokenService: TokenService,
-    private fb: FormBuilder,
     private accountService: AccountService,
     private crf : ChangeDetectorRef
   ) {
-    super();
-    this.form = this.fb.group({
-      password: ['', Validators.required],
-      code: ['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]],
-    });
+    super(new FormGroup({
+      password: new FormControl(['', Validators.required]),
+      code: new FormControl(['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]]),
+    }));
   }
 
   async ngOnInit(): Promise<void> {
@@ -59,19 +54,19 @@ export class SetMfaFormComponent extends AbstractFormComponent implements  OnIni
 
   private async checkMfa(): Promise<void> {
     const result = await this.accountService.mfaEnabled();
-    if (result.statusCode === 200) {
-      this.mfaEnabled = result.responseBody;
-    }
+
+    if (result.statusCode === 200) this.mfaEnabled = result.responseBody;
   }
 
   public async getQRCode(): Promise<void> {
     this.hasQr = true;
+
     await this.generateSecretKey();
   }
 
   private async generateSecretKey(): Promise<void> {
     this.processing = true;
-    this.eventMessage = "Generating Secret...";
+    this.processMessage = "Generating Secret";
 
     const result = await this.tokenService.getTotpSecretKey();
     this.processing = false;
@@ -93,32 +88,30 @@ export class SetMfaFormComponent extends AbstractFormComponent implements  OnIni
     });
   }
 
-  public async changeMFA(): Promise<void> {
-    this.processing = true;
-    this.mfaError = "";
-
-    const result = this.mfaEnabled ? await this.disableMFA() : await this.enableMFA();
-
-    this.processing = false;
-
-    if (result.statusCode === 200) {
+  protected override onSuccess: (response: string) => Promise<void> = async (response : string) => {
       this.mfaOperationSuccess = true;
-      this.mfaOperationMessage = result.responseBody;
+      this.mfaOperationMessage = response;
       this.onFormSuccess();
       await this.checkMfa();
-    } else {
-      this.mfaError = result.statusCode === 401 ? "Invalid credentials." : "Internal server error.";
-    }
+  };
+
+  protected updateRequest(): () => Promise<FetchResponse<any>> {
+    return async () => {
+      this.processing = true;
+      const result = this.mfaEnabled ? await this.disableMFA() : await this.enableMFA();
+      this.processing = false;
+      return result;
+    };
   }
 
   private async enableMFA(): Promise<FetchResponse<string>> {
-    this.eventMessage = "Enabling MFA";
+    this.processMessage = "Enabling MFA";
     const { password, code } = this.form.value;
     return await this.accountService.enableMFA(password, code);
   }
 
   private async disableMFA(): Promise<FetchResponse<string>> {
-    this.eventMessage = "Disabling MFA";
+    this.processMessage = "Disabling MFA";
     const { password, code } = this.form.value;
     return await this.accountService.disableMFA(password, code);
   }
@@ -128,11 +121,9 @@ export class SetMfaFormComponent extends AbstractFormComponent implements  OnIni
     return !!control && control.invalid && control.touched;
   }
 
-  async onCodeInput() {
+  public async onCodeInput() {
     let code = this.form.get('code')?.value || '';
     this.form.get('code')?.setValue(code, { emitEvent: false });
-
-    if (code.length === 6) await this.changeMFA();
+    if (code.length === 6) await this.submit();
   }
 }
-
