@@ -1,7 +1,7 @@
 <div class="form">
   <div class="form__form">
     @if (processing) {
-      <ng-container *appEventSpinner="{ condition: processing, eventMessage: eventMessage, stretchToParent: false }" />
+      <ng-container *appEventSpinner="{ condition: processing, eventMessage: processMessage, stretchToParent: false }" />
     } @else {
       <ng-container *ngTemplateOutlet="mfaSuccess" />
     }
@@ -42,7 +42,7 @@
   </ng-template>
 
   <ng-template #MfaForm>
-    <form [formGroup]="form" (ngSubmit)="changeMFA()" class="form__content">
+    <form [formGroup]="form" class="form__content" (ngSubmit)="submit()">
       @if (mfaEnabled) {
         <p>MFA is currently enabled on this account</p>
       }

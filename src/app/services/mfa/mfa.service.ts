@@ -15,7 +15,7 @@ export class MfaService {
     viewContainer: ViewContainerRef,
     processMessage : string
   ): Promise<FetchResponse<T>> {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(MultiFactorFormComponent);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(MultiFactorFormComponent<T>);
     const componentRef = viewContainer.createComponent(componentFactory);
 
     componentRef.instance.processMessage = processMessage;
@@ -23,7 +23,7 @@ export class MfaService {
     componentRef.instance.onFormClosed = onClose;
 
     return new Promise<FetchResponse<T>>((resolve, reject) => {
-      const sub = componentRef.instance.afterMfa.subscribe({
+      const sub = componentRef.instance.afterMfaEvent.subscribe({
         next: (response: FetchResponse<T>) => {
           resolve(response);
           sub.unsubscribe();
