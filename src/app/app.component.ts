@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     // } else {
     //   this.themeService.setTheme('dark')
     // }
+
     this.themeService.setTheme('dark')
   }
 }
