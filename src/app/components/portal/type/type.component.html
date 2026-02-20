@@ -31,7 +31,12 @@
       <hr class="slice-line">
       <div class="type__projects">
         @for (project of projectType.projects; track $index){
-          <project-holder [project]="project" [projectType]="projectType" (loaded)="onImageLoad()" [onProjectSelect]="onProjectSelect"/>
+          <project-holder
+            style="max-width: 480px"
+            [project]="project"
+            [projectType]="projectType"
+            (loaded)="onImageLoad()"
+            [onProjectSelect]="onProjectSelect"/>
         }
       </div>
     }

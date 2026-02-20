@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgOptimizedImage, NgStyle} from "@angular/common";
 
@@ -51,7 +51,7 @@ export class TypeComponent implements OnInit {
     const result = await this.projectTypeService.findByTypeComplete(type);
     if (result.statusCode == 200) {
       this.projectType = result.responseBody
-      this.totalImages = this.projectType.projects.length + 1
+      this.totalImages = this.projectType.projects.length
     }
 
     this.contentLoaded = true;
