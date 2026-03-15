@@ -21,7 +21,7 @@ export class LoginFormComponent extends MfaFormAbstract<string>{
   ) {
     super(mfaService, new FormGroup({
       password: new FormControl(['', Validators.required]),
-      displayName: new FormControl(['', Validators.required]),
+      username: new FormControl(['', Validators.required]),
     }));
   }
 
