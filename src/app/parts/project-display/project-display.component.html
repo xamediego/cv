@@ -55,9 +55,9 @@
       </p>
 
       <select
-        formControlName="selectControl"
+        [(ngModel)]="selectedFilter"
         class="project-display__filter-search-field"
-        [(ngModel)]="selectedFilter">
+        formControlName="selectControl">
 
         <option value="All" selected="selected">All</option>
 

@@ -22,10 +22,10 @@ import {Project} from "../../services/entities/project";
   templateUrl: './project-display.component.html',
   styleUrl: './project-display.component.scss'
 })
-export class ProjectDisplayComponent implements OnInit, OnChanges{
+export class ProjectDisplayComponent implements OnInit, OnChanges {
 
   @Input() projectTypes: ProjectType[] = [];
-  @Input() editable : boolean = false;
+  @Input() editable: boolean = false;
   @Input() contentLoaded!: boolean;
 
   projectTypesStorage: ProjectType[] = [];
@@ -47,7 +47,8 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
 
   timeoutId: any = null;
 
-  constructor(private router : Router) {}
+  constructor(private router: Router) {
+  }
 
   public async ngOnInit() {
     this.configureView();
@@ -64,9 +65,10 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
     this.configureView();
   }
 
-  private configureView(){
+  private configureView() {
     this.projectTypesStorage = JSON.parse(JSON.stringify(this.projectTypes))
     this.projectTypes.forEach(pt => pt.projects.forEach(p => this.totalImages += 1));
+    this.imagesLoaded = this.loadedImages >= this.totalImages;
   }
 
   @Input() public onProjectSelect: (projectType: ProjectType, project: Project) => void = async (projectType, project) => {
@@ -74,9 +76,9 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
     await this.router.navigate([route])
   };
 
-  public onEditSelect : (projectType : ProjectType, project : Project) => void = async (projectType, project) => {
+  public onEditSelect: (projectType: ProjectType, project: Project) => void = async (projectType, project) => {
     const route = `home/project/edit/${projectType.type}/${project.title}`
-    await this.router.navigate([route], {state : {"project" : project}})
+    await this.router.navigate([route], {state: {"project": project}})
   }
 
   private filterProjects(projectName: string) {
@@ -102,7 +104,7 @@ export class ProjectDisplayComponent implements OnInit, OnChanges{
 
   public onImagesLoad() {
     this.loadedImages += 1;
-    if (this.loadedImages == this.totalImages) this.imagesLoaded = true;
+    if (this.loadedImages >= this.totalImages) this.imagesLoaded = true;
   }
 
   public isLoaded(): boolean {
