@@ -11,11 +11,12 @@
     <div class="cv__mid">
       <div class="cv__mid__line"></div>
     </div>
+
     <ng-container *ngTemplateOutlet="right" />
   </div>
 </div>
 
-<!-- Layers -->
+<!-- Layouts -->
 <ng-template #left>
   <div class="cv__left">
     <ng-container *ngTemplateOutlet="contact" />
@@ -41,8 +42,7 @@
   </div>
 </ng-template>
 
-<!-- Items -->
-
+<!-- Title -->
 <ng-template #title>
   <div class="cv__title">
     <h1>Max de Jonge</h1>
@@ -50,77 +50,100 @@
   </div>
 </ng-template>
 
+<!-- Profile -->
 <ng-template #profile>
   <div class="cv__right__cont cv__profile">
     <h2>Profile</h2>
     <p>
-      I am a solution-oriented software engineer with a strong attention to detail and a solid foundation in both front-end and back-end development.
-      My experience spans across the software development lifecycle, including programming, testing, and deployment.
-      I am focused on delivering efficient, reliable solutions while continuously improving my skills and adapting to new technologies.
+      I am a solution-oriented software engineer with a strong attention to detail
+      and a solid foundation in both front-end and back-end development.
+      My experience spans the full software development lifecycle, including
+      design, implementation, testing, and deployment.
+      I focus on delivering efficient, reliable solutions while continuously
+      improving my skills and adapting to new technologies.
     </p>
   </div>
 </ng-template>
 
+<!-- Work Experience -->
 <ng-template #work>
   <div class="cv__right__cont">
     <h2>Work Experience</h2>
 
     <div class="stretch">
       <h3>CGI</h3>
-      <p>IT Consultant 2025 - Present</p>
+      <p>IT Consultant | 2025 – Present</p>
       <p>
-        Working for the Mission Critical Infrastructure Department on the European Rail Traffic Management System (ERTMS) integration at ProRail.
+        Working within the Mission Critical Infrastructure Department on the
+        integration of the European Rail Traffic Management System (ERTMS)
+        into the Dutch railway network.
       </p>
     </div>
 
     <div class="stretch">
       <h3>Sogeti</h3>
-      <p>Internship 2025</p>
+      <p>Internship | 2025</p>
       <p>
-        Researching the feasibility of using Java, WebAssembly, and Spinkube, and developing a proof of concept based on requirements that utilize these technologies, ultimately deploying the application in a Kubernetes cluster on AWS.
+        Conducted research into the feasibility of using Java, WebAssembly, and
+        Spinkube, and developed a proof of concept based on defined requirements.
+        The resulting application was deployed in a Kubernetes cluster on AWS.
       </p>
     </div>
 
     <div class="stretch">
       <h3>Cohelion</h3>
-      <p>Internship 2023 – 2024</p>
+      <p>Internship | 2023 – 2024</p>
       <p>
-        Developing an innovative internal version control application in a .NET backend with an Angular frontend, that provides seamless integration with the companies repository structure allowing it to effortlessly update its submodules.
+        Developed an internal version control application with a .NET backend
+        and an Angular frontend. The system integrates seamlessly with the
+        company’s repository structure and automatically manages and updates
+        submodules.
       </p>
     </div>
   </div>
 </ng-template>
 
+<!-- Contact -->
 <ng-template #contact>
   <div class="cv__left__cont cv__contact">
     <h3>Contact</h3>
-    <div class="stretch">
-      <a href="mailto:max.de.jonge@outlook.com">max.de.jonge&#64;outlook.com</a>
-    </div>
-    <div class="stretch"><a href="https://www.linkedin.com/in/max-de-jonge/" target="_blank" rel="noopener noreferrer">linkedin.com/in/max-de-jonge</a>
-    </div>
-    <div class="stretch">
-      <a href="https://github.com/xamediego" target="_blank" rel="noopener noreferrer">github.com/xamediego</a>
-    </div>
-  </div>
-</ng-template>
 
+    <div class="stretch">
+      <a href="mailto:max.de.jonge@outlook    max.de.jonge&#64;outlook.com
+      </a>
+    </div>
+
+    <div class="stretch">
+      <a
+        href="https://www.linkedin.com/in/max-de-jonge/"
+        target="_blank   </a>
+    </div>
+
+    <div class="stretch">
+      <a
+        href="https://github.com/xamediego"
+        target="_blank"
+        rel="noopener noreferrer"
+     Education -->
 <ng-template #education>
   <div class="cv__left__cont">
     <h3>Education</h3>
 
     <div class="stretch">
       <h4>The Hague University of Applied Sciences</h4>
-      <p>2021 – 2025 · Bachelor HBO-ICT</p>
+      <p>2021 – 2025 · Bachelor’s Degree in HBO-ICT</p>
     </div>
+
     <div class="stretch">
       <h4>Kansai University</h4>
-      <p>2024 · International minor</p>
+      <p>2024 · International Minor</p>
     </div>
+
     <div class="stretch">
       <h4>Techniek College Rotterdam</h4>
       <p>2020 – 2021 · MBO-ICT</p>
     </div>
+
     <div class="stretch">
       <h4>Shenzhen University</h4>
       <p>2019 · Chinese Language Studies</p>
@@ -128,41 +151,46 @@
   </div>
 </ng-template>
 
+<!-- Skills -->
 <ng-template #skills>
   <div class="cv__left__cont">
     <h3>Skills</h3>
 
     <div class="stretch">
       <h4>Programming</h4>
-      <p>java, javascript/typescript, c#, kotlin, python, c++</p>
+      <p>Java, JavaScript / TypeScript, C#, Kotlin, Python, C++</p>
     </div>
+
     <div class="stretch">
       <h4>Web Design</h4>
-      <p>html, css, sass, figma</p>
+      <p>HTML, CSS, Sass, Figma</p>
     </div>
+
     <div class="stretch">
       <h4>Frameworks & Tools</h4>
       <p>
-        .net, angular, spring, react, cypress, specflow, teavm, spinkube, azure devops, kubernetes, MBT
+        .NET, Angular, Spring, React, Cypress, SpecFlow, TeaVM,
+        Spinkube, Azure DevOps, Kubernetes, MBT
       </p>
     </div>
   </div>
 </ng-template>
 
+<!-- Certificates -->
 <ng-template #certificates>
   <div class="cv__left__cont">
     <h3>Certificates</h3>
 
     <div class="stretch">
       <h4>Japanese Language Proficiency Test N1</h4>
-      <p>Issued Aug 2024</p>
+      <p>Issued August 2024</p>
       <p>Highest level of Japanese language certification</p>
     </div>
 
     <div class="stretch">
-      <h4>Hanyu Shuiping Kaoshi 4 (HSK4)</h4>
-      <p>Issued Dec 2019</p>
-      <p>Equivalent to CEFR B2 in Mandarin Chinese</p>
+      <h4>Hanyu Shuiping Kaoshi 4 (HSK 4)</h4>
+      <p>Issued December 2019</p>
+      <p>Equivalent to CEFR level B2 in Mandarin Chinese</p>
     </div>
   </div>
 </ng-template>
