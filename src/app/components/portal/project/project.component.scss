@@ -98,7 +98,6 @@
     }
   }
 
-  // Text view
   &__description {
     display: flex;
     justify-content: start;
@@ -130,7 +129,7 @@
       h2 {
         font-size: 1.6rem;
 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--border-color);
         width: 100%;
         padding-bottom: 5px;
       }
@@ -169,7 +168,7 @@
         margin-bottom: 0.5rem;
         text-align: start;
 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--border-color);
         width: 100%;
         padding-bottom: 5px;
       }
@@ -205,16 +204,16 @@
     h2 {
       font-size: 1rem;
       font-weight: 500;
-      color: #f0f0f0;
+      color: var(--text-primary);
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-color);
       width: 100%;
       padding-bottom: 5px;
     }
 
     a {
       font-size: 0.95rem;
-      color: #7fbfff;
+      color: var(--text-link);
 
       text-align: start;
       text-decoration: underline;

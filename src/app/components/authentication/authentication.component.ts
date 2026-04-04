@@ -1,22 +1,13 @@
 import {Component} from "@angular/core";
-import {Router, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
+import {ButtonComponent} from "../../parts/button/button.component";
 
 @Component({
   selector: 'app-authentication',
-  imports: [RouterLink,],
+  imports: [RouterLink, ButtonComponent,],
   templateUrl: 'authentication.component.html',
   styleUrl: 'authentication.component.scss'
 })
 export class AuthenticationComponent {
 
-  constructor(private router : Router) {
-  }
-
-  public async register(){
-   await this.router.navigate(["auth/register"])
-  }
-
-  public async login(){
-    await this.router.navigate(["auth/login"])
-  }
 }

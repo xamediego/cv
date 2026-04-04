@@ -1,15 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {RegisterService} from "../../../services/register/register.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
+import {ButtonComponent} from "../../../parts/button/button.component";
 
 @Component({
   selector: 'app-registration-confirmation',
   templateUrl: './registration-confirmation.component.html',
   styleUrls: ['./registration-confirmation.component.scss'],
   imports: [
-    EventSpinnerDirective
+    EventSpinnerDirective,
+    ButtonComponent,
+    RouterLink
   ]
 })
 export class RegistrationConfirmationComponent implements OnInit {
@@ -25,7 +28,6 @@ export class RegistrationConfirmationComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private registerService: RegisterService,
-    private router: Router,
   ) {
   }
 
@@ -53,9 +55,5 @@ export class RegistrationConfirmationComponent implements OnInit {
     } else {
       this.confirmMessage = confirmResult.statusText;
     }
-  }
-
-  async showLogin() {
-    await this.router.navigate(['auth/login'])
   }
 }

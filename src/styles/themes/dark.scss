@@ -1,6 +1,8 @@
 $primary-color: rgba(18, 18, 18);
 $secondary-color: rgb(35, 35, 35);
 
+$base_shadow: rgba(0, 0, 0, 0.2);
+
 $error-color: #d72a2a;
 
 $button-primary: rgb(35, 35, 35);
@@ -9,6 +11,7 @@ $button-warning: $error-color;
 
 $input-color: #1b1b1b;
 $border-color: rgba(255, 255, 255, 0.1);
+
 $text-primary: #ffffff;
 $text-secondary: #eeeeee;
 $text-tertiary: #cecece;
@@ -16,11 +19,49 @@ $text-muted: #bbbbbb;
 $text-span: #cccccc;
 $text-button: #f1f1f1;
 
+$text-link: #7fbfff;
+
+$spinner-track-color: rgba(0, 0, 0, 0.1);
+$spinner-primary-color: #ffffff;
+$spinner-progress-color: green;
+
+$spinner-text-gradient: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 1)
+);
+
+$downloading-anim-gradient : linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 1)
+);
+
+$item-selected : rgba(0, 140, 255, 0.6);
+
+$github-colour : #000;
+$linkedin-colour : #0a66c2;
+$instagram--colour : #e4405f;
+
+$button-base-border : #ccc;
+$button-base-color : transparant;
+$button-base-color-hover : #f0f0f0;
+$button-base-text-hover : #000;
+
 .dark-theme {
   --primary-color: #{$primary-color};
   --secondary-color: #{$secondary-color};
 
+  --base-shadow: #{$base_shadow};
+
   --error-color : #{$error-color};
+
+  --button-base-border : #{$button-base-border};
+  --button-base-color : #{$button-base-color};
+  --button-base-color-hover : #{$button-base-color-hover};
+  --button-base-text-hover : #{$button-base-text-hover};
 
   --button-primary: #{$button-primary};
   --button-secondary: #{$button-secondary};
@@ -37,4 +78,22 @@ $text-button: #f1f1f1;
   --text-muted: #{$text-muted};
   --text-span: #{$text-span};
   --text-button: #{$text-button};
+
+  --text-link: #{$text-link};
+
+  --spinner-track-color: #{$spinner-track-color};
+  --spinner-primary-color: #{$spinner-primary-color};
+  --spinner-progress-color: #{$spinner-progress-color};
+
+  --spinner-text-gradient: #{$spinner-text-gradient};
+
+  --downloading-anim-gradient: #{$downloading-anim-gradient};
+
+  --item-selected : #{$item-selected};
+
+  --github-colour : #{$github-colour};
+  --linkedin-colour : #{$linkedin-colour};
+  --instagram--colour : #{$instagram--colour};
+
+
 }

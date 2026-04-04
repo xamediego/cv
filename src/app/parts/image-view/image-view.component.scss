@@ -99,7 +99,7 @@
     }
 
     &--active {
-      box-shadow: 0 0 8px 3px rgba(0, 140, 255, 0.6);
+      box-shadow: 0 0 8px 3px var(--item-selected);
       border-radius: 5px;
     }
   }

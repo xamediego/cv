@@ -3,6 +3,7 @@ import {RouterLink} from "@angular/router";
 import {ProjectService} from "../../../services/project/project.service";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
 import {NgStyle, NgTemplateOutlet} from "@angular/common";
+import {ButtonComponent} from "../../../parts/button/button.component";
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import {NgStyle, NgTemplateOutlet} from "@angular/common";
     EventSpinnerDirective,
     NgTemplateOutlet,
     NgStyle,
+    ButtonComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -35,7 +37,7 @@ export class HomeComponent implements OnInit {
   private createInterval(){
     return setInterval(() => {
       this.activeIndex = (this.activeIndex + 1) % this.featuredProjects.length;
-    }, 5000);
+    }, 100000);
   }
 
   private resetInterval(){
@@ -69,6 +71,7 @@ export class HomeComponent implements OnInit {
 
   public previous(){
     this.resetInterval();
+
 
     if(this.activeIndex == 0){
       this.activeIndex = this.featuredProjects.length - 1;

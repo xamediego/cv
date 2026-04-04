@@ -196,7 +196,7 @@
           flex-shrink: 0;
           border-radius: 5px;
 
-          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 4px var(--base-shadow);
         }
 
         &__caption {
@@ -206,8 +206,8 @@
           left: 20px;
 
           background: rgba(0, 0, 0, 0.6);
-
           color: white;
+
           padding: 0.5rem 1rem;
           border-radius: 4px;
           font-size: 1.2rem;
@@ -245,28 +245,10 @@
   max-width: 350px;
   gap: 1rem;
 
-  .button {
-    flex: 1;
-    padding: 0.8rem 1.6rem;
-    text-align: center;
-    background-color: transparent;
+  .link-button{
+    display: flex;
     text-decoration: none;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    transition: background 0.3s, color 0.3s;
-    &--secondary {
-      border-color: #bbb;
-    }
-
-    &:hover {
-      background-color: #f0f0f0;
-      color: #000;
-    }
-
-    @media screen and (max-width: 500px) {
-      padding: 0.5rem 1rem;
-      font-size: 13px;
-    }
+    flex: 1;
   }
 }
 
@@ -378,7 +360,7 @@
       width: 45%;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px var(--base-shadow);
       object-fit: cover;
     }
 
@@ -453,15 +435,15 @@
       }
 
       &:hover .fa-github {
-        color: #000;
+        color: var(--github-colour);
       }
 
       &:hover .fa-linkedin {
-        color: #0a66c2;
+        color: var(--linkedin-colour);
       }
 
       &:hover .fa-instagram {
-        color: #e4405f;
+        color: var(--instagram--colour);
       }
     }
 

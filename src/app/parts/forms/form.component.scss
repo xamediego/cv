@@ -157,7 +157,7 @@
     height: 100%;
 
     padding: 0.8rem 0.8rem;
-    background-color: transparent;
+    background-color: var(--button-base-color);
 
     border-radius: 6px;
     transition: background 0.3s, color 0.3s;
@@ -175,11 +175,11 @@
     }
 
     &__cancel {
-      border: 1px solid #ccc;
+      border: 1px solid var(--button-base-border);
 
       &:hover {
-        color: #000;
-        background-color: #f0f0f0;
+        color: var(--button-base-text-hover);
+        background-color: var(--button-base-color-hover);
       }
     }
 

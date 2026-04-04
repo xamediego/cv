@@ -11,10 +11,7 @@
     }
 
     @if (confirmed) {
-      <button
-        (click)="showLogin()">
-        Proceed to login
-      </button>
+      <a routerLink="/auth/login'" class="link-button"><app-button [buttonText]="'Proceed to login'"/></a>
     }
   }
 

@@ -19,25 +19,8 @@
 
   text-align: center;
 
-  button {
-    flex: 1;
-    padding: 0.8rem 1.6rem;
-    text-align: center;
-    background-color: transparent;
-    text-decoration: none;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    transition: background 0.3s, color 0.3s;
-
-    &:hover {
-      background-color: #f0f0f0;
-      color: #000;
-      cursor: pointer;
-    }
-
-    @media screen and (max-width: 500px) {
-      padding: 0.5rem 1rem;
-      font-size: 13px;
-    }
+  .link-button {
+    max-width: 200px;
+    width: 100%;
   }
 }

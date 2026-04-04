@@ -76,12 +76,7 @@
       }
 
       &.downloading-anim {
-        background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 1),
-            rgba(255, 255, 255, 0.7),
-            rgba(255, 255, 255, 1)
-        );
+        background: var(--downloading-anim-gradient);
 
         background-size: 200% 100%;
         -webkit-background-clip: text;

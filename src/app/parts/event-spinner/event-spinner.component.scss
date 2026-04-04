@@ -1,7 +1,8 @@
 .spinner__stretch {
   height: 100%;
   width: 100%;
-  :host{
+
+  :host {
     height: 100%;
     width: 100%;
   }
@@ -33,9 +34,8 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-
-  border-left-color: #fff;
+  border: 4px solid var(--spinner-track-color);
+  border-left-color: var(--spinner-primary-color);
 
   animation: spin 1s linear infinite;
 }
@@ -44,24 +44,13 @@
   width: 100%;
   text-align: center;
 
-  background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 1)
-  );
-
+  background: var(--spinner-text-gradient);
   background-size: 200% 100%;
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   animation: pulseBackground 2s linear infinite;
-
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .spinner__progress {
@@ -75,7 +64,7 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 4px solid rgba(0, 0, 0, 0.1);
+    border: 4px solid var(--spinner-track-color);
     box-sizing: border-box;
   }
 
@@ -85,10 +74,19 @@
     inset: 0;
     border-radius: 50%;
     border: 4px solid transparent;
-    border-top-color: green;
+
+    border-top-color: var(--spinner-progress-color);
+
     transform: rotate(calc(var(--fill, 0%) * 3.6deg));
     transform-origin: center;
+
     box-sizing: border-box;
     transition: transform 0.2s ease-in-out;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

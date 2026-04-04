@@ -37,7 +37,7 @@
           @for (project of featuredProjects; track i; let i = $index) {
             <div class="home__slide" id="home-slide-{{i}}" [class.active]="i === activeIndex">
               <img [src]="project.url" [alt]="project.title" (load)="onImagesLoad(i)">
-              <div class="home__slide__caption" [ngStyle]="{ visibility: !isLoaded() ? 'visible' : 'hidden' }">{{ project.title }}</div>
+              <div class="home__slide__caption" [ngStyle]="{ visibility: isLoaded() ? 'visible' : 'hidden' }">{{ project.title }}</div>
             </div>
           }
         </div>
@@ -46,8 +46,8 @@
     </section>
 
     <div class="home__buttons">
-      <a routerLink="/resume" class="button">Resumé</a>
-      <a routerLink="/archive" class="button button--secondary">Projects</a>
+      <a routerLink="/resume" class="link-button"><app-button [buttonText]="'Resumé'"/></a>
+      <a routerLink="/archive" class="link-button"><app-button [buttonText]="'Projects'"/></a>
     </div>
   </div>
 </ng-template>
