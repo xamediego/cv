@@ -23,13 +23,11 @@
               [color]="'BASE'"
               type="button"
               [buttonText]="cancelText"
-              (buttonClick)="onFormClosed()"
-            ></app-button>
-            <p>{{isDangerous}}</p>
+              (buttonClick)="onFormClosed()"/>
             <app-button
               [color]="isDangerous ? 'DANGEROUS' : 'SECONDARY'"
-              [buttonText]="submitText"
-            ></app-button>
+              type="submit"
+              [buttonText]="submitText"/>
           </div>
         </form>
       } @else {

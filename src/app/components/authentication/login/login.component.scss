@@ -20,4 +20,13 @@
   margin-left: 2rem;
   margin-right: 2rem;
   gap: 20px;
+
+  &__form{
+    display: flex;
+    align-self: stretch;
+    justify-content: center;
+    align-items: center;
+
+    flex-grow: 1;
+  }
 }

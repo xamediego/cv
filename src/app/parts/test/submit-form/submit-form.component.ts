@@ -58,7 +58,7 @@ export class SubmitFormComponent extends AbstractFormComponent{
         } else {
             return {
                 success: false,
-                message: response.responseBody
+                message: response.responseBody.error
             };
         }
     }
