@@ -1,0 +1,15 @@
+<app-submit-form
+  [formGroup]="form"
+  [form]="form"
+  [request]="updateRequest()"
+  [submitText]="submitText"
+  [successMessage]="successMessage"
+  [successTitle]="successTitle"
+  [onFormClosed]="onFormClosed"
+  [onFormSuccess]="onFormSuccess">
+  <app-form-input formControlName="username" type="username" [label]="'Username'"/>
+  <app-form-input formControlName="displayName" type="displayname" [label]="'DisplayName'"/>
+  <app-form-input formControlName="email" type="email" [label]="'Email'"/>
+  <app-form-input formControlName="password" type="password" [label]="'Password'"/>
+  <app-form-input formControlName="confirmPassword" type="password" [label]="'Confirm Password'"/>
+</app-submit-form>

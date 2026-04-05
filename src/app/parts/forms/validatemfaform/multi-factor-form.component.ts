@@ -17,7 +17,7 @@ export class MultiFactorFormComponent<T> extends AbstractFormComponent<T> {
 
   constructor() {
     super(new FormGroup({
-      code: new FormControl(['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]])
+      code: new FormControl('', [Validators.required, Validators.pattern(/^\d{0,6}$/)])
     }));
   }
 

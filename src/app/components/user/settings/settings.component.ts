@@ -15,12 +15,12 @@ import {UserData} from "../../../services/entities/userData";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {AccountService} from "../../../services/account/account.service";
 import {PortalHeaderComponent} from "../../portal/portal-header/portal.header.component";
-import {DisplayNameFormComponent} from "../../../parts/forms/displaynameform/display-name-form.component";
+import {DisplayNameFormComponent} from "../../../parts/test/displayname-form/display-name-form.component";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
-import {EmailFormComponent} from "../../../parts/forms/emailform/email-form.component";
-import {UsernameFormComponent} from "../../../parts/forms/usernameform/username-form.component";
-import {PasswordFormComponent} from "../../../parts/forms/passwordform/password-form.component";
-import {DeleteFormComponent} from "../../../parts/forms/deleteform/delete-form.component";
+import {EmailFormComponent} from "../../../parts/test/email-form/email-form.component";
+import {UsernameFormComponent} from "../../../parts/test/username-form/username-form.component";
+import {PasswordFormComponent} from "../../../parts/test/password-form/password-form.component";
+import {DeleteFormComponent} from "../../../parts/test/delete-form/delete-form.component";
 import {SetMfaFormComponent} from "../../../parts/forms/setmfaform/set-mfa-form.component";
 import {IFormComponent} from "../../../parts/forms/form.component";
 

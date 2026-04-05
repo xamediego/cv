@@ -36,8 +36,8 @@ export class SetMfaFormComponent extends AbstractFormComponent<string> implement
     private crf : ChangeDetectorRef
   ) {
     super(new FormGroup({
-      password: new FormControl(['', Validators.required]),
-      code: new FormControl(['', [Validators.required, Validators.pattern(/^\d{0,6}$/)]]),
+      password: new FormControl('', Validators.required),
+      code: new FormControl('', [Validators.required, Validators.pattern(/^\d{0,6}$/)]),
     }));
   }
 

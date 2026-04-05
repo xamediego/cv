@@ -1,6 +1,5 @@
 import {Component, ElementRef, inject, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AbstractFormComponent} from "../form.component";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {ProjectService} from "../../../services/project/project.service";
 import {Project} from "../../../services/entities/project";

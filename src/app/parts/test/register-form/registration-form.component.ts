@@ -1,27 +1,40 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 import {RegisterService} from "../../../services/register/register.service";
-import {PasswordValidatorComponent} from "../../password-validator/password-validator.component";
-import {EventSpinnerDirective} from "../../event-spinner.directive";
 import {FormEmailValidator} from "../../../tools/EmailValidator";
 import {PasswordValidator} from "../../../tools/PasswordValidator";
-import {AbstractFormComponent} from "../form.component";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {passwordsMatchValidator} from "../../../tools/FormUtil";
+import {FormInputComponent} from "../form-input/form-input.component";
+import {SubmitFormComponent} from "../submit-form/submit-form.component";
 
 @Component({
   selector: 'app-registration-form',
   standalone: true,
-  imports: [ReactiveFormsModule, PasswordValidatorComponent, EventSpinnerDirective],
+  imports: [ReactiveFormsModule,FormInputComponent, SubmitFormComponent],
   templateUrl: './registration-form.component.html',
-  styleUrls: ['../form.component.scss']
+  styleUrls: ['../../forms/form.component.scss']
 })
-export class RegistrationFormComponent extends AbstractFormComponent<string>{
+export class RegistrationFormComponent{
+  @Input() public onFormClosed: () => void = () => {};
+  @Input() public onFormSuccess: () => void = () => {};
+
+  public form: FormGroup;
+
+  public submitText: string = "Register";
+  public processMessage: string = "Registration Complete!";
+
+  public successTitle: string = "Password Updated"
+  public successMessage: string =
+    "Your account has been registered.\n" +
+    "A verification mail has been sent to your account that you can use to\n" +
+    "activate your account.\n " +
+    "After this you can login to the platform";
 
   constructor(private registrationService: RegisterService) {
-    super(
-      new FormGroup(
+    this.form =
+    new FormGroup(
         {
           username: new FormControl('', [Validators.required, Validators.minLength(2)]),
           displayName: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -29,18 +42,13 @@ export class RegistrationFormComponent extends AbstractFormComponent<string>{
           password: new FormControl('', [Validators.required, PasswordValidator()]),
           confirmPassword: new FormControl('', [Validators.required]),
         },
-        { validators: [passwordsMatchValidator] }
-      )
-    );
+        { validators: [passwordsMatchValidator] });
   }
 
   protected updateRequest(): () => Promise<FetchResponse<string>> {
     const { username, displayName, email, password } = this.form.value;
     return async () => {
-      this.processing = true
-      const result = await this.registrationService.register(username, displayName, password, email);
-      this.processing = false;
-      return result;
+      return await this.registrationService.register(username, displayName, password, email);
     };
   }
 }

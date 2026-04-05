@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {LoginFormComponent} from "../../../parts/forms/loginform/login-form.component";
 import {Router} from "@angular/router";
+import {LoginFormComponent} from "../../../parts/test/login-form/login-form.component";
 
 @Component({
   selector: 'app-authentication',
@@ -21,5 +21,4 @@ export class LoginComponent {
   onLoginComplete = async () => {
     await this.router.navigate(['home']);
   };
-
 }

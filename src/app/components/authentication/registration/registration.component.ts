@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {RegistrationFormComponent} from "../../../parts/forms/registerform/registration-form.component";
+import {RegistrationFormComponent} from "../../../parts/test/register-form/registration-form.component";
 import {Router} from "@angular/router";
 
 @Component({
