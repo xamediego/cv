@@ -13,6 +13,7 @@ import {UploadControl} from "../../../services/generic/upload.service";
 import {formatBytes} from "../../../tools/RandomStuff";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
 import {ButtonComponent} from "../../button/button.component";
+import {UploadFormComponent} from "../form-upload-file/upload-form.component";
 
 @Component({
   selector: 'app-form-project',
@@ -22,7 +23,7 @@ import {ButtonComponent} from "../../button/button.component";
     EventSpinnerDirective,
     NgTemplateOutlet,
     ButtonComponent,
-
+    UploadFormComponent,
   ],
   templateUrl: './project-form.component.html',
   styleUrls: [
@@ -213,5 +214,9 @@ export class ProjectFormComponent implements OnInit {
       ia[i] = byteString.charCodeAt(i);
     }
     return new Blob([ab], {type: mime});
+  }
+
+  public uploadFile() {
+
   }
 }

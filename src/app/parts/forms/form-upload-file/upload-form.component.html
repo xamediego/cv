@@ -1,65 +1,71 @@
-<div class="form">
-  <ng-container *ngTemplateOutlet="uploadScreen"></ng-container>
+<div class="upload-form">
+  <ng-container *ngTemplateOutlet="uploadForm"></ng-container>
 </div>
 
-<ng-template #uploadScreen>
-  <div class="upload">
-    @if (!uploadFinished) {
-      @if (uploading && file) {
-        <ng-container *appEventSpinner="{ condition: uploading, stretchToParent: true }"></ng-container>
-        <p>
-          {{ uploadMessage }}<br>
-          {{ currentProgress ? currentProgress : formatBytes(0) }}/{{ formatBytes(file.size) }}
-        </p>
-        <button
-          class="form__button form__button__dangerous"
-          (click)="cancelUpload()"
-          type="button">
-          Cancel
-        </button>
-      } @else if (file) {
-        <div class="upload__button" (click)="upload()">
-          <i class="fas fa-upload upload__button__icon"></i>
-          <div>
-            <h2 class="upload__button__title">Upload File</h2>
-            <p>
-              Filename: {{ file.name }}<br>
-              Filesize: {{ formatBytes(file.size) }}
-            </p>
-          </div>
-          <div class="form__button-group">
-            <button
-              class="form__button form__button__cancel"
-              type="button"
-              (click)="removeFile()">
-              Cancel
-            </button>
-            <button
-              class="form__button form__button__submit"
-              type="submit">
-              Upload
-            </button>
-          </div>
-        </div>
-      } @else {
-        <button
-          class="upload__button"
-          [class.selectable]="file === undefined"
-          (click)="selectFile()">
-          <i class="fas fa-upload upload__button__icon"></i>
-          <div>
-            <h2 class="upload__button__title">Upload a file</h2>
-            <p>
-              Click here to upload a file.
-              <br />
-              The file has to be either in .zip or .rar format.
-            </p>
-          </div>
-        </button>
-      }
-    } @else {
-    <h2>{{uploadResultTitle}}</h2>
-    <p>{{uploadResultMessage}}</p>
+<ng-template #uploadForm>
+  @if (uploading && file) {
+    <ng-container [ngTemplateOutlet]="uploadingFile"/>
+  } @else if (file) {
+    <ng-container [ngTemplateOutlet]="fileStaged"/>
+  } @else {
+    <ng-container [ngTemplateOutlet]="selection"/>
+  }
+</ng-template>
+
+<ng-template #selection>
+  <div class="upload-form__buttons">
+    <app-button
+      [color]="'PRIMARY'"
+      type="button"
+      [buttonText]="hasFile ? fileName + ' | Filesize: ' + formatBytes(parseInt(fileSize)) : 'upload a file'"
+      (buttonClick)="selectFile()"/>
+    @if (hasFile) {
+      <app-button
+        class="upload-form__remove-button"
+        [color]="'DANGEROUS'"
+        type="button"
+        [buttonText]="'Delete file'"
+        (buttonClick)="deleteFile()"/>
     }
   </div>
+</ng-template>
+
+<ng-template #fileStaged>
+  @if (file) {
+    <div class="upload-form__upload-info">
+      <div class="upload-form__buttons">
+        <app-button
+          [color]="'SECONDARY'"
+          type="button"
+          [buttonText]="'Upload selected file'"
+          (buttonClick)="upload()"/>
+        <app-button
+          [color]="'PRIMARY'"
+          type="button"
+          [buttonText]="'Remove'"
+          (buttonClick)="removeFile()"/>
+      </div>
+      <div class="upload-form__buttons">
+        <p>Filename: {{ file.name }}</p>
+        <p>Filesize: {{ formatBytes(file.size) }}</p>
+      </div>
+    </div>
+  }
+</ng-template>
+
+<ng-template #uploadingFile>
+  @if (file) {
+    <div class="upload-form_buttons">
+      <ng-container *appEventSpinner="{ condition: uploading, stretchToParent: true }"></ng-container>
+      <p>
+        {{ uploadMessage }}<br>
+        {{ currentProgress ? currentProgress : formatBytes(0) }}/{{ formatBytes(file.size) }}
+      </p>
+      <app-button
+        [color]="'PRIMARY'"
+        type="button"
+        [buttonText]="'Cancel'"
+        (buttonClick)="cancelUpload()"/>
+    </div>
+  }
 </ng-template>

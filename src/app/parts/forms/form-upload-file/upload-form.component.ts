@@ -7,20 +7,25 @@ import {formatBytes} from "../../../tools/RandomStuff";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {FileUploadSummary} from "../../../services/generic/entities/file.upload.summary";
 import {UploadControl, UploadService} from "../../../services/generic/upload.service";
+import {ButtonComponent} from "../../button/button.component";
 
 @Component({
   selector: 'app-form-upload-file',
   standalone: true,
-  imports: [ReactiveFormsModule, NgTemplateOutlet, EventSpinnerDirective],
+  imports: [ReactiveFormsModule, NgTemplateOutlet, EventSpinnerDirective, ButtonComponent],
   templateUrl: 'upload-form.component.html',
   styleUrls: [
-    '../form.component.scss',
     'upload-form.component.scss'
   ]
 })
 export class UploadFormComponent<R extends FileUploadSummary> {
+  @Input() hasFile: boolean = false;
+  @Input() fileName : string = '';
+  @Input() fileSize : string = '';
+
   @Input() apiLink: string = "";
-  @Input() method: 'POST' | 'PUT' = 'POST';
+  @Input() method: 'POST' | 'PUT' = this.hasFile ? 'PUT' : 'POST';
+
   @Input() onUploadFinished: (response: FetchResponse<R>) => void = () => {};
 
   file?: File;
@@ -36,7 +41,8 @@ export class UploadFormComponent<R extends FileUploadSummary> {
   uploadResultMessage: string = '';
 
   processing = false;
-  processMessage = 'Saving Project...';
+  processMessage = 'Uploading file';
+
   updated = false;
 
   private dotInterval?: ReturnType<typeof setInterval>;
@@ -137,4 +143,9 @@ export class UploadFormComponent<R extends FileUploadSummary> {
 
   // === Utility Binding ===
   protected readonly formatBytes = formatBytes;
+  protected readonly parseInt = parseInt;
+
+  deleteFile() {
+
+  }
 }

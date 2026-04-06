@@ -3,6 +3,12 @@
   width: 100%;
 }
 
+.upload-button{
+  button{
+    text-align: start;
+  }
+}
+
 .images {
   display: flex;
   flex-direction: row;

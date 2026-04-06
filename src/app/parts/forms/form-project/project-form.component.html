@@ -24,6 +24,13 @@
           </div>
 
           <div class="form__input-group">
+            <label class="form__label">
+              Current version file:
+            </label>
+            <app-form-upload-file [hasFile]="project.fileName != ''" [fileName]="project.fileName" [fileSize]="project.filesize"/>
+          </div>
+
+          <div class="form__input-group">
             <label
               class="form__label"
               [class.error]="form.get('description')?.invalid && form.get('description')?.touched">
