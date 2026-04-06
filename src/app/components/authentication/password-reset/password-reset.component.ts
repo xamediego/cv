@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {PasswordResetFormComponent} from "../../../parts/test/password-reset-form/password-reset-form.component";
+import {PasswordResetFormComponent} from "../../../parts/forms/form-reset-password/password-reset-form.component";
 
 @Component({
   selector: 'app-password-reset',

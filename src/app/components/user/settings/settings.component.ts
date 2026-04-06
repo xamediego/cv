@@ -15,14 +15,13 @@ import {UserData} from "../../../services/entities/userData";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {AccountService} from "../../../services/account/account.service";
 import {PortalHeaderComponent} from "../../portal/portal-header/portal.header.component";
-import {DisplayNameFormComponent} from "../../../parts/test/displayname-form/display-name-form.component";
+import {DisplayNameFormComponent} from "../../../parts/forms/form-change-displayname/display-name-form.component";
 import {EventSpinnerDirective} from "../../../parts/event-spinner.directive";
-import {EmailFormComponent} from "../../../parts/test/email-form/email-form.component";
-import {UsernameFormComponent} from "../../../parts/test/username-form/username-form.component";
-import {PasswordFormComponent} from "../../../parts/test/password-form/password-form.component";
-import {DeleteFormComponent} from "../../../parts/test/delete-form/delete-form.component";
-import {SetMfaFormComponent} from "../../../parts/forms/setmfaform/set-mfa-form.component";
-import {IFormComponent} from "../../../parts/forms/form.component";
+import {EmailFormComponent} from "../../../parts/forms/form-change-email/email-form.component";
+import {UsernameFormComponent} from "../../../parts/forms/form-change-username/username-form.component";
+import {PasswordFormComponent} from "../../../parts/forms/form-change-password/password-form.component";
+import {DeleteFormComponent} from "../../../parts/forms/form-delete-account/delete-form.component";
+import {SetMfaFormComponent} from "../../../parts/forms/form-mfa-set/set-mfa-form.component";
 
 @Component({
   selector: 'app-settings',
@@ -80,7 +79,7 @@ export class SettingsComponent implements OnInit {
   }
 
   @ViewChild('dynamicComponentContainer', {read: ViewContainerRef}) dynamicComponentContainer!: ViewContainerRef;
-  public showForm(component: Type<IFormComponent>) {
+  public showForm(component: Type<any>) {
     if (this.isMobile) {
       this.showNormal(component);
     } else {
@@ -88,7 +87,7 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  public showDialog(component: Type<IFormComponent>) {
+  public showDialog(component: Type<any>) {
     const dialogRef = this.dialog.open(
       component, {
         maxWidth: 300,
@@ -104,7 +103,7 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  public showNormal(component: Type<IFormComponent>) {
+  public showNormal(component: Type<any>) {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
     const componentRef = this.dynamicComponentContainer.createComponent(componentFactory);
     componentRef.instance.onFormClosed = () => this.closeEmbeddedForm();

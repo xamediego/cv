@@ -1,0 +1,130 @@
+<div class="form">
+  <div class="form__content">
+    @if(!project){
+      <p>No project detected</p>
+    } @else if (!processing) {
+      @if (!updated) {
+        <form [formGroup]="form" (ngSubmit)="submit()" class="form__form">
+          <h2 class="form__title">Edit Project</h2>
+
+          <div class="form__input-group">
+            <label
+              class="form__label"
+              [class.error]="form.get('title')?.invalid && form.get('title')?.touched">
+              Title
+            </label>
+            <input
+              formControlName="title"
+              [class.error]="form.get('title')?.invalid && form.get('title')?.touched"
+              type="text"
+            />
+            @if (form.get('title')?.invalid && form.get('title')?.touched) {
+              <p class="form__error">Title is required and cannot exceed 250 characters.</p>
+            }
+          </div>
+
+          <div class="form__input-group">
+            <label
+              class="form__label"
+              [class.error]="form.get('description')?.invalid && form.get('description')?.touched">
+              Description
+            </label>
+            <textarea
+              formControlName="description"
+              [class.error]="form.get('description')?.invalid && form.get('description')?.touched"
+            ></textarea>
+            @if (form.get('description')?.invalid && form.get('description')?.touched) {
+              <p class="form__error">Description cannot exceed 1000 characters.</p>
+            }
+          </div>
+
+          <div class="form__input-group form__input-group--checkbox-row">
+            <label class="form__label">Is Featured</label>
+            <div class="form__radio-group">
+              <input type="radio" id="isFeaturedTrue" [value]="true" formControlName="isFeatured" />
+              <label for="isFeaturedTrue">Yes</label>
+              <input type="radio" id="isFeaturedFalse" [value]="false" formControlName="isFeatured" />
+              <label for="isFeaturedFalse">No</label>
+            </div>
+          </div>
+
+          <div class="form__input-group form__input-group--checkbox-row">
+            <label class="form__label">Is Hidden</label>
+            <div class="form__radio-group">
+              <input type="radio" id="isHiddenTrue" [value]="true" formControlName="isHidden">
+              <label for="isHiddenTrue">Yes</label>
+              <input type="radio" id="isHiddenFalse" [value]="false" formControlName="isHidden">
+              <label for="isHiddenFalse">No</label>
+            </div>
+          </div>
+
+          <div class="form__input-group">
+            <label
+              class="form__label"
+              [class.error]="form.get('projectTypeId')?.invalid && form.get('projectTypeId')?.touched">
+              Project Type
+            </label>
+
+            <select
+              formControlName="projectTypeId"
+              [class.error]="form.get('projectTypeId')?.invalid && form.get('projectTypeId')?.touched"
+            >
+              <option [value]="null" disabled>Select a Project Type</option>
+              @for (type of projectTypes; track type.projectTypeId) {
+                <option [value]="type.projectTypeId">{{ type.title }}</option>
+              }
+            </select>
+            @if (form.get('projectTypeId')?.invalid && form.get('projectTypeId')?.touched) {
+              <p class="form__error">Project Type is required.</p>
+            }
+          </div>
+
+          <ng-container *ngTemplateOutlet="images" />
+
+          <p class="form__error">{{ errorMessage }}</p>
+
+          <div class="form__button-group">
+            <app-button
+              type="button"
+              (buttonClick)="onFormClosed()"
+              [buttonText]="'Cancel'"/>
+            <app-button
+              [color]="'DANGEROUS'"
+              type="button"
+              (buttonClick)="delete()"
+              [buttonText]="'Delete'"/>
+            <app-button
+              [color]="'SECONDARY'"
+              type="submit"
+              [buttonText]="project.isPublished ? 'Save' : 'Publish'"/>
+          </div>
+        </form>
+      }
+    }
+    <ng-container *appEventSpinner="{condition : processing,eventMessage : processMessage, stretchToParent : false}"/>
+  </div>
+</div>
+
+<ng-template #images>
+  <div class="imageHolder">
+    <label class="form__label">Images</label>
+    <div class="imageHolder__content">
+      @for (image of projectImages; track  i; let i = $index) {
+        <div class="imageHolder__holder" (click)="triggerImageSelect(i)">
+          <img class="imageHolder__img" [src]="image" alt="project image" />
+        </div>
+      }
+
+      @for (dummy of [].constructor(8 - projectImages.length); track i; let i = $index) {
+        <div class="imageHolder__holder" (click)="triggerImageSelect(-1)">
+          <div class="imageHolder__img">
+            <i class="fas fa-plus"></i>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <input style="display: none" type="file" accept="image/*" #fileInput (change)="onFileSelected($event)" hidden />
+</ng-template>
+
+

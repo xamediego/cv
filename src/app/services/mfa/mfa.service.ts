@@ -2,7 +2,7 @@ import {ComponentFactoryResolver, Injectable, ViewContainerRef} from "@angular/c
 import {FetchResponse} from "../generic/entities/FetchResponse";
 import {
   MultiFactorFormComponent
-} from "../../parts/forms/validatemfaform/multi-factor-form.component";
+} from "../../parts/forms/form-mfa-validate/multi-factor-form.component";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class MfaService {
     viewContainer: ViewContainerRef,
     processMessage : string
   ): Promise<FetchResponse<T>> {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(MultiFactorFormComponent<T>);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(MultiFactorFormComponent);
     const componentRef = viewContainer.createComponent(componentFactory);
 
     componentRef.instance.processMessage = processMessage;

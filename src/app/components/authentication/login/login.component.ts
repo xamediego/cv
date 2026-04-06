@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {Router} from "@angular/router";
-import {LoginFormComponent} from "../../../parts/test/login-form/login-form.component";
+import {LoginFormComponent} from "../../../parts/forms/form-login/login-form.component";
 
 @Component({
   selector: 'app-authentication',

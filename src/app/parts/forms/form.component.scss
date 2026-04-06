@@ -1,6 +1,7 @@
 :host {
-  max-width: 300px;
-  width: 100%;
+  display: flex;
+  align-self: stretch;
+  flex-grow: 1;
 }
 
 .form {
@@ -28,11 +29,14 @@
     flex-direction: column;
     flex-grow: 1;
     align-self: stretch;
-    gap: 15px;
+    gap: 10px;
+    p{
+      margin: 0;
+    }
   }
 
   &__title {
-    text-align: center;
+    text-align: start;
   }
 
   &__label {
@@ -44,7 +48,7 @@
   &__input-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     width: 100%;
 
     input,
@@ -125,11 +129,6 @@
         width: 100%;
       }
     }
-  }
-
-  &__mfa-input {
-    text-align: center;
-    letter-spacing: 10px;
   }
 
   &__error {

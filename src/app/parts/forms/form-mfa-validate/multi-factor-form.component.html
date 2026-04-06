@@ -1,0 +1,20 @@
+<app-submit-form
+  [formGroup]="form"
+  [form]="form"
+  [request]="updateRequest()"
+  [formTitle]="formTitle"
+  [formDescription]="formDescription"
+  [submitText]="submitText"
+  [successMessage]="successMessage"
+  [successTitle]="successTitle" [onFormClosed]="onFormClosed"
+  [onFormSuccess]="onFormSuccess">
+  <app-form-input formControlName="code"
+                  class="mfa-input"
+                  type="text"
+                  maxlength="6"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  [value]="'XXXXXX'"
+                  (input)="onCodeInput()"
+                  [label]="'MFA Code'"/>
+</app-submit-form>

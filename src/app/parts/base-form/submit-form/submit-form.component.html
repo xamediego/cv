@@ -1,0 +1,18 @@
+<ng-container #mfaComponentContainer></ng-container>
+
+@if (!mfaCheck) {
+  <app-form [formGroup]="form"
+            [form]="form"
+            [formTitle]="formTitle"
+            [formDescription]="formDescription"
+            [onSubmit]="submitCallBack"
+            [submitText]="submitText"
+            [successMessage]="successMessage"
+            [successTitle]="successTitle"
+            [onFormClosed]="onFormClosed"
+            [onFormSuccess]="onFormSuccess"
+            [isDangerous]="isDangerous"
+            [showDefaultButtons]="showDefaultButtons">
+    <ng-content/>
+  </app-form>
+}

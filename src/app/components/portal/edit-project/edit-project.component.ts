@@ -1,18 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-
-import {ProjectFormComponent} from "../../../parts/forms/projectform/project-form.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../../services/project/project.service";
 import {Project} from "../../../services/entities/project";
 import {ProjectType} from "../../../services/entities/project.type";
 import {ProjectTypeService} from "../../../services/projecttype/project-type.service";
+import {ProjectFormComponent} from "../../../parts/forms/form-project/project-form.component";
 
 
 @Component({
   selector: 'app-edit-project',
   imports: [
-    ProjectFormComponent],
+    ProjectFormComponent
+  ],
   templateUrl: './edit-project.component.html',
   styleUrl: './edit-project.component.scss'
 })

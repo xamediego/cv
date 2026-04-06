@@ -1,0 +1,65 @@
+@if (!hasQr){
+  <app-submit-form
+    [form]="testForm"
+    [request]="updateRequest()"
+    [formTitle]="formTitle"
+    [formDescription]="formDescription"
+    [submitText]="submitText"
+    [successMessage]="successMessage"
+    [successTitle]="successTitle"
+    [onFormClosed]="onFormClosed"
+    [onFormSuccess]="onFormSuccess"
+    [submissionTriggers]="[onCodeInputSubmit$]"
+    [showDefaultButtons]="hasQr">
+    <ng-container [ngTemplateOutlet]="qrTemplate"/>
+  </app-submit-form>
+} @else {
+  <app-submit-form
+    [formGroup]="form"
+    [form]="form"
+    [request]="updateRequest()"
+    [formTitle]="formTitle"
+    [formDescription]="formDescription"
+    [submitText]="submitText"
+    [successMessage]="successMessage"
+    [successTitle]="successTitle"
+    [onFormClosed]="onFormClosed"
+    [onFormSuccess]="onFormSuccess"
+    [submissionTriggers]="[onCodeInputSubmit$]"
+    [showDefaultButtons]="hasQr">
+    <ng-container [ngTemplateOutlet]="qrTemplate"/>
+    <app-form-input formControlName="password" type="password" [label]="'Password'"/>
+    <app-form-input formControlName="code"
+                    class="mfa-input"
+                    type="text"
+                    maxlength="6"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    [value]="'XXXXXX'"
+                    (input)="onCodeInput()"
+                    [label]="mfaEnabled ? 'MFA Code' : 'Confirm Code'"/>
+  </app-submit-form>
+}
+
+<ng-template #qrTemplate>
+  @if (!mfaEnabled && !hasQr) {
+    <div class="button-group">
+      <app-button
+        [color]="'BASE'"
+        type="button"
+        [buttonText]="'Cancel'"
+        (buttonClick)="onFormClosed()"/>
+      <app-button
+        [color]="'SECONDARY'"
+        type="button"
+        [buttonText]="'Get QR code'"
+        (buttonClick)="getQRCode()"/>
+    </div>
+  } @else if (hasQr || mfaEnabled) {
+    @if (!mfaEnabled && hasQr) {
+      <div class="qr-div">
+        <canvas class="qr-canvas" id="qr-canvas"></canvas>
+      </div>
+    }
+  }
+</ng-template>

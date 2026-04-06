@@ -1,0 +1,23 @@
+.qr-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 25px;
+}
+
+.mfa-input{
+  input{
+    text-align: center;
+    letter-spacing: 10px;
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}

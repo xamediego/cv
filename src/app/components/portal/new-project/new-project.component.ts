@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-
-import {UploadFormComponent} from "../../../parts/forms/uploadform/upload-form.component";
 import {environment} from "../../../../environments/environment";
 import {ProjectUploadSummary} from "../../../services/generic/entities/file.upload.summary";
 import {FetchResponse} from "../../../services/generic/entities/FetchResponse";
 import {ProjectType} from "../../../services/entities/project.type";
+import {UploadFormComponent} from "../../../parts/forms/form-upload-file/upload-form.component";
 
 @Component({
   selector: 'app-new-project',
